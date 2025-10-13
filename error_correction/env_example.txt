@@ -1,0 +1,30 @@
+# Error Correction Pipeline Environment Variables
+# Copy this file to .env and set your values
+
+# DAIL-SQL Integration
+DAIL_SQL_PATH=dail_sql.py
+
+# Triplet and Clustering Parameters
+MIN_TRIPLET_COUNT=10
+CLUSTERING_THRESHOLD=0.7
+A_PERCENT_THRESHOLD=0.7
+X_SAMPLE_SIZE=100
+MAX_CLUSTERING_ITERATIONS=10
+
+# LLM Configuration
+LLM_MODEL=gpt-4
+LLM_API_KEY=your_openai_api_key_here
+
+# Rule Validation
+RULE_VALIDATION_RETRIES=3
+
+# Threshold Parameters
+SIMILARITY_THRESHOLD=0.85
+CONFIDENCE_THRESHOLD=0.7
+
+# Performance Parameters
+BATCH_SIZE=32
+MAX_WORKERS=4
+
+# Logging
+LOG_LEVEL=INFO

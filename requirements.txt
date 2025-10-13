@@ -11,3 +11,11 @@ torchtext
 sentence_transformers
 attrs
 nltk
+chromadb
+scikit-learn
+faiss-cpu
+sqlparse
+requests
+sqlvalidator
+pandas
+matplotlib
