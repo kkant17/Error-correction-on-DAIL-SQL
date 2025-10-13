@@ -1,11 +1,12 @@
 import json.decoder
 
 import openai
+import os
 from utils.enums import LLM
 import time
 
 
-def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model):
+def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model, OPENAI_API_BASE: str = ""):
     # if model == LLM.TONG_YI_QIAN_WEN:
     #     import dashscope
     #     dashscope.api_key = OPENAI_API_KEY
@@ -14,6 +15,10 @@ def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model):
     #     openai.organization = OPENAI_GROUP_ID
     openai.api_key = OPENAI_API_KEY
     openai.organization = OPENAI_GROUP_ID
+    # Allow overriding the API base for OpenAI-compatible servers like Ollama
+    api_base = OPENAI_API_BASE or os.getenv("OPENAI_API_BASE", "")
+    if api_base:
+        openai.api_base = api_base
 
 
 def ask_completion(model, batch, temperature):

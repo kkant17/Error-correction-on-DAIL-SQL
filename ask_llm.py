@@ -19,12 +19,14 @@ if __name__ == '__main__':
     parser.add_argument("--question", type=str)
     parser.add_argument("--openai_api_key", type=str)
     parser.add_argument("--openai_group_id", type=str, default="org-ktBefi7n9aK7sZjwc2R9G1Wo")
+    parser.add_argument("--openai_api_base", type=str, default="", help="Override OpenAI API base URL (e.g., http://localhost:11434/v1 for Ollama)")
     parser.add_argument("--model", type=str, choices=[LLM.TEXT_DAVINCI_003, 
                                                       LLM.GPT_35_TURBO,
                                                       LLM.GPT_35_TURBO_0613,
                                                       # LLM.TONG_YI_QIAN_WEN,
                                                       LLM.GPT_35_TURBO_16K,
-                                                      LLM.GPT_4],
+                                                      LLM.GPT_4,
+                                                      LLM.MISTRAL],
                         default=LLM.GPT_35_TURBO)
     parser.add_argument("--start_index", type=int, default=0)
     parser.add_argument("--end_index", type=int, default=1000000)
@@ -45,7 +47,7 @@ if __name__ == '__main__':
     db_ids = [_["db_id"] for _ in questions_json["questions"]]
 
     # init openai api
-    init_chatgpt(args.openai_api_key, args.openai_group_id, args.model)
+    init_chatgpt(args.openai_api_key, args.openai_group_id, args.model, args.openai_api_base)
 
     if args.start_index == 0:
         mode = "w"
