@@ -3,3 +3,4 @@
 dataset/spider/*
 third_party/*
 vector_cache/*
+test-suite-sql-eval/*
