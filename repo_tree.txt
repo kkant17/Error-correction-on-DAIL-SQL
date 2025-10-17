@@ -1,0 +1,4017 @@
+﻿Folder PATH listing for volume OS
+Volume serial number is 00A2-4DCA
+C:.
+|   .env
+|   .gitignore
+|   ask_llm.py
+|   data_preprocess.py
+|   evaluation.py
+|   eval_codellama.txt
+|   exec_eval.py
+|   exec_subprocess.py
+|   generate_question.py
+|   LICENSE.txt
+|   nltk_downloader.py
+|   parse.py
+|   process_sql.py
+|   README.md
+|   repo_tree.txt
+|   requirements.txt
+|   run_dail_sql.sh
+|   run_dail_sql_mini.sh
+|   run_dail_sql_with_sc.sh
+|   run_dail_sql_with_sc_mini.sh
+|   run_for_bird.sh
+|   to_bird_output.py
+|   
++---.kiro
+|   \---specs
+|       +---error-correction-pipeline
+|       |       design.md
+|       |       requirements.md
+|       |       
+|       \---real-time-sql-evaluation
+|               design.md
+|               requirements.md
+|               tasks.md
+|               
++---.vscode
+|       settings.json
+|       
++---dataset
+|   +---process
+|   |   \---SPIDER-TEST_SQL_3-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-200_ANS-4096
+|   |           questions.json
+|   |           RESULTS_MODEL-codellama_7b.txt
+|   |           
+|   \---spider
+|       |   dev.json
+|       |   dev_gold.sql
+|       |   DS_Store
+|       |   README.txt
+|       |   tables.json
+|       |   test.json
+|       |   test_gold.sql
+|       |   test_tables.json
+|       |   train_gold.sql
+|       |   train_others.json
+|       |   train_spider.json
+|       |   train_spider_and_others.json
+|       |   
+|       +---database
+|       |   |   testsuitedatabases.zip
+|       |   |   
+|       |   +---academic
+|       |   |       academic.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---activity_1
+|       |   |       activity_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---aircraft
+|       |   |       aircraft.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---allergy_1
+|       |   |       allergy_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---apartment_rentals
+|       |   |       apartment_rentals.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---architecture
+|       |   |       architecture.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---assets_maintenance
+|       |   |       assets_maintenance.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---baseball_1
+|       |   |       baseball_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---battle_death
+|       |   |       battle_death.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---behavior_monitoring
+|       |   |       behavior_monitoring.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---bike_1
+|       |   |       bike_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---body_builder
+|       |   |       body_builder.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---book_2
+|       |   |       book_2.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---browser_web
+|       |   |       browser_web.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---candidate_poll
+|       |   |       candidate_poll.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---car_1
+|       |   |   |   annotation.json
+|       |   |   |   car_1.json
+|       |   |   |   car_1.sql
+|       |   |   |   car_1.sqlite
+|       |   |   |   link.txt
+|       |   |   |   q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           car-makers.csv
+|       |   |           car-names.csv
+|       |   |           cars-data.csv
+|       |   |           cars.desc
+|       |   |           continents.csv
+|       |   |           countries.csv
+|       |   |           model-list.csv
+|       |   |           README.CARS.TXT
+|       |   |           
+|       |   +---chinook_1
+|       |   |       annotation.json
+|       |   |       chinook_1.sqlite
+|       |   |       
+|       |   +---cinema
+|       |   |       cinema.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---city_record
+|       |   |       city_record.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---climbing
+|       |   |       climbing.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---club_1
+|       |   |       club_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---coffee_shop
+|       |   |       coffee_shop.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---college_1
+|       |   |       college_1.sqlite
+|       |   |       link.txt
+|       |   |       TinyCollege.sql
+|       |   |       
+|       |   +---college_2
+|       |   |       college_2.sqlite
+|       |   |       link.txt
+|       |   |       TextBookExampleSchema.sql
+|       |   |       
+|       |   +---college_3
+|       |   |       college_3.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---company_1
+|       |   |       company_1.sqlite
+|       |   |       link.txt
+|       |   |       
+|       |   +---company_employee
+|       |   |       company_employee.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---company_office
+|       |   |       company_office.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---concert_singer
+|       |   |       concert_singer.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---county_public_safety
+|       |   |       county_public_safety.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---course_teach
+|       |   |       course_teach.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Docs_and_Epenses
+|       |   |       cre_Docs_and_Epenses.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Doc_Control_Systems
+|       |   |       cre_Doc_Control_Systems.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Doc_Template_Mgt
+|       |   |       cre_Doc_Template_Mgt.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Doc_Tracking_DB
+|       |   |       cre_Doc_Tracking_DB.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Drama_Workshop_Groups
+|       |   |       cre_Drama_Workshop_Groups.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---cre_Theme_park
+|       |   |       cre_Theme_park.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---csu_1
+|       |   |       csu_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---culture_company
+|       |   |       culture_company.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customers_and_addresses
+|       |   |       customers_and_addresses.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customers_and_invoices
+|       |   |       customers_and_invoices.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customers_and_products_contacts
+|       |   |       customers_and_products_contacts.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customers_campaigns_ecommerce
+|       |   |       customers_campaigns_ecommerce.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customers_card_transactions
+|       |   |       customers_card_transactions.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customer_complaints
+|       |   |       customer_complaints.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---customer_deliveries
+|       |   |       customer_deliveries.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---debate
+|       |   |       debate.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---decoration_competition
+|       |   |       decoration_competition.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---department_management
+|       |   |       department_management.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---department_store
+|       |   |       department_store.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---device
+|       |   |       device.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---document_management
+|       |   |       document_management.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---dog_kennels
+|       |   |       dog_kennels.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---dorm_1
+|       |   |       dorm_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---driving_school
+|       |   |       driving_school.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---election
+|       |   |       election.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---election_representative
+|       |   |       election_representative.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---employee_hire_evaluation
+|       |   |       employee_hire_evaluation.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---entertainment_awards
+|       |   |       entertainment_awards.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---entrepreneur
+|       |   |       entrepreneur.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---epinions_1
+|       |   |       epinions_1.sqlite
+|       |   |       
+|       |   +---e_government
+|       |   |       e_government.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---e_learning
+|       |   |       e_learning.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---farm
+|       |   |       farm.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---film_rank
+|       |   |       film_rank.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---flight_1
+|       |   |       flight_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---flight_2
+|       |   |   |   annotation.json
+|       |   |   |   flight_2.json
+|       |   |   |   flight_2.sql
+|       |   |   |   flight_2.sqlite
+|       |   |   |   link.txt
+|       |   |   |   q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           airlines.csv
+|       |   |           airports100.csv
+|       |   |           flights.csv
+|       |   |           README.AIRLINES.txt
+|       |   |           
+|       |   +---flight_4
+|       |   |       flight_4.sqlite
+|       |   |       link.txt
+|       |   |       sql.txt
+|       |   |       
+|       |   +---flight_company
+|       |   |       flight_company.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---formula_1
+|       |   |   |   annotation.json
+|       |   |   |   formula_1.splite
+|       |   |   |   formula_1.sql
+|       |   |   |   formula_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           circuits.csv
+|       |   |           constructorResults.csv
+|       |   |           constructors.csv
+|       |   |           constructorStandings.csv
+|       |   |           drivers.csv
+|       |   |           driverStandings.csv
+|       |   |           lapTimes.csv
+|       |   |           pitStops.csv
+|       |   |           qualifying.csv
+|       |   |           races.csv
+|       |   |           results.csv
+|       |   |           seasons.csv
+|       |   |           status.csv
+|       |   |           
+|       |   +---game_1
+|       |   |       game_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---game_injury
+|       |   |       game_injury.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---gas_company
+|       |   |       gas_company.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---geo
+|       |   |       geo.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---gymnast
+|       |   |       gymnast.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---hospital_1
+|       |   |       hospital_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---hr_1
+|       |   |       hr_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---icfp_1
+|       |   |       icfp_1.sqlite
+|       |   |       link.txt
+|       |   |       q.txt
+|       |   |       
+|       |   +---imdb
+|       |   |       imdb.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---inn_1
+|       |   |   |   annotation.json
+|       |   |   |   change_date.py
+|       |   |   |   inn_1.sql
+|       |   |   |   inn_1.sqlite
+|       |   |   |   link.txt
+|       |   |   |   q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           README.INN.TXT
+|       |   |           Reservations.csv
+|       |   |           Reservations_t.csv
+|       |   |           Rooms.csv
+|       |   |           
+|       |   +---insurance_and_eClaims
+|       |   |       insurance_and_eClaims.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---insurance_fnol
+|       |   |       insurance_fnol.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---insurance_policies
+|       |   |       insurance_policies.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---journal_committee
+|       |   |       journal_committee.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---loan_1
+|       |   |       loan_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---local_govt_and_lot
+|       |   |       local_govt_and_lot.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---local_govt_in_alabama
+|       |   |       local_govt_in_alabama.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---local_govt_mdm
+|       |   |       local_govt_mdm.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---machine_repair
+|       |   |       machine_repair.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---manufactory_1
+|       |   |       manufactory_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---manufacturer
+|       |   |       manufacturer.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---match_season
+|       |   |       match_season.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---medicine_enzyme_interaction
+|       |   |       medicine_enzyme_interaction.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---mountain_photos
+|       |   |       mountain_photos.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---movie_1
+|       |   |       movie_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---museum_visit
+|       |   |       museum_visit.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---musical
+|       |   |       musical.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---music_1
+|       |   |       music_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---music_2
+|       |   |       music_2.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---music_4
+|       |   |       music_4.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---network_1
+|       |   |       network_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---network_2
+|       |   |       network_2.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---news_report
+|       |   |       news_report.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---orchestra
+|       |   |       orchestra.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---party_host
+|       |   |       party_host.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---party_people
+|       |   |       party_people.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---performance_attendance
+|       |   |       performance_attendance.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---perpetrator
+|       |   |       perpetrator.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---pets_1
+|       |   |       pets_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---phone_1
+|       |   |       phone_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---phone_market
+|       |   |       phone_market.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---pilot_record
+|       |   |       pilot_record.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---poker_player
+|       |   |       poker_player.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---products_for_hire
+|       |   |       products_for_hire.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---products_gen_characteristics
+|       |   |       products_gen_characteristics.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---product_catalog
+|       |   |       product_catalog.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---program_share
+|       |   |       program_share.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---protein_institute
+|       |   |       protein_institute.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---race_track
+|       |   |       race_track.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---railway
+|       |   |       railway.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---real_estate_properties
+|       |   |       real_estate_properties.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---restaurants
+|       |   |       restaurants.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---restaurant_1
+|       |   |       restaurant_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---riding_club
+|       |   |       riding_club.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---roller_coaster
+|       |   |       roller_coaster.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---sakila_1
+|       |   |       sakila_1.sqlite
+|       |   |       schema.sql
+|       |   |       
+|       |   +---scholar
+|       |   |       schema.sql
+|       |   |       scholar.sqlite
+|       |   |       
+|       |   +---school_bus
+|       |   |       schema.sql
+|       |   |       school_bus.sqlite
+|       |   |       
+|       |   +---school_finance
+|       |   |       schema.sql
+|       |   |       school_finance.sqlite
+|       |   |       
+|       |   +---school_player
+|       |   |       schema.sql
+|       |   |       school_player.sqlite
+|       |   |       
+|       |   +---scientist_1
+|       |   |       schema.sql
+|       |   |       scientist_1.sqlite
+|       |   |       
+|       |   +---ship_1
+|       |   |       schema.sql
+|       |   |       ship_1.sqlite
+|       |   |       
+|       |   +---ship_mission
+|       |   |       schema.sql
+|       |   |       ship_mission.sqlite
+|       |   |       
+|       |   +---shop_membership
+|       |   |       schema.sql
+|       |   |       shop_membership.sqlite
+|       |   |       
+|       |   +---singer
+|       |   |       schema.sql
+|       |   |       singer.sqlite
+|       |   |       
+|       |   +---small_bank_1
+|       |   |       small_bank_1.sqlite
+|       |   |       
+|       |   +---soccer_1
+|       |   |       schema.sql
+|       |   |       soccer_1.sqlite
+|       |   |       
+|       |   +---soccer_2
+|       |   |       schema.sql
+|       |   |       soccer_2.sqlite
+|       |   |       
+|       |   +---solvency_ii
+|       |   |       schema.sql
+|       |   |       solvency_ii.sqlite
+|       |   |       
+|       |   +---sports_competition
+|       |   |       schema.sql
+|       |   |       sports_competition.sqlite
+|       |   |       
+|       |   +---station_weather
+|       |   |       schema.sql
+|       |   |       station_weather.sqlite
+|       |   |       
+|       |   +---store_1
+|       |   |       schema.sql
+|       |   |       store_1.sqlite
+|       |   |       
+|       |   +---store_product
+|       |   |       schema.sql
+|       |   |       store_product.sqlite
+|       |   |       
+|       |   +---storm_record
+|       |   |       schema.sql
+|       |   |       storm_record.sqlite
+|       |   |       
+|       |   +---student_1
+|       |   |   |   annotation.json
+|       |   |   |   link.txt
+|       |   |   |   q.txt
+|       |   |   |   student_1.sql
+|       |   |   |   student_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           list.csv
+|       |   |           README.STUDENTS.TXT
+|       |   |           teachers.csv
+|       |   |           
+|       |   +---student_assessment
+|       |   |       schema.sql
+|       |   |       student_assessment.sqlite
+|       |   |       
+|       |   +---student_transcripts_tracking
+|       |   |       schema.sql
+|       |   |       student_transcripts_tracking.sqlite
+|       |   |       
+|       |   +---swimming
+|       |   |       schema.sql
+|       |   |       swimming.sqlite
+|       |   |       
+|       |   +---theme_gallery
+|       |   |       schema.sql
+|       |   |       theme_gallery.sqlite
+|       |   |       
+|       |   +---tracking_grants_for_research
+|       |   |       schema.sql
+|       |   |       tracking_grants_for_research.sqlite
+|       |   |       
+|       |   +---tracking_orders
+|       |   |       schema.sql
+|       |   |       tracking_orders.sqlite
+|       |   |       
+|       |   +---tracking_share_transactions
+|       |   |       schema.sql
+|       |   |       tracking_share_transactions.sqlite
+|       |   |       
+|       |   +---tracking_software_problems
+|       |   |       schema.sql
+|       |   |       tracking_software_problems.sqlite
+|       |   |       
+|       |   +---train_station
+|       |   |       schema.sql
+|       |   |       train_station.sqlite
+|       |   |       
+|       |   +---tvshow
+|       |   |       schema.sql
+|       |   |       tvshow.sqlite
+|       |   |       
+|       |   +---twitter_1
+|       |   |   |   twitter_1.sqlite
+|       |   |   |   
+|       |   |   \---queries
+|       |   |           oracle-dialects.xml
+|       |   |           postgres-dialects.xml
+|       |   |           sqlserver-dialects.xml
+|       |   |           
+|       |   +---university_basketball
+|       |   |       schema.sql
+|       |   |       university_basketball.sqlite
+|       |   |       
+|       |   +---voter_1
+|       |   |       voter_1.sqlite
+|       |   |       
+|       |   +---voter_2
+|       |   |       schema.sql
+|       |   |       voter_2.sqlite
+|       |   |       
+|       |   +---wedding
+|       |   |       schema.sql
+|       |   |       wedding.sqlite
+|       |   |       
+|       |   +---wine_1
+|       |   |   |   annotation.json
+|       |   |   |   link.txt
+|       |   |   |   q.txt
+|       |   |   |   wine_1.sql
+|       |   |   |   wine_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           appellations.csv
+|       |   |           grapes.csv
+|       |   |           README.WINE.txt
+|       |   |           wine.csv
+|       |   |           
+|       |   +---workshop_paper
+|       |   |       schema.sql
+|       |   |       workshop_paper.sqlite
+|       |   |       
+|       |   +---world_1
+|       |   |       world_1.json
+|       |   |       world_1.sqlite
+|       |   |       
+|       |   +---wrestler
+|       |   |       schema.sql
+|       |   |       wrestler.sqlite
+|       |   |       
+|       |   +---wta_1
+|       |   |       wta_1.sql
+|       |   |       wta_1.sqlite
+|       |   |       
+|       |   \---yelp
+|       |           schema.sql
+|       |           yelp.sqlite
+|       |           
+|       +---enc
+|       |       test_schema-linking.jsonl
+|       |       train_schema-linking.jsonl
+|       |       
+|       \---test_database
+|           +---aan_1
+|           |       aan_1.sqlite
+|           |       annotation.json
+|           |       schema.sql
+|           |       
+|           +---academic
+|           |       academic.sqlite
+|           |       schema.sql
+|           |       
+|           +---activity_1
+|           |       activity_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---address_1
+|           |       address_1.sqlite
+|           |       link.txt
+|           |       schema.sql
+|           |       
+|           +---advertising_agencies
+|           |       advertising_agencies.sqlite
+|           |       schema.sql
+|           |       
+|           +---aircraft
+|           |       aircraft.sqlite
+|           |       schema.sql
+|           |       
+|           +---allergy_1
+|           |       allergy_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---apartment_rentals
+|           |       apartment_rentals.sqlite
+|           |       schema.sql
+|           |       
+|           +---architecture
+|           |       architecture.sqlite
+|           |       schema.sql
+|           |       
+|           +---art_1
+|           |       art_1.sqlite
+|           |       link.txt
+|           |       q.txt
+|           |       
+|           +---assets_maintenance
+|           |       assets_maintenance.sqlite
+|           |       schema.sql
+|           |       
+|           +---bakery_1
+|           |   |   annotation.json
+|           |   |   bakery_1.json
+|           |   |   bakery_1.sql
+|           |   |   bakery_1.sqlite
+|           |   |   bakery_1_michi.txt
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           customers.csv
+|           |           customers_t.csv
+|           |           goods.csv
+|           |           goods_t.csv
+|           |           items (3_11_18, 5_53 PM)_original.csv
+|           |           items.csv
+|           |           items_t.csv
+|           |           README.BAKERY.TXT
+|           |           receipts (3_11_18, 5_53 PM)_original.csv
+|           |           receipts.csv
+|           |           receipts_t.csv
+|           |           
+|           +---baseball_1
+|           |       baseball_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---battle_death
+|           |       battle_death.sqlite
+|           |       schema.sql
+|           |       
+|           +---bbc_channels
+|           |       bbc_channels.sqlite
+|           |       schema.sql
+|           |       
+|           +---behavior_monitoring
+|           |       behavior_monitoring.sqlite
+|           |       schema.sql
+|           |       
+|           +---bike_1
+|           |       bike_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---bike_racing
+|           |       bike_racing.sqlite
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       
+|           +---boat_1
+|           |       Boats.csv
+|           |       boat_1.sqlite
+|           |       Reserves.csv
+|           |       Sailors.csv
+|           |       schema.sql
+|           |       
+|           +---body_builder
+|           |       body_builder.sqlite
+|           |       schema.sql
+|           |       
+|           +---book_1
+|           |       annotation.json
+|           |       book_1.sqlite
+|           |       link.txt
+|           |       q.txt
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       sql.txt
+|           |       
+|           +---book_2
+|           |       book_2.sqlite
+|           |       schema.sql
+|           |       
+|           +---book_press
+|           |       book_press.sqlite
+|           |       schema.sql
+|           |       
+|           +---book_review
+|           |       book_review.sqlite
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       
+|           +---browser_web
+|           |       browser_web.sqlite
+|           |       schema.sql
+|           |       
+|           +---candidate_poll
+|           |       candidate_poll.sqlite
+|           |       schema.sql
+|           |       
+|           +---car_1
+|           |   |   annotation.json
+|           |   |   car_1.json
+|           |   |   car_1.sql
+|           |   |   car_1.sqlite
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           car-makers.csv
+|           |           car-names.csv
+|           |           cars-data.csv
+|           |           cars.desc
+|           |           continents.csv
+|           |           countries.csv
+|           |           model-list.csv
+|           |           README.CARS.TXT
+|           |           
+|           +---car_racing
+|           |       car_racing.sqlite
+|           |       schema.sql
+|           |       
+|           +---car_road_race
+|           |       car_road_race.sqlite
+|           |       schema.sql
+|           |       
+|           +---chinook_1
+|           |       annotation.json
+|           |       chinook_1.sqlite
+|           |       
+|           +---cinema
+|           |       cinema.sqlite
+|           |       schema.sql
+|           |       
+|           +---city_record
+|           |       city_record.sqlite
+|           |       schema.sql
+|           |       
+|           +---climbing
+|           |       climbing.sqlite
+|           |       schema.sql
+|           |       
+|           +---club_1
+|           |       club_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---club_leader
+|           |       club_leader.sqlite
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       
+|           +---coffee_shop
+|           |       coffee_shop.sqlite
+|           |       schema.sql
+|           |       
+|           +---college_1
+|           |       college_1.sqlite
+|           |       link.txt
+|           |       TinyCollege.sql
+|           |       
+|           +---college_2
+|           |       college_2.sqlite
+|           |       link.txt
+|           |       TextBookExampleSchema.sql
+|           |       
+|           +---college_3
+|           |       college_3.sqlite
+|           |       schema.sql
+|           |       
+|           +---company_1
+|           |       company_1.sqlite
+|           |       link.txt
+|           |       
+|           +---company_employee
+|           |       company_employee.sqlite
+|           |       schema.sql
+|           |       
+|           +---company_office
+|           |       company_office.sqlite
+|           |       schema.sql
+|           |       
+|           +---concert_singer
+|           |       concert_singer.sqlite
+|           |       schema.sql
+|           |       
+|           +---conference
+|           |       conference.sqlite
+|           |       schema.sql
+|           |       
+|           +---country_language
+|           |       country_language.sqlite
+|           |       schema.sql
+|           |       
+|           +---county_public_safety
+|           |       county_public_safety.sqlite
+|           |       schema.sql
+|           |       
+|           +---course_teach
+|           |       course_teach.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Docs_and_Epenses
+|           |       cre_Docs_and_Epenses.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Doc_and_collections
+|           |       cre_Doc_and_collections.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Doc_Control_Systems
+|           |       cre_Doc_Control_Systems.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Doc_Template_Mgt
+|           |       cre_Doc_Template_Mgt.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Doc_Tracking_DB
+|           |       cre_Doc_Tracking_DB.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Doc_Workflow
+|           |       cre_Doc_Workflow.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Drama_Workshop_Groups
+|           |       cre_Drama_Workshop_Groups.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Students_Information_Systems
+|           |       cre_Students_Information_Systems.sqlite
+|           |       schema.sql
+|           |       
+|           +---cre_Theme_park
+|           |       cre_Theme_park.sqlite
+|           |       schema.sql
+|           |       
+|           +---csu_1
+|           |       csu_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---culture_company
+|           |       culture_company.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_and_addresses
+|           |       customers_and_addresses.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_and_invoices
+|           |       customers_and_invoices.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_and_orders
+|           |       customers_and_orders.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_and_products_contacts
+|           |       customers_and_products_contacts.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_campaigns_ecommerce
+|           |       customers_campaigns_ecommerce.sqlite
+|           |       schema.sql
+|           |       
+|           +---customers_card_transactions
+|           |       customers_card_transactions.sqlite
+|           |       schema.sql
+|           |       
+|           +---customer_complaints
+|           |       customer_complaints.sqlite
+|           |       schema.sql
+|           |       
+|           +---customer_deliveries
+|           |       customer_deliveries.sqlite
+|           |       schema.sql
+|           |       
+|           +---debate
+|           |       debate.sqlite
+|           |       schema.sql
+|           |       
+|           +---decoration_competition
+|           |       decoration_competition.sqlite
+|           |       schema.sql
+|           |       
+|           +---department_management
+|           |       department_management.sqlite
+|           |       schema.sql
+|           |       
+|           +---department_store
+|           |       department_store.sqlite
+|           |       schema.sql
+|           |       
+|           +---device
+|           |       device.sqlite
+|           |       schema.sql
+|           |       
+|           +---district_spokesman
+|           |       district_spokesman.sqlite
+|           |       schema.sql
+|           |       
+|           +---document_management
+|           |       document_management.sqlite
+|           |       schema.sql
+|           |       
+|           +---dog_kennels
+|           |       dog_kennels.sqlite
+|           |       schema.sql
+|           |       
+|           +---dorm_1
+|           |       dorm_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---driving_school
+|           |       driving_school.sqlite
+|           |       schema.sql
+|           |       
+|           +---election
+|           |       election.sqlite
+|           |       schema.sql
+|           |       
+|           +---election_representative
+|           |       election_representative.sqlite
+|           |       schema.sql
+|           |       
+|           +---employee_hire_evaluation
+|           |       employee_hire_evaluation.sqlite
+|           |       schema.sql
+|           |       
+|           +---entertainment_awards
+|           |       entertainment_awards.sqlite
+|           |       schema.sql
+|           |       
+|           +---entrepreneur
+|           |       entrepreneur.sqlite
+|           |       schema.sql
+|           |       
+|           +---epinions_1
+|           |       epinions_1.sqlite
+|           |       
+|           +---e_commerce
+|           |       e_commerce.sqlite
+|           |       schema.sql
+|           |       
+|           +---e_government
+|           |       e_government.sqlite
+|           |       schema.sql
+|           |       
+|           +---e_learning
+|           |       e_learning.sqlite
+|           |       schema.sql
+|           |       
+|           +---farm
+|           |       farm.sqlite
+|           |       schema.sql
+|           |       
+|           +---film_rank
+|           |       film_rank.sqlite
+|           |       schema.sql
+|           |       
+|           +---flight_1
+|           |       flight_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---flight_2
+|           |   |   annotation.json
+|           |   |   flight_2.json
+|           |   |   flight_2.sql
+|           |   |   flight_2.sqlite
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           airlines.csv
+|           |           airports100.csv
+|           |           flights.csv
+|           |           README.AIRLINES.txt
+|           |           
+|           +---flight_4
+|           |       flight_4.sqlite
+|           |       link.txt
+|           |       sql.txt
+|           |       
+|           +---flight_company
+|           |       flight_company.sqlite
+|           |       schema.sql
+|           |       
+|           +---formula_1
+|           |   |   annotation.json
+|           |   |   formula_1.splite
+|           |   |   formula_1.sql
+|           |   |   formula_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           circuits.csv
+|           |           constructorResults.csv
+|           |           constructors.csv
+|           |           constructorStandings.csv
+|           |           drivers.csv
+|           |           driverStandings.csv
+|           |           lapTimes.csv
+|           |           pitStops.csv
+|           |           qualifying.csv
+|           |           races.csv
+|           |           results.csv
+|           |           seasons.csv
+|           |           status.csv
+|           |           
+|           +---game_1
+|           |       game_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---game_injury
+|           |       game_injury.sqlite
+|           |       schema.sql
+|           |       
+|           +---gas_company
+|           |       gas_company.sqlite
+|           |       schema.sql
+|           |       
+|           +---geo
+|           |       geo.sqlite
+|           |       schema.sql
+|           |       
+|           +---government_shift
+|           |       government_shift.sqlite
+|           |       schema.sql
+|           |       
+|           +---gymnast
+|           |       gymnast.sqlite
+|           |       schema.sql
+|           |       
+|           +---headphone_store
+|           |       headphone_store.sqlite
+|           |       schema.sql
+|           |       
+|           +---hospital_1
+|           |       hospital_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---hr_1
+|           |       hr_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---icfp_1
+|           |       icfp_1.sqlite
+|           |       link.txt
+|           |       q.txt
+|           |       
+|           +---imdb
+|           |       imdb.sqlite
+|           |       schema.sql
+|           |       
+|           +---inn_1
+|           |   |   annotation.json
+|           |   |   change_date.py
+|           |   |   inn_1.sql
+|           |   |   inn_1.sqlite
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           README.INN.TXT
+|           |           Reservations.csv
+|           |           Reservations_t.csv
+|           |           Rooms.csv
+|           |           
+|           +---institution_sports
+|           |       institution_sports.sqlite
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       
+|           +---insurance_and_eClaims
+|           |       insurance_and_eClaims.sqlite
+|           |       schema.sql
+|           |       
+|           +---insurance_fnol
+|           |       insurance_fnol.sqlite
+|           |       schema.sql
+|           |       
+|           +---insurance_policies
+|           |       insurance_policies.sqlite
+|           |       schema.sql
+|           |       
+|           +---journal_committee
+|           |       journal_committee.sqlite
+|           |       schema.sql
+|           |       
+|           +---loan_1
+|           |       loan_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---local_govt_and_lot
+|           |       local_govt_and_lot.sqlite
+|           |       schema.sql
+|           |       
+|           +---local_govt_in_alabama
+|           |       local_govt_in_alabama.sqlite
+|           |       schema.sql
+|           |       
+|           +---local_govt_mdm
+|           |       local_govt_mdm.sqlite
+|           |       schema.sql
+|           |       
+|           +---machine_repair
+|           |       machine_repair.sqlite
+|           |       schema.sql
+|           |       
+|           +---manufactory_1
+|           |       manufactory_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---manufacturer
+|           |       manufacturer.sqlite
+|           |       schema.sql
+|           |       
+|           +---match_season
+|           |       match_season.sqlite
+|           |       schema.sql
+|           |       
+|           +---medicine_enzyme_interaction
+|           |       medicine_enzyme_interaction.sqlite
+|           |       schema.sql
+|           |       
+|           +---mountain_photos
+|           |       mountain_photos.sqlite
+|           |       schema.sql
+|           |       
+|           +---movie_1
+|           |       movie_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---movie_2
+|           |       annotation.json
+|           |       link.txt
+|           |       movie_2.sqlite
+|           |       q.txt
+|           |       schema.sql
+|           |       sql.txt
+|           |       
+|           +---museum_visit
+|           |       museum_visit.sqlite
+|           |       schema.sql
+|           |       
+|           +---musical
+|           |       musical.sqlite
+|           |       schema.sql
+|           |       
+|           +---music_1
+|           |       music_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---music_2
+|           |       music_2.sqlite
+|           |       schema.sql
+|           |       
+|           +---music_4
+|           |       music_4.sqlite
+|           |       schema.sql
+|           |       
+|           +---network_1
+|           |       network_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---network_2
+|           |       network_2.sqlite
+|           |       schema.sql
+|           |       
+|           +---news_report
+|           |       news_report.sqlite
+|           |       schema.sql
+|           |       
+|           +---online_exams
+|           |       online_exams.sqlite
+|           |       schema.sql
+|           |       simple_schema.sql
+|           |       
+|           +---orchestra
+|           |       orchestra.sqlite
+|           |       schema.sql
+|           |       
+|           +---party_host
+|           |       party_host.sqlite
+|           |       schema.sql
+|           |       
+|           +---party_people
+|           |       party_people.sqlite
+|           |       schema.sql
+|           |       
+|           +---performance_attendance
+|           |       performance_attendance.sqlite
+|           |       schema.sql
+|           |       
+|           +---perpetrator
+|           |       perpetrator.sqlite
+|           |       schema.sql
+|           |       
+|           +---pets_1
+|           |       pets_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---phone_1
+|           |       phone_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---phone_market
+|           |       phone_market.sqlite
+|           |       schema.sql
+|           |       
+|           +---pilot_1
+|           |       link.txt
+|           |       pilot_1.sqlite
+|           |       schema.sql
+|           |       sql.txt
+|           |       
+|           +---pilot_record
+|           |       pilot_record.sqlite
+|           |       schema.sql
+|           |       
+|           +---planet_1
+|           |       annotation.json
+|           |       link.txt
+|           |       planet_1.sqlite
+|           |       q.txt
+|           |       schema.sql
+|           |       sql.txt
+|           |       
+|           +---poker_player
+|           |       poker_player.sqlite
+|           |       schema.sql
+|           |       
+|           +---products_for_hire
+|           |       products_for_hire.sqlite
+|           |       schema.sql
+|           |       
+|           +---products_gen_characteristics
+|           |       products_gen_characteristics.sqlite
+|           |       schema.sql
+|           |       
+|           +---product_catalog
+|           |       product_catalog.sqlite
+|           |       schema.sql
+|           |       
+|           +---program_share
+|           |       program_share.sqlite
+|           |       schema.sql
+|           |       
+|           +---protein_institute
+|           |       protein_institute.sqlite
+|           |       schema.sql
+|           |       
+|           +---race_track
+|           |       race_track.sqlite
+|           |       schema.sql
+|           |       
+|           +---railway
+|           |       railway.sqlite
+|           |       schema.sql
+|           |       
+|           +---real_estate_properties
+|           |       real_estate_properties.sqlite
+|           |       schema.sql
+|           |       
+|           +---real_estate_rentals
+|           |       real_estate_rentals.sqlite
+|           |       schema.sql
+|           |       
+|           +---region_building
+|           |       region_building.sqlite
+|           |       schema.sql
+|           |       
+|           +---restaurants
+|           |       restaurants.sqlite
+|           |       schema.sql
+|           |       
+|           +---restaurant_1
+|           |       restaurant_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---restaurant_bills
+|           |       restaurant_bills.sqlite
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       
+|           +---riding_club
+|           |       riding_club.sqlite
+|           |       schema.sql
+|           |       
+|           +---roller_coaster
+|           |       roller_coaster.sqlite
+|           |       schema.sql
+|           |       
+|           +---sakila_1
+|           |       sakila_1.sqlite
+|           |       schema.sql
+|           |       
+|           +---scholar
+|           |       schema.sql
+|           |       scholar.sqlite
+|           |       
+|           +---school_bus
+|           |       schema.sql
+|           |       school_bus.sqlite
+|           |       
+|           +---school_finance
+|           |       schema.sql
+|           |       school_finance.sqlite
+|           |       
+|           +---school_player
+|           |       schema.sql
+|           |       school_player.sqlite
+|           |       
+|           +---scientist_1
+|           |       schema.sql
+|           |       scientist_1.sqlite
+|           |       
+|           +---ship_1
+|           |       schema.sql
+|           |       ship_1.sqlite
+|           |       
+|           +---ship_mission
+|           |       schema.sql
+|           |       ship_mission.sqlite
+|           |       
+|           +---shop_membership
+|           |       schema.sql
+|           |       shop_membership.sqlite
+|           |       
+|           +---singer
+|           |       schema.sql
+|           |       singer.sqlite
+|           |       
+|           +---sing_contest
+|           |       schema.sql
+|           |       schema_old.sql
+|           |       sing_contest.sqlite
+|           |       
+|           +---small_bank_1
+|           |       small_bank_1.sqlite
+|           |       
+|           +---soccer_1
+|           |       schema.sql
+|           |       soccer_1.sqlite
+|           |       
+|           +---soccer_2
+|           |       schema.sql
+|           |       soccer_2.sqlite
+|           |       
+|           +---soccer_3
+|           |       schema.sql
+|           |       soccer_3.sqlite
+|           |       
+|           +---solvency_ii
+|           |       schema.sql
+|           |       solvency_ii.sqlite
+|           |       
+|           +---sports_competition
+|           |       schema.sql
+|           |       sports_competition.sqlite
+|           |       
+|           +---station_weather
+|           |       schema.sql
+|           |       station_weather.sqlite
+|           |       
+|           +---store_1
+|           |       schema.sql
+|           |       store_1.sqlite
+|           |       
+|           +---store_product
+|           |       schema.sql
+|           |       store_product.sqlite
+|           |       
+|           +---storm_record
+|           |       schema.sql
+|           |       storm_record.sqlite
+|           |       
+|           +---student_1
+|           |   |   annotation.json
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   student_1.sql
+|           |   |   student_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           list.csv
+|           |           README.STUDENTS.TXT
+|           |           teachers.csv
+|           |           
+|           +---student_assessment
+|           |       schema.sql
+|           |       student_assessment.sqlite
+|           |       
+|           +---student_transcripts_tracking
+|           |       schema.sql
+|           |       student_transcripts_tracking.sqlite
+|           |       
+|           +---swimming
+|           |       schema.sql
+|           |       swimming.sqlite
+|           |       
+|           +---theme_gallery
+|           |       schema.sql
+|           |       theme_gallery.sqlite
+|           |       
+|           +---tracking_grants_for_research
+|           |       schema.sql
+|           |       tracking_grants_for_research.sqlite
+|           |       
+|           +---tracking_orders
+|           |       schema.sql
+|           |       tracking_orders.sqlite
+|           |       
+|           +---tracking_share_transactions
+|           |       schema.sql
+|           |       tracking_share_transactions.sqlite
+|           |       
+|           +---tracking_software_problems
+|           |       schema.sql
+|           |       tracking_software_problems.sqlite
+|           |       
+|           +---train_station
+|           |       schema.sql
+|           |       train_station.sqlite
+|           |       
+|           +---tvshow
+|           |       schema.sql
+|           |       tvshow.sqlite
+|           |       
+|           +---tv_shows
+|           |       schema.sql
+|           |       tv_shows.sqlite
+|           |       
+|           +---twitter_1
+|           |   |   twitter_1.sqlite
+|           |   |   
+|           |   \---queries
+|           |           oracle-dialects.xml
+|           |           postgres-dialects.xml
+|           |           sqlserver-dialects.xml
+|           |           
+|           +---university_basketball
+|           |       schema.sql
+|           |       university_basketball.sqlite
+|           |       
+|           +---university_rank
+|           |       schema.sql
+|           |       university_rank.sqlite
+|           |       
+|           +---vehicle_driver
+|           |       schema.sql
+|           |       vehicle_driver.sqlite
+|           |       
+|           +---vehicle_rent
+|           |       schema.sql
+|           |       vehicle_rent
+|           |       vehicle_rent.sqlite
+|           |       
+|           +---video_game
+|           |       schema.sql
+|           |       video_game.sqlite
+|           |       
+|           +---voter_1
+|           |       voter_1.sqlite
+|           |       
+|           +---voter_2
+|           |       schema.sql
+|           |       voter_2.sqlite
+|           |       
+|           +---warehouse_1
+|           |       annotation.json
+|           |       link.txt
+|           |       q.txt
+|           |       schema.sql
+|           |       sql.txt
+|           |       warehouse_1.sqlite
+|           |       
+|           +---wedding
+|           |       schema.sql
+|           |       wedding.sqlite
+|           |       
+|           +---wine_1
+|           |   |   annotation.json
+|           |   |   link.txt
+|           |   |   q.txt
+|           |   |   wine_1.sql
+|           |   |   wine_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           appellations.csv
+|           |           grapes.csv
+|           |           README.WINE.txt
+|           |           wine.csv
+|           |           
+|           +---workshop_paper
+|           |       schema.sql
+|           |       workshop_paper.sqlite
+|           |       
+|           +---world_1
+|           |       world_1.json
+|           |       world_1.sqlite
+|           |       
+|           +---wrestler
+|           |       schema.sql
+|           |       wrestler.sqlite
+|           |       
+|           +---wta_1
+|           |       wta_1.sql
+|           |       wta_1.sqlite
+|           |       
+|           \---yelp
+|                   schema.sql
+|                   yelp.sqlite
+|                   
++---img
+|       component_explanation_em.pdf
+|       component_explanation_em.png
+|       component_explanation_ex.pdf
+|       component_explanation_ex.png
+|       component_foreign_key_em.pdf
+|       component_foreign_key_em.png
+|       component_foreign_key_ex.pdf
+|       component_foreign_key_ex.png
+|       openai_0shot_em.pdf
+|       openai_0shot_em.png
+|       openai_0shot_ex.pdf
+|       openai_0shot_ex.png
+|       organization_spider_dev_chatgpt.pdf
+|       organization_spider_dev_chatgpt.png
+|       organization_spider_dev_davinci.pdf
+|       organization_spider_dev_davinci.png
+|       organization_spider_dev_gpt4.pdf
+|       organization_spider_dev_gpt4.png
+|       organization_spider_dev_vicuna.pdf
+|       organization_spider_dev_vicuna.png
+|       
++---llm
+|   |   chatgpt.py
+|   |   
+|   \---__pycache__
+|           chatgpt.cpython-313.pyc
+|           
++---prompt
+|   |   ExampleFormatTemplate.py
+|   |   ExampleSelectorTemplate.py
+|   |   PromptICLTemplate.py
+|   |   PromptReprTemplate.py
+|   |   prompt_builder.py
+|   |   
+|   \---__pycache__
+|           ExampleFormatTemplate.cpython-313.pyc
+|           ExampleSelectorTemplate.cpython-313.pyc
+|           PromptICLTemplate.cpython-313.pyc
+|           PromptReprTemplate.cpython-313.pyc
+|           prompt_builder.cpython-313.pyc
+|           
++---results
+|       BIRD_WITH_EVIDENCE-TEST_SQL_7-SHOT_EUCDISMASKPRESKLSIMTHR_QA-EXAMPLE_CTX-150_ANS-4096_TH-0.8.txt
+|       BIRD_WITH_EVIDENCE-TEST_SQL_7-SHOT_EUCDISMASKPRESKLSIMTHR_QA-EXAMPLE_CTX-150_ANS-4096_TH-0.85.txt
+|       BIRD_WITH_EVIDENCE-TEST_SQL_7-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-150_ANS-4096.txt
+|       BIRD_WITH_EVIDENCE-TEST_SQL_9-SHOT_EUCDISMASKPRESKLSIMTHR_QA-EXAMPLE_CTX-150_ANS-4096.txt
+|       BIRD_WITH_EVIDENCE-TEST_SQL_9-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-150_ANS-4096.txt
+|       DAIL-SQL+GPT-4+self-consistency.txt
+|       DAIL-SQL+GPT-4.txt
+|       eval_codellama_dev.txt
+|       graphix_result.txt
+|       QUESTIONMASK_GPT-4_for_bird.txt
+|       
++---third_party
+|   \---stanford-corenlp-full-2018-10-05
+|       \---stanford-corenlp-full-2018-10-05
+|           |   build.xml
+|           |   CoreNLP-to-HTML.xsl
+|           |   corenlp.sh
+|           |   ejml-0.23-src.zip
+|           |   ejml-0.23.jar
+|           |   input.txt
+|           |   input.txt.xml
+|           |   javax.activation-api-1.2.0-sources.jar
+|           |   javax.activation-api-1.2.0.jar
+|           |   javax.json-api-1.0-sources.jar
+|           |   javax.json.jar
+|           |   jaxb-api-2.4.0-b180830.0359-sources.jar
+|           |   jaxb-api-2.4.0-b180830.0359.jar
+|           |   jaxb-core-2.3.0.1-sources.jar
+|           |   jaxb-core-2.3.0.1.jar
+|           |   jaxb-impl-2.4.0-b180830.0438-sources.jar
+|           |   jaxb-impl-2.4.0-b180830.0438.jar
+|           |   joda-time-2.9-sources.jar
+|           |   joda-time.jar
+|           |   jollyday-0.4.9-sources.jar
+|           |   jollyday.jar
+|           |   LIBRARY-LICENSES
+|           |   LICENSE.txt
+|           |   Makefile
+|           |   pom-java-11.xml
+|           |   pom.xml
+|           |   protobuf.jar
+|           |   README.txt
+|           |   RESOURCE-LICENSES
+|           |   SemgrexDemo.java
+|           |   ShiftReduceDemo.java
+|           |   slf4j-api.jar
+|           |   slf4j-simple.jar
+|           |   stanford-corenlp-3.9.2-javadoc.jar
+|           |   stanford-corenlp-3.9.2-models.jar
+|           |   stanford-corenlp-3.9.2-sources.jar
+|           |   stanford-corenlp-3.9.2.jar
+|           |   StanfordCoreNlpDemo.java
+|           |   StanfordDependenciesManual.pdf
+|           |   xom-1.2.10-src.jar
+|           |   xom.jar
+|           |   
+|           +---patterns
+|           |       example.properties
+|           |       goldnames.txt
+|           |       goldplaces.txt
+|           |       names.txt
+|           |       otherpeople.txt
+|           |       places.txt
+|           |       presidents.txt
+|           |       stopwords.txt
+|           |       
+|           +---sutime
+|           |       british.sutime.txt
+|           |       defs.sutime.txt
+|           |       english.holidays.sutime.txt
+|           |       english.sutime.txt
+|           |       spanish.sutime.txt
+|           |       
+|           \---tokensregex
+|                   color.input.txt
+|                   color.properties
+|                   color.rules.txt
+|                   retokenize.txt
+|                   
++---utils
+|   |   data_builder.py
+|   |   enums.py
+|   |   linking_process.py
+|   |   post_process.py
+|   |   pretrained_embeddings.py
+|   |   utils.py
+|   |   
+|   +---datasets
+|   |       spider.py
+|   |       
+|   +---linking_utils
+|   |   |   abstract_preproc.py
+|   |   |   application.py
+|   |   |   corenlp.py
+|   |   |   serialization.py
+|   |   |   spider_match_utils.py
+|   |   |   
+|   |   \---__pycache__
+|   |           abstract_preproc.cpython-313.pyc
+|   |           abstract_preproc.cpython-38.pyc
+|   |           application.cpython-313.pyc
+|   |           corenlp.cpython-313.pyc
+|   |           corenlp.cpython-38.pyc
+|   |           serialization.cpython-313.pyc
+|   |           serialization.cpython-38.pyc
+|   |           spider_match_utils.cpython-313.pyc
+|   |           spider_match_utils.cpython-38.pyc
+|   |           
+|   \---__pycache__
+|           data_builder.cpython-313.pyc
+|           enums.cpython-313.pyc
+|           linking_process.cpython-313.pyc
+|           linking_process.cpython-38.pyc
+|           post_process.cpython-313.pyc
+|           pretrained_embeddings.cpython-313.pyc
+|           pretrained_embeddings.cpython-38.pyc
+|           utils.cpython-313.pyc
+|           
++---vector_cache
+|       glove.42B.300d.txt
+|       glove.42B.300d.txt.pt
+|       glove.42B.300d.zip
+|       
++---__MACOSX
+|   \---spider_data
+|       |   ._.DS_Store
+|       |   ._database
+|       |   ._dev.json
+|       |   ._dev_gold.sql
+|       |   ._README.txt
+|       |   ._tables.json
+|       |   ._test.json
+|       |   ._test_database
+|       |   ._test_gold.sql
+|       |   ._test_tables.json
+|       |   ._train_gold.sql
+|       |   ._train_others.json
+|       |   ._train_spider.json
+|       |   
+|       +---database
+|       |   |   ._academic
+|       |   |   ._activity_1
+|       |   |   ._aircraft
+|       |   |   ._allergy_1
+|       |   |   ._apartment_rentals
+|       |   |   ._architecture
+|       |   |   ._assets_maintenance
+|       |   |   ._baseball_1
+|       |   |   ._battle_death
+|       |   |   ._behavior_monitoring
+|       |   |   ._bike_1
+|       |   |   ._body_builder
+|       |   |   ._book_2
+|       |   |   ._browser_web
+|       |   |   ._candidate_poll
+|       |   |   ._car_1
+|       |   |   ._chinook_1
+|       |   |   ._cinema
+|       |   |   ._city_record
+|       |   |   ._climbing
+|       |   |   ._club_1
+|       |   |   ._coffee_shop
+|       |   |   ._college_1
+|       |   |   ._college_2
+|       |   |   ._college_3
+|       |   |   ._company_1
+|       |   |   ._company_employee
+|       |   |   ._company_office
+|       |   |   ._concert_singer
+|       |   |   ._county_public_safety
+|       |   |   ._course_teach
+|       |   |   ._cre_Docs_and_Epenses
+|       |   |   ._cre_Doc_Control_Systems
+|       |   |   ._cre_Doc_Template_Mgt
+|       |   |   ._cre_Doc_Tracking_DB
+|       |   |   ._cre_Drama_Workshop_Groups
+|       |   |   ._cre_Theme_park
+|       |   |   ._csu_1
+|       |   |   ._culture_company
+|       |   |   ._customers_and_addresses
+|       |   |   ._customers_and_invoices
+|       |   |   ._customers_and_products_contacts
+|       |   |   ._customers_campaigns_ecommerce
+|       |   |   ._customers_card_transactions
+|       |   |   ._customer_complaints
+|       |   |   ._customer_deliveries
+|       |   |   ._debate
+|       |   |   ._decoration_competition
+|       |   |   ._department_management
+|       |   |   ._department_store
+|       |   |   ._device
+|       |   |   ._document_management
+|       |   |   ._dog_kennels
+|       |   |   ._dorm_1
+|       |   |   ._driving_school
+|       |   |   ._election
+|       |   |   ._election_representative
+|       |   |   ._employee_hire_evaluation
+|       |   |   ._entertainment_awards
+|       |   |   ._entrepreneur
+|       |   |   ._epinions_1
+|       |   |   ._e_government
+|       |   |   ._e_learning
+|       |   |   ._farm
+|       |   |   ._film_rank
+|       |   |   ._flight_1
+|       |   |   ._flight_2
+|       |   |   ._flight_4
+|       |   |   ._flight_company
+|       |   |   ._formula_1
+|       |   |   ._game_1
+|       |   |   ._game_injury
+|       |   |   ._gas_company
+|       |   |   ._geo
+|       |   |   ._gymnast
+|       |   |   ._hospital_1
+|       |   |   ._hr_1
+|       |   |   ._icfp_1
+|       |   |   ._imdb
+|       |   |   ._inn_1
+|       |   |   ._insurance_and_eClaims
+|       |   |   ._insurance_fnol
+|       |   |   ._insurance_policies
+|       |   |   ._journal_committee
+|       |   |   ._loan_1
+|       |   |   ._local_govt_and_lot
+|       |   |   ._local_govt_in_alabama
+|       |   |   ._local_govt_mdm
+|       |   |   ._machine_repair
+|       |   |   ._manufactory_1
+|       |   |   ._manufacturer
+|       |   |   ._match_season
+|       |   |   ._medicine_enzyme_interaction
+|       |   |   ._mountain_photos
+|       |   |   ._movie_1
+|       |   |   ._museum_visit
+|       |   |   ._musical
+|       |   |   ._music_1
+|       |   |   ._music_2
+|       |   |   ._music_4
+|       |   |   ._network_1
+|       |   |   ._network_2
+|       |   |   ._news_report
+|       |   |   ._orchestra
+|       |   |   ._party_host
+|       |   |   ._party_people
+|       |   |   ._performance_attendance
+|       |   |   ._perpetrator
+|       |   |   ._pets_1
+|       |   |   ._phone_1
+|       |   |   ._phone_market
+|       |   |   ._pilot_record
+|       |   |   ._poker_player
+|       |   |   ._products_for_hire
+|       |   |   ._products_gen_characteristics
+|       |   |   ._product_catalog
+|       |   |   ._program_share
+|       |   |   ._protein_institute
+|       |   |   ._race_track
+|       |   |   ._railway
+|       |   |   ._real_estate_properties
+|       |   |   ._restaurants
+|       |   |   ._restaurant_1
+|       |   |   ._riding_club
+|       |   |   ._roller_coaster
+|       |   |   ._sakila_1
+|       |   |   ._scholar
+|       |   |   ._school_bus
+|       |   |   ._school_finance
+|       |   |   ._school_player
+|       |   |   ._scientist_1
+|       |   |   ._ship_1
+|       |   |   ._ship_mission
+|       |   |   ._shop_membership
+|       |   |   ._singer
+|       |   |   ._small_bank_1
+|       |   |   ._soccer_1
+|       |   |   ._soccer_2
+|       |   |   ._solvency_ii
+|       |   |   ._sports_competition
+|       |   |   ._station_weather
+|       |   |   ._store_1
+|       |   |   ._store_product
+|       |   |   ._storm_record
+|       |   |   ._student_1
+|       |   |   ._student_assessment
+|       |   |   ._student_transcripts_tracking
+|       |   |   ._swimming
+|       |   |   ._theme_gallery
+|       |   |   ._tracking_grants_for_research
+|       |   |   ._tracking_orders
+|       |   |   ._tracking_share_transactions
+|       |   |   ._tracking_software_problems
+|       |   |   ._train_station
+|       |   |   ._tvshow
+|       |   |   ._twitter_1
+|       |   |   ._university_basketball
+|       |   |   ._voter_1
+|       |   |   ._voter_2
+|       |   |   ._wedding
+|       |   |   ._wine_1
+|       |   |   ._workshop_paper
+|       |   |   ._world_1
+|       |   |   ._wrestler
+|       |   |   ._wta_1
+|       |   |   ._yelp
+|       |   |   
+|       |   +---academic
+|       |   |       ._academic.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---activity_1
+|       |   |       ._activity_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---aircraft
+|       |   |       ._aircraft.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---allergy_1
+|       |   |       ._allergy_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---apartment_rentals
+|       |   |       ._apartment_rentals.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---architecture
+|       |   |       ._architecture.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---assets_maintenance
+|       |   |       ._assets_maintenance.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---baseball_1
+|       |   |       ._baseball_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---battle_death
+|       |   |       ._battle_death.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---behavior_monitoring
+|       |   |       ._behavior_monitoring.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---bike_1
+|       |   |       ._bike_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---body_builder
+|       |   |       ._body_builder.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---book_2
+|       |   |       ._book_2.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---browser_web
+|       |   |       ._browser_web.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---candidate_poll
+|       |   |       ._candidate_poll.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---car_1
+|       |   |   |   ._annotation.json
+|       |   |   |   ._car_1.json
+|       |   |   |   ._car_1.sql
+|       |   |   |   ._car_1.sqlite
+|       |   |   |   ._data_csv
+|       |   |   |   ._link.txt
+|       |   |   |   ._q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._car-makers.csv
+|       |   |           ._car-names.csv
+|       |   |           ._cars-data.csv
+|       |   |           ._cars.desc
+|       |   |           ._continents.csv
+|       |   |           ._countries.csv
+|       |   |           ._model-list.csv
+|       |   |           ._README.CARS.TXT
+|       |   |           
+|       |   +---chinook_1
+|       |   |       ._annotation.json
+|       |   |       ._chinook_1.sqlite
+|       |   |       
+|       |   +---cinema
+|       |   |       ._cinema.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---city_record
+|       |   |       ._city_record.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---climbing
+|       |   |       ._climbing.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---club_1
+|       |   |       ._club_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---coffee_shop
+|       |   |       ._coffee_shop.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---college_1
+|       |   |       ._college_1.sqlite
+|       |   |       ._link.txt
+|       |   |       ._TinyCollege.sql
+|       |   |       
+|       |   +---college_2
+|       |   |       ._college_2.sqlite
+|       |   |       ._link.txt
+|       |   |       ._TextBookExampleSchema.sql
+|       |   |       
+|       |   +---college_3
+|       |   |       ._college_3.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---company_1
+|       |   |       ._company_1.sqlite
+|       |   |       ._link.txt
+|       |   |       
+|       |   +---company_employee
+|       |   |       ._company_employee.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---company_office
+|       |   |       ._company_office.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---concert_singer
+|       |   |       ._concert_singer.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---county_public_safety
+|       |   |       ._county_public_safety.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---course_teach
+|       |   |       ._course_teach.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Docs_and_Epenses
+|       |   |       ._cre_Docs_and_Epenses.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Doc_Control_Systems
+|       |   |       ._cre_Doc_Control_Systems.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Doc_Template_Mgt
+|       |   |       ._cre_Doc_Template_Mgt.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Doc_Tracking_DB
+|       |   |       ._cre_Doc_Tracking_DB.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Drama_Workshop_Groups
+|       |   |       ._cre_Drama_Workshop_Groups.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---cre_Theme_park
+|       |   |       ._cre_Theme_park.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---csu_1
+|       |   |       ._csu_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---culture_company
+|       |   |       ._culture_company.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customers_and_addresses
+|       |   |       ._customers_and_addresses.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customers_and_invoices
+|       |   |       ._customers_and_invoices.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customers_and_products_contacts
+|       |   |       ._customers_and_products_contacts.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customers_campaigns_ecommerce
+|       |   |       ._customers_campaigns_ecommerce.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customers_card_transactions
+|       |   |       ._customers_card_transactions.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customer_complaints
+|       |   |       ._customer_complaints.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---customer_deliveries
+|       |   |       ._customer_deliveries.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---debate
+|       |   |       ._debate.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---decoration_competition
+|       |   |       ._decoration_competition.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---department_management
+|       |   |       ._department_management.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---department_store
+|       |   |       ._department_store.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---device
+|       |   |       ._device.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---document_management
+|       |   |       ._document_management.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---dog_kennels
+|       |   |       ._dog_kennels.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---dorm_1
+|       |   |       ._dorm_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---driving_school
+|       |   |       ._driving_school.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---election
+|       |   |       ._election.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---election_representative
+|       |   |       ._election_representative.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---employee_hire_evaluation
+|       |   |       ._employee_hire_evaluation.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---entertainment_awards
+|       |   |       ._entertainment_awards.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---entrepreneur
+|       |   |       ._entrepreneur.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---epinions_1
+|       |   |       ._epinions_1.sqlite
+|       |   |       
+|       |   +---e_government
+|       |   |       ._e_government.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---e_learning
+|       |   |       ._e_learning.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---farm
+|       |   |       ._farm.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---film_rank
+|       |   |       ._film_rank.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---flight_1
+|       |   |       ._flight_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---flight_2
+|       |   |   |   ._annotation.json
+|       |   |   |   ._data_csv
+|       |   |   |   ._flight_2.json
+|       |   |   |   ._flight_2.sql
+|       |   |   |   ._flight_2.sqlite
+|       |   |   |   ._link.txt
+|       |   |   |   ._q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._airlines.csv
+|       |   |           ._airports100.csv
+|       |   |           ._flights.csv
+|       |   |           ._README.AIRLINES.txt
+|       |   |           
+|       |   +---flight_4
+|       |   |       ._flight_4.sqlite
+|       |   |       ._link.txt
+|       |   |       ._sql.txt
+|       |   |       
+|       |   +---flight_company
+|       |   |       ._flight_company.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---formula_1
+|       |   |   |   ._annotation.json
+|       |   |   |   ._data_csv
+|       |   |   |   ._formula_1.splite
+|       |   |   |   ._formula_1.sql
+|       |   |   |   ._formula_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._circuits.csv
+|       |   |           ._constructorResults.csv
+|       |   |           ._constructors.csv
+|       |   |           ._constructorStandings.csv
+|       |   |           ._drivers.csv
+|       |   |           ._driverStandings.csv
+|       |   |           ._lapTimes.csv
+|       |   |           ._pitStops.csv
+|       |   |           ._qualifying.csv
+|       |   |           ._races.csv
+|       |   |           ._results.csv
+|       |   |           ._seasons.csv
+|       |   |           ._status.csv
+|       |   |           
+|       |   +---game_1
+|       |   |       ._game_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---game_injury
+|       |   |       ._game_injury.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---gas_company
+|       |   |       ._gas_company.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---geo
+|       |   |       ._geo.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---gymnast
+|       |   |       ._gymnast.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---hospital_1
+|       |   |       ._hospital_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---hr_1
+|       |   |       ._hr_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---icfp_1
+|       |   |       ._icfp_1.sqlite
+|       |   |       ._link.txt
+|       |   |       ._q.txt
+|       |   |       
+|       |   +---imdb
+|       |   |       ._imdb.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---inn_1
+|       |   |   |   ._annotation.json
+|       |   |   |   ._change_date.py
+|       |   |   |   ._data_csv
+|       |   |   |   ._inn_1.sql
+|       |   |   |   ._inn_1.sqlite
+|       |   |   |   ._link.txt
+|       |   |   |   ._q.txt
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._README.INN.TXT
+|       |   |           ._Reservations.csv
+|       |   |           ._Reservations_t.csv
+|       |   |           ._Rooms.csv
+|       |   |           
+|       |   +---insurance_and_eClaims
+|       |   |       ._insurance_and_eClaims.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---insurance_fnol
+|       |   |       ._insurance_fnol.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---insurance_policies
+|       |   |       ._insurance_policies.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---journal_committee
+|       |   |       ._journal_committee.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---loan_1
+|       |   |       ._loan_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---local_govt_and_lot
+|       |   |       ._local_govt_and_lot.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---local_govt_in_alabama
+|       |   |       ._local_govt_in_alabama.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---local_govt_mdm
+|       |   |       ._local_govt_mdm.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---machine_repair
+|       |   |       ._machine_repair.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---manufactory_1
+|       |   |       ._manufactory_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---manufacturer
+|       |   |       ._manufacturer.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---match_season
+|       |   |       ._match_season.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---medicine_enzyme_interaction
+|       |   |       ._medicine_enzyme_interaction.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---mountain_photos
+|       |   |       ._mountain_photos.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---movie_1
+|       |   |       ._movie_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---museum_visit
+|       |   |       ._museum_visit.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---musical
+|       |   |       ._musical.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---music_1
+|       |   |       ._music_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---music_2
+|       |   |       ._music_2.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---music_4
+|       |   |       ._music_4.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---network_1
+|       |   |       ._network_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---network_2
+|       |   |       ._network_2.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---news_report
+|       |   |       ._news_report.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---orchestra
+|       |   |       ._orchestra.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---party_host
+|       |   |       ._party_host.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---party_people
+|       |   |       ._party_people.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---performance_attendance
+|       |   |       ._performance_attendance.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---perpetrator
+|       |   |       ._perpetrator.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---pets_1
+|       |   |       ._pets_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---phone_1
+|       |   |       ._phone_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---phone_market
+|       |   |       ._phone_market.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---pilot_record
+|       |   |       ._pilot_record.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---poker_player
+|       |   |       ._poker_player.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---products_for_hire
+|       |   |       ._products_for_hire.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---products_gen_characteristics
+|       |   |       ._products_gen_characteristics.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---product_catalog
+|       |   |       ._product_catalog.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---program_share
+|       |   |       ._program_share.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---protein_institute
+|       |   |       ._protein_institute.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---race_track
+|       |   |       ._race_track.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---railway
+|       |   |       ._railway.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---real_estate_properties
+|       |   |       ._real_estate_properties.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---restaurants
+|       |   |       ._restaurants.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---restaurant_1
+|       |   |       ._restaurant_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---riding_club
+|       |   |       ._riding_club.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---roller_coaster
+|       |   |       ._roller_coaster.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---sakila_1
+|       |   |       ._sakila_1.sqlite
+|       |   |       ._schema.sql
+|       |   |       
+|       |   +---scholar
+|       |   |       ._schema.sql
+|       |   |       ._scholar.sqlite
+|       |   |       
+|       |   +---school_bus
+|       |   |       ._schema.sql
+|       |   |       ._school_bus.sqlite
+|       |   |       
+|       |   +---school_finance
+|       |   |       ._schema.sql
+|       |   |       ._school_finance.sqlite
+|       |   |       
+|       |   +---school_player
+|       |   |       ._schema.sql
+|       |   |       ._school_player.sqlite
+|       |   |       
+|       |   +---scientist_1
+|       |   |       ._schema.sql
+|       |   |       ._scientist_1.sqlite
+|       |   |       
+|       |   +---ship_1
+|       |   |       ._schema.sql
+|       |   |       ._ship_1.sqlite
+|       |   |       
+|       |   +---ship_mission
+|       |   |       ._schema.sql
+|       |   |       ._ship_mission.sqlite
+|       |   |       
+|       |   +---shop_membership
+|       |   |       ._schema.sql
+|       |   |       ._shop_membership.sqlite
+|       |   |       
+|       |   +---singer
+|       |   |       ._schema.sql
+|       |   |       ._singer.sqlite
+|       |   |       
+|       |   +---small_bank_1
+|       |   |       ._small_bank_1.sqlite
+|       |   |       
+|       |   +---soccer_1
+|       |   |       ._schema.sql
+|       |   |       ._soccer_1.sqlite
+|       |   |       
+|       |   +---soccer_2
+|       |   |       ._schema.sql
+|       |   |       ._soccer_2.sqlite
+|       |   |       
+|       |   +---solvency_ii
+|       |   |       ._schema.sql
+|       |   |       ._solvency_ii.sqlite
+|       |   |       
+|       |   +---sports_competition
+|       |   |       ._schema.sql
+|       |   |       ._sports_competition.sqlite
+|       |   |       
+|       |   +---station_weather
+|       |   |       ._schema.sql
+|       |   |       ._station_weather.sqlite
+|       |   |       
+|       |   +---store_1
+|       |   |       ._schema.sql
+|       |   |       ._store_1.sqlite
+|       |   |       
+|       |   +---store_product
+|       |   |       ._schema.sql
+|       |   |       ._store_product.sqlite
+|       |   |       
+|       |   +---storm_record
+|       |   |       ._schema.sql
+|       |   |       ._storm_record.sqlite
+|       |   |       
+|       |   +---student_1
+|       |   |   |   ._annotation.json
+|       |   |   |   ._data_csv
+|       |   |   |   ._link.txt
+|       |   |   |   ._q.txt
+|       |   |   |   ._student_1.sql
+|       |   |   |   ._student_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._list.csv
+|       |   |           ._README.STUDENTS.TXT
+|       |   |           ._teachers.csv
+|       |   |           
+|       |   +---student_assessment
+|       |   |       ._schema.sql
+|       |   |       ._student_assessment.sqlite
+|       |   |       
+|       |   +---student_transcripts_tracking
+|       |   |       ._schema.sql
+|       |   |       ._student_transcripts_tracking.sqlite
+|       |   |       
+|       |   +---swimming
+|       |   |       ._schema.sql
+|       |   |       ._swimming.sqlite
+|       |   |       
+|       |   +---theme_gallery
+|       |   |       ._schema.sql
+|       |   |       ._theme_gallery.sqlite
+|       |   |       
+|       |   +---tracking_grants_for_research
+|       |   |       ._schema.sql
+|       |   |       ._tracking_grants_for_research.sqlite
+|       |   |       
+|       |   +---tracking_orders
+|       |   |       ._schema.sql
+|       |   |       ._tracking_orders.sqlite
+|       |   |       
+|       |   +---tracking_share_transactions
+|       |   |       ._schema.sql
+|       |   |       ._tracking_share_transactions.sqlite
+|       |   |       
+|       |   +---tracking_software_problems
+|       |   |       ._schema.sql
+|       |   |       ._tracking_software_problems.sqlite
+|       |   |       
+|       |   +---train_station
+|       |   |       ._schema.sql
+|       |   |       ._train_station.sqlite
+|       |   |       
+|       |   +---tvshow
+|       |   |       ._schema.sql
+|       |   |       ._tvshow.sqlite
+|       |   |       
+|       |   +---twitter_1
+|       |   |   |   ._queries
+|       |   |   |   ._twitter_1.sqlite
+|       |   |   |   
+|       |   |   \---queries
+|       |   |           ._oracle-dialects.xml
+|       |   |           ._postgres-dialects.xml
+|       |   |           ._sqlserver-dialects.xml
+|       |   |           
+|       |   +---university_basketball
+|       |   |       ._schema.sql
+|       |   |       ._university_basketball.sqlite
+|       |   |       
+|       |   +---voter_1
+|       |   |       ._voter_1.sqlite
+|       |   |       
+|       |   +---voter_2
+|       |   |       ._schema.sql
+|       |   |       ._voter_2.sqlite
+|       |   |       
+|       |   +---wedding
+|       |   |       ._schema.sql
+|       |   |       ._wedding.sqlite
+|       |   |       
+|       |   +---wine_1
+|       |   |   |   ._.ipynb_checkpoints
+|       |   |   |   ._annotation.json
+|       |   |   |   ._data_csv
+|       |   |   |   ._link.txt
+|       |   |   |   ._q.txt
+|       |   |   |   ._wine_1.sql
+|       |   |   |   ._wine_1.sqlite
+|       |   |   |   
+|       |   |   \---data_csv
+|       |   |           ._appellations.csv
+|       |   |           ._grapes.csv
+|       |   |           ._README.WINE.txt
+|       |   |           ._wine.csv
+|       |   |           
+|       |   +---workshop_paper
+|       |   |       ._schema.sql
+|       |   |       ._workshop_paper.sqlite
+|       |   |       
+|       |   +---world_1
+|       |   |       ._world_1.json
+|       |   |       ._world_1.sqlite
+|       |   |       
+|       |   +---wrestler
+|       |   |       ._schema.sql
+|       |   |       ._wrestler.sqlite
+|       |   |       
+|       |   +---wta_1
+|       |   |       ._wta_1.sql
+|       |   |       ._wta_1.sqlite
+|       |   |       
+|       |   \---yelp
+|       |           ._schema.sql
+|       |           ._yelp.sqlite
+|       |           
+|       \---test_database
+|           |   ._aan_1
+|           |   ._academic
+|           |   ._activity_1
+|           |   ._address_1
+|           |   ._advertising_agencies
+|           |   ._aircraft
+|           |   ._allergy_1
+|           |   ._apartment_rentals
+|           |   ._architecture
+|           |   ._art_1
+|           |   ._assets_maintenance
+|           |   ._bakery_1
+|           |   ._baseball_1
+|           |   ._battle_death
+|           |   ._bbc_channels
+|           |   ._behavior_monitoring
+|           |   ._bike_1
+|           |   ._bike_racing
+|           |   ._boat_1
+|           |   ._body_builder
+|           |   ._book_1
+|           |   ._book_2
+|           |   ._book_press
+|           |   ._book_review
+|           |   ._browser_web
+|           |   ._candidate_poll
+|           |   ._car_1
+|           |   ._car_racing
+|           |   ._car_road_race
+|           |   ._chinook_1
+|           |   ._cinema
+|           |   ._city_record
+|           |   ._climbing
+|           |   ._club_1
+|           |   ._club_leader
+|           |   ._coffee_shop
+|           |   ._college_1
+|           |   ._college_2
+|           |   ._college_3
+|           |   ._company_1
+|           |   ._company_employee
+|           |   ._company_office
+|           |   ._concert_singer
+|           |   ._conference
+|           |   ._country_language
+|           |   ._county_public_safety
+|           |   ._course_teach
+|           |   ._cre_Docs_and_Epenses
+|           |   ._cre_Doc_and_collections
+|           |   ._cre_Doc_Control_Systems
+|           |   ._cre_Doc_Template_Mgt
+|           |   ._cre_Doc_Tracking_DB
+|           |   ._cre_Doc_Workflow
+|           |   ._cre_Drama_Workshop_Groups
+|           |   ._cre_Students_Information_Systems
+|           |   ._cre_Theme_park
+|           |   ._csu_1
+|           |   ._culture_company
+|           |   ._customers_and_addresses
+|           |   ._customers_and_invoices
+|           |   ._customers_and_orders
+|           |   ._customers_and_products_contacts
+|           |   ._customers_campaigns_ecommerce
+|           |   ._customers_card_transactions
+|           |   ._customer_complaints
+|           |   ._customer_deliveries
+|           |   ._debate
+|           |   ._decoration_competition
+|           |   ._department_management
+|           |   ._department_store
+|           |   ._device
+|           |   ._district_spokesman
+|           |   ._document_management
+|           |   ._dog_kennels
+|           |   ._dorm_1
+|           |   ._driving_school
+|           |   ._election
+|           |   ._election_representative
+|           |   ._employee_hire_evaluation
+|           |   ._entertainment_awards
+|           |   ._entrepreneur
+|           |   ._epinions_1
+|           |   ._e_commerce
+|           |   ._e_government
+|           |   ._e_learning
+|           |   ._farm
+|           |   ._film_rank
+|           |   ._flight_1
+|           |   ._flight_2
+|           |   ._flight_4
+|           |   ._flight_company
+|           |   ._formula_1
+|           |   ._game_1
+|           |   ._game_injury
+|           |   ._gas_company
+|           |   ._geo
+|           |   ._government_shift
+|           |   ._gymnast
+|           |   ._headphone_store
+|           |   ._hospital_1
+|           |   ._hr_1
+|           |   ._icfp_1
+|           |   ._imdb
+|           |   ._inn_1
+|           |   ._institution_sports
+|           |   ._insurance_and_eClaims
+|           |   ._insurance_fnol
+|           |   ._insurance_policies
+|           |   ._journal_committee
+|           |   ._loan_1
+|           |   ._local_govt_and_lot
+|           |   ._local_govt_in_alabama
+|           |   ._local_govt_mdm
+|           |   ._machine_repair
+|           |   ._manufactory_1
+|           |   ._manufacturer
+|           |   ._match_season
+|           |   ._medicine_enzyme_interaction
+|           |   ._mountain_photos
+|           |   ._movie_1
+|           |   ._movie_2
+|           |   ._museum_visit
+|           |   ._musical
+|           |   ._music_1
+|           |   ._music_2
+|           |   ._music_4
+|           |   ._network_1
+|           |   ._network_2
+|           |   ._news_report
+|           |   ._online_exams
+|           |   ._orchestra
+|           |   ._party_host
+|           |   ._party_people
+|           |   ._performance_attendance
+|           |   ._perpetrator
+|           |   ._pets_1
+|           |   ._phone_1
+|           |   ._phone_market
+|           |   ._pilot_1
+|           |   ._pilot_record
+|           |   ._planet_1
+|           |   ._poker_player
+|           |   ._products_for_hire
+|           |   ._products_gen_characteristics
+|           |   ._product_catalog
+|           |   ._program_share
+|           |   ._protein_institute
+|           |   ._race_track
+|           |   ._railway
+|           |   ._real_estate_properties
+|           |   ._real_estate_rentals
+|           |   ._region_building
+|           |   ._restaurants
+|           |   ._restaurant_1
+|           |   ._restaurant_bills
+|           |   ._riding_club
+|           |   ._roller_coaster
+|           |   ._sakila_1
+|           |   ._scholar
+|           |   ._school_bus
+|           |   ._school_finance
+|           |   ._school_player
+|           |   ._scientist_1
+|           |   ._ship_1
+|           |   ._ship_mission
+|           |   ._shop_membership
+|           |   ._singer
+|           |   ._sing_contest
+|           |   ._small_bank_1
+|           |   ._soccer_1
+|           |   ._soccer_2
+|           |   ._soccer_3
+|           |   ._solvency_ii
+|           |   ._sports_competition
+|           |   ._station_weather
+|           |   ._store_1
+|           |   ._store_product
+|           |   ._storm_record
+|           |   ._student_1
+|           |   ._student_assessment
+|           |   ._student_transcripts_tracking
+|           |   ._swimming
+|           |   ._theme_gallery
+|           |   ._tracking_grants_for_research
+|           |   ._tracking_orders
+|           |   ._tracking_share_transactions
+|           |   ._tracking_software_problems
+|           |   ._train_station
+|           |   ._tvshow
+|           |   ._tv_shows
+|           |   ._twitter_1
+|           |   ._university_basketball
+|           |   ._university_rank
+|           |   ._vehicle_driver
+|           |   ._vehicle_rent
+|           |   ._video_game
+|           |   ._voter_1
+|           |   ._voter_2
+|           |   ._warehouse_1
+|           |   ._wedding
+|           |   ._wine_1
+|           |   ._workshop_paper
+|           |   ._world_1
+|           |   ._wrestler
+|           |   ._wta_1
+|           |   ._yelp
+|           |   
+|           +---aan_1
+|           |       ._aan_1.sqlite
+|           |       ._annotation.json
+|           |       ._schema.sql
+|           |       
+|           +---academic
+|           |       ._academic.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---activity_1
+|           |       ._activity_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---address_1
+|           |       ._address_1.sqlite
+|           |       ._link.txt
+|           |       ._schema.sql
+|           |       
+|           +---advertising_agencies
+|           |       ._advertising_agencies.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---aircraft
+|           |       ._aircraft.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---allergy_1
+|           |       ._allergy_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---apartment_rentals
+|           |       ._apartment_rentals.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---architecture
+|           |       ._architecture.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---art_1
+|           |       ._art_1.sqlite
+|           |       ._link.txt
+|           |       ._q.txt
+|           |       
+|           +---assets_maintenance
+|           |       ._assets_maintenance.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---bakery_1
+|           |   |   ._annotation.json
+|           |   |   ._bakery_1.json
+|           |   |   ._bakery_1.sql
+|           |   |   ._bakery_1.sqlite
+|           |   |   ._bakery_1_michi.txt
+|           |   |   ._data_csv
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           ._customers.csv
+|           |           ._customers_t.csv
+|           |           ._goods.csv
+|           |           ._goods_t.csv
+|           |           ._items (3_11_18, 5_53 PM)_original.csv
+|           |           ._items.csv
+|           |           ._items_t.csv
+|           |           ._README.BAKERY.TXT
+|           |           ._receipts (3_11_18, 5_53 PM)_original.csv
+|           |           ._receipts.csv
+|           |           ._receipts_t.csv
+|           |           
+|           +---baseball_1
+|           |       ._baseball_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---battle_death
+|           |       ._battle_death.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---bbc_channels
+|           |       ._bbc_channels.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---behavior_monitoring
+|           |       ._behavior_monitoring.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---bike_1
+|           |       ._bike_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---bike_racing
+|           |       ._bike_racing.sqlite
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       
+|           +---boat_1
+|           |       ._Boats.csv
+|           |       ._boat_1.sqlite
+|           |       ._Reserves.csv
+|           |       ._Sailors.csv
+|           |       ._schema.sql
+|           |       
+|           +---body_builder
+|           |       ._body_builder.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---book_1
+|           |       ._annotation.json
+|           |       ._book_1.sqlite
+|           |       ._link.txt
+|           |       ._q.txt
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       ._sql.txt
+|           |       
+|           +---book_2
+|           |       ._book_2.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---book_press
+|           |       ._book_press.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---book_review
+|           |       ._book_review.sqlite
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       
+|           +---browser_web
+|           |       ._browser_web.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---candidate_poll
+|           |       ._candidate_poll.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---car_1
+|           |   |   ._annotation.json
+|           |   |   ._car_1.json
+|           |   |   ._car_1.sql
+|           |   |   ._car_1.sqlite
+|           |   |   ._data_csv
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           ._car-makers.csv
+|           |           ._car-names.csv
+|           |           ._cars-data.csv
+|           |           ._cars.desc
+|           |           ._continents.csv
+|           |           ._countries.csv
+|           |           ._model-list.csv
+|           |           ._README.CARS.TXT
+|           |           
+|           +---car_racing
+|           |       ._car_racing.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---car_road_race
+|           |       ._car_road_race.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---chinook_1
+|           |       ._annotation.json
+|           |       ._chinook_1.sqlite
+|           |       
+|           +---cinema
+|           |       ._cinema.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---city_record
+|           |       ._city_record.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---climbing
+|           |       ._climbing.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---club_1
+|           |       ._club_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---club_leader
+|           |       ._club_leader.sqlite
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       
+|           +---coffee_shop
+|           |       ._coffee_shop.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---college_1
+|           |       ._college_1.sqlite
+|           |       ._link.txt
+|           |       ._TinyCollege.sql
+|           |       
+|           +---college_2
+|           |       ._college_2.sqlite
+|           |       ._link.txt
+|           |       ._TextBookExampleSchema.sql
+|           |       
+|           +---college_3
+|           |       ._college_3.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---company_1
+|           |       ._company_1.sqlite
+|           |       ._link.txt
+|           |       
+|           +---company_employee
+|           |       ._company_employee.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---company_office
+|           |       ._company_office.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---concert_singer
+|           |       ._concert_singer.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---conference
+|           |       ._conference.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---country_language
+|           |       ._country_language.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---county_public_safety
+|           |       ._county_public_safety.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---course_teach
+|           |       ._course_teach.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Docs_and_Epenses
+|           |       ._cre_Docs_and_Epenses.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Doc_and_collections
+|           |       ._cre_Doc_and_collections.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Doc_Control_Systems
+|           |       ._cre_Doc_Control_Systems.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Doc_Template_Mgt
+|           |       ._cre_Doc_Template_Mgt.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Doc_Tracking_DB
+|           |       ._cre_Doc_Tracking_DB.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Doc_Workflow
+|           |       ._cre_Doc_Workflow.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Drama_Workshop_Groups
+|           |       ._cre_Drama_Workshop_Groups.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Students_Information_Systems
+|           |       ._cre_Students_Information_Systems.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---cre_Theme_park
+|           |       ._cre_Theme_park.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---csu_1
+|           |       ._csu_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---culture_company
+|           |       ._culture_company.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_and_addresses
+|           |       ._customers_and_addresses.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_and_invoices
+|           |       ._customers_and_invoices.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_and_orders
+|           |       ._customers_and_orders.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_and_products_contacts
+|           |       ._customers_and_products_contacts.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_campaigns_ecommerce
+|           |       ._customers_campaigns_ecommerce.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customers_card_transactions
+|           |       ._customers_card_transactions.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customer_complaints
+|           |       ._customer_complaints.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---customer_deliveries
+|           |       ._customer_deliveries.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---debate
+|           |       ._debate.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---decoration_competition
+|           |       ._decoration_competition.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---department_management
+|           |       ._department_management.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---department_store
+|           |       ._department_store.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---device
+|           |       ._device.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---district_spokesman
+|           |       ._district_spokesman.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---document_management
+|           |       ._document_management.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---dog_kennels
+|           |       ._dog_kennels.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---dorm_1
+|           |       ._dorm_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---driving_school
+|           |       ._driving_school.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---election
+|           |       ._election.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---election_representative
+|           |       ._election_representative.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---employee_hire_evaluation
+|           |       ._employee_hire_evaluation.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---entertainment_awards
+|           |       ._entertainment_awards.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---entrepreneur
+|           |       ._entrepreneur.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---epinions_1
+|           |       ._epinions_1.sqlite
+|           |       
+|           +---e_commerce
+|           |       ._e_commerce.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---e_government
+|           |       ._e_government.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---e_learning
+|           |       ._e_learning.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---farm
+|           |       ._farm.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---film_rank
+|           |       ._film_rank.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---flight_1
+|           |       ._flight_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---flight_2
+|           |   |   ._annotation.json
+|           |   |   ._data_csv
+|           |   |   ._flight_2.json
+|           |   |   ._flight_2.sql
+|           |   |   ._flight_2.sqlite
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           ._airlines.csv
+|           |           ._airports100.csv
+|           |           ._flights.csv
+|           |           ._README.AIRLINES.txt
+|           |           
+|           +---flight_4
+|           |       ._flight_4.sqlite
+|           |       ._link.txt
+|           |       ._sql.txt
+|           |       
+|           +---flight_company
+|           |       ._flight_company.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---formula_1
+|           |   |   ._annotation.json
+|           |   |   ._data_csv
+|           |   |   ._formula_1.splite
+|           |   |   ._formula_1.sql
+|           |   |   ._formula_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           ._circuits.csv
+|           |           ._constructorResults.csv
+|           |           ._constructors.csv
+|           |           ._constructorStandings.csv
+|           |           ._drivers.csv
+|           |           ._driverStandings.csv
+|           |           ._lapTimes.csv
+|           |           ._pitStops.csv
+|           |           ._qualifying.csv
+|           |           ._races.csv
+|           |           ._results.csv
+|           |           ._seasons.csv
+|           |           ._status.csv
+|           |           
+|           +---game_1
+|           |       ._game_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---game_injury
+|           |       ._game_injury.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---gas_company
+|           |       ._gas_company.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---geo
+|           |       ._geo.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---government_shift
+|           |       ._government_shift.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---gymnast
+|           |       ._gymnast.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---headphone_store
+|           |       ._headphone_store.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---hospital_1
+|           |       ._hospital_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---hr_1
+|           |       ._hr_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---icfp_1
+|           |       ._icfp_1.sqlite
+|           |       ._link.txt
+|           |       ._q.txt
+|           |       
+|           +---imdb
+|           |       ._imdb.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---inn_1
+|           |   |   ._annotation.json
+|           |   |   ._change_date.py
+|           |   |   ._data_csv
+|           |   |   ._inn_1.sql
+|           |   |   ._inn_1.sqlite
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   
+|           |   \---data_csv
+|           |           ._README.INN.TXT
+|           |           ._Reservations.csv
+|           |           ._Reservations_t.csv
+|           |           ._Rooms.csv
+|           |           
+|           +---institution_sports
+|           |       ._institution_sports.sqlite
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       
+|           +---insurance_and_eClaims
+|           |       ._insurance_and_eClaims.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---insurance_fnol
+|           |       ._insurance_fnol.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---insurance_policies
+|           |       ._insurance_policies.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---journal_committee
+|           |       ._journal_committee.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---loan_1
+|           |       ._loan_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---local_govt_and_lot
+|           |       ._local_govt_and_lot.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---local_govt_in_alabama
+|           |       ._local_govt_in_alabama.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---local_govt_mdm
+|           |       ._local_govt_mdm.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---machine_repair
+|           |       ._machine_repair.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---manufactory_1
+|           |       ._manufactory_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---manufacturer
+|           |       ._manufacturer.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---match_season
+|           |       ._match_season.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---medicine_enzyme_interaction
+|           |       ._medicine_enzyme_interaction.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---mountain_photos
+|           |       ._mountain_photos.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---movie_1
+|           |       ._movie_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---movie_2
+|           |       ._annotation.json
+|           |       ._link.txt
+|           |       ._movie_2.sqlite
+|           |       ._q.txt
+|           |       ._schema.sql
+|           |       ._sql.txt
+|           |       
+|           +---museum_visit
+|           |       ._museum_visit.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---musical
+|           |       ._musical.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---music_1
+|           |       ._music_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---music_2
+|           |       ._music_2.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---music_4
+|           |       ._music_4.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---network_1
+|           |       ._network_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---network_2
+|           |       ._network_2.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---news_report
+|           |       ._news_report.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---online_exams
+|           |       ._online_exams.sqlite
+|           |       ._schema.sql
+|           |       ._simple_schema.sql
+|           |       
+|           +---orchestra
+|           |       ._orchestra.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---party_host
+|           |       ._party_host.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---party_people
+|           |       ._party_people.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---performance_attendance
+|           |       ._performance_attendance.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---perpetrator
+|           |       ._perpetrator.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---pets_1
+|           |       ._pets_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---phone_1
+|           |       ._phone_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---phone_market
+|           |       ._phone_market.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---pilot_1
+|           |       ._link.txt
+|           |       ._pilot_1.sqlite
+|           |       ._schema.sql
+|           |       ._sql.txt
+|           |       
+|           +---pilot_record
+|           |       ._pilot_record.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---planet_1
+|           |       ._annotation.json
+|           |       ._link.txt
+|           |       ._planet_1.sqlite
+|           |       ._q.txt
+|           |       ._schema.sql
+|           |       ._sql.txt
+|           |       
+|           +---poker_player
+|           |       ._poker_player.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---products_for_hire
+|           |       ._products_for_hire.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---products_gen_characteristics
+|           |       ._products_gen_characteristics.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---product_catalog
+|           |       ._product_catalog.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---program_share
+|           |       ._program_share.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---protein_institute
+|           |       ._protein_institute.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---race_track
+|           |       ._race_track.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---railway
+|           |       ._railway.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---real_estate_properties
+|           |       ._real_estate_properties.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---real_estate_rentals
+|           |       ._real_estate_rentals.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---region_building
+|           |       ._region_building.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---restaurants
+|           |       ._restaurants.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---restaurant_1
+|           |       ._restaurant_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---restaurant_bills
+|           |       ._restaurant_bills.sqlite
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       
+|           +---riding_club
+|           |       ._riding_club.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---roller_coaster
+|           |       ._roller_coaster.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---sakila_1
+|           |       ._sakila_1.sqlite
+|           |       ._schema.sql
+|           |       
+|           +---scholar
+|           |       ._schema.sql
+|           |       ._scholar.sqlite
+|           |       
+|           +---school_bus
+|           |       ._schema.sql
+|           |       ._school_bus.sqlite
+|           |       
+|           +---school_finance
+|           |       ._schema.sql
+|           |       ._school_finance.sqlite
+|           |       
+|           +---school_player
+|           |       ._schema.sql
+|           |       ._school_player.sqlite
+|           |       
+|           +---scientist_1
+|           |       ._schema.sql
+|           |       ._scientist_1.sqlite
+|           |       
+|           +---ship_1
+|           |       ._schema.sql
+|           |       ._ship_1.sqlite
+|           |       
+|           +---ship_mission
+|           |       ._schema.sql
+|           |       ._ship_mission.sqlite
+|           |       
+|           +---shop_membership
+|           |       ._schema.sql
+|           |       ._shop_membership.sqlite
+|           |       
+|           +---singer
+|           |       ._schema.sql
+|           |       ._singer.sqlite
+|           |       
+|           +---sing_contest
+|           |       ._schema.sql
+|           |       ._schema_old.sql
+|           |       ._sing_contest.sqlite
+|           |       
+|           +---small_bank_1
+|           |       ._small_bank_1.sqlite
+|           |       
+|           +---soccer_1
+|           |       ._schema.sql
+|           |       ._soccer_1.sqlite
+|           |       
+|           +---soccer_2
+|           |       ._schema.sql
+|           |       ._soccer_2.sqlite
+|           |       
+|           +---soccer_3
+|           |       ._schema.sql
+|           |       ._soccer_3.sqlite
+|           |       
+|           +---solvency_ii
+|           |       ._schema.sql
+|           |       ._solvency_ii.sqlite
+|           |       
+|           +---sports_competition
+|           |       ._schema.sql
+|           |       ._sports_competition.sqlite
+|           |       
+|           +---station_weather
+|           |       ._schema.sql
+|           |       ._station_weather.sqlite
+|           |       
+|           +---store_1
+|           |       ._schema.sql
+|           |       ._store_1.sqlite
+|           |       
+|           +---store_product
+|           |       ._schema.sql
+|           |       ._store_product.sqlite
+|           |       
+|           +---storm_record
+|           |       ._schema.sql
+|           |       ._storm_record.sqlite
+|           |       
+|           +---student_1
+|           |   |   ._annotation.json
+|           |   |   ._data_csv
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   ._student_1.sql
+|           |   |   ._student_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           ._list.csv
+|           |           ._README.STUDENTS.TXT
+|           |           ._teachers.csv
+|           |           
+|           +---student_assessment
+|           |       ._schema.sql
+|           |       ._student_assessment.sqlite
+|           |       
+|           +---student_transcripts_tracking
+|           |       ._schema.sql
+|           |       ._student_transcripts_tracking.sqlite
+|           |       
+|           +---swimming
+|           |       ._schema.sql
+|           |       ._swimming.sqlite
+|           |       
+|           +---theme_gallery
+|           |       ._schema.sql
+|           |       ._theme_gallery.sqlite
+|           |       
+|           +---tracking_grants_for_research
+|           |       ._schema.sql
+|           |       ._tracking_grants_for_research.sqlite
+|           |       
+|           +---tracking_orders
+|           |       ._schema.sql
+|           |       ._tracking_orders.sqlite
+|           |       
+|           +---tracking_share_transactions
+|           |       ._schema.sql
+|           |       ._tracking_share_transactions.sqlite
+|           |       
+|           +---tracking_software_problems
+|           |       ._schema.sql
+|           |       ._tracking_software_problems.sqlite
+|           |       
+|           +---train_station
+|           |       ._schema.sql
+|           |       ._train_station.sqlite
+|           |       
+|           +---tvshow
+|           |       ._schema.sql
+|           |       ._tvshow.sqlite
+|           |       
+|           +---tv_shows
+|           |       ._schema.sql
+|           |       ._tv_shows.sqlite
+|           |       
+|           +---twitter_1
+|           |   |   ._queries
+|           |   |   ._twitter_1.sqlite
+|           |   |   
+|           |   \---queries
+|           |           ._oracle-dialects.xml
+|           |           ._postgres-dialects.xml
+|           |           ._sqlserver-dialects.xml
+|           |           
+|           +---university_basketball
+|           |       ._schema.sql
+|           |       ._university_basketball.sqlite
+|           |       
+|           +---university_rank
+|           |       ._schema.sql
+|           |       ._university_rank.sqlite
+|           |       
+|           +---vehicle_driver
+|           |       ._schema.sql
+|           |       ._vehicle_driver.sqlite
+|           |       
+|           +---vehicle_rent
+|           |       ._schema.sql
+|           |       ._vehicle_rent
+|           |       ._vehicle_rent.sqlite
+|           |       
+|           +---video_game
+|           |       ._schema.sql
+|           |       ._video_game.sqlite
+|           |       
+|           +---voter_1
+|           |       ._voter_1.sqlite
+|           |       
+|           +---voter_2
+|           |       ._schema.sql
+|           |       ._voter_2.sqlite
+|           |       
+|           +---warehouse_1
+|           |       ._annotation.json
+|           |       ._link.txt
+|           |       ._q.txt
+|           |       ._schema.sql
+|           |       ._sql.txt
+|           |       ._warehouse_1.sqlite
+|           |       
+|           +---wedding
+|           |       ._schema.sql
+|           |       ._wedding.sqlite
+|           |       
+|           +---wine_1
+|           |   |   ._annotation.json
+|           |   |   ._data_csv
+|           |   |   ._link.txt
+|           |   |   ._q.txt
+|           |   |   ._wine_1.sql
+|           |   |   ._wine_1.sqlite
+|           |   |   
+|           |   \---data_csv
+|           |           ._appellations.csv
+|           |           ._grapes.csv
+|           |           ._README.WINE.txt
+|           |           ._wine.csv
+|           |           
+|           +---workshop_paper
+|           |       ._schema.sql
+|           |       ._workshop_paper.sqlite
+|           |       
+|           +---world_1
+|           |       ._world_1.json
+|           |       ._world_1.sqlite
+|           |       
+|           +---wrestler
+|           |       ._schema.sql
+|           |       ._wrestler.sqlite
+|           |       
+|           +---wta_1
+|           |       ._wta_1.sql
+|           |       ._wta_1.sqlite
+|           |       
+|           \---yelp
+|                   ._schema.sql
+|                   ._yelp.sqlite
+|                   
+\---__pycache__
+        exec_eval.cpython-313.pyc
+        parse.cpython-313.pyc
+        process_sql.cpython-313.pyc
+        

@@ -52,6 +52,10 @@ class LLM:
     GPT_35_TURBO_0301 = "gpt-3.5-turbo-0301"
     GPT_4 = "gpt-4"
 
+    # Ollama local models
+    OLLAMA_CODELLAMA_7B = "codellama:7b"
+    OLLAMA_DEEPSEEK_CODER_6_7B = "deepseek-coder:6.7b"
+
     # LLMs that use openai completion api
     TASK_COMPLETIONS = [
         TEXT_DAVINCI_003,
@@ -65,6 +69,12 @@ class LLM:
         GPT_35_TURBO_16K,
         GPT_35_TURBO_0301,
         GPT_4
+    ]
+
+    # LLMs served by Ollama (local HTTP)
+    TASK_OLLAMA = [
+        OLLAMA_CODELLAMA_7B,
+        OLLAMA_DEEPSEEK_CODER_6_7B
     ]
 
     # LLMs that can run in batch

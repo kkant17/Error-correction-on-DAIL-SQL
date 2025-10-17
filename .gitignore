@@ -1,2 +1,6 @@
-.idea
-.DS_Store
+spider/
+vector_cache/
+third_party/
+.env
+vector_cache/
+

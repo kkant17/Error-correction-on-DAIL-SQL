@@ -24,7 +24,9 @@ if __name__ == '__main__':
                                                       LLM.GPT_35_TURBO_0613,
                                                       # LLM.TONG_YI_QIAN_WEN,
                                                       LLM.GPT_35_TURBO_16K,
-                                                      LLM.GPT_4],
+                                                      LLM.GPT_4,
+                                                      LLM.OLLAMA_CODELLAMA_7B,
+                                                      LLM.OLLAMA_DEEPSEEK_CODER_6_7B],
                         default=LLM.GPT_35_TURBO)
     parser.add_argument("--start_index", type=int, default=0)
     parser.add_argument("--end_index", type=int, default=1000000)
@@ -35,8 +37,9 @@ if __name__ == '__main__':
     parser.add_argument("--db_dir", type=str, default="dataset/spider/database")
     args = parser.parse_args()
 
-    # check args
+    # check args (Ollama path currently supports only batch_size==1)
     assert args.model in LLM.BATCH_FORWARD or \
+           args.model in LLM.TASK_OLLAMA or \
            args.model not in LLM.BATCH_FORWARD and args.batch_size == 1, \
         f"{args.model} doesn't support batch_size > 1"
 
@@ -52,12 +55,15 @@ if __name__ == '__main__':
     else:
         mode = "a"
 
+    # sanitize model name for filesystem (e.g., Windows disallows ":")
+    safe_model = args.model.replace(":", "_").replace("/", "_")
+
     if args.mini_index_path:
         mini_index = json.load(open(args.mini_index_path, 'r'))
         questions = [questions[i] for i in mini_index]
-        out_file = f"{args.question}/RESULTS_MODEL-{args.model}_MINI.txt"
+        out_file = f"{args.question}/RESULTS_MODEL-{safe_model}_MINI.txt"
     else:
-        out_file = f"{args.question}/RESULTS_MODEL-{args.model}.txt"
+        out_file = f"{args.question}/RESULTS_MODEL-{safe_model}.txt"
 
     question_loader = DataLoader(questions, batch_size=args.batch_size, shuffle=False, drop_last=False)
 
@@ -79,6 +85,11 @@ if __name__ == '__main__':
             if args.n == 1:
                 for sql in res["response"]:
                     # remove \n and extra spaces
+                    sql = sql.replace("```", " ")
+                    # keep only the content starting from first SELECT if present
+                    idx = sql.upper().find("SELECT")
+                    if idx != -1:
+                        sql = sql[idx:]
                     sql = " ".join(sql.replace("\n", " ").split())
                     sql = process_duplication(sql)
                     # python version should >= 3.8
@@ -94,6 +105,10 @@ if __name__ == '__main__':
                 for sqls, db_id in zip(res["response"], cur_db_ids):
                     processed_sqls = []
                     for sql in sqls:
+                        sql = sql.replace("```", " ")
+                        idx = sql.upper().find("SELECT")
+                        if idx != -1:
+                            sql = sql[idx:]
                         sql = " ".join(sql.replace("\n", " ").split())
                         sql = process_duplication(sql)
                         if sql.startswith("SELECT"):

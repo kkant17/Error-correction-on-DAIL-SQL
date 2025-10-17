@@ -1,4 +1,6 @@
 import json.decoder
+import requests
+import os
 
 import openai
 from utils.enums import LLM
@@ -65,6 +67,33 @@ def ask_llm(model: str, batch: list, temperature: float, n:int):
                 messages = [{"role": "user", "content": batch[0]}]
                 response = ask_chat(model, messages, temperature, n)
                 response['response'] = [response['response']]
+            elif model in LLM.TASK_OLLAMA:
+                # Ollama generate API: POST /api/generate {model, prompt, options}
+                assert len(batch) == 1, "batch must be 1 in this mode"
+                url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434") + "/api/generate"
+                prompt = batch[0]
+                all_completions = []
+                total_tokens = 0
+                for _ in range(max(1, n)):
+                    r = requests.post(url, json={
+                        "model": model,
+                        "prompt": prompt,
+                        "options": {
+                            "temperature": temperature,
+                            "stop": [";"]
+                        },
+                        "stream": False
+                    }, timeout=600)
+                    r.raise_for_status()
+                    data = r.json()
+                    completion = data.get("response", "")
+                    all_completions.append(completion)
+                    # Ollama returns eval_count (tokens generated) and prompt_eval_count
+                    total_tokens += int(data.get("eval_count", 0)) + int(data.get("prompt_eval_count", 0))
+                response = {
+                    "response": all_completions,
+                    "total_tokens": total_tokens
+                }
             break
         except openai.error.RateLimitError:
             n_repeat += 1
@@ -74,6 +103,11 @@ def ask_llm(model: str, batch: list, temperature: float, n:int):
         except json.decoder.JSONDecodeError:
             n_repeat += 1
             print(f"Repeat for the {n_repeat} times for JSONDecodeError", end="\n")
+            time.sleep(1)
+            continue
+        except requests.RequestException as e:
+            n_repeat += 1
+            print(f"Repeat for the {n_repeat} times for Ollama error: {e}", end="\n")
             time.sleep(1)
             continue
         except Exception as e:

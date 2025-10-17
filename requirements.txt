@@ -11,3 +11,4 @@ torchtext
 sentence_transformers
 attrs
 nltk
+requests
