@@ -7,7 +7,7 @@ from utils.enums import LLM
 import time
 
 
-def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model):
+def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model, OPENAI_API_BASE=""):
     # if model == LLM.TONG_YI_QIAN_WEN:
     #     import dashscope
     #     dashscope.api_key = OPENAI_API_KEY
@@ -16,6 +16,8 @@ def init_chatgpt(OPENAI_API_KEY, OPENAI_GROUP_ID, model):
     #     openai.organization = OPENAI_GROUP_ID
     openai.api_key = OPENAI_API_KEY
     openai.organization = OPENAI_GROUP_ID
+    if OPENAI_API_BASE:
+        openai.api_base = OPENAI_API_BASE
 
 
 def ask_completion(model, batch, temperature):

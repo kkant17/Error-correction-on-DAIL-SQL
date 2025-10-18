@@ -8,7 +8,7 @@ from itertools import product
 from collections import defaultdict
 import tqdm
 import random
-from parse import get_all_preds_for_execution, remove_distinct
+from eval.parse import get_all_preds_for_execution, remove_distinct
 import time
 import pickle as pkl
 import subprocess
@@ -124,7 +124,7 @@ def result_eq(result1: List[Tuple], result2: List[Tuple], order_matters: bool) -
 
 def replace_cur_year(query: str) -> str:
     return re.sub(
-        "YEAR\s*\(\s*CURDATE\s*\(\s*\)\s*\)\s*", "2020", query, flags=re.IGNORECASE
+        r"YEAR\s*\(\s*CURDATE\s*\(\s*\)\s*\)\s*", "2020", query, flags=re.IGNORECASE
     )
 
 

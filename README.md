@@ -52,49 +52,58 @@ python data_preprocess.py
 ```
 ### Prompt Generation
 Select examples with masked question similarity:
-```
+```bash
 python generate_question.py \
 --data_type spider \
 --split test \
 --tokenizer gpt-3.5-turbo \
 --max_seq_len 4096 \
+--max_ans_len 200 \
 --prompt_repr SQL \
---k_shot 9 \
+--k_shot 3 \
 --example_type QA \
---selector_type  EUCDISQUESTIONMASK
-```
-Select examples considering both question similarity and query similarity:
-```
-python generate_question.py \
---data_type spider \
---split test \
---tokenizer gpt-3.5-turbo \
---max_seq_len 4096 \
---selector_type EUCDISMASKPRESKLSIMTHR \
---pre_test_result [your_pre_generated_queries_file] \
---prompt_repr SQL \
---k_shot 9 \
---example_type QA
+--selector_type EUCDISQUESTIONMASK
 ```
 
 ### Calling the LLM
+
+#### Using OpenAI Models
 Without voting:
-```
+```bash
 python ask_llm.py \
---openai_api_key [your_openai_api_key]  \
+--openai_api_key [your_openai_api_key] \
 --model gpt-4 \
 --question [prompt_dir]
 ```
 With self-consistency voting:
-```
+```bash
 python ask_llm.py \
---openai_api_key [your_openai_api_key]  \
+--openai_api_key [your_openai_api_key] \
 --model gpt-4 \
 --question [prompt_dir] \
 --n 5 \
 --db_dir ./dataset/spider/database \
 --temperature 1.0
 ```
+
+#### Using Ollama/Local Models
+```bash
+python ask_llm.py \
+--model {model_name} \
+--question ./dataset/process/SPIDER-TEST_SQL_3-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-200_ANS-4096 \
+--n 1 \
+--temperature 0.7 \
+--openai_api_key %OLLAMA_API_KEY% \
+--openai_api_base %OLLAMA_BASE_URL%
+```
+
+**Note:** The `ask_llm.py` script now performs automatic evaluation during execution. The script will:
+- Generate SQL queries and save them to `[prompt_dir]\RESULTS_MODEL-{model}.txt`
+- Evaluate each query against the gold standard in real-time
+- Save evaluation results to `results/eval_{model}.txt` (viewable in real-time as the script runs)
+- Display running accuracy after each question and final accuracy at the end
+
+You do NOT need to run `evaluation.py` separately.
 
 ### Running Example
 ```

@@ -1,0 +1,60 @@
+Question 0 - CORRECT
+Running Accuracy: 100.00% (1/1)
+Question 1 - CORRECT
+Running Accuracy: 100.00% (2/2)
+Question 2 - CORRECT
+Running Accuracy: 100.00% (3/3)
+Question 3 - CORRECT
+Running Accuracy: 100.00% (4/4)
+Question 4 - CORRECT
+Running Accuracy: 100.00% (5/5)
+Question 5 - CORRECT
+Running Accuracy: 100.00% (6/6)
+Question 6 - INCORRECT
+  - Gold: SELECT song_name , song_release_year FROM singer ORDER BY age LIMIT 1
+  - Pred: SELECT s.Name, s.Song_release_year FROM singer AS s JOIN ( SELECT Singer_ID, MIN(Age) as youngest_age FROM singer GROUP BY Singer_ID ) AS t ON s.Singer_ID = t.Singer_ID WHERE s.Age = youngest_age
+Running Accuracy: 85.71% (6/7)
+Question 7 - INCORRECT
+  - Gold: SELECT song_name , song_release_year FROM singer ORDER BY age LIMIT 1
+  - Pred: SELECT MIN(age) FROM singer) JOIN song ON singer.Singer_ID = song.Singer_ID
+Running Accuracy: 75.00% (6/8)
+Question 8 - INCORRECT
+  - Gold: SELECT DISTINCT country FROM singer WHERE age > 20
+  - Pred: SELECT DISTINCT Country FROM singer AS T1 JOIN concert AS T2 ON T1.Singer_ID = T2.Singer_ID JOIN singer_in_concert AS T3 ON T2.concert_ID = T3.concert_ID WHERE T1.Age > 20 AND T3.Singer_ID IN (SELECT Singer_ID FROM singer WHERE Country IS NOT NULL)
+Running Accuracy: 66.67% (6/9)
+Question 9 - INCORRECT
+  - Gold: SELECT DISTINCT country FROM singer WHERE age > 20
+  - Pred: SELECT DISTINCT s.country FROM singer AS s JOIN singer_in_concert AS sc ON s.singer_id = sc.singer_id JOIN concert AS c ON sc.concert_id = c.concert_id WHERE s.age > 20 AND c.year IS NOT NULL
+Running Accuracy: 60.00% (6/10)
+Question 10 - CORRECT
+Running Accuracy: 63.64% (7/11)
+Question 11 - CORRECT
+Running Accuracy: 66.67% (8/12)
+Question 12 - INCORRECT
+  - Gold: SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)
+  - Pred: SELECT s.Name, s.Age, a.Average AS Average_Age, c.Title AS Concert_Name FROM singer s, concert c, singer_in_concert ic WHERE s.Singer_ID = ic.Singer_ID AND c.concert_ID = ic.concert_ID AND s.Age > a.Average ORDER BY s.Name
+Running Accuracy: 61.54% (8/13)
+Question 13 - INCORRECT
+  - Gold: SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)
+  - Pred: SELECT s.Name AS singer_name, s.Song_Name AS song_name FROM singer AS s JOIN (SELECT AVG(age) AS avg_age FROM singer) AS a ON s.Age > a.avg_age
+Running Accuracy: 57.14% (8/14)
+Question 14 - CORRECT
+Running Accuracy: 60.00% (9/15)
+Question 15 - CORRECT
+Running Accuracy: 62.50% (10/16)
+Question 16 - INCORRECT
+  - Gold: SELECT max(capacity), average from stadium
+  - Pred: SELECT MAX(Capacity), AVG(Average) FROM Stadium
+Running Accuracy: 58.82% (10/17)
+Question 17 - CORRECT
+Running Accuracy: 61.11% (11/18)
+Question 18 - CORRECT
+Running Accuracy: 63.16% (12/19)
+Question 19 - INCORRECT
+  - Gold: SELECT name , capacity FROM stadium ORDER BY average DESC LIMIT 1
+  - Pred: SELECT MAX(Average) FROM Stadium)
+Running Accuracy: 60.00% (12/20)
+Question 20 - CORRECT
+Running Accuracy: 61.90% (13/21)
+Question 21 - CORRECT
+Running Accuracy: 63.64% (14/22)
