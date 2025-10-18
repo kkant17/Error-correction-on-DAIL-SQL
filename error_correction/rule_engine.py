@@ -13,10 +13,20 @@ import uuid
 from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import dataclass, asdict
 from datetime import datetime
+from enum import Enum
 import sqlparse
 from sqlparse import sql, tokens
 from sqlparse.sql import Statement, TokenList, Token
 from .config import ErrorCorrectionConfig
+
+
+class RuleType(Enum):
+    """Enumeration of rule types"""
+    SYNTAX = "syntax"
+    SEMANTIC = "semantic"
+    LOGICAL = "logical"
+    PERFORMANCE = "performance"
+    GENERAL = "general"
 
 
 @dataclass

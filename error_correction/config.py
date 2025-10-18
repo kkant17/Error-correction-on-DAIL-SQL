@@ -16,7 +16,7 @@ class ErrorCorrectionConfig:
     """Configuration class for error correction pipeline parameters"""
     
     # DAIL-SQL Integration
-    DAIL_SQL_PATH: str = "dail_sql.py"  # Path to DAIL SQL main script
+    DAIL_SQL_PATH: str = os.path.join(os.path.dirname(__file__), "dail_sql_interface.py")  # Path to DAIL SQL interface script
     
     # Triplet and Clustering Parameters
     MIN_TRIPLET_COUNT: int = 10  # Minimum triplets before clustering
@@ -26,8 +26,10 @@ class ErrorCorrectionConfig:
     MAX_CLUSTERING_ITERATIONS: int = 10  # Maximum iterations for clustering
     
     # LLM Configuration
-    LLM_MODEL: str = "gpt-4"  # LLM model name (e.g., 'gpt-4', 'llama-3-70b')
-    LLM_API_KEY: Optional[str] = None  # API key for LLM service
+    LLM_MODEL: str = "phi3:instruct"  # Default to local Ollama model
+    LLM_API_KEY: Optional[str] = None  # API key for LLM service (not needed for Ollama)
+    LLM_API_BASE: Optional[str] = None  # Base URL for API
+    LLM_PROVIDER: str = "ollama"  # Default provider is ollama (local)
     MAX_TOKENS: int = 4096  # Maximum tokens for LLM responses
     TEMPERATURE: float = 0.3  # Temperature for LLM generation
     
@@ -42,6 +44,7 @@ class ErrorCorrectionConfig:
     MAX_QUERIES_PER_CLUSTER: int = 50  # Maximum queries per cluster
     
     # Vector database parameters
+    VECTOR_BACKEND: str = os.getenv('VECTOR_BACKEND', 'faiss')  # 'faiss' | 'chroma'
     VECTOR_DIMENSION: int = 384  # Dimension of query embeddings
     MAX_VECTOR_DB_SIZE: int = 10000  # Maximum size of vector database
     
@@ -136,6 +139,11 @@ class ErrorCorrectionConfig:
         # Validate DAIL_SQL_PATH exists
         if not os.path.exists(self.DAIL_SQL_PATH):
             logging.warning(f"DAIL_SQL_PATH does not exist: {self.DAIL_SQL_PATH}")
+        
+        # Validate vector backend
+        if self.VECTOR_BACKEND not in ['faiss', 'chroma']:
+            logging.warning(f"Unknown VECTOR_BACKEND '{self.VECTOR_BACKEND}', defaulting to 'faiss'")
+            self.VECTOR_BACKEND = 'faiss'
     
     @classmethod
     def from_env(cls) -> 'ErrorCorrectionConfig':
@@ -151,6 +159,8 @@ class ErrorCorrectionConfig:
             'X_SAMPLE_SIZE': 'X_SAMPLE_SIZE',
             'LLM_MODEL': 'LLM_MODEL',
             'LLM_API_KEY': 'LLM_API_KEY',
+            'LLM_API_BASE': 'LLM_API_BASE',
+            'LLM_PROVIDER': 'LLM_PROVIDER',
             'MAX_CLUSTERING_ITERATIONS': 'MAX_CLUSTERING_ITERATIONS',
             'RULE_VALIDATION_RETRIES': 'RULE_VALIDATION_RETRIES',
             'SIMILARITY_THRESHOLD': 'SIMILARITY_THRESHOLD',
@@ -215,6 +225,7 @@ class ErrorCorrectionConfig:
         """Convert configuration to dictionary"""
         return {
             'DAIL_SQL_PATH': self.DAIL_SQL_PATH,
+            'VECTOR_BACKEND': self.VECTOR_BACKEND,
             'MIN_TRIPLET_COUNT': self.MIN_TRIPLET_COUNT,
             'CLUSTERING_THRESHOLD': self.CLUSTERING_THRESHOLD,
             'A_PERCENT_THRESHOLD': self.A_PERCENT_THRESHOLD,

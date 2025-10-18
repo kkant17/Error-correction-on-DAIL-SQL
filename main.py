@@ -5,6 +5,11 @@ This module provides a command-line interface for running the error correction p
 in different modes: single query, batch processing, and evaluation.
 """
 
+# Disable torchvision beta warnings
+import warnings
+import torchvision
+torchvision.disable_beta_transforms_warning()
+
 import os
 import sys
 import json

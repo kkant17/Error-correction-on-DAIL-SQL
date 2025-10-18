@@ -1,0 +1,125 @@
+2025-10-14 13:10:11,580 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-14 13:10:11,580 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-14 13:10:14,649 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-14 13:10:14,649 - root - ERROR - Error in main execution: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-14 13:15:56,190 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-14 13:15:56,190 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-14 13:16:00,175 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: 'type' object is not subscriptable
+2025-10-14 13:16:00,175 - root - ERROR - Error in main execution: 'type' object is not subscriptable
+2025-10-14 13:18:56,570 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-14 13:18:56,570 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-14 13:18:59,623 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-14 13:18:59,623 - root - ERROR - Error in main execution: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-16 16:37:17,724 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-16 16:37:17,724 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-16 16:37:20,683 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-16 16:37:20,684 - root - ERROR - Error in main execution: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-17 21:03:21,554 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-17 21:03:21,556 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-17 21:03:25,894 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-17 21:10:55,502 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-17 21:10:55,502 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-17 21:10:59,296 - error_correction.vector_db_manager - ERROR - Failed to initialize ChromaDB client: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2025-10-17 21:23:41,154 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-17 21:23:41,154 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-17 21:23:44,785 - error_correction.vector_db_manager - INFO - Initializing VectorDBManager with backend: faiss
+2025-10-17 21:23:44,785 - error_correction.vector_db_manager - INFO - Initializing FAISS backend with JSON persistence
+2025-10-17 21:23:44,791 - error_correction.rule_engine - INFO - Loaded 0 rules from error_correction/data/rules
+2025-10-17 21:24:58,211 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-17 21:24:58,211 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-17 21:25:02,000 - error_correction.vector_db_manager - INFO - Initializing VectorDBManager with backend: faiss
+2025-10-17 21:25:02,000 - error_correction.vector_db_manager - INFO - Initializing FAISS backend with JSON persistence
+2025-10-17 21:25:02,000 - error_correction.rule_engine - INFO - Loaded 0 rules from error_correction/data/rules
+2025-10-17 21:29:39,725 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-10-17 21:29:39,725 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-17 21:29:43,603 - error_correction.vector_db_manager - INFO - Initializing VectorDBManager with backend: faiss
+2025-10-17 21:29:43,605 - error_correction.vector_db_manager - INFO - Initializing FAISS backend with JSON persistence
+2025-10-17 21:29:43,607 - error_correction.rule_engine - INFO - Loaded 0 rules from error_correction/data/rules

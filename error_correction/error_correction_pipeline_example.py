@@ -35,6 +35,7 @@ def main():
     pipeline = ErrorCorrectionPipeline(config)
     
     print(f"Initialized ErrorCorrectionPipeline")
+    print(f"Vector backend: {config.VECTOR_BACKEND}")
     print(f"Configuration:")
     print(f"  - MIN_TRIPLET_COUNT: {config.MIN_TRIPLET_COUNT}")
     print(f"  - A_PERCENT_THRESHOLD: {config.A_PERCENT_THRESHOLD}")
