@@ -1,0 +1,16 @@
+# Error Correction Pipeline Requirements
+# These are additional requirements beyond the base DAIL-SQL requirements
+
+# Vector Database and Embeddings
+faiss-cpu>=1.7.4  # Use faiss-gpu if CUDA is available
+transformers>=4.30.0
+torch>=2.0.0
+
+# Clustering
+scipy>=1.10.0
+scikit-learn>=1.2.0
+
+# Already in base requirements but listed for clarity:
+# numpy
+# openai
+# tqdm
