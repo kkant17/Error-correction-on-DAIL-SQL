@@ -87,7 +87,7 @@ The three scripts can also be run independently:
     parser.add_argument('--temperature', type=float, default=0.0, help='Temperature for base model')
     
     # File paths
-    parser.add_argument('--question_dir', type=str, default='dataset/process')
+    parser.add_argument('--question_dir', type=str, default='dataset/process/SPIDER-TEST_SQL_3-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-200_ANS-4096')
     parser.add_argument('--gold', type=str, default='dataset/spider/dev_gold.sql')
     parser.add_argument('--pred', type=str, default=None, help='Predictions file (auto-detected)')
     parser.add_argument('--db', type=str, default='dataset/spider/database')

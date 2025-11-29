@@ -1,0 +1,2991 @@
+Question 0 - CORRECT
+Running Accuracy: 100.00% (1/1)
+Question 1 - CORRECT
+Running Accuracy: 100.00% (2/2)
+Question 2 - CORRECT
+Running Accuracy: 100.00% (3/3)
+Question 3 - CORRECT
+Running Accuracy: 100.00% (4/4)
+Question 4 - CORRECT
+Running Accuracy: 100.00% (5/5)
+Question 5 - CORRECT
+Running Accuracy: 100.00% (6/6)
+Question 6 - INCORRECT
+  - Gold: SELECT song_name , song_release_year FROM singer ORDER BY age LIMIT 1
+  - Pred: SELECT MIN("Age") as min_age FROM "singer") AS t2 ON t1."Age" = t2.min_age
+Running Accuracy: 85.71% (6/7)
+Question 7 - INCORRECT
+  - Gold: SELECT song_name , song_release_year FROM singer ORDER BY age LIMIT 1
+  - Pred: SELECT Name, Song_release_year FROM singer ORDER BY Age ASC LIMIT 1
+Running Accuracy: 75.00% (6/8)
+Question 8 - CORRECT
+Running Accuracy: 77.78% (7/9)
+Question 9 - CORRECT
+Running Accuracy: 80.00% (8/10)
+Question 10 - CORRECT
+Running Accuracy: 81.82% (9/11)
+Question 11 - CORRECT
+Running Accuracy: 83.33% (10/12)
+Question 12 - INCORRECT
+  - Gold: SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)
+  - Pred: SELECT AVG(Age) FROM singer)
+Running Accuracy: 76.92% (10/13)
+Question 13 - INCORRECT
+  - Gold: SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)
+  - Pred: SELECT AVG(Age) FROM singer)
+Running Accuracy: 71.43% (10/14)
+Question 14 - CORRECT
+Running Accuracy: 73.33% (11/15)
+Question 15 - CORRECT
+Running Accuracy: 75.00% (12/16)
+Question 16 - INCORRECT
+  - Gold: SELECT max(capacity), average from stadium
+  - Pred: SELECT max(Capacity), avg(Average) FROM stadium
+Running Accuracy: 70.59% (12/17)
+Question 17 - CORRECT
+Running Accuracy: 72.22% (13/18)
+Question 18 - INCORRECT
+  - Gold: SELECT name , capacity FROM stadium ORDER BY average DESC LIMIT 1
+  - Pred: SELECT MAX(Average) FROM stadium)
+Running Accuracy: 68.42% (13/19)
+Question 19 - CORRECT
+Running Accuracy: 70.00% (14/20)
+Question 20 - CORRECT
+Running Accuracy: 71.43% (15/21)
+Question 21 - CORRECT
+Running Accuracy: 72.73% (16/22)
+Question 22 - CORRECT
+Running Accuracy: 73.91% (17/23)
+Question 23 - INCORRECT
+  - Gold: SELECT T2.name , count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id
+  - Pred: SELECT T1.Stadium_ID, T1.Name, COUNT(*) as Number_of_Concerts FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID, T1.Name
+Running Accuracy: 70.83% (17/24)
+Question 24 - CORRECT
+Running Accuracy: 72.00% (18/25)
+Question 25 - CORRECT
+Running Accuracy: 73.08% (19/26)
+Question 26 - INCORRECT
+  - Gold: SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT sql Year FROM Concert GROUP BY Year ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 70.37% (19/27)
+Question 27 - CORRECT
+Running Accuracy: 71.43% (20/28)
+Question 28 - INCORRECT
+  - Gold: SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+  - Pred: SELECT Stadium_ID FROM concert)
+Running Accuracy: 68.97% (20/29)
+Question 29 - INCORRECT
+  - Gold: SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+  - Pred: SELECT Stadium_ID FROM concert)
+Running Accuracy: 66.67% (20/30)
+Question 30 - INCORRECT
+  - Gold: SELECT country FROM singer WHERE age > 40 INTERSECT SELECT country FROM singer WHERE age < 30
+  - Pred: SELECT Country FROM singer WHERE Age < 30
+Running Accuracy: 64.52% (20/31)
+Question 31 - INCORRECT
+  - Gold: SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year = 2014
+  - Pred: SELECT Stadium_ID FROM concert WHERE Year = '2014')
+Running Accuracy: 62.50% (20/32)
+Question 32 - INCORRECT
+  - Gold: SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year = 2014
+  - Pred: SELECT Stadium_ID FROM concert WHERE Year = '2014')
+Running Accuracy: 60.61% (20/33)
+Question 33 - CORRECT
+Running Accuracy: 61.76% (21/34)
+Question 34 - CORRECT
+Running Accuracy: 62.86% (22/35)
+Question 35 - CORRECT
+Running Accuracy: 63.89% (23/36)
+Question 36 - CORRECT
+Running Accuracy: 64.86% (24/37)
+Question 37 - CORRECT
+Running Accuracy: 65.79% (25/38)
+Question 38 - INCORRECT
+  - Gold: SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id = T2.singer_id JOIN concert AS T3 ON T1.concert_id = T3.concert_id WHERE T3.year = 2014
+  - Pred: SELECT T3.Name FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.Singer_ID = T2.Singer_ID JOIN concert AS T3 ON T2.concert_ID = T3.concert_ID WHERE T3.Year = 2014
+Running Accuracy: 64.10% (25/39)
+Question 39 - INCORRECT
+  - Gold: SELECT name , country FROM singer WHERE song_name LIKE '%Hey%'
+  - Pred: SELECT s.Name, s.Country FROM singer AS s JOIN singer_in_concert AS sic ON s.Singer_ID = sic.Singer_ID JOIN concert AS c ON c.concert_ID = sic.concert_ID WHERE c.Theme LIKE '%Hey%' OR s.Name LIKE '%Hey%'
+Running Accuracy: 62.50% (25/40)
+Question 40 - INCORRECT
+  - Gold: SELECT name , country FROM singer WHERE song_name LIKE '%Hey%'
+  - Pred: SELECT t1.Name, t1.Country FROM singer AS t1 JOIN singer_in_concert AS t2 ON t1.Singer_ID = t2.Singer_ID JOIN concert AS t3 ON t2.concert_ID = t3.concert_ID WHERE t1.Song_Name LIKE '%Hey%'
+Running Accuracy: 60.98% (25/41)
+Question 41 - INCORRECT
+  - Gold: SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2014 INTERSECT SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2015
+  - Pred: SELECT Stadium_ID FROM concert WHERE Year = '2014' INTERSECT SELECT Stadium_ID FROM concert WHERE Year = '2015')
+Running Accuracy: 59.52% (25/42)
+Question 42 - INCORRECT
+  - Gold: SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2014 INTERSECT SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2015
+  - Pred: SELECT * FROM concert WHERE Year = 2015 AND Stadium_ID = T1.Stadium_ID)
+Running Accuracy: 58.14% (25/43)
+Question 43 - CORRECT
+Running Accuracy: 59.09% (26/44)
+Question 44 - CORRECT
+Running Accuracy: 60.00% (27/45)
+Question 45 - CORRECT
+Running Accuracy: 60.87% (28/46)
+Question 46 - CORRECT
+Running Accuracy: 61.70% (29/47)
+Question 47 - INCORRECT
+  - Gold: SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+  - Pred: SELECT MIN(pet_age) FROM Pets WHERE PetType = 'Dog')
+Running Accuracy: 60.42% (29/48)
+Question 48 - INCORRECT
+  - Gold: SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+  - Pred: SELECT PetID FROM Has_Pet WHERE StuID = ( SELECT StuID FROM Student WHERE Age = ( SELECT MIN(Age) FROM Student WHERE Sex = 'M' ) AND Sex = 'M' ) )
+Running Accuracy: 59.18% (29/49)
+Question 49 - CORRECT
+Running Accuracy: 60.00% (30/50)
+Question 50 - CORRECT
+Running Accuracy: 60.78% (31/51)
+Question 51 - CORRECT
+Running Accuracy: 61.54% (32/52)
+Question 52 - CORRECT
+Running Accuracy: 62.26% (33/53)
+Question 53 - INCORRECT
+  - Gold: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T2.petid = T3.petid WHERE T1.sex = 'F' AND T3.pettype = 'dog'
+  - Pred: SELECT COUNT(*) FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T1.Sex = 'F' AND T3.PetType = 'Dog'
+Running Accuracy: 61.11% (33/54)
+Question 54 - INCORRECT
+  - Gold: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T2.petid = T3.petid WHERE T1.sex = 'F' AND T3.pettype = 'dog'
+  - Pred: SELECT COUNT(*) FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T1.Sex = 'F' AND T3.PetType = 'Dog'
+Running Accuracy: 60.00% (33/55)
+Question 55 - CORRECT
+Running Accuracy: 60.71% (34/56)
+Question 56 - CORRECT
+Running Accuracy: 61.40% (35/57)
+Question 57 - INCORRECT
+  - Gold: SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat' OR T3.pettype = 'dog'
+  - Pred: SELECT T1.Fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T3.PetType IN ('Cat', 'Dog')
+Running Accuracy: 60.34% (35/58)
+Question 58 - INCORRECT
+  - Gold: SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat' OR T3.pettype = 'dog'
+  - Pred: SELECT Student.Fname FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE Pets.PetType IN ('Cat', 'Dog')
+Running Accuracy: 59.32% (35/59)
+Question 59 - CORRECT
+Running Accuracy: 60.00% (36/60)
+Question 60 - INCORRECT
+  - Gold: SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'dog'
+  - Pred: SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Dog') AND StuID IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat')
+Running Accuracy: 59.02% (36/61)
+Question 61 - INCORRECT
+  - Gold: SELECT major , age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')
+  - Pred: SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat')
+Running Accuracy: 58.06% (36/62)
+Question 62 - INCORRECT
+  - Gold: SELECT major , age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')
+  - Pred: SELECT StuID FROM Has_Pet WHERE PetType = 'Cat' )
+Running Accuracy: 57.14% (36/63)
+Question 63 - INCORRECT
+  - Gold: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat'
+  - Pred: SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat')
+Running Accuracy: 56.25% (36/64)
+Question 64 - INCORRECT
+  - Gold: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat'
+  - Pred: SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat' )
+Running Accuracy: 55.38% (36/65)
+Question 65 - INCORRECT
+  - Gold: SELECT T1.fname , T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')
+  - Pred: SELECT T2.Fname, T1.Age FROM Student AS T1 JOIN Has_Pet AS T3 ON T1.StuID = T3.StuID JOIN Pets AS T4 ON T3.PetID = T4.PetID WHERE T4.PetType = 'Dog' AND T4.PetType != 'Cat'
+Running Accuracy: 54.55% (36/66)
+Question 66 - INCORRECT
+  - Gold: SELECT T1.fname , T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')
+  - Pred: SELECT Fname FROM Student AS T3 JOIN Has_Pet AS T4 ON T3.StuID = T4.StuID WHERE PetType = 'Cat'
+Running Accuracy: 53.73% (36/67)
+Question 67 - CORRECT
+Running Accuracy: 54.41% (37/68)
+Question 68 - INCORRECT
+  - Gold: SELECT pettype , weight FROM pets ORDER BY pet_age LIMIT 1
+  - Pred: SELECT PetID FROM Has_Pet WHERE StuID = ( SELECT StuID FROM Student ORDER BY Age ASC LIMIT 1 ) )
+Running Accuracy: 53.62% (37/69)
+Question 69 - CORRECT
+Running Accuracy: 54.29% (38/70)
+Question 70 - CORRECT
+Running Accuracy: 54.93% (39/71)
+Question 71 - CORRECT
+Running Accuracy: 55.56% (40/72)
+Question 72 - CORRECT
+Running Accuracy: 56.16% (41/73)
+Question 73 - CORRECT
+Running Accuracy: 56.76% (42/74)
+Question 74 - CORRECT
+Running Accuracy: 57.33% (43/75)
+Question 75 - CORRECT
+Running Accuracy: 57.89% (44/76)
+Question 76 - CORRECT
+Running Accuracy: 58.44% (45/77)
+Question 77 - INCORRECT
+  - Gold: SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid WHERE T1.Lname = 'Smith'
+  - Pred: SELECT Sorry for any confusion, but there seems to be a misunderstanding in your question. The SQL query you're asking about doesn't seem to fit into the provided schema. Could you please provide more specific details or clarify what exactly you want to find? For example, are we looking for students who have pets, or do we need information from other tables?
+Running Accuracy: 57.69% (45/78)
+Question 78 - CORRECT
+Running Accuracy: 58.23% (46/79)
+Question 79 - CORRECT
+Running Accuracy: 58.75% (47/80)
+Question 80 - CORRECT
+Running Accuracy: 59.26% (48/81)
+Question 81 - CORRECT
+Running Accuracy: 59.76% (49/82)
+Question 82 - CORRECT
+Running Accuracy: 60.24% (50/83)
+Question 83 - INCORRECT
+  - Gold: SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pet_age = 3 AND T3.pettype = 'cat'
+  - Pred: SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE pet_age = 3 AND PetType = 'Cat')) ORDER BY Age DESC LIMIT 1
+Running Accuracy: 59.52% (50/84)
+Question 84 - CORRECT
+Running Accuracy: 60.00% (51/85)
+Question 85 - INCORRECT
+  - Gold: SELECT avg(age) from student where stuid not in (select stuid from has_pet)
+  - Pred: SELECT StuID FROM Has_Pet)
+Running Accuracy: 59.30% (51/86)
+Question 86 - INCORRECT
+  - Gold: SELECT avg(age) from student where stuid not in (select stuid from has_pet)
+  - Pred: SELECT StuID FROM Has_Pet)
+Running Accuracy: 58.62% (51/87)
+Question 87 - CORRECT
+Running Accuracy: 59.09% (52/88)
+Question 88 - CORRECT
+Running Accuracy: 59.55% (53/89)
+Question 89 - CORRECT
+Running Accuracy: 60.00% (54/90)
+Question 90 - CORRECT
+Running Accuracy: 60.44% (55/91)
+Question 91 - CORRECT
+Running Accuracy: 60.87% (56/92)
+Question 92 - CORRECT
+Running Accuracy: 61.29% (57/93)
+Question 93 - CORRECT
+Running Accuracy: 61.70% (58/94)
+Question 94 - CORRECT
+Running Accuracy: 62.11% (59/95)
+Question 95 - INCORRECT
+  - Gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+  - Pred: SELECT car_makers.Maker, model_list.Model, cars_data.Horsepower FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker JOIN cars_data ON model_list.ModelId = cars_data.Id ORDER BY CAST(cars_data.Horsepower AS INTEGER) ASC LIMIT 1
+Running Accuracy: 61.46% (59/96)
+Question 96 - INCORRECT
+  - Gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+  - Pred: SELECT MIN(Horsepower) FROM cars_data)
+Running Accuracy: 60.82% (59/97)
+Question 97 - INCORRECT
+  - Gold: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.Weight < (SELECT avg(Weight) FROM CARS_DATA)
+  - Pred: SELECT AVG(Weight) FROM cars_data)
+Running Accuracy: 60.20% (59/98)
+Question 98 - INCORRECT
+  - Gold: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.Weight < (SELECT avg(Weight) FROM CARS_DATA)
+  - Pred: SELECT AVG(Weight) FROM cars_data)
+Running Accuracy: 59.60% (59/99)
+Question 99 - INCORRECT
+  - Gold: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker JOIN CAR_NAMES AS T3 ON T2.model = T3.model JOIN CARS_DATA AS T4 ON T3.MakeId = T4.id WHERE T4.year = '1970';
+  - Pred: SELECT car_makers.Maker, car_names.Make FROM car_makers JOIN countries ON car_makers.Country = countries.CountryId JOIN continents ON countries.Continent = continents.ContId JOIN model_list ON car_makers.Id = model_list.Maker JOIN car_names ON model_list.Model = car_names.Model WHERE car_names.Year = 1970
+Running Accuracy: 59.00% (59/100)
+Question 100 - INCORRECT
+  - Gold: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker JOIN CAR_NAMES AS T3 ON T2.model = T3.model JOIN CARS_DATA AS T4 ON T3.MakeId = T4.id WHERE T4.year = '1970';
+  - Pred: SELECT car_makers.Maker, car_makers.FullName FROM car_makers JOIN cars_data ON car_makers.Id = cars_data.Id WHERE cars_data.Year = 1970
+Running Accuracy: 58.42% (59/101)
+Question 101 - INCORRECT
+  - Gold: SELECT T2.Make , T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T1.Year = (SELECT min(YEAR) FROM CARS_DATA);
+  - Pred: SELECT car_makers.Maker, cars_data.Year FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker JOIN car_names ON model_list.ModelId = car_names.Model JOIN cars_data ON car_names.MakeId = cars_data.Id ORDER BY cars_data.Year ASC LIMIT 1
+Running Accuracy: 57.84% (59/102)
+Question 102 - INCORRECT
+  - Gold: SELECT T2.Make , T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T1.Year = (SELECT min(YEAR) FROM CARS_DATA);
+  - Pred: SELECT car_makers.Maker, cars_data.Year FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker JOIN car_names ON model_list.ModelId = car_names.Model JOIN cars_data ON car_names.MakeId = cars_data.Id ORDER BY cars_data.Year ASC LIMIT 1
+Running Accuracy: 57.28% (59/103)
+Question 103 - CORRECT
+Running Accuracy: 57.69% (60/104)
+Question 104 - INCORRECT
+  - Gold: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model = T2.model JOIN CARS_DATA AS T3 ON T2.MakeId = T3.id WHERE T3.year > 1980;
+  - Pred: SELECT car_makers.Maker, model_list.Model FROM car_makers INNER JOIN countries ON car_makers.Country = countries.CountryId INNER JOIN continents ON countries.Continent = continents.ContId INNER JOIN model_list ON car_makers.Id = model_list.Maker WHERE YEAR > 1980
+Running Accuracy: 57.14% (60/105)
+Question 105 - CORRECT
+Running Accuracy: 57.55% (61/106)
+Question 106 - CORRECT
+Running Accuracy: 57.94% (62/107)
+Question 107 - CORRECT
+Running Accuracy: 58.33% (63/108)
+Question 108 - CORRECT
+Running Accuracy: 58.72% (64/109)
+Question 109 - CORRECT
+Running Accuracy: 59.09% (65/110)
+Question 110 - CORRECT
+Running Accuracy: 59.46% (66/111)
+Question 111 - INCORRECT
+  - Gold: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T2.Make = 'amc hornet sportabout (sw)';
+  - Pred: SELECT Accelerate FROM cars_data WHERE Make = 'amc' AND Model = 'hornet'
+Running Accuracy: 58.93% (66/112)
+Question 112 - INCORRECT
+  - Gold: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T2.Make = 'amc hornet sportabout (sw)';
+  - Pred: SELECT Accelerate FROM cars_data WHERE Make = "AMC" AND Model LIKE "%Hornet%"
+Running Accuracy: 58.41% (66/113)
+Question 113 - INCORRECT
+  - Gold: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country = T2.CountryId WHERE T2.CountryName = 'france';
+  - Pred: SELECT COUNT(*) FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country WHERE T1.CountryName = 'France'
+Running Accuracy: 57.89% (66/114)
+Question 114 - INCORRECT
+  - Gold: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country = T2.CountryId WHERE T2.CountryName = 'france';
+  - Pred: SELECT COUNT(DISTINCT maker) FROM car_makers AS T1 JOIN countries AS T2 ON T1.Country = T2.CountryId WHERE T2.CountryName = 'France'
+Running Accuracy: 57.39% (66/115)
+Question 115 - INCORRECT
+  - Gold: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker = T2.Id JOIN COUNTRIES AS T3 ON T2.Country = T3.CountryId WHERE T3.CountryName = 'usa';
+  - Pred: SELECT COUNT(DISTINCT model_list.Model) FROM countries, continents, car_makers, model_list, car_names WHERE countries.CountryId = car_makers.Country AND continents.ContId = countries.Continent AND car_makers.Id = model_list.Maker AND model_list.Model = car_names.Model AND countries.CountryName = 'USA'
+Running Accuracy: 56.90% (66/116)
+Question 116 - INCORRECT
+  - Gold: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker = T2.Id JOIN COUNTRIES AS T3 ON T2.Country = T3.CountryId WHERE T3.CountryName = 'usa';
+  - Pred: SELECT COUNT(DISTINCT T1.Model) FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id WHERE T2.Country = 49
+Running Accuracy: 56.41% (66/117)
+Question 117 - CORRECT
+Running Accuracy: 56.78% (67/118)
+Question 118 - CORRECT
+Running Accuracy: 57.14% (68/119)
+Question 119 - CORRECT
+Running Accuracy: 57.50% (69/120)
+Question 120 - INCORRECT
+  - Gold: SELECT min(weight) from cars_data where cylinders = 8 and year = 1974
+  - Pred: SELECT MIN(T2.Weight) FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId WHERE T1.Cylinders = 8 AND T1.Year = 1974
+Running Accuracy: 57.02% (69/121)
+Question 121 - INCORRECT
+  - Gold: SELECT Maker , Model FROM MODEL_LIST;
+  - Pred: SELECT car_makers.Maker AS Maker, model_list.Model AS Model FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker
+Running Accuracy: 56.56% (69/122)
+Question 122 - CORRECT
+Running Accuracy: 56.91% (70/123)
+Question 123 - INCORRECT
+  - Gold: SELECT T1.CountryName , T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country GROUP BY T1.CountryId HAVING count(*) >= 1;
+  - Pred: SELECT countries.CountryName AS Country, countries.CountryId AS Id FROM countries JOIN car_makers ON countries.Continent = car_makers.Country GROUP BY Country HAVING COUNT(*) >= 1
+Running Accuracy: 56.45% (70/124)
+Question 124 - INCORRECT
+  - Gold: SELECT T1.CountryName , T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country GROUP BY T1.CountryId HAVING count(*) >= 1;
+  - Pred: SELECT countries.CountryName, countries.CountryId FROM countries JOIN car_makers ON countries.Continent = car_makers.Country
+Running Accuracy: 56.00% (70/125)
+Question 125 - INCORRECT
+  - Gold: SELECT count(*) FROM CARS_DATA WHERE horsepower > 150;
+  - Pred: SELECT COUNT(*) FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE CAST(T1.Horsepower AS INTEGER) > 150
+Running Accuracy: 55.56% (70/126)
+Question 126 - INCORRECT
+  - Gold: SELECT count(*) FROM CARS_DATA WHERE horsepower > 150;
+  - Pred: SELECT COUNT(*) FROM cars_data INNER JOIN car_names ON cars_data.Id = car_names.MakeId WHERE CAST(cars_data.Horsepower AS INT) > 150
+Running Accuracy: 55.12% (70/127)
+Question 127 - CORRECT
+Running Accuracy: 55.47% (71/128)
+Question 128 - CORRECT
+Running Accuracy: 55.81% (72/129)
+Question 129 - INCORRECT
+  - Gold: SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country WHERE T2.Continent = 'europe' GROUP BY T1.CountryName HAVING count(*) >= 3;
+  - Pred: SELECT T1.CountryName FROM countries AS T1, continents AS T2, car_makers AS T3 WHERE T1.Continent = T2.ContId AND T1.CountryId = T3.Country AND T2.Continent = 'Europe' GROUP BY T1.CountryName HAVING COUNT(T3.Maker) >= 3
+Running Accuracy: 55.38% (72/130)
+Question 130 - INCORRECT
+  - Gold: SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country WHERE T2.Continent = 'europe' GROUP BY T1.CountryName HAVING count(*) >= 3;
+  - Pred: SELECT COUNT(*) FROM car_makers WHERE Country = countries.CountryId) >= 3
+Running Accuracy: 54.96% (72/131)
+Question 131 - INCORRECT
+  - Gold: SELECT T2.horsepower , T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.cylinders = 3 ORDER BY T2.horsepower DESC LIMIT 1;
+  - Pred: SELECT MAX(cars_data.Horsepower), car_makers.FullName, car_names.Make FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model JOIN car_makers ON model_list.Maker = car_makers.Id WHERE cars_data.Cylinders = 3
+Running Accuracy: 54.55% (72/132)
+Question 132 - INCORRECT
+  - Gold: SELECT T2.horsepower , T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.cylinders = 3 ORDER BY T2.horsepower DESC LIMIT 1;
+  - Pred: SELECT MAX(Horsepower) FROM cars_data WHERE Cylinders = 3)
+Running Accuracy: 54.14% (72/133)
+Question 133 - INCORRECT
+  - Gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.mpg DESC LIMIT 1;
+  - Pred: SELECT model_list.Model, cars_data.MPG FROM car_names JOIN cars_data ON car_names.MakeId = cars_data.Id JOIN model_list ON car_names.Model = model_list.Model ORDER BY cars_data.MPG DESC LIMIT 1
+Running Accuracy: 53.73% (72/134)
+Question 134 - INCORRECT
+  - Gold: SELECT t1.model from car_names as t1 join cars_data as t2 on t1.makeid = t2.id order by t2.mpg desc limit 1;
+  - Pred: SELECT cars_data.MPG as mpg, car_makers.Maker as Maker, model_list.Model as Model FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model ORDER BY mpg DESC LIMIT 1
+Running Accuracy: 53.33% (72/135)
+Question 135 - CORRECT
+Running Accuracy: 53.68% (73/136)
+Question 136 - CORRECT
+Running Accuracy: 54.01% (74/137)
+Question 137 - INCORRECT
+  - Gold: SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T1.Model = 'volvo';
+  - Pred: SELECT Id FROM car_makers WHERE Maker = 'volvo')
+Running Accuracy: 53.62% (74/138)
+Question 138 - INCORRECT
+  - Gold: SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T1.Model = 'volvo';
+  - Pred: SELECT AVG(T1.Edispl) FROM car_makers AS T2 JOIN car_names AS T3 ON T2.Id = T3.Model JOIN cars_data AS T1 ON T3.MakeId = T1.Id WHERE T2.Maker = 'Volvo'
+Running Accuracy: 53.24% (74/139)
+Question 139 - CORRECT
+Running Accuracy: 53.57% (75/140)
+Question 140 - CORRECT
+Running Accuracy: 53.90% (76/141)
+Question 141 - INCORRECT
+  - Gold: SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;
+  - Pred: SELECT model FROM model_list GROUP BY model ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 53.52% (76/142)
+Question 142 - INCORRECT
+  - Gold: SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;
+  - Pred: SELECT model_list.Model, COUNT(car_names.Make) as VersionCount FROM model_list JOIN car_names ON model_list.Maker = car_names.Maker GROUP BY model_list.Model ORDER BY VersionCount DESC LIMIT 1
+Running Accuracy: 53.15% (76/143)
+Question 143 - CORRECT
+Running Accuracy: 53.47% (77/144)
+Question 144 - CORRECT
+Running Accuracy: 53.79% (78/145)
+Question 145 - CORRECT
+Running Accuracy: 54.11% (79/146)
+Question 146 - CORRECT
+Running Accuracy: 54.42% (80/147)
+Question 147 - CORRECT
+Running Accuracy: 54.73% (81/148)
+Question 148 - CORRECT
+Running Accuracy: 55.03% (82/149)
+Question 149 - INCORRECT
+  - Gold: SELECT T1.FullName , T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id HAVING count(*) > 3;
+  - Pred: SELECT Maker, COUNT(*) AS ModelCount FROM model_list GROUP BY Maker) as T1 ON car_makers.Id = T1.Maker WHERE T1.ModelCount > 3
+Running Accuracy: 54.67% (82/150)
+Question 150 - INCORRECT
+  - Gold: SELECT T1.FullName , T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id HAVING count(*) > 3;
+  - Pred: SELECT car_makers.Maker, car_makers.Id FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker GROUP BY model_list.Maker HAVING COUNT(*) > 3
+Running Accuracy: 54.30% (82/151)
+Question 151 - INCORRECT
+  - Gold: SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model = T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker = T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId = T4.Id WHERE T3.FullName = 'General Motors' OR T4.weight > 3500;
+  - Pred: SELECT MakeId FROM cars_data WHERE Weight > 3500))
+Running Accuracy: 53.95% (82/152)
+Question 152 - INCORRECT
+  - Gold: SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model = T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker = T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId = T4.Id WHERE T3.FullName = 'General Motors' OR T4.weight > 3500;
+  - Pred: SELECT Id FROM car_makers WHERE Maker = 'General Motors') UNION SELECT Model FROM cars_data JOIN car_names ON cars_data.MakeId = car_names.MakeId WHERE Weight > 3500
+Running Accuracy: 53.59% (82/153)
+Question 153 - INCORRECT
+  - Gold: SELECT distinct year from cars_data where weight between 3000 and 4000;
+  - Pred: SELECT cars_data.Year, car_makers.Maker, model_list.Model, car_names.Make FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model JOIN car_makers ON model_list.Maker = car_makers.Id WHERE cars_data.Weight >= 3000 AND cars_data.Weight <= 4000
+Running Accuracy: 53.25% (82/154)
+Question 154 - CORRECT
+Running Accuracy: 53.55% (83/155)
+Question 155 - CORRECT
+Running Accuracy: 53.85% (84/156)
+Question 156 - CORRECT
+Running Accuracy: 54.14% (85/157)
+Question 157 - INCORRECT
+  - Gold: SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T2.Model = 'volvo' ORDER BY T1.accelerate ASC LIMIT 1;
+  - Pred: SELECT Id FROM car_makers WHERE Maker = 'volvo') ORDER BY Accelerate ASC LIMIT 1
+Running Accuracy: 53.80% (85/158)
+Question 158 - INCORRECT
+  - Gold: SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T2.Model = 'volvo' ORDER BY T1.accelerate ASC LIMIT 1;
+  - Pred: SELECT Id FROM car_makers WHERE Maker='volvo') ORDER BY Accelerate ASC LIMIT 1
+Running Accuracy: 53.46% (85/159)
+Question 159 - INCORRECT
+  - Gold: SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate > ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );
+  - Pred: SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)
+Running Accuracy: 53.12% (85/160)
+Question 160 - INCORRECT
+  - Gold: SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate > ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );
+  - Pred: SELECT MAX(Horsepower) as max_hp FROM cars_data ), count_cars AS ( SELECT COUNT(*) as count FROM cars_data WHERE Accelerate > (SELECT max_hp FROM max_horsepower) ) SELECT count FROM count_cars
+Running Accuracy: 52.80% (85/161)
+Question 161 - INCORRECT
+  - Gold: SELECT count(*) from countries as t1 join car_makers as t2 on t1.countryid = t2.country group by t1.countryid having count(*) > 2
+  - Pred: SELECT COUNT(*) AS maker_count, c.CountryName FROM car_makers cm JOIN countries c ON cm.Country = c.CountryId GROUP BY c.CountryName HAVING COUNT(*) > 2)
+Running Accuracy: 52.47% (85/162)
+Question 162 - INCORRECT
+  - Gold: SELECT count(*) from countries as t1 join car_makers as t2 on t1.countryid = t2.country group by t1.countryid having count(*) > 2
+  - Pred: SELECT COUNT(CountryName) as country_count, CountryName FROM countries JOIN car_makers ON continents.ContId = countries.Continent GROUP BY CountryName HAVING count(Maker) > 2 )
+Running Accuracy: 52.15% (85/163)
+Question 163 - CORRECT
+Running Accuracy: 52.44% (86/164)
+Question 164 - CORRECT
+Running Accuracy: 52.73% (87/165)
+Question 165 - INCORRECT
+  - Gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.horsepower DESC LIMIT 1;
+  - Pred: SELECT MAX(Horsepower) FROM cars_data WHERE Cylinders = 4)
+Running Accuracy: 52.41% (87/166)
+Question 166 - INCORRECT
+  - Gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.horsepower DESC LIMIT 1;
+  - Pred: SELECT car_makers.Maker AS Maker, model_list.Model AS Model, MAX(cars_data.Horsepower) AS MaxHorsePower FROM car_names JOIN model_list ON car_names.Model = model_list.Model JOIN cars_data ON car_names.MakeId = cars_data.Id WHERE cars_data.Cylinders = 4 AND cars_data.Horsepower != '?' GROUP BY Maker, Model ORDER BY MaxHorsePower DESC
+Running Accuracy: 52.10% (87/167)
+Question 167 - INCORRECT
+  - Gold: SELECT T2.MakeId , T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId WHERE T1.Horsepower > (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders <= 3;
+  - Pred: SELECT car_names.MakeId, car_names.Make FROM cars_data INNER JOIN car_names ON cars_data.Id = car_names.MakeId WHERE cars_data.Horsepower NOT LIKE '*%' AND cars_data.Cylinders <= 3
+Running Accuracy: 51.79% (87/168)
+Question 168 - INCORRECT
+  - Gold: SELECT t2.makeid , t2.make from cars_data as t1 join car_names as t2 on t1.id = t2.makeid where t1.horsepower > (select min(horsepower) from cars_data) and t1.cylinders < 4;
+  - Pred: SELECT MIN(Horsepower) FROM cars_data)
+Running Accuracy: 51.48% (87/169)
+Question 169 - CORRECT
+Running Accuracy: 51.76% (88/170)
+Question 170 - CORRECT
+Running Accuracy: 52.05% (89/171)
+Question 171 - INCORRECT
+  - Gold: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model = T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId = T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker = T4.Id WHERE T3.weight < 3500 AND T4.FullName != 'Ford Motor Company';
+  - Pred: SELECT car_makers.FullName, model_list.Model FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model JOIN car_makers ON model_list.Maker = car_makers.Id WHERE Weight < 3500 AND FullName != 'Ford Motor Company'
+Running Accuracy: 51.74% (89/172)
+Question 172 - INCORRECT
+  - Gold: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model = T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId = T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker = T4.Id WHERE T3.weight < 3500 AND T4.FullName != 'Ford Motor Company';
+  - Pred: SELECT car_makers.FullName, model_list.Model FROM car_names JOIN cars_data ON car_names.MakeId = cars_data.Id JOIN model_list ON car_names.Model = model_list.Model JOIN car_makers ON car_names.Maker = car_makers.Id WHERE cars_data.Weight < 3500 AND car_makers.FullName != 'Ford Motor Company'
+Running Accuracy: 51.45% (89/173)
+Question 173 - INCORRECT
+  - Gold: SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId = T2.Country;
+  - Pred: SELECT countries.CountryName FROM countries LEFT JOIN car_makers ON countries.Continent = car_makers.Country GROUP BY countries.CountryId HAVING COUNT(car_makers.Id) = 0
+Running Accuracy: 51.15% (89/174)
+Question 174 - INCORRECT
+  - Gold: SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId = T2.Country;
+  - Pred: SELECT Country FROM car_makers)
+Running Accuracy: 50.86% (89/175)
+Question 175 - INCORRECT
+  - Gold: SELECT t1.id , t1.maker from car_makers as t1 join model_list as t2 on t1.id = t2.maker group by t1.id having count(*) >= 2 intersect select t1.id , t1.maker from car_makers as t1 join model_list as t2 on t1.id = t2.maker join car_names as t3 on t2.model = t3.model group by t1.id having count(*) > 3;
+  - Pred: SELECT Maker FROM model_list GROUP BY Maker HAVING COUNT(Model) >= 2) AS T2 ON T1.Maker = T2.Maker WHERE (SELECT COUNT(DISTINCT Id) FROM car_makers WHERE Maker = T1.Maker) > 3
+Running Accuracy: 50.57% (89/176)
+Question 176 - INCORRECT
+  - Gold: SELECT T1.Id , T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id HAVING count(*) >= 2 INTERSECT SELECT T1.Id , T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker JOIN CAR_NAMES AS T3 ON T2.model = T3.model GROUP BY T1.Id HAVING count(*) > 3;
+  - Pred: SELECT model_list.Maker AS maker_id, COUNT(model_list.Model) as models_count, COUNT(car_names.MakeId) as cars_count FROM model_list LEFT JOIN car_names ON model_list.Model = car_names.Model GROUP BY model_list.Maker ) AS T1 ON car_makers.Id = T1.maker_id WHERE T1.models_count >= 2 AND T1.cars_count > 3
+Running Accuracy: 50.28% (89/177)
+Question 177 - INCORRECT
+  - Gold: SELECT T1.countryId , T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country GROUP BY T1.countryId HAVING count(*) > 3 UNION SELECT T1.countryId , T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country JOIN MODEL_LIST AS T3 ON T2.Id = T3.Maker WHERE T3.Model = 'fiat';
+  - Pred: SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(*) > 3 ) AS cm ON c.CountryId = cm.Country UNION ALL SELECT c.CountryId, c.CountryName FROM countries AS c JOIN ( SELECT Country FROM car_makers WHERE Maker LIKE '%fiat%' ) AS cm ON c.CountryId = cm.Country
+Running Accuracy: 50.00% (89/178)
+Question 178 - INCORRECT
+  - Gold: SELECT t1.countryid , t1.countryname from countries as t1 join car_makers as t2 on t1.countryid = t2.country group by t1.countryid having count(*) > 3 union select t1.countryid , t1.countryname from countries as t1 join car_makers as t2 on t1.countryid = t2.country join model_list as t3 on t2.id = t3.maker where t3.model = 'fiat';
+  - Pred: SELECT Country AS CountryId, COUNT(*) as Count FROM car_makers GROUP BY Country) AS T1 JOIN countries AS T2 ON T1.CountryId = T2.CountryId WHERE T1.Count > 3 UNION ALL SELECT DISTINCT T1.CountryId, T2.CountryName FROM car_makers AS T1 JOIN model_list AS T3 ON T1.Id = T3.Maker JOIN car_names AS T4 ON T3.ModelId = T4.MakeId JOIN cars_data AS T5 ON T4.MakeId = T5.Id JOIN countries AS T2 ON T1.Country = T2.CountryId WHERE T4.Make = 'Fiat'
+Running Accuracy: 49.72% (89/179)
+Question 179 - CORRECT
+Running Accuracy: 50.00% (90/180)
+Question 180 - INCORRECT
+  - Gold: SELECT Country FROM AIRLINES WHERE Airline = "JetBlue Airways"
+  - Pred: SELECT airlines.Country FROM airlines JOIN flights ON airlines.uid = flights.Airline WHERE airlines.Abbreviation = "JBU" AND flights.SourceAirport = 'SFO' AND flights.DestAirport = 'LAX'
+Running Accuracy: 49.72% (90/181)
+Question 181 - CORRECT
+Running Accuracy: 50.00% (91/182)
+Question 182 - CORRECT
+Running Accuracy: 50.27% (92/183)
+Question 183 - INCORRECT
+  - Gold: SELECT Airline , Abbreviation FROM AIRLINES WHERE Country = "USA"
+  - Pred: SELECT airlines.Airline, airlines.Abbreviation FROM airlines JOIN flights ON airlines.uid = flights.Airline JOIN airports ON (flights.SourceAirport = airports.AirportCode OR flights.DestAirport = airports.AirportCode) WHERE airports.Country = 'USA'
+Running Accuracy: 50.00% (92/184)
+Question 184 - INCORRECT
+  - Gold: SELECT Airline , Abbreviation FROM AIRLINES WHERE Country = "USA"
+  - Pred: SELECT T1.Airline, T1.Abbreviation FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline JOIN airports AS T3 ON T2.SourceAirport = T3.AirportCode WHERE T3.Country = 'USA'
+Running Accuracy: 49.73% (92/185)
+Question 185 - CORRECT
+Running Accuracy: 50.00% (93/186)
+Question 186 - INCORRECT
+  - Gold: SELECT AirportCode , AirportName FROM AIRPORTS WHERE city = "Anthony"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Anthony')
+Running Accuracy: 49.73% (93/187)
+Question 187 - CORRECT
+Running Accuracy: 50.00% (94/188)
+Question 188 - CORRECT
+Running Accuracy: 50.26% (95/189)
+Question 189 - CORRECT
+Running Accuracy: 50.53% (96/190)
+Question 190 - CORRECT
+Running Accuracy: 50.79% (97/191)
+Question 191 - CORRECT
+Running Accuracy: 51.04% (98/192)
+Question 192 - CORRECT
+Running Accuracy: 51.30% (99/193)
+Question 193 - CORRECT
+Running Accuracy: 51.55% (100/194)
+Question 194 - CORRECT
+Running Accuracy: 51.79% (101/195)
+Question 195 - CORRECT
+Running Accuracy: 52.04% (102/196)
+Question 196 - CORRECT
+Running Accuracy: 52.28% (103/197)
+Question 197 - CORRECT
+Running Accuracy: 52.53% (104/198)
+Question 198 - CORRECT
+Running Accuracy: 52.76% (105/199)
+Question 199 - INCORRECT
+  - Gold: SELECT AirportName FROM AIRPORTS WHERE AirportCode = "AKO"
+  - Pred: SELECT airport_name FROM airports WHERE AirportCode = 'AKO'
+Running Accuracy: 52.50% (105/200)
+Question 200 - CORRECT
+Running Accuracy: 52.74% (106/201)
+Question 201 - CORRECT
+Running Accuracy: 52.97% (107/202)
+Question 202 - CORRECT
+Running Accuracy: 53.20% (108/203)
+Question 203 - CORRECT
+Running Accuracy: 53.43% (109/204)
+Question 204 - CORRECT
+Running Accuracy: 53.66% (110/205)
+Question 205 - CORRECT
+Running Accuracy: 53.88% (111/206)
+Question 206 - CORRECT
+Running Accuracy: 54.11% (112/207)
+Question 207 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport = T2.AirportCode WHERE T2.City = "Aberdeen"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen')
+Running Accuracy: 53.85% (112/208)
+Question 208 - CORRECT
+Running Accuracy: 54.07% (113/209)
+Question 209 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.City = "Aberdeen"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen')
+Running Accuracy: 53.81% (113/210)
+Question 210 - CORRECT
+Running Accuracy: 54.03% (114/211)
+Question 211 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport = T3.AirportCode WHERE T2.City = "Ashley" AND T3.City = "Aberdeen"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen') AND DestAirport IN (SELECT AirportCode FROM airports WHERE City = 'Ashley')
+Running Accuracy: 53.77% (114/212)
+Question 212 - CORRECT
+Running Accuracy: 53.99% (115/213)
+Question 213 - CORRECT
+Running Accuracy: 54.21% (116/214)
+Question 214 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline = T2.uid WHERE T2.Airline = "JetBlue Airways"
+  - Pred: SELECT COUNT(*) FROM flights JOIN airlines ON flights.Airline = airlines.uid WHERE airlines.Abbreviation = 'JBU'
+Running Accuracy: 53.95% (116/215)
+Question 215 - CORRECT
+Running Accuracy: 54.17% (117/216)
+Question 216 - INCORRECT
+  - Gold: SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline = T1.uid WHERE T1.Airline = "United Airlines" AND T2.DestAirport = "ASY"
+  - Pred: SELECT uid FROM airlines WHERE Abbreviation = 'UA')
+Running Accuracy: 53.92% (117/217)
+Question 217 - CORRECT
+Running Accuracy: 54.13% (118/218)
+Question 218 - CORRECT
+Running Accuracy: 54.34% (119/219)
+Question 219 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid = T1.Airline WHERE T2.City = "Aberdeen" AND T3.Airline = "United Airlines"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen')
+Running Accuracy: 54.09% (119/220)
+Question 220 - INCORRECT
+  - Gold: SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid = T1.Airline WHERE T2.City = "Aberdeen" AND T3.Airline = "United Airlines"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen' ) AND Airline IN ( SELECT uid FROM airlines WHERE Abbreviation = 'UA' )
+Running Accuracy: 53.85% (119/221)
+Question 221 - CORRECT
+Running Accuracy: 54.05% (120/222)
+Question 222 - INCORRECT
+  - Gold: SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.DestAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Sorry, but your question is incomplete. Could you please provide more details or clarify what exactly you want to know from this database schema?
+Running Accuracy: 53.81% (120/223)
+Question 223 - CORRECT
+Running Accuracy: 54.02% (121/224)
+Question 224 - INCORRECT
+  - Gold: SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Sorry, but your question seems to be incomplete. Could you please provide more details or clarify what exactly you want to know? Are we supposed to find out which city has the most flights as a source airport, or are we looking for something else?
+Running Accuracy: 53.78% (121/225)
+Question 225 - CORRECT
+Running Accuracy: 53.98% (122/226)
+Question 226 - INCORRECT
+  - Gold: SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.DestAirport OR T1.AirportCode = T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT SourceAirport as AirportCode, COUNT(*) as FlightCount FROM flights GROUP BY SourceAirport ORDER BY FlightCount DESC LIMIT 1
+Running Accuracy: 53.74% (122/227)
+Question 227 - INCORRECT
+  - Gold: SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.DestAirport OR T1.AirportCode = T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1
+  - Pred: SELECT SourceAirport as AirportCode, COUNT(*) as FlightCount FROM flights GROUP BY SourceAirport ORDER BY FlightCount ASC LIMIT 1
+Running Accuracy: 53.51% (122/228)
+Question 228 - INCORRECT
+  - Gold: SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.DestAirport OR T1.AirportCode = T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1
+  - Pred: SELECT SourceAirport as AirportCode, COUNT(*) as FlightCount FROM flights GROUP BY SourceAirport ORDER BY FlightCount ASC LIMIT 1
+Running Accuracy: 53.28% (122/229)
+Question 229 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT airlines.uid, COUNT(*) as flight_count FROM flights JOIN airlines ON flights.Airline = airlines.uid GROUP BY airlines.uid ORDER BY flight_count DESC LIMIT 1
+Running Accuracy: 53.04% (122/230)
+Question 230 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT airlines.uid FROM flights JOIN airlines ON flights.Airline = airlines.uid GROUP BY airlines.uid ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 52.81% (122/231)
+Question 231 - INCORRECT
+  - Gold: SELECT T1.Abbreviation , T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1
+  - Pred: SELECT T1.Abbreviation, T1.Country FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline GROUP BY Airline ORDER BY count(FlightNo) ASC LIMIT 1
+Running Accuracy: 52.59% (122/232)
+Question 232 - INCORRECT
+  - Gold: SELECT T1.Abbreviation , T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1
+  - Pred: SELECT airlines.Abbreviation, COUNT(flights.FlightNo) as FlightCount, FROM flights JOIN airlines ON flights.Airline = airlines.uid GROUP BY airlines.Abbreviation ORDER BY FlightCount ASC LIMIT 1
+Running Accuracy: 52.36% (122/233)
+Question 233 - CORRECT
+Running Accuracy: 52.56% (123/234)
+Question 234 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = "AHD"
+  - Pred: SELECT airlines.Airline, FROM flights JOIN airlines ON flights.Airline = airlines.uid WHERE flights.SourceAirport = 'AHD'
+Running Accuracy: 52.34% (123/235)
+Question 235 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.DestAirport = "AHD"
+  - Pred: SELECT airlines.Airline, FROM flights JOIN airlines ON flights.Airline = airlines.uid WHERE flights.DestAirport = 'AHD'
+Running Accuracy: 52.12% (123/236)
+Question 236 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.DestAirport = "AHD"
+  - Pred: SELECT airlines.Airline, FROM flights JOIN airlines ON flights.Airline = airlines.uid WHERE flights.DestAirport = 'AHD'
+Running Accuracy: 51.90% (123/237)
+Question 237 - CORRECT
+Running Accuracy: 52.10% (124/238)
+Question 238 - CORRECT
+Running Accuracy: 52.30% (125/239)
+Question 239 - CORRECT
+Running Accuracy: 52.50% (126/240)
+Question 240 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = "CVO" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = "APG"
+  - Pred: SELECT * FROM flights WHERE Airline = airlines.uid AND SourceAirport = 'APG' )
+Running Accuracy: 52.28% (126/241)
+Question 241 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline HAVING count(*) > 10
+  - Pred: SELECT airlines.uid, airlines.Airline FROM flights JOIN airlines ON flights.Airline = airlines.uid GROUP BY airlines.uid HAVING COUNT(*) >= 10
+Running Accuracy: 52.07% (126/242)
+Question 242 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline HAVING count(*) > 10
+  - Pred: SELECT airlines.uid, FROM flights JOIN airlines ON flights.Airline = airlines.uid GROUP BY airlines.uid HAVING count(*) >= 10
+Running Accuracy: 51.85% (126/243)
+Question 243 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline HAVING count(*) < 200
+  - Pred: SELECT Airline FROM airlines INNER JOIN flights ON airlines.uid = flights.Airline GROUP BY Airline HAVING count(*) < 200
+Running Accuracy: 51.64% (126/244)
+Question 244 - INCORRECT
+  - Gold: SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline HAVING count(*) < 200
+  - Pred: SELECT airline FROM flights GROUP BY Airline HAVING count(*) < 200
+Running Accuracy: 51.43% (126/245)
+Question 245 - INCORRECT
+  - Gold: SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid = T1.Airline WHERE T2.Airline = "United Airlines"
+  - Pred: SELECT uid FROM airlines WHERE Airline = 'United Airlines')
+Running Accuracy: 51.22% (126/246)
+Question 246 - INCORRECT
+  - Gold: SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid = T1.Airline WHERE T2.Airline = "United Airlines"
+  - Pred: SELECT uid FROM airlines WHERE Airline = 'United')
+Running Accuracy: 51.01% (126/247)
+Question 247 - CORRECT
+Running Accuracy: 51.21% (127/248)
+Question 248 - CORRECT
+Running Accuracy: 51.41% (128/249)
+Question 249 - CORRECT
+Running Accuracy: 51.60% (129/250)
+Question 250 - CORRECT
+Running Accuracy: 51.79% (130/251)
+Question 251 - CORRECT
+Running Accuracy: 51.98% (131/252)
+Question 252 - INCORRECT
+  - Gold: SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport = T2.AirportCode WHERE T2.City = "Aberdeen"
+  - Pred: SELECT AirportCode FROM airports WHERE City = "Aberdeen")
+Running Accuracy: 51.78% (131/253)
+Question 253 - INCORRECT
+  - Gold: SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.City = "Aberdeen"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen')
+Running Accuracy: 51.57% (131/254)
+Question 254 - CORRECT
+Running Accuracy: 51.76% (132/255)
+Question 255 - INCORRECT
+  - Gold: SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.city = "Aberdeen" OR T2.city = "Abilene"
+  - Pred: SELECT AirportCode FROM airports WHERE City = 'Aberdeen' OR City = 'Abilene')
+Running Accuracy: 51.56% (132/256)
+Question 256 - CORRECT
+Running Accuracy: 51.75% (133/257)
+Question 257 - INCORRECT
+  - Gold: SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)
+  - Pred: SELECT sourceairport FROM flights) AND airportcode NOT IN (SELECT destairport FROM flights)
+Running Accuracy: 51.55% (133/258)
+Question 258 - CORRECT
+Running Accuracy: 51.74% (134/259)
+Question 259 - CORRECT
+Running Accuracy: 51.92% (135/260)
+Question 260 - CORRECT
+Running Accuracy: 52.11% (136/261)
+Question 261 - CORRECT
+Running Accuracy: 52.29% (137/262)
+Question 262 - CORRECT
+Running Accuracy: 52.47% (138/263)
+Question 263 - CORRECT
+Running Accuracy: 52.65% (139/264)
+Question 264 - INCORRECT
+  - Gold: SELECT count(*) , city FROM employee GROUP BY city
+  - Pred: SELECT COUNT(*), e.City FROM employee e JOIN hiring h ON e.Employee_ID = h.Employee_ID GROUP BY e.City
+Running Accuracy: 52.45% (139/265)
+Question 265 - CORRECT
+Running Accuracy: 52.63% (140/266)
+Question 266 - CORRECT
+Running Accuracy: 52.81% (141/267)
+Question 267 - CORRECT
+Running Accuracy: 52.99% (142/268)
+Question 268 - CORRECT
+Running Accuracy: 53.16% (143/269)
+Question 269 - CORRECT
+Running Accuracy: 53.33% (144/270)
+Question 270 - CORRECT
+Running Accuracy: 53.51% (145/271)
+Question 271 - CORRECT
+Running Accuracy: 53.68% (146/272)
+Question 272 - CORRECT
+Running Accuracy: 53.85% (147/273)
+Question 273 - CORRECT
+Running Accuracy: 54.01% (148/274)
+Question 274 - CORRECT
+Running Accuracy: 54.18% (149/275)
+Question 275 - INCORRECT
+  - Gold: SELECT name FROM shop WHERE number_products > (SELECT avg(number_products) FROM shop)
+  - Pred: SELECT AVG("Number_products") FROM "shop")
+Running Accuracy: 53.99% (149/276)
+Question 276 - INCORRECT
+  - Gold: SELECT name FROM shop WHERE number_products > (SELECT avg(number_products) FROM shop)
+  - Pred: SELECT AVG(Number_products) FROM shop )
+Running Accuracy: 53.79% (149/277)
+Question 277 - INCORRECT
+  - Gold: SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID = t2.Employee_ID GROUP BY t2.Employee_ID ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1."Name", COUNT(*) as award_count FROM "employee" T1 JOIN "evaluation" T2 ON T1."Employee_ID" = T2."Employee_ID" GROUP BY T1."Name" ORDER BY award_count DESC LIMIT 1
+Running Accuracy: 53.60% (149/278)
+Question 278 - INCORRECT
+  - Gold: SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID = t2.Employee_ID GROUP BY t2.Employee_ID ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT sql T1.Name FROM employee AS T1 JOIN evaluation AS T2 ON T1.Employee_ID = T2.Employee_ID GROUP BY T2.Employee_ID ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 53.41% (149/279)
+Question 279 - CORRECT
+Running Accuracy: 53.57% (150/280)
+Question 280 - CORRECT
+Running Accuracy: 53.74% (151/281)
+Question 281 - INCORRECT
+  - Gold: SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)
+  - Pred: SELECT "Employee_ID" FROM "evaluation")
+Running Accuracy: 53.55% (151/282)
+Question 282 - INCORRECT
+  - Gold: SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)
+  - Pred: SELECT "Employee_ID" FROM evaluation)
+Running Accuracy: 53.36% (151/283)
+Question 283 - INCORRECT
+  - Gold: SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT "Shop_ID" FROM "hiring" GROUP BY "Shop_ID" ORDER BY COUNT(*) DESC LIMIT 1 )
+Running Accuracy: 53.17% (151/284)
+Question 284 - INCORRECT
+  - Gold: SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.Name FROM hiring AS T1 JOIN employee AS T2 ON T1.Employee_ID = T2.Employee_ID GROUP BY T1.Shop_ID ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 52.98% (151/285)
+Question 285 - INCORRECT
+  - Gold: SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)
+  - Pred: SELECT Shop_ID FROM hiring)
+Running Accuracy: 52.80% (151/286)
+Question 286 - INCORRECT
+  - Gold: SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)
+  - Pred: SELECT "Shop_ID" FROM "hiring")
+Running Accuracy: 52.61% (151/287)
+Question 287 - INCORRECT
+  - Gold: SELECT count(*) , t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t2.name
+  - Pred: SELECT t1."Name", COUNT(*) FROM "hiring" AS t1 JOIN "shop" AS t2 ON t1."Shop_ID" = t2."Shop_ID" GROUP BY t2."Name"
+Running Accuracy: 52.43% (151/288)
+Question 288 - CORRECT
+Running Accuracy: 52.60% (152/289)
+Question 289 - CORRECT
+Running Accuracy: 52.76% (153/290)
+Question 290 - CORRECT
+Running Accuracy: 52.92% (154/291)
+Question 291 - CORRECT
+Running Accuracy: 53.08% (155/292)
+Question 292 - CORRECT
+Running Accuracy: 53.24% (156/293)
+Question 293 - INCORRECT
+  - Gold: SELECT district FROM shop WHERE Number_products < 3000 INTERSECT SELECT district FROM shop WHERE Number_products > 10000
+  - Pred: SELECT t2.district FROM shop AS t1 JOIN hiring AS t3 ON t1.Shop_ID = t3.Shop_ID WHERE t1.Number_products > 10000 GROUP BY t2.District HAVING COUNT(*) > 1
+Running Accuracy: 53.06% (156/294)
+Question 294 - INCORRECT
+  - Gold: SELECT district FROM shop WHERE Number_products < 3000 INTERSECT SELECT district FROM shop WHERE Number_products > 10000
+  - Pred: SELECT District FROM shop WHERE Number_products > 10000
+Running Accuracy: 52.88% (156/295)
+Question 295 - CORRECT
+Running Accuracy: 53.04% (157/296)
+Question 296 - CORRECT
+Running Accuracy: 53.20% (158/297)
+Question 297 - CORRECT
+Running Accuracy: 53.36% (159/298)
+Question 298 - CORRECT
+Running Accuracy: 53.51% (160/299)
+Question 299 - CORRECT
+Running Accuracy: 53.67% (161/300)
+Question 300 - CORRECT
+Running Accuracy: 53.82% (162/301)
+Question 301 - CORRECT
+Running Accuracy: 53.97% (163/302)
+Question 302 - CORRECT
+Running Accuracy: 54.13% (164/303)
+Question 303 - CORRECT
+Running Accuracy: 54.28% (165/304)
+Question 304 - CORRECT
+Running Accuracy: 54.43% (166/305)
+Question 305 - INCORRECT
+  - Gold: SELECT count(DISTINCT template_id) FROM Documents
+  - Pred: SELECT COUNT(DISTINCT Templates.Template_Type_Code) FROM Templates JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code
+Running Accuracy: 54.25% (166/306)
+Question 306 - INCORRECT
+  - Gold: SELECT count(DISTINCT template_id) FROM Documents
+  - Pred: SELECT COUNT(DISTINCT Template_Type_Code) FROM Templates
+Running Accuracy: 54.07% (166/307)
+Question 307 - INCORRECT
+  - Gold: SELECT count(*) FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Template_Type_Code = 'PPT'
+  - Pred: SELECT Template_ID FROM Templates WHERE Template_Type_Code = 'PPT' )
+Running Accuracy: 53.90% (166/308)
+Question 308 - INCORRECT
+  - Gold: SELECT count(*) FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Template_Type_Code = 'PPT'
+  - Pred: SELECT COUNT(*) FROM Documents INNER JOIN Templates ON Documents.Template_ID = Templates.Template_ID INNER JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code WHERE Ref_Template_Types.Template_Type_Description = 'PPT'
+Running Accuracy: 53.72% (166/309)
+Question 309 - INCORRECT
+  - Gold: SELECT template_id , count(*) FROM Documents GROUP BY template_id
+  - Pred: SELECT Template_ID, COUNT(*) as NumberOfDocuments FROM Templates LEFT JOIN Documents ON Templates.Template_ID = Documents.Template_ID GROUP BY Template_ID
+Running Accuracy: 53.55% (166/310)
+Question 310 - INCORRECT
+  - Gold: SELECT template_id , count(*) FROM Documents GROUP BY template_id
+  - Pred: SELECT t1.Template_ID, COUNT(*) as usage_count FROM Documents AS t1 JOIN Paragraphs AS t2 ON t1.Document_ID = t2.Document_ID GROUP BY t1.Template_ID
+Running Accuracy: 53.38% (166/311)
+Question 311 - INCORRECT
+  - Gold: SELECT T1.template_id , T2.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Templates.Template_ID, Ref_Template_Types.Template_Type_Code FROM Templates JOIN Documents ON Templates.Template_ID = Documents.Template_ID JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code GROUP BY Templates.Template_ID, Ref_Template_Types.Template_Type_Code ORDER BY COUNT(Documents.Document_ID) DESC LIMIT 1
+Running Accuracy: 53.21% (166/312)
+Question 312 - INCORRECT
+  - Gold: SELECT T1.template_id , T2.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.Template_Type_Code, T2.Template_ID FROM Ref_Template_Types AS T1 JOIN Templates AS T2 ON T1.Template_Type_Code = T2.Template_Type_Code GROUP BY T1.Template_Type_Code ORDER BY COUNT(T2.Document_ID) DESC LIMIT 1
+Running Accuracy: 53.04% (166/313)
+Question 313 - INCORRECT
+  - Gold: SELECT template_id FROM Documents GROUP BY template_id HAVING count(*) > 1
+  - Pred: SELECT Template_ID FROM Documents GROUP BY Template_ID HAVING COUNT(*) > 1)
+Running Accuracy: 52.87% (166/314)
+Question 314 - CORRECT
+Running Accuracy: 53.02% (167/315)
+Question 315 - INCORRECT
+  - Gold: SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents
+  - Pred: SELECT Template_ID FROM Templates LEFT JOIN Documents ON Templates.Template_ID = Documents.Template_ID WHERE Documents.Document_ID IS NULL
+Running Accuracy: 52.85% (167/316)
+Question 316 - INCORRECT
+  - Gold: SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents
+  - Pred: SELECT Template_ID FROM Templates LEFT JOIN Documents ON Templates.Template_ID = Documents.Template_ID WHERE Documents.Document_ID IS NULL
+Running Accuracy: 52.68% (167/317)
+Question 317 - CORRECT
+Running Accuracy: 52.83% (168/318)
+Question 318 - CORRECT
+Running Accuracy: 52.98% (169/319)
+Question 319 - CORRECT
+Running Accuracy: 53.12% (170/320)
+Question 320 - CORRECT
+Running Accuracy: 53.27% (171/321)
+Question 321 - CORRECT
+Running Accuracy: 53.42% (172/322)
+Question 322 - INCORRECT
+  - Gold: SELECT DISTINCT template_type_code FROM Templates
+  - Pred: SELECT DISTINCT Template_Type_Code FROM Ref_Template_Types
+Running Accuracy: 53.25% (172/323)
+Question 323 - CORRECT
+Running Accuracy: 53.40% (173/324)
+Question 324 - CORRECT
+Running Accuracy: 53.54% (174/325)
+Question 325 - CORRECT
+Running Accuracy: 53.68% (175/326)
+Question 326 - CORRECT
+Running Accuracy: 53.82% (176/327)
+Question 327 - CORRECT
+Running Accuracy: 53.96% (177/328)
+Question 328 - CORRECT
+Running Accuracy: 54.10% (178/329)
+Question 329 - CORRECT
+Running Accuracy: 54.24% (179/330)
+Question 330 - CORRECT
+Running Accuracy: 54.38% (180/331)
+Question 331 - CORRECT
+Running Accuracy: 54.52% (181/332)
+Question 332 - INCORRECT
+  - Gold: SELECT template_type_code FROM Templates GROUP BY template_type_code ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Template_Type_Code, COUNT(*) FROM Templates GROUP BY Template_Type_Code ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 54.35% (181/333)
+Question 333 - CORRECT
+Running Accuracy: 54.49% (182/334)
+Question 334 - CORRECT
+Running Accuracy: 54.63% (183/335)
+Question 335 - INCORRECT
+  - Gold: SELECT min(Version_Number) , template_type_code FROM Templates
+  - Pred: SELECT Template_Type_Code, MIN(Version_Number) as Minimum_Version_Number FROM Templates GROUP BY Template_Type_Code
+Running Accuracy: 54.46% (183/336)
+Question 336 - CORRECT
+Running Accuracy: 54.60% (184/337)
+Question 337 - INCORRECT
+  - Gold: SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id WHERE T2.document_name = "Data base"
+  - Pred: SELECT T1.Template_Type_Code FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Document_Name = "Data Base"
+Running Accuracy: 54.44% (184/338)
+Question 338 - INCORRECT
+  - Gold: SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id WHERE T2.document_name = "Data base"
+  - Pred: SELECT T1.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T1.Document_Name = "Data Base"
+Running Accuracy: 54.28% (184/339)
+Question 339 - INCORRECT
+  - Gold: SELECT T2.document_name FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id WHERE T1.template_type_code = "BK"
+  - Pred: SELECT T1.Template_Type_Description, T2.Document_Name FROM Ref_Template_Types AS T1 JOIN Templates AS T2 ON T1.Template_Type_Code = T2.Template_Type_Code JOIN Documents AS T3 ON T2.Template_ID = T3.Template_ID WHERE T1.Template_Type_Description = 'BK'
+Running Accuracy: 54.12% (184/340)
+Question 340 - CORRECT
+Running Accuracy: 54.25% (185/341)
+Question 341 - INCORRECT
+  - Gold: SELECT T1.template_type_code , count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_type_code
+  - Pred: SELECT Template_Type_Code, COUNT(*) as Number_of_Documents FROM Templates JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code GROUP BY Template_Type_Code
+Running Accuracy: 54.09% (185/342)
+Question 342 - INCORRECT
+  - Gold: SELECT T1.template_type_code , count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_type_code
+  - Pred: SELECT Template_Type_Code, COUNT(*) FROM Templates JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code GROUP BY Template_Type_Code
+Running Accuracy: 53.94% (185/343)
+Question 343 - INCORRECT
+  - Gold: SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Template_Type_Code FROM Templates GROUP BY Template_Type_Code ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 53.78% (185/344)
+Question 344 - CORRECT
+Running Accuracy: 53.91% (186/345)
+Question 345 - INCORRECT
+  - Gold: SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id
+  - Pred: SELECT DISTINCT Template_Type_Code FROM Templates)
+Running Accuracy: 53.76% (186/346)
+Question 346 - INCORRECT
+  - Gold: SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id
+  - Pred: SELECT DISTINCT Template_Type_Code FROM Templates)
+Running Accuracy: 53.60% (186/347)
+Question 347 - CORRECT
+Running Accuracy: 53.74% (187/348)
+Question 348 - CORRECT
+Running Accuracy: 53.87% (188/349)
+Question 349 - INCORRECT
+  - Gold: SELECT template_type_description FROM Ref_template_types WHERE template_type_code = "AD"
+  - Pred: SELECT T2.Template_Type_Description FROM Ref_Template_Types AS T1 JOIN Templates AS T2 ON T1.Template_Type_Code = T2.Template_Type_Code WHERE T1.Template_Type_Code = "AD"
+Running Accuracy: 53.71% (188/350)
+Question 350 - CORRECT
+Running Accuracy: 53.85% (189/351)
+Question 351 - CORRECT
+Running Accuracy: 53.98% (190/352)
+Question 352 - CORRECT
+Running Accuracy: 54.11% (191/353)
+Question 353 - INCORRECT
+  - Gold: SELECT DISTINCT T1.template_type_description FROM Ref_template_types AS T1 JOIN Templates AS T2 ON T1.template_type_code = T2.template_type_code JOIN Documents AS T3 ON T2.Template_ID = T3.template_ID
+  - Pred: SELECT Document_ID FROM Documents)
+Running Accuracy: 53.95% (191/354)
+Question 354 - INCORRECT
+  - Gold: SELECT DISTINCT T1.template_type_description FROM Ref_template_types AS T1 JOIN Templates AS T2 ON T1.template_type_code = T2.template_type_code JOIN Documents AS T3 ON T2.Template_ID = T3.template_ID
+  - Pred: SELECT DISTINCT Template_Details FROM Templates INNER JOIN Documents ON Templates.Template_ID = Documents.Template_ID
+Running Accuracy: 53.80% (191/355)
+Question 355 - CORRECT
+Running Accuracy: 53.93% (192/356)
+Question 356 - CORRECT
+Running Accuracy: 54.06% (193/357)
+Question 357 - CORRECT
+Running Accuracy: 54.19% (194/358)
+Question 358 - CORRECT
+Running Accuracy: 54.32% (195/359)
+Question 359 - CORRECT
+Running Accuracy: 54.44% (196/360)
+Question 360 - CORRECT
+Running Accuracy: 54.57% (197/361)
+Question 361 - INCORRECT
+  - Gold: SELECT other_details from paragraphs where paragraph_text like 'korea'
+  - Pred: SELECT T1.*, T2.Paragraph_Text FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.Document_ID = T2.Document_ID WHERE T1.Paragraph_Text LIKE '%Korea%'
+Running Accuracy: 54.42% (197/362)
+Question 362 - INCORRECT
+  - Gold: SELECT other_details from paragraphs where paragraph_text like 'korea'
+  - Pred: SELECT Paragraphs.Paragraph_Text, Paragraphs.Other_Details, Documents.Document_Name, Documents.Document_Description, Templates.Template_Type_Code, Ref_Template_Types.Template_Type_Description FROM Paragraphs JOIN Documents ON Paragraphs.Document_ID = Documents.Document_ID JOIN Templates ON Documents.Template_ID = Templates.Template_ID JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code WHERE Paragraphs.Paragraph_Text LIKE '%Korea%'
+Running Accuracy: 54.27% (197/363)
+Question 363 - CORRECT
+Running Accuracy: 54.40% (198/364)
+Question 364 - CORRECT
+Running Accuracy: 54.52% (199/365)
+Question 365 - CORRECT
+Running Accuracy: 54.64% (200/366)
+Question 366 - CORRECT
+Running Accuracy: 54.77% (201/367)
+Question 367 - INCORRECT
+  - Gold: SELECT document_id , count(*) FROM Paragraphs GROUP BY document_id ORDER BY document_id
+  - Pred: SELECT Documents.Document_ID, COUNT(Paragraphs.Paragraph_ID) AS NumberOfParagraphs FROM Documents LEFT JOIN Paragraphs ON Documents.Document_ID = Paragraphs.Document_ID GROUP BY Documents.Document_ID ORDER BY Documents.Document_ID
+Running Accuracy: 54.62% (201/368)
+Question 368 - CORRECT
+Running Accuracy: 54.74% (202/369)
+Question 369 - CORRECT
+Running Accuracy: 54.86% (203/370)
+Question 370 - CORRECT
+Running Accuracy: 54.99% (204/371)
+Question 371 - CORRECT
+Running Accuracy: 55.11% (205/372)
+Question 372 - CORRECT
+Running Accuracy: 55.23% (206/373)
+Question 373 - CORRECT
+Running Accuracy: 55.35% (207/374)
+Question 374 - CORRECT
+Running Accuracy: 55.47% (208/375)
+Question 375 - CORRECT
+Running Accuracy: 55.59% (209/376)
+Question 376 - CORRECT
+Running Accuracy: 55.70% (210/377)
+Question 377 - CORRECT
+Running Accuracy: 55.82% (211/378)
+Question 378 - INCORRECT
+  - Gold: SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2
+  - Pred: SELECT FROM Paragraphs GROUP BY Document_ID HAVING COUNT(*) BETWEEN 1 AND 2
+Running Accuracy: 55.67% (211/379)
+Question 379 - INCORRECT
+  - Gold: SELECT document_id FROM Paragraphs WHERE paragraph_text = 'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text = 'Ireland'
+  - Pred: SELECT sql Document_ID FROM Paragraphs WHERE Paragraph_Text = 'Brazil' OR Paragraph_Text = 'Ireland'
+Running Accuracy: 55.53% (211/380)
+Question 380 - INCORRECT
+  - Gold: SELECT document_id FROM Paragraphs WHERE paragraph_text = 'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text = 'Ireland'
+  - Pred: SELECT sql T1.Document_ID FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.Document_ID = T2.Document_ID WHERE T1.Paragraph_Text LIKE '%Brazil%' AND T1.Paragraph_Text LIKE '%Ireland%'
+Running Accuracy: 55.38% (211/381)
+Question 381 - CORRECT
+Running Accuracy: 55.50% (212/382)
+Question 382 - CORRECT
+Running Accuracy: 55.61% (213/383)
+Question 383 - CORRECT
+Running Accuracy: 55.73% (214/384)
+Question 384 - CORRECT
+Running Accuracy: 55.84% (215/385)
+Question 385 - CORRECT
+Running Accuracy: 55.96% (216/386)
+Question 386 - CORRECT
+Running Accuracy: 56.07% (217/387)
+Question 387 - INCORRECT
+  - Gold: SELECT name from teacher where hometown != "little lever urban district"
+  - Pred: SELECT Name FROM teacher WHERE Hometown != "Little Lever Urban District"
+Running Accuracy: 55.93% (217/388)
+Question 388 - INCORRECT
+  - Gold: SELECT name from teacher where hometown != "little lever urban district"
+  - Pred: SELECT T1.Name FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID WHERE T1.Hometown != "Little Lever Urban District"
+Running Accuracy: 55.78% (217/389)
+Question 389 - CORRECT
+Running Accuracy: 55.90% (218/390)
+Question 390 - CORRECT
+Running Accuracy: 56.01% (219/391)
+Question 391 - CORRECT
+Running Accuracy: 56.12% (220/392)
+Question 392 - INCORRECT
+  - Gold: SELECT Hometown FROM teacher ORDER BY Age ASC LIMIT 1
+  - Pred: SELECT MIN(Age) FROM teacher)
+Running Accuracy: 55.98% (220/393)
+Question 393 - CORRECT
+Running Accuracy: 56.09% (221/394)
+Question 394 - CORRECT
+Running Accuracy: 56.20% (222/395)
+Question 395 - CORRECT
+Running Accuracy: 56.31% (223/396)
+Question 396 - INCORRECT
+  - Gold: SELECT Hometown FROM teacher GROUP BY Hometown ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT Hometown, COUNT(*) as Frequency FROM teacher GROUP BY Hometown ORDER BY Frequency DESC LIMIT 1
+Running Accuracy: 56.17% (223/397)
+Question 397 - CORRECT
+Running Accuracy: 56.28% (224/398)
+Question 398 - CORRECT
+Running Accuracy: 56.39% (225/399)
+Question 399 - CORRECT
+Running Accuracy: 56.50% (226/400)
+Question 400 - CORRECT
+Running Accuracy: 56.61% (227/401)
+Question 401 - CORRECT
+Running Accuracy: 56.72% (228/402)
+Question 402 - CORRECT
+Running Accuracy: 56.82% (229/403)
+Question 403 - CORRECT
+Running Accuracy: 56.93% (230/404)
+Question 404 - CORRECT
+Running Accuracy: 57.04% (231/405)
+Question 405 - CORRECT
+Running Accuracy: 57.14% (232/406)
+Question 406 - CORRECT
+Running Accuracy: 57.25% (233/407)
+Question 407 - INCORRECT
+  - Gold: SELECT T2.Name FROM course_arrange AS T1 JOIN teacher AS T2 ON T1.Teacher_ID = T2.Teacher_ID GROUP BY T2.Name HAVING COUNT(*) >= 2
+  - Pred: SELECT T2.Name FROM teacher AS T1 JOIN course_arrange AS T3 ON T1.Teacher_ID = T3.Teacher_ID GROUP BY T3.Teacher_ID HAVING COUNT(*) >= 2
+Running Accuracy: 57.11% (233/408)
+Question 408 - CORRECT
+Running Accuracy: 57.21% (234/409)
+Question 409 - CORRECT
+Running Accuracy: 57.32% (235/410)
+Question 410 - INCORRECT
+  - Gold: SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange)
+  - Pred: SELECT Teacher_ID FROM course_arrange)
+Running Accuracy: 57.18% (235/411)
+Question 411 - CORRECT
+Running Accuracy: 57.28% (236/412)
+Question 412 - CORRECT
+Running Accuracy: 57.38% (237/413)
+Question 413 - INCORRECT
+  - Gold: SELECT avg(age) FROM visitor WHERE Level_of_membership <= 4
+  - Pred: SELECT avg(T2.Age) FROM visit AS T1 JOIN visitor AS T2 ON T1.visitor_ID = T2.ID WHERE T2.Level_of_membership <= 4
+Running Accuracy: 57.25% (237/414)
+Question 414 - INCORRECT
+  - Gold: SELECT name , Level_of_membership FROM visitor WHERE Level_of_membership > 4 ORDER BY age DESC
+  - Pred: SELECT visitor.Name, visitor.Level_of_membership FROM visitor JOIN visit ON visitor.ID = visit.visitor_ID WHERE visitor.Level_of_membership > 4 ORDER BY visitor.Age DESC
+Running Accuracy: 57.11% (237/415)
+Question 415 - INCORRECT
+  - Gold: SELECT museum_id , name FROM museum ORDER BY num_of_staff DESC LIMIT 1
+  - Pred: SELECT MAX(Num_of_Staff) FROM museum)
+Running Accuracy: 56.97% (237/416)
+Question 416 - INCORRECT
+  - Gold: SELECT avg(num_of_staff) FROM museum WHERE open_year < 2009
+  - Pred: SELECT AVG(museum.Num_of_Staff) FROM museum JOIN visit ON museum.Museum_ID = visit.Museum_ID WHERE museum.Open_Year < '2009'
+Running Accuracy: 56.83% (237/417)
+Question 417 - CORRECT
+Running Accuracy: 56.94% (238/418)
+Question 418 - INCORRECT
+  - Gold: SELECT name FROM museum WHERE num_of_staff > (SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)
+  - Pred: SELECT MIN(Num_of_Staff) FROM museum WHERE Open_Year > 2010)
+Running Accuracy: 56.80% (238/419)
+Question 419 - CORRECT
+Running Accuracy: 56.90% (239/420)
+Question 420 - INCORRECT
+  - Gold: SELECT t2.visitor_id , t1.name , t1.Level_of_membership FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id GROUP BY t2.visitor_id ORDER BY sum(t2.Total_spent) DESC LIMIT 1
+  - Pred: SELECT visitor.ID as visitor_id, visitor.Name as visitor_name, visitor.Level_of_membership as member_level, SUM(visit.Total_spent) as total_money_spent FROM visit JOIN visitor ON visit.visitor_ID = visitor.ID GROUP BY visitor.ID ORDER BY SUM(visit.Total_spent) DESC LIMIT 1
+Running Accuracy: 56.77% (239/421)
+Question 421 - CORRECT
+Running Accuracy: 56.87% (240/422)
+Question 422 - INCORRECT
+  - Gold: SELECT name FROM museum WHERE Museum_ID NOT IN (SELECT museum_id FROM visit)
+  - Pred: SELECT Museum_ID FROM visit)
+Running Accuracy: 56.74% (240/423)
+Question 423 - CORRECT
+Running Accuracy: 56.84% (241/424)
+Question 424 - CORRECT
+Running Accuracy: 56.94% (242/425)
+Question 425 - CORRECT
+Running Accuracy: 57.04% (243/426)
+Question 426 - INCORRECT
+  - Gold: SELECT t1.name FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id JOIN museum AS t3 ON t3.Museum_ID = t2.Museum_ID WHERE t3.open_year < 2009 INTERSECT SELECT t1.name FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id JOIN museum AS t3 ON t3.Museum_ID = t2.Museum_ID WHERE t3.open_year > 2011
+  - Pred: SELECT T1.Name FROM Visitor AS T1 JOIN Visit AS T3 ON T1.ID = T3.visitor_ID JOIN Museum AS T2 ON T2.Museum_ID = T3.Museum_ID WHERE T2.Open_Year > '2011'
+Running Accuracy: 56.91% (243/427)
+Question 427 - INCORRECT
+  - Gold: SELECT count(*) FROM visitor WHERE id NOT IN (SELECT t2.visitor_id FROM museum AS t1 JOIN visit AS t2 ON t1.Museum_ID = t2.Museum_ID WHERE t1.open_year > 2010)
+  - Pred: SELECT T1.visitor_ID FROM visit AS T1 JOIN museum AS T2 ON T1.Museum_ID = T2.Museum_ID WHERE T2.Open_Year > '2010' )
+Running Accuracy: 56.78% (243/428)
+Question 428 - CORRECT
+Running Accuracy: 56.88% (244/429)
+Question 429 - CORRECT
+Running Accuracy: 56.98% (245/430)
+Question 430 - CORRECT
+Running Accuracy: 57.08% (246/431)
+Question 431 - CORRECT
+Running Accuracy: 57.18% (247/432)
+Question 432 - CORRECT
+Running Accuracy: 57.27% (248/433)
+Question 433 - CORRECT
+Running Accuracy: 57.37% (249/434)
+Question 434 - CORRECT
+Running Accuracy: 57.47% (250/435)
+Question 435 - INCORRECT
+  - Gold: SELECT avg(loser_age) , avg(winner_age) FROM matches
+  - Pred: SELECT AVG(p1.age), AVG(p2.age) FROM matches m JOIN players p1 ON m.loser_id = p1.player_id JOIN players p2 ON m.winner_id = p2.player_id
+Running Accuracy: 57.34% (250/436)
+Question 436 - CORRECT
+Running Accuracy: 57.44% (251/437)
+Question 437 - CORRECT
+Running Accuracy: 57.53% (252/438)
+Question 438 - CORRECT
+Running Accuracy: 57.63% (253/439)
+Question 439 - INCORRECT
+  - Gold: SELECT min(loser_rank) FROM matches
+  - Pred: SELECT MAX(loser_rank) FROM matches
+Running Accuracy: 57.50% (253/440)
+Question 440 - INCORRECT
+  - Gold: SELECT min(loser_rank) FROM matches
+  - Pred: SELECT loser_name, MIN(loser_rank) as Best_Rank FROM matches GROUP BY loser_name
+Running Accuracy: 57.37% (253/441)
+Question 441 - CORRECT
+Running Accuracy: 57.47% (254/442)
+Question 442 - CORRECT
+Running Accuracy: 57.56% (255/443)
+Question 443 - CORRECT
+Running Accuracy: 57.66% (256/444)
+Question 444 - CORRECT
+Running Accuracy: 57.75% (257/445)
+Question 445 - CORRECT
+Running Accuracy: 57.85% (258/446)
+Question 446 - CORRECT
+Running Accuracy: 57.94% (259/447)
+Question 447 - INCORRECT
+  - Gold: SELECT winner_name FROM matches WHERE YEAR = 2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR = 2016
+  - Pred: SELECT T1.first_name, T1.last_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year = 2016
+Running Accuracy: 57.81% (259/448)
+Question 448 - INCORRECT
+  - Gold: SELECT winner_name FROM matches WHERE YEAR = 2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR = 2016
+  - Pred: SELECT PLAYERS.first_name, PLAYERS.last_name FROM PLAYERS JOIN MATCHES ON PLAYERS.player_id = MATCHES.winner_id WHERE MATCHES.year = 2013 OR MATCHES.year = 2016
+Running Accuracy: 57.68% (259/449)
+Question 449 - INCORRECT
+  - Gold: SELECT count(*) FROM matches WHERE YEAR = 2013 OR YEAR = 2016
+  - Pred: SELECT * FROM matches WHERE year = 2013 OR year = 2016) AS T1
+Running Accuracy: 57.56% (259/450)
+Question 450 - CORRECT
+Running Accuracy: 57.65% (260/451)
+Question 451 - INCORRECT
+  - Gold: SELECT T1.country_code , T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'WTA Championships' INTERSECT SELECT T1.country_code , T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'Australian Open'
+  - Pred: SELECT players.country_code, players.first_name FROM players JOIN matches ON players.player_id = matches.winner_id WHERE matches.tourney_name = 'Australian Open'
+Running Accuracy: 57.52% (260/452)
+Question 452 - INCORRECT
+  - Gold: SELECT T1.country_code , T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'WTA Championships' INTERSECT SELECT T1.country_code , T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'Australian Open'
+  - Pred: SELECT t1.first_name, t1.country_code FROM players AS t1 JOIN matches AS t2 ON t1.player_id = t2.winner_id WHERE t2.tourney_name = 'Australian Open'
+Running Accuracy: 57.40% (260/453)
+Question 453 - CORRECT
+Running Accuracy: 57.49% (261/454)
+Question 454 - CORRECT
+Running Accuracy: 57.58% (262/455)
+Question 455 - CORRECT
+Running Accuracy: 57.68% (263/456)
+Question 456 - INCORRECT
+  - Gold: SELECT first_name , last_name FROM players ORDER BY birth_date
+  - Pred: SELECT first_name || ' ' || last_name as FullName FROM players ORDER BY birth_date
+Running Accuracy: 57.55% (263/457)
+Question 457 - INCORRECT
+  - Gold: SELECT first_name , last_name FROM players WHERE hand = 'L' ORDER BY birth_date
+  - Pred: SELECT first_name, last_name FROM players WHERE hand = 'L' OR hand = 'R' ORDER BY birth_date
+Running Accuracy: 57.42% (263/458)
+Question 458 - INCORRECT
+  - Gold: SELECT first_name , last_name FROM players WHERE hand = 'L' ORDER BY birth_date
+  - Pred: SELECT first_name || ' ' || last_name AS Full_Name FROM players WHERE hand = 'Left' ORDER BY birth_date ASC
+Running Accuracy: 57.30% (263/459)
+Question 459 - INCORRECT
+  - Gold: SELECT T1.country_code , T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id = T2.player_id ORDER BY T2.tours DESC LIMIT 1
+  - Pred: SELECT T1.first_name, T1.country_code FROM players AS T1 JOIN rankings AS T2 ON T1.player_id = T2.player_id GROUP BY T1.player_id ORDER BY sum(T2.tours) DESC LIMIT 1
+Running Accuracy: 57.17% (263/460)
+Question 460 - CORRECT
+Running Accuracy: 57.27% (264/461)
+Question 461 - CORRECT
+Running Accuracy: 57.36% (265/462)
+Question 462 - CORRECT
+Running Accuracy: 57.45% (266/463)
+Question 463 - INCORRECT
+  - Gold: SELECT winner_name , winner_rank_points FROM matches GROUP BY winner_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT winner_id, COUNT(*) as wins FROM matches GROUP BY winner_id ) m ON pw.player_id = m.winner_id JOIN rankings r ON pw.player_id = r.player_id ORDER BY m.wins DESC LIMIT 1
+Running Accuracy: 57.33% (266/464)
+Question 464 - INCORRECT
+  - Gold: SELECT winner_name , winner_rank_points FROM matches GROUP BY winner_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.winner_name AS WinnerName, COUNT(*) AS MatchesWon, T2.ranking_points AS RankPoints FROM matches AS T1 JOIN players AS T2 ON T1.winner_id = T2.player_id JOIN rankings AS T3 ON T2.player_id = T3.player_id GROUP BY T1.winner_name, T3.ranking_points ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.20% (266/465)
+Question 465 - INCORRECT
+  - Gold: SELECT winner_name FROM matches WHERE tourney_name = 'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1
+  - Pred: SELECT MAX(winner_rank_points) FROM matches WHERE tourney_name = 'Australian Open')
+Running Accuracy: 57.08% (266/466)
+Question 466 - INCORRECT
+  - Gold: SELECT winner_name FROM matches WHERE tourney_name = 'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1
+  - Pred: SELECT players.first_name || ' ' || players.last_name as full_name, rankings.ranking_points FROM players JOIN matches ON (matches.winner_id = players.player_id) JOIN rankings ON (rankings.player_id = players.player_id) WHERE matches.tourney_name = 'Australian Open' AND rankings.ranking = 1
+Running Accuracy: 56.96% (266/467)
+Question 467 - CORRECT
+Running Accuracy: 57.05% (267/468)
+Question 468 - INCORRECT
+  - Gold: SELECT winner_name , loser_name FROM matches ORDER BY minutes DESC LIMIT 1
+  - Pred: SELECT MAX(minutes) FROM matches) LIMIT 1
+Running Accuracy: 56.93% (267/469)
+Question 469 - CORRECT
+Running Accuracy: 57.02% (268/470)
+Question 470 - CORRECT
+Running Accuracy: 57.11% (269/471)
+Question 471 - CORRECT
+Running Accuracy: 57.20% (270/472)
+Question 472 - CORRECT
+Running Accuracy: 57.29% (271/473)
+Question 473 - CORRECT
+Running Accuracy: 57.38% (272/474)
+Question 474 - CORRECT
+Running Accuracy: 57.47% (273/475)
+Question 475 - CORRECT
+Running Accuracy: 57.56% (274/476)
+Question 476 - CORRECT
+Running Accuracy: 57.65% (275/477)
+Question 477 - CORRECT
+Running Accuracy: 57.74% (276/478)
+Question 478 - CORRECT
+Running Accuracy: 57.83% (277/479)
+Question 479 - CORRECT
+Running Accuracy: 57.92% (278/480)
+Question 480 - CORRECT
+Running Accuracy: 58.00% (279/481)
+Question 481 - INCORRECT
+  - Gold: SELECT count(*) , YEAR FROM matches GROUP BY YEAR
+  - Pred: SELECT YEAR(tourney_date), COUNT(*) FROM matches GROUP BY YEAR(tourney_date)
+Running Accuracy: 57.88% (279/482)
+Question 482 - CORRECT
+Running Accuracy: 57.97% (280/483)
+Question 483 - INCORRECT
+  - Gold: SELECT DISTINCT winner_name , winner_rank FROM matches ORDER BY winner_age LIMIT 3
+  - Pred: SELECT p1.first_name || ' ' || p1.last_name as full_name, r1.ranking FROM players p1 JOIN rankings r1 ON p1.player_id = r1.player_id WHERE r1.ranking <= 3
+Running Accuracy: 57.85% (280/484)
+Question 484 - INCORRECT
+  - Gold: SELECT DISTINCT winner_name , winner_rank FROM matches ORDER BY winner_age LIMIT 3
+  - Pred: SELECT p.first_name, p.last_name, r.ranking FROM players AS p JOIN rankings AS r ON p.player_id = r.player_id ORDER BY p.birth_date DESC LIMIT 3
+Running Accuracy: 57.73% (280/485)
+Question 485 - INCORRECT
+  - Gold: SELECT count(DISTINCT winner_name) FROM matches WHERE tourney_name = 'WTA Championships' AND winner_hand = 'L'
+  - Pred: SELECT COUNT(DISTINCT T1.winner_id) FROM matches AS T1 JOIN rankings AS T2 ON T1.winner_id = T2.player_id WHERE T1.round LIKE 'W%' AND T1.winner_hand = 'L'
+Running Accuracy: 57.61% (280/486)
+Question 486 - INCORRECT
+  - Gold: SELECT count(DISTINCT winner_name) FROM matches WHERE tourney_name = 'WTA Championships' AND winner_hand = 'L'
+  - Pred: SELECT COUNT(*) FROM matches JOIN players ON (matches.winner_id = players.player_id) WHERE players.hand = 'L'
+Running Accuracy: 57.49% (280/487)
+Question 487 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.country_code , T1.birth_date FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id ORDER BY T2.winner_rank_points DESC LIMIT 1
+  - Pred: SELECT winner_id FROM matches GROUP BY winner_id ORDER BY SUM(winner_rank_points) DESC LIMIT 1 ) AS m ON p1.player_id = m.winner_id
+Running Accuracy: 57.38% (280/488)
+Question 488 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.country_code , T1.birth_date FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id ORDER BY T2.winner_rank_points DESC LIMIT 1
+  - Pred: SELECT winner_id, SUM(winner_rank_points) as total_points FROM matches GROUP BY winner_id ORDER BY total_points DESC LIMIT 1 ) AS T2 ON T1.player_id = T2.winner_id
+Running Accuracy: 57.26% (280/489)
+Question 489 - CORRECT
+Running Accuracy: 57.35% (281/490)
+Question 490 - CORRECT
+Running Accuracy: 57.43% (282/491)
+Question 491 - CORRECT
+Running Accuracy: 57.52% (283/492)
+Question 492 - CORRECT
+Running Accuracy: 57.61% (284/493)
+Question 493 - INCORRECT
+  - Gold: SELECT name , date FROM battle
+  - Pred: SELECT name, date, result FROM battle
+Running Accuracy: 57.49% (284/494)
+Question 494 - INCORRECT
+  - Gold: SELECT max(killed) , min(killed) FROM death
+  - Pred: SELECT battle.name, max(death.killed + death.injured), min(death.killed + death.injured) FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id GROUP BY battle.name
+Running Accuracy: 57.37% (284/495)
+Question 495 - INCORRECT
+  - Gold: SELECT avg(injured) FROM death
+  - Pred: SELECT Average(injured) FROM death
+Running Accuracy: 57.26% (284/496)
+Question 496 - INCORRECT
+  - Gold: SELECT T1.killed , T1.injured FROM death AS T1 JOIN ship AS t2 ON T1.caused_by_ship_id = T2.id WHERE T2.tonnage = 't'
+  - Pred: SELECT T1.note, T2.killed, T2.injured FROM death AS T1 JOIN ship AS T2 ON T1.caused_by_ship_id = T2.id WHERE T2.tonnage LIKE '%t%'
+Running Accuracy: 57.14% (284/497)
+Question 497 - CORRECT
+Running Accuracy: 57.23% (285/498)
+Question 498 - CORRECT
+Running Accuracy: 57.31% (286/499)
+Question 499 - CORRECT
+Running Accuracy: 57.40% (287/500)
+Question 500 - INCORRECT
+  - Gold: SELECT T2.id , T2.name FROM death AS T1 JOIN ship AS t2 ON T1.caused_by_ship_id = T2.id GROUP BY T2.id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.caused_by_ship_id, T2.name FROM Death AS T1 JOIN Ship AS T2 ON T1.caused_by_ship_id = T2.id GROUP BY T1.caused_by_ship_id ORDER BY sum(T1.injured) DESC LIMIT 1
+Running Accuracy: 57.29% (287/501)
+Question 501 - INCORRECT
+  - Gold: SELECT name FROM battle WHERE bulgarian_commander = 'Kaloyan' AND latin_commander = 'Baldwin I'
+  - Pred: SELECT DISTINCT T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE (T1.bulgarian_commander = 'Kaloyan' AND T1.latin_commander = 'Baldwin I') OR (T1.bulgarian_commander = 'Baldwin I' AND T1.latin_commander = 'Kaloyan')
+Running Accuracy: 57.17% (287/502)
+Question 502 - CORRECT
+Running Accuracy: 57.26% (288/503)
+Question 503 - INCORRECT
+  - Gold: SELECT count(*) FROM battle WHERE id NOT IN ( SELECT lost_in_battle FROM ship WHERE tonnage = '225' );
+  - Pred: SELECT COUNT(DISTINCT battle.id) FROM battle LEFT JOIN ship ON battle.id = ship.lost_in_battle WHERE ship.tonnage != '225'
+Running Accuracy: 57.14% (288/504)
+Question 504 - INCORRECT
+  - Gold: SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'Lettice' INTERSECT SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'HMS Atalanta'
+  - Pred: SELECT battle.name, battle.date FROM battle JOIN ship ON battle.id = ship.lost_in_battle WHERE (ship.name = 'Lettice' OR ship.name = 'HMS Atalanta') AND battle.result LIKE '%loss%'
+Running Accuracy: 57.03% (288/505)
+Question 505 - INCORRECT
+  - Gold: SELECT name , RESULT , bulgarian_commander FROM battle EXCEPT SELECT T1.name , T1.result , T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.location = 'English Channel'
+  - Pred: SELECT battle.name, battle.result, battle.bulgarian_commander FROM battle LEFT JOIN ship ON battle.id = ship.lost_in_battle WHERE ship.location IS NULL AND ship.location != 'English Channel'
+Running Accuracy: 56.92% (288/506)
+Question 506 - CORRECT
+Running Accuracy: 57.00% (289/507)
+Question 507 - CORRECT
+Running Accuracy: 57.09% (290/508)
+Question 508 - CORRECT
+Running Accuracy: 57.17% (291/509)
+Question 509 - CORRECT
+Running Accuracy: 57.25% (292/510)
+Question 510 - CORRECT
+Running Accuracy: 57.34% (293/511)
+Question 511 - INCORRECT
+  - Gold: SELECT course_description FROM Courses WHERE course_name = 'math'
+  - Pred: SELECT course_description FROM Courses WHERE course_name = 'Math'
+Running Accuracy: 57.23% (293/512)
+Question 512 - INCORRECT
+  - Gold: SELECT course_description FROM Courses WHERE course_name = 'math'
+  - Pred: SELECT T1.course_description FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id WHERE T1.course_name = "Math"
+Running Accuracy: 57.12% (293/513)
+Question 513 - CORRECT
+Running Accuracy: 57.20% (294/514)
+Question 514 - INCORRECT
+  - Gold: SELECT zip_postcode FROM Addresses WHERE city = 'Port Chelsea'
+  - Pred: SELECT zip_postcode FROM Addresses WHERE line_1 = "Port Chelsea" OR line_2 = "Port Chelsea" OR line_3 = "Port Chelsea"
+Running Accuracy: 57.09% (294/515)
+Question 515 - CORRECT
+Running Accuracy: 57.17% (295/516)
+Question 516 - CORRECT
+Running Accuracy: 57.25% (296/517)
+Question 517 - CORRECT
+Running Accuracy: 57.34% (297/518)
+Question 518 - CORRECT
+Running Accuracy: 57.42% (298/519)
+Question 519 - CORRECT
+Running Accuracy: 57.50% (299/520)
+Question 520 - CORRECT
+Running Accuracy: 57.58% (300/521)
+Question 521 - INCORRECT
+  - Gold: SELECT count(*) FROM Departments AS T1 JOIN Degree_Programs AS T2 ON T1.department_id = T2.department_id WHERE T1.department_name = 'engineer'
+  - Pred: SELECT department_id FROM Departments WHERE department_name = 'Engineering')
+Running Accuracy: 57.47% (300/522)
+Question 522 - CORRECT
+Running Accuracy: 57.55% (301/523)
+Question 523 - INCORRECT
+  - Gold: SELECT section_name , section_description FROM Sections
+  - Pred: SELECT course_name, course_description FROM Courses
+Running Accuracy: 57.44% (301/524)
+Question 524 - INCORRECT
+  - Gold: SELECT section_name , section_description FROM Sections
+  - Pred: SELECT course_name, course_description FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id
+Running Accuracy: 57.33% (301/525)
+Question 525 - CORRECT
+Running Accuracy: 57.41% (302/526)
+Question 526 - INCORRECT
+  - Gold: SELECT T1.course_name , T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id HAVING count(*) <= 2
+  - Pred: SELECT sql Courses.course_name, Courses.course_id FROM Courses JOIN Sections ON Courses.course_id = Sections.course_id GROUP BY Courses.course_id HAVING COUNT(Sections.section_id) < 2
+Running Accuracy: 57.31% (302/527)
+Question 527 - CORRECT
+Running Accuracy: 57.39% (303/528)
+Question 528 - CORRECT
+Running Accuracy: 57.47% (304/529)
+Question 529 - CORRECT
+Running Accuracy: 57.55% (305/530)
+Question 530 - INCORRECT
+  - Gold: SELECT T1.semester_name , T1.semester_id FROM Semesters AS T1 JOIN Student_Enrolment AS T2 ON T1.semester_id = T2.semester_id GROUP BY T1.semester_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT S.semester_name, S.semester_id, COUNT(SE.student_id) as num_of_students FROM Semesters S JOIN Student_Enrolment SE ON S.semester_id = SE.semester_id GROUP BY S.semester_name, S.semester_id ORDER BY COUNT(SE.student_id) DESC LIMIT 1
+Running Accuracy: 57.44% (305/531)
+Question 531 - CORRECT
+Running Accuracy: 57.52% (306/532)
+Question 532 - CORRECT
+Running Accuracy: 57.60% (307/533)
+Question 533 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.middle_name , T1.last_name , T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id HAVING count(*) = 2
+  - Pred: SELECT SE.student_id FROM Student_Enrolment AS SE GROUP BY SE.student_id HAVING COUNT(SE.degree_program_id) > 1 ) AS T ON S.student_id = T.student_id
+Running Accuracy: 57.49% (307/534)
+Question 534 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.middle_name , T1.last_name , T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id HAVING count(*) = 2
+  - Pred: SELECT student_id FROM Student_Enrolment GROUP BY student_id HAVING COUNT(degree_program_id) > 1 ) AS T2 ON T1.student_id = T2.student_id
+Running Accuracy: 57.38% (307/535)
+Question 535 - CORRECT
+Running Accuracy: 57.46% (308/536)
+Question 536 - INCORRECT
+  - Gold: SELECT DISTINCT T1.first_name , T1.middle_name , T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id = T3.degree_program_id WHERE T3.degree_summary_name = 'Bachelor'
+  - Pred: SELECT degree_program_id FROM Degree_Programs WHERE department_id IN (SELECT department_id FROM Departments WHERE department_name LIKE 'Bachelor%'))
+Running Accuracy: 57.36% (308/537)
+Question 537 - INCORRECT
+  - Gold: SELECT T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.degree_summary_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT sql Degree_Programs.degree_summary_name, COUNT(Student_Enrolment.student_id) as student_count FROM Degree_Programs JOIN Student_Enrolment ON Degree_Programs.degree_program_id = Student_Enrolment.degree_program_id GROUP BY Degree_Programs.degree_summary_name ORDER BY student_count DESC LIMIT 1
+Running Accuracy: 57.25% (308/538)
+Question 538 - INCORRECT
+  - Gold: SELECT T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.degree_summary_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T3.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.14% (308/539)
+Question 539 - CORRECT
+Running Accuracy: 57.22% (309/540)
+Question 540 - CORRECT
+Running Accuracy: 57.30% (310/541)
+Question 541 - INCORRECT
+  - Gold: SELECT T1.student_id , T1.first_name , T1.middle_name , T1.last_name , count(*) , T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.student_id, T2.first_name, T2.middle_name, T2.last_name, COUNT(*) as num_enrollments FROM Student_Enrolment AS T1 JOIN Students AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id, T2.first_name, T2.middle_name, T2.last_name ORDER BY num_enrollments DESC LIMIT 1
+Running Accuracy: 57.20% (310/542)
+Question 542 - INCORRECT
+  - Gold: SELECT T1.student_id , T1.first_name , T1.middle_name , T1.last_name , count(*) , T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T3.first_name, T3.middle_name, T3.last_name, T1.student_id, COUNT(*) as num_enrollments FROM Student_Enrolment AS T1 JOIN Students AS T3 ON T1.student_id = T3.student_id GROUP BY T1.student_id ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.09% (310/543)
+Question 543 - INCORRECT
+  - Gold: SELECT semester_name FROM Semesters WHERE semester_id NOT IN( SELECT semester_id FROM Student_Enrolment )
+  - Pred: SELECT semester_id FROM Student_Enrolment)
+Running Accuracy: 56.99% (310/544)
+Question 544 - INCORRECT
+  - Gold: SELECT semester_name FROM Semesters WHERE semester_id NOT IN( SELECT semester_id FROM Student_Enrolment )
+  - Pred: SELECT DISTINCT semester_id FROM Student_Enrolment)
+Running Accuracy: 56.88% (310/545)
+Question 545 - INCORRECT
+  - Gold: SELECT DISTINCT T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id
+  - Pred: SELECT Courses.course_name FROM Courses JOIN Student_Enrolment_Courses ON Courses.course_id = Student_Enrolment_Courses.course_id GROUP BY Courses.course_name
+Running Accuracy: 56.78% (310/546)
+Question 546 - INCORRECT
+  - Gold: SELECT DISTINCT T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id
+  - Pred: SELECT T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name
+Running Accuracy: 56.67% (310/547)
+Question 547 - CORRECT
+Running Accuracy: 56.75% (311/548)
+Question 548 - CORRECT
+Running Accuracy: 56.83% (312/549)
+Question 549 - INCORRECT
+  - Gold: SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id WHERE T2.state_province_county = 'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id = T4.student_id
+  - Pred: SELECT student_id FROM Student_Enrolment)
+Running Accuracy: 56.73% (312/550)
+Question 550 - INCORRECT
+  - Gold: SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id WHERE T2.state_province_county = 'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id = T4.student_id
+  - Pred: SELECT * FROM Student_Enrolment AS t3 WHERE t3.student_id = t1.student_id)
+Running Accuracy: 56.62% (312/551)
+Question 551 - CORRECT
+Running Accuracy: 56.70% (313/552)
+Question 552 - INCORRECT
+  - Gold: SELECT T2.transcript_date , T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id = T2.transcript_id GROUP BY T1.transcript_id HAVING count(*) >= 2
+  - Pred: SELECT t1.transcript_date, t1.transcript_id FROM Transcripts AS t1 JOIN ( SELECT COUNT(*) as course_count, student_enrolment_id FROM Student_Enrolment_Courses GROUP BY student_enrolment_id) AS t2 ON t1.transcript_id = t2.student_enrolment_id WHERE t2.course_count >= 2
+Running Accuracy: 56.60% (313/553)
+Question 553 - INCORRECT
+  - Gold: SELECT cell_mobile_number FROM Students WHERE first_name = 'Timmothy' AND last_name = 'Ward'
+  - Pred: SELECT sql Students.cell_mobile_number FROM Students WHERE Students.first_name = "Timothy" AND Students.last_name = "Ward"
+Running Accuracy: 56.50% (313/554)
+Question 554 - INCORRECT
+  - Gold: SELECT cell_mobile_number from students where first_name = 'timmothy' and last_name = 'ward'
+  - Pred: SELECT T2.cell_mobile_number FROM Students AS T1 JOIN Addresses AS T3 ON T1.current_address_id = T3.address_id WHERE T1.first_name = "Timmothy" AND T1.last_name = "Ward"
+Running Accuracy: 56.40% (313/555)
+Question 555 - CORRECT
+Running Accuracy: 56.47% (314/556)
+Question 556 - CORRECT
+Running Accuracy: 56.55% (315/557)
+Question 557 - INCORRECT
+  - Gold: SELECT first_name , middle_name , last_name FROM Students ORDER BY date_left ASC LIMIT 1
+  - Pred: SELECT MIN(date_left) FROM Student_Enrolment)
+Running Accuracy: 56.45% (315/558)
+Question 558 - CORRECT
+Running Accuracy: 56.53% (316/559)
+Question 559 - CORRECT
+Running Accuracy: 56.61% (317/560)
+Question 560 - CORRECT
+Running Accuracy: 56.68% (318/561)
+Question 561 - INCORRECT
+  - Gold: SELECT T1.address_id , T1.line_1 , T1.line_2 FROM Addresses AS T1 JOIN Students AS T2 ON T1.address_id = T2.current_address_id GROUP BY T1.address_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.current_address_id, T2.* FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id GROUP BY T1.current_address_id ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 56.58% (318/562)
+Question 562 - CORRECT
+Running Accuracy: 56.66% (319/563)
+Question 563 - CORRECT
+Running Accuracy: 56.74% (320/564)
+Question 564 - CORRECT
+Running Accuracy: 56.81% (321/565)
+Question 565 - INCORRECT
+  - Gold: SELECT transcript_date , other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1
+  - Pred: SELECT sql transcript_date, other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1
+Running Accuracy: 56.71% (321/566)
+Question 566 - CORRECT
+Running Accuracy: 56.79% (322/567)
+Question 567 - CORRECT
+Running Accuracy: 56.87% (323/568)
+Question 568 - CORRECT
+Running Accuracy: 56.94% (324/569)
+Question 569 - CORRECT
+Running Accuracy: 57.02% (325/570)
+Question 570 - CORRECT
+Running Accuracy: 57.09% (326/571)
+Question 571 - INCORRECT
+  - Gold: SELECT count(*) , student_course_id FROM Transcript_Contents GROUP BY student_course_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT SEC.student_course_id, COUNT(TC.transcript_id) as transcript_count FROM Student_Enrolment_Courses SEC LEFT JOIN Transcript_Contents TC ON SEC.student_course_id = TC.student_course_id GROUP BY SEC.student_course_id
+Running Accuracy: 56.99% (326/572)
+Question 572 - CORRECT
+Running Accuracy: 57.07% (327/573)
+Question 573 - INCORRECT
+  - Gold: SELECT T2.transcript_date , T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id = T2.transcript_id GROUP BY T1.transcript_id ORDER BY count(*) ASC LIMIT 1
+  - Pred: SELECT Transcripts.transcript_id, Transcripts.transcript_date, COUNT(Results.result_id) as result_count FROM Transcripts JOIN Results ON Transcripts.transcript_id = Results.transcript_id GROUP BY Transcripts.transcript_id ORDER BY result_count ASC LIMIT 1
+Running Accuracy: 56.97% (327/574)
+Question 574 - CORRECT
+Running Accuracy: 57.04% (328/575)
+Question 575 - INCORRECT
+  - Gold: SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Bachelor'
+  - Pred: SELECT degree_program_id FROM Degree_Programs WHERE department_id IN (SELECT department_id FROM Departments WHERE department_name LIKE 'Master%')) INTERSECT SELECT sem.semester_name, sem.semester_description FROM Semesters AS sem JOIN Student_Enrolment AS stu_enr ON sem.semester_id = stu_enr.semester_id WHERE stu_enr.degree_program_id IN (SELECT degree_program_id FROM Degree_Programs WHERE department_id IN (SELECT department_id FROM Departments WHERE department_name LIKE 'Bachelor%'))
+Running Accuracy: 56.94% (328/576)
+Question 576 - INCORRECT
+  - Gold: SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Bachelor'
+  - Pred: SELECT degree_program_id FROM Degree_Programs WHERE department_id IN ( SELECT department_id FROM Departments WHERE department_name = 'Bachelors' ) ) AND semester_id IN ( SELECT semester_id FROM Student_Enrolment WHERE degree_program_id IN ( SELECT degree_program_id FROM Degree_Programs WHERE department_id IN ( SELECT department_id FROM Departments WHERE department_name = 'Masters' ) ) ) GROUP BY semester_id HAVING COUNT(DISTINCT degree_program_id) = 2
+Running Accuracy: 56.85% (328/577)
+Question 577 - CORRECT
+Running Accuracy: 56.92% (329/578)
+Question 578 - INCORRECT
+  - Gold: SELECT count(DISTINCT current_address_id) FROM Students
+  - Pred: SELECT DISTINCT T1.line_1, T1.city, T1.state_province_county, T1.zip_postcode FROM Addresses AS T1 JOIN Students AS T2 ON T1.address_id = T2.current_address_id OR T1.address_id = T2.permanent_address_id
+Running Accuracy: 56.82% (329/579)
+Question 579 - INCORRECT
+  - Gold: SELECT other_student_details FROM Students ORDER BY other_student_details DESC
+  - Pred: SELECT * FROM Students ORDER BY first_name DESC, middle_name DESC, last_name DESC
+Running Accuracy: 56.72% (329/580)
+Question 580 - INCORRECT
+  - Gold: SELECT other_student_details FROM Students ORDER BY other_student_details DESC
+  - Pred: SELECT first_name, middle_name, last_name, cell_mobile_number, email_address, ssn, date_first_registered, date_left, other_student_details FROM Students ORDER BY last_name DESC
+Running Accuracy: 56.63% (329/581)
+Question 581 - INCORRECT
+  - Gold: SELECT section_description FROM Sections WHERE section_name = 'h'
+  - Pred: SELECT It seems like you've provided a database schema and not an SQL query, so I can't provide an answer to your question. Could you please specify what information you want to know about the "section h"? Are we talking about specific tables or columns in these tables? Please provide more context for me to assist you better.
+Running Accuracy: 56.53% (329/582)
+Question 582 - CORRECT
+Running Accuracy: 56.60% (330/583)
+Question 583 - INCORRECT
+  - Gold: SELECT t1.first_name from students as t1 join addresses as t2 on t1.permanent_address_id = t2.address_id where t2.country = 'haiti' or t1.cell_mobile_number = '09700166582'
+  - Pred: SELECT address_id FROM Addresses WHERE country = 'Haiti') OR cell_mobile_number = '09700166582'
+Running Accuracy: 56.51% (330/584)
+Question 584 - INCORRECT
+  - Gold: SELECT t1.first_name from students as t1 join addresses as t2 on t1.permanent_address_id = t2.address_id where t2.country = 'haiti' or t1.cell_mobile_number = '09700166582'
+  - Pred: SELECT first_name FROM Students JOIN Addresses ON Students.permanent_address_id = Addresses.address_id WHERE Addresses.country = 'Haiti' OR Students.cell_mobile_number = '09700166582'
+Running Accuracy: 56.41% (330/585)
+Question 585 - CORRECT
+Running Accuracy: 56.48% (331/586)
+Question 586 - CORRECT
+Running Accuracy: 56.56% (332/587)
+Question 587 - INCORRECT
+  - Gold: SELECT Title FROM Cartoon WHERE Directed_by = "Ben Jones";
+  - Pred: SELECT t3.Title FROM TV_Channel AS t1 JOIN Cartoon AS t2 ON t1.id = t2.Channel WHERE t2.Directed_by = "Ben Jones"
+Running Accuracy: 56.46% (332/588)
+Question 588 - CORRECT
+Running Accuracy: 56.54% (333/589)
+Question 589 - CORRECT
+Running Accuracy: 56.61% (334/590)
+Question 590 - CORRECT
+Running Accuracy: 56.68% (335/591)
+Question 591 - CORRECT
+Running Accuracy: 56.76% (336/592)
+Question 592 - CORRECT
+Running Accuracy: 56.83% (337/593)
+Question 593 - CORRECT
+Running Accuracy: 56.90% (338/594)
+Question 594 - CORRECT
+Running Accuracy: 56.97% (339/595)
+Question 595 - CORRECT
+Running Accuracy: 57.05% (340/596)
+Question 596 - CORRECT
+Running Accuracy: 57.12% (341/597)
+Question 597 - CORRECT
+Running Accuracy: 57.19% (342/598)
+Question 598 - CORRECT
+Running Accuracy: 57.26% (343/599)
+Question 599 - INCORRECT
+  - Gold: SELECT Content FROM TV_Channel WHERE series_name = "Sky Radio";
+  - Pred: SELECT T1.Content FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T1.series_name = "Sky Radio"
+Running Accuracy: 57.17% (343/600)
+Question 600 - INCORRECT
+  - Gold: SELECT Content FROM TV_Channel WHERE series_name = "Sky Radio";
+  - Pred: SELECT Content FROM TV_Channel WHERE id = 'Sky Radio'
+Running Accuracy: 57.07% (343/601)
+Question 601 - INCORRECT
+  - Gold: SELECT Package_Option FROM TV_Channel WHERE series_name = "Sky Radio";
+  - Pred: SELECT T1."Package_Option" FROM "TV_Channel" AS T1 JOIN "TV_series" AS T2 ON T1.id = T2."Channel" WHERE T1."series_name" = 'Sky Radio'
+Running Accuracy: 56.98% (343/602)
+Question 602 - INCORRECT
+  - Gold: SELECT Package_Option FROM TV_Channel WHERE series_name = "Sky Radio";
+  - Pred: SELECT T1."Package_Option" FROM "TV_Channel" AS T1 JOIN "TV_series" AS T2 ON T1.id = T2.Channel WHERE T1."series_name" = 'Sky Radio'
+Running Accuracy: 56.88% (343/603)
+Question 603 - CORRECT
+Running Accuracy: 56.95% (344/604)
+Question 604 - CORRECT
+Running Accuracy: 57.02% (345/605)
+Question 605 - CORRECT
+Running Accuracy: 57.10% (346/606)
+Question 606 - CORRECT
+Running Accuracy: 57.17% (347/607)
+Question 607 - CORRECT
+Running Accuracy: 57.24% (348/608)
+Question 608 - CORRECT
+Running Accuracy: 57.31% (349/609)
+Question 609 - INCORRECT
+  - Gold: SELECT T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = "The Rise of the Blue Beetle!";
+  - Pred: SELECT T1."id", T2."series_name" FROM "TV_Channel" AS T1 JOIN "Cartoon" AS T2 ON T1."id" = T2."Channel" WHERE T2."Title" = 'The Rise of the Blue Beetle!'
+Running Accuracy: 57.21% (349/610)
+Question 610 - INCORRECT
+  - Gold: SELECT T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = "The Rise of the Blue Beetle!";
+  - Pred: SELECT T1.series_name FROM TV_Channel T1 JOIN Cartoon T2 ON T1.id = T2.Channel WHERE T2.Title = 'The Rise of the Blue Beetle'
+Running Accuracy: 57.12% (349/611)
+Question 611 - CORRECT
+Running Accuracy: 57.19% (350/612)
+Question 612 - CORRECT
+Running Accuracy: 57.26% (351/613)
+Question 613 - CORRECT
+Running Accuracy: 57.33% (352/614)
+Question 614 - CORRECT
+Running Accuracy: 57.40% (353/615)
+Question 615 - CORRECT
+Running Accuracy: 57.47% (354/616)
+Question 616 - CORRECT
+Running Accuracy: 57.54% (355/617)
+Question 617 - CORRECT
+Running Accuracy: 57.61% (356/618)
+Question 618 - CORRECT
+Running Accuracy: 57.67% (357/619)
+Question 619 - INCORRECT
+  - Gold: SELECT Air_Date FROM TV_series WHERE Episode = "A Love of a Lifetime";
+  - Pred: SELECT T1.Air_Date FROM TV_series AS T1 JOIN Cartoon AS T2 ON T1.Channel = T2.Channel WHERE T2.Title = "A Love of a Lifetime" AND T1.Episode = "A Love of a Lifetime"
+Running Accuracy: 57.58% (357/620)
+Question 620 - CORRECT
+Running Accuracy: 57.65% (358/621)
+Question 621 - CORRECT
+Running Accuracy: 57.72% (359/622)
+Question 622 - INCORRECT
+  - Gold: SELECT Weekly_Rank FROM TV_series WHERE Episode = "A Love of a Lifetime";
+  - Pred: SELECT T1.Weekly_Rank FROM TV_series AS T1 JOIN Cartoon AS T2 ON T1.Channel = T2.Channel WHERE T2.Title = "A Love of a Lifetime"
+Running Accuracy: 57.62% (359/623)
+Question 623 - INCORRECT
+  - Gold: SELECT T1.series_name FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T2.Episode = "A Love of a Lifetime";
+  - Pred: SELECT T1."series_name", T3."Channel" FROM "TV_Channel" AS T1 JOIN "Cartoon" AS T3 ON T1."id" = T3."Channel" WHERE T3."Title" = 'Frozen'
+Running Accuracy: 57.53% (359/624)
+Question 624 - CORRECT
+Running Accuracy: 57.60% (360/625)
+Question 625 - CORRECT
+Running Accuracy: 57.67% (361/626)
+Question 626 - INCORRECT
+  - Gold: SELECT T2.Episode FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T1.series_name = "Sky Radio";
+  - Pred: SELECT Episode FROM TV_series WHERE Series_name = "Sky Radio"
+Running Accuracy: 57.58% (361/627)
+Question 627 - CORRECT
+Running Accuracy: 57.64% (362/628)
+Question 628 - CORRECT
+Running Accuracy: 57.71% (363/629)
+Question 629 - CORRECT
+Running Accuracy: 57.78% (364/630)
+Question 630 - INCORRECT
+  - Gold: SELECT production_code , channel from cartoon order by original_air_date desc limit 1
+  - Pred: SELECT MAX(Air_Date) FROM TV_series)
+Running Accuracy: 57.69% (364/631)
+Question 631 - INCORRECT
+  - Gold: SELECT package_option , series_name FROM TV_Channel WHERE hight_definition_TV = "yes"
+  - Pred: SELECT "Title" FROM "Cartoon" WHERE "Production_code" > 50
+Running Accuracy: 57.59% (364/632)
+Question 632 - INCORRECT
+  - Gold: SELECT package_option , series_name FROM TV_Channel WHERE hight_definition_TV = "yes"
+  - Pred: SELECT "Package_Option", "series_name" FROM TV_Channel WHERE "Hight_definition_TV" = 'Yes'
+Running Accuracy: 57.50% (364/633)
+Question 633 - CORRECT
+Running Accuracy: 57.57% (365/634)
+Question 634 - CORRECT
+Running Accuracy: 57.64% (366/635)
+Question 635 - INCORRECT
+  - Gold: SELECT country FROM TV_Channel EXCEPT SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by = 'Todd Casey'
+  - Pred: SELECT Channel FROM Cartoon WHERE Written_by = 'Todd Casey')
+Running Accuracy: 57.55% (366/636)
+Question 636 - INCORRECT
+  - Gold: SELECT country FROM TV_Channel EXCEPT SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by = 'Todd Casey'
+  - Pred: SELECT Channel FROM Cartoon WHERE Written_by = 'Todd Casey') EXCEPT SELECT Country FROM TV_Channel
+Running Accuracy: 57.46% (366/637)
+Question 637 - INCORRECT
+  - Gold: SELECT T1.series_name , T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by = 'Michael Chang' INTERSECT SELECT T1.series_name , T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by = 'Ben Jones'
+  - Pred: SELECT T1.series_name, T1.Country FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Directed_by = "Michael Chang"
+Running Accuracy: 57.37% (366/638)
+Question 638 - INCORRECT
+  - Gold: SELECT T1.series_name , T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by = 'Michael Chang' INTERSECT SELECT T1.series_name , T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by = 'Ben Jones'
+  - Pred: SELECT T1.series_name, T1.Country FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE (T2.Directed_by = 'Ben Jones' OR T2.Directed_by = 'Michael Chang')
+Running Accuracy: 57.28% (366/639)
+Question 639 - CORRECT
+Running Accuracy: 57.34% (367/640)
+Question 640 - INCORRECT
+  - Gold: SELECT Pixel_aspect_ratio_PAR , country FROM tv_channel WHERE LANGUAGE != 'English'
+  - Pred: SELECT T1."Pixel_aspect_ratio_PAR", T1."Country" FROM "TV_Channel" AS T1 LEFT JOIN "Cartoon" AS T2 ON T1.id = T2.Channel WHERE T1."Language" != 'English' AND T2.Channel IS NULL
+Running Accuracy: 57.25% (367/641)
+Question 641 - INCORRECT
+  - Gold: SELECT id FROM tv_channel GROUP BY country HAVING count(*) > 2
+  - Pred: SELECT T1."Country", COUNT(*) as "Count" FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1."id" = T2."Channel" GROUP BY T1."Country" HAVING COUNT(T1."id") > 2
+Running Accuracy: 57.17% (367/642)
+Question 642 - INCORRECT
+  - Gold: SELECT id FROM tv_channel GROUP BY country HAVING count(*) > 2
+  - Pred: SELECT T1."Channel" as id, COUNT(*) as count FROM "TV_series" AS T1 GROUP BY T1."Channel" UNION ALL SELECT T2."Channel", COUNT(*) FROM "Cartoon" AS T2 GROUP BY T2."Channel" ) AS T1 GROUP BY T1.id HAVING MAX(T1.count) > 2
+Running Accuracy: 57.08% (367/643)
+Question 643 - INCORRECT
+  - Gold: SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones'
+  - Pred: SELECT Channel FROM Cartoon WHERE Directed_by = 'Ben Jones')
+Running Accuracy: 56.99% (367/644)
+Question 644 - INCORRECT
+  - Gold: SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones'
+  - Pred: SELECT T1.id FROM TV_Channel AS T1 LEFT JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Directed_by != 'Ben Jones' AND T2.Channel IS NULL
+Running Accuracy: 56.90% (367/645)
+Question 645 - INCORRECT
+  - Gold: SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones')
+  - Pred: SELECT t1."Package_Option" FROM "TV_Channel" t1 LEFT JOIN "Cartoon" t2 ON t1."id" = t2."Channel" WHERE t2."Directed_by" != 'Ben Jones' AND t2."Directed_by" IS NULL
+Running Accuracy: 56.81% (367/646)
+Question 646 - INCORRECT
+  - Gold: SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones')
+  - Pred: SELECT Channel FROM Cartoon WHERE Directed_by = 'Ben Jones')
+Running Accuracy: 56.72% (367/647)
+Question 647 - CORRECT
+Running Accuracy: 56.79% (368/648)
+Question 648 - CORRECT
+Running Accuracy: 56.86% (369/649)
+Question 649 - CORRECT
+Running Accuracy: 56.92% (370/650)
+Question 650 - CORRECT
+Running Accuracy: 56.99% (371/651)
+Question 651 - CORRECT
+Running Accuracy: 57.06% (372/652)
+Question 652 - CORRECT
+Running Accuracy: 57.12% (373/653)
+Question 653 - CORRECT
+Running Accuracy: 57.19% (374/654)
+Question 654 - CORRECT
+Running Accuracy: 57.25% (375/655)
+Question 655 - INCORRECT
+  - Gold: SELECT Money_Rank FROM poker_player ORDER BY Earnings DESC LIMIT 1
+  - Pred: SELECT t1."Money_Rank", t2."Earnings" FROM "poker_player" AS t1 JOIN "people" AS t2 ON t1."People_ID" = t2."People_ID" ORDER BY t1."Earnings" DESC LIMIT 1
+Running Accuracy: 57.16% (375/656)
+Question 656 - INCORRECT
+  - Gold: SELECT Money_Rank FROM poker_player ORDER BY Earnings DESC LIMIT 1
+  - Pred: SELECT T1."Money_Rank", T2."Earnings" FROM poker_player AS T1 JOIN people AS T2 ON T1."People_ID" = T2."People_ID" ORDER BY T1."Earnings" DESC LIMIT 1
+Running Accuracy: 57.08% (375/657)
+Question 657 - INCORRECT
+  - Gold: SELECT max(Final_Table_Made) FROM poker_player WHERE Earnings < 200000
+  - Pred: SELECT max(poker_player.Final_Table_Made) FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID WHERE people.Earnings < 200000
+Running Accuracy: 56.99% (375/658)
+Question 658 - INCORRECT
+  - Gold: SELECT max(Final_Table_Made) FROM poker_player WHERE Earnings < 200000
+  - Pred: SELECT MAX(poker_player.Final_Table_Made) FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID WHERE people.Earnings < 200000
+Running Accuracy: 56.90% (375/659)
+Question 659 - CORRECT
+Running Accuracy: 56.97% (376/660)
+Question 660 - INCORRECT
+  - Gold: SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID
+  - Pred: SELECT sql Name FROM people INNER JOIN poker_player ON people.People_ID = poker_player.People_ID
+Running Accuracy: 56.88% (376/661)
+Question 661 - INCORRECT
+  - Gold: SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Earnings > 300000
+  - Pred: SELECT T1.Name FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Earnings > 300000
+Running Accuracy: 56.80% (376/662)
+Question 662 - INCORRECT
+  - Gold: SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Earnings > 300000
+  - Pred: SELECT T1.Name FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Earnings > 300000
+Running Accuracy: 56.71% (376/663)
+Question 663 - INCORRECT
+  - Gold: SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Final_Table_Made
+  - Pred: SELECT poker_player.Name FROM poker_player INNER JOIN people ON poker_player.People_ID = people.People_ID ORDER BY poker_player.Final_Table_Made ASC
+Running Accuracy: 56.63% (376/664)
+Question 664 - CORRECT
+Running Accuracy: 56.69% (377/665)
+Question 665 - INCORRECT
+  - Gold: SELECT T1.Birth_Date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1
+  - Pred: SELECT T1.`Name`, T2.`Birth_Date` FROM `poker_player` AS T1 JOIN `people` AS T2 ON T1.`People_ID` = T2.`People_ID` ORDER BY T1.`Earnings` ASC LIMIT 1
+Running Accuracy: 56.61% (377/666)
+Question 666 - CORRECT
+Running Accuracy: 56.67% (378/667)
+Question 667 - CORRECT
+Running Accuracy: 56.74% (379/668)
+Question 668 - CORRECT
+Running Accuracy: 56.80% (380/669)
+Question 669 - CORRECT
+Running Accuracy: 56.87% (381/670)
+Question 670 - INCORRECT
+  - Gold: SELECT avg(T2.Earnings) FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Height > 200
+  - Pred: SELECT Average(T1.Earnings) FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Height > 200
+Running Accuracy: 56.78% (381/671)
+Question 671 - CORRECT
+Running Accuracy: 56.85% (382/672)
+Question 672 - INCORRECT
+  - Gold: SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings DESC
+  - Pred: SELECT poker_player.Name FROM poker_player INNER JOIN people ON poker_player.People_ID = people.People_ID ORDER BY poker_player.Earnings DESC
+Running Accuracy: 56.76% (382/673)
+Question 673 - CORRECT
+Running Accuracy: 56.82% (383/674)
+Question 674 - CORRECT
+Running Accuracy: 56.89% (384/675)
+Question 675 - CORRECT
+Running Accuracy: 56.95% (385/676)
+Question 676 - CORRECT
+Running Accuracy: 57.02% (386/677)
+Question 677 - CORRECT
+Running Accuracy: 57.08% (387/678)
+Question 678 - CORRECT
+Running Accuracy: 57.14% (388/679)
+Question 679 - CORRECT
+Running Accuracy: 57.21% (389/680)
+Question 680 - CORRECT
+Running Accuracy: 57.27% (390/681)
+Question 681 - CORRECT
+Running Accuracy: 57.33% (391/682)
+Question 682 - CORRECT
+Running Accuracy: 57.39% (392/683)
+Question 683 - INCORRECT
+  - Gold: SELECT Name FROM people WHERE People_ID NOT IN (SELECT People_ID FROM poker_player)
+  - Pred: SELECT People_ID FROM poker_player)
+Running Accuracy: 57.31% (392/684)
+Question 684 - CORRECT
+Running Accuracy: 57.37% (393/685)
+Question 685 - INCORRECT
+  - Gold: SELECT count(DISTINCT Nationality) FROM people
+  - Pred: SELECT COUNT(DISTINCT p."Nationality") FROM poker_player pp JOIN people p ON pp."People_ID" = p."People_ID"
+Running Accuracy: 57.29% (393/686)
+Question 686 - INCORRECT
+  - Gold: SELECT count(DISTINCT Nationality) FROM people
+  - Pred: SELECT COUNT(DISTINCT p."Nationality") FROM "people" p INNER JOIN "poker_player" pp ON p."People_ID" = pp."People_ID"
+Running Accuracy: 57.21% (393/687)
+Question 687 - CORRECT
+Running Accuracy: 57.27% (394/688)
+Question 688 - CORRECT
+Running Accuracy: 57.33% (395/689)
+Question 689 - CORRECT
+Running Accuracy: 57.39% (396/690)
+Question 690 - CORRECT
+Running Accuracy: 57.45% (397/691)
+Question 691 - CORRECT
+Running Accuracy: 57.51% (398/692)
+Question 692 - CORRECT
+Running Accuracy: 57.58% (399/693)
+Question 693 - CORRECT
+Running Accuracy: 57.64% (400/694)
+Question 694 - CORRECT
+Running Accuracy: 57.70% (401/695)
+Question 695 - CORRECT
+Running Accuracy: 57.76% (402/696)
+Question 696 - CORRECT
+Running Accuracy: 57.82% (403/697)
+Question 697 - INCORRECT
+  - Gold: SELECT count(*) FROM contestants WHERE contestant_number NOT IN ( SELECT contestant_number FROM votes )
+  - Pred: SELECT contestant_number FROM VOTES)
+Running Accuracy: 57.74% (403/698)
+Question 698 - INCORRECT
+  - Gold: SELECT T1.area_code FROM area_code_state AS T1 JOIN votes AS T2 ON T1.state = T2.state GROUP BY T1.area_code ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.area_code FROM VOTES AS T1 JOIN AREA_CODE_STATE AS T1 ON T1.state = T1.state GROUP BY T1.area_code ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.65% (403/699)
+Question 699 - CORRECT
+Running Accuracy: 57.71% (404/700)
+Question 700 - INCORRECT
+  - Gold: SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number JOIN area_code_state AS T3 ON T2.state = T3.state WHERE T1.contestant_name = 'Tabatha Gehling' INTERSECT SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number JOIN area_code_state AS T3 ON T2.state = T3.state WHERE T1.contestant_name = 'Kelly Clauss'
+  - Pred: SELECT area_code FROM AREA_CODE_STATE) AND SUBSTR(V2.phone_number, 1, 3) IN (SELECT area_code FROM AREA_CODE_STATE) AND V1.contestant_number = (SELECT contestant_number FROM CONTESTANTS WHERE contestant_name = 'Tabatha Gehling') AND V2.contestant_number = (SELECT contestant_number FROM CONTESTANTS WHERE contestant_name = 'Kelly Clauss')
+Running Accuracy: 57.63% (404/701)
+Question 701 - CORRECT
+Running Accuracy: 57.69% (405/702)
+Question 702 - CORRECT
+Running Accuracy: 57.75% (406/703)
+Question 703 - CORRECT
+Running Accuracy: 57.81% (407/704)
+Question 704 - CORRECT
+Running Accuracy: 57.87% (408/705)
+Question 705 - CORRECT
+Running Accuracy: 57.93% (409/706)
+Question 706 - CORRECT
+Running Accuracy: 57.99% (410/707)
+Question 707 - INCORRECT
+  - Gold: SELECT sum(SurfaceArea) FROM country WHERE Region = "Caribbean"
+  - Pred: SELECT SUM(SurfaceArea) FROM country WHERE Continent = 'Caribbean'
+Running Accuracy: 57.91% (410/708)
+Question 708 - CORRECT
+Running Accuracy: 57.97% (411/709)
+Question 709 - INCORRECT
+  - Gold: SELECT Continent FROM country WHERE Name = "Anguilla"
+  - Pred: SELECT T1.Continent FROM country AS T1 JOIN city AS T2 ON T1.Code = T2.CountryCode WHERE T2.Name = "Anguilla"
+Running Accuracy: 57.89% (411/710)
+Question 710 - CORRECT
+Running Accuracy: 57.95% (412/711)
+Question 711 - CORRECT
+Running Accuracy: 58.01% (413/712)
+Question 712 - CORRECT
+Running Accuracy: 58.06% (414/713)
+Question 713 - INCORRECT
+  - Gold: SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = "Aruba" ORDER BY Percentage DESC LIMIT 1
+  - Pred: SELECT T2.Language, T2.Percentage FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = 'Aruba' AND T2.IsOfficial = 'T'
+Running Accuracy: 57.98% (414/714)
+Question 714 - INCORRECT
+  - Gold: SELECT Population , LifeExpectancy FROM country WHERE Name = "Brazil"
+  - Pred: SELECT T1.Population, T2.LifeExpectancy FROM Country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = "Brazil" AND Language = "Portuguese"
+Running Accuracy: 57.90% (414/715)
+Question 715 - INCORRECT
+  - Gold: SELECT Population , LifeExpectancy FROM country WHERE Name = "Brazil"
+  - Pred: SELECT T2.Population, T2.LifeExpectancy FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = 'Brazil' AND Language = 'Portuguese'
+Running Accuracy: 57.82% (414/716)
+Question 716 - CORRECT
+Running Accuracy: 57.88% (415/717)
+Question 717 - INCORRECT
+  - Gold: SELECT Population , Region FROM country WHERE Name = "Angola"
+  - Pred: SELECT T2.Region, T1.Population FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE Language = 'English' AND IsOfficial = 'F'
+Running Accuracy: 57.80% (415/718)
+Question 718 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Region = "Central Africa"
+  - Pred: SELECT AVG(T1.LifeExpectancy) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Region = 'Central Africa' AND Language = 'English'
+Running Accuracy: 57.72% (415/719)
+Question 719 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Region = "Central Africa"
+  - Pred: SELECT avg(T2.LifeExpectancy) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = "Africa" AND T1.Region LIKE "%Central%" AND T2.IsOfficial = 'T'
+Running Accuracy: 57.64% (415/720)
+Question 720 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE Continent = "Asia" ORDER BY LifeExpectancy LIMIT 1
+  - Pred: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.IsOfficial='T' AND T1.Continent='Asia' ORDER BY T2.Percentage LIMIT 1
+Running Accuracy: 57.56% (415/721)
+Question 721 - CORRECT
+Running Accuracy: 57.62% (416/722)
+Question 722 - CORRECT
+Running Accuracy: 57.68% (417/723)
+Question 723 - INCORRECT
+  - Gold: SELECT sum(Population) , max(GNP) FROM country WHERE Continent = "Asia"
+  - Pred: SELECT COUNT(*), MAX(T1.GNP) FROM country AS T1 JOIN continent AS T2 ON T1.Continent = T2.Name WHERE T2.Name = 'Asia'
+Running Accuracy: 57.60% (417/724)
+Question 724 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Continent = "Africa" AND GovernmentForm = "Republic"
+  - Pred: SELECT avg(T1.LifeExpectancy) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = 'Africa' AND T1.GovernmentForm = 'Republic'
+Running Accuracy: 57.52% (417/725)
+Question 725 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Continent = "Africa" AND GovernmentForm = "Republic"
+  - Pred: SELECT avg(T1.LifeExpectancy) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = 'Africa' AND T2.IsOfficial = 'Republic'
+Running Accuracy: 57.44% (417/726)
+Question 726 - INCORRECT
+  - Gold: SELECT sum(SurfaceArea) FROM country WHERE Continent = "Asia" OR Continent = "Europe"
+  - Pred: SELECT Continent, SUM(Population) as Total_pop FROM country GROUP BY Continent) AS T2 ON T1.Continent = T2.Continent WHERE T1.Continent IN ('Asia', 'Europe')
+Running Accuracy: 57.36% (417/727)
+Question 727 - CORRECT
+Running Accuracy: 57.42% (418/728)
+Question 728 - CORRECT
+Running Accuracy: 57.48% (419/729)
+Question 729 - CORRECT
+Running Accuracy: 57.53% (420/730)
+Question 730 - CORRECT
+Running Accuracy: 57.59% (421/731)
+Question 731 - INCORRECT
+  - Gold: SELECT avg(GNP) , sum(population) FROM country WHERE GovernmentForm = "US Territory"
+  - Pred: SELECT AVG(Population), SUM(GNP) FROM country WHERE Continent = 'North America'
+Running Accuracy: 57.51% (421/732)
+Question 732 - CORRECT
+Running Accuracy: 57.57% (422/733)
+Question 733 - CORRECT
+Running Accuracy: 57.63% (423/734)
+Question 734 - CORRECT
+Running Accuracy: 57.69% (424/735)
+Question 735 - CORRECT
+Running Accuracy: 57.74% (425/736)
+Question 736 - INCORRECT
+  - Gold: SELECT COUNT(T2.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = "Aruba"
+  - Pred: SELECT Code FROM country WHERE Name = 'Aruba')
+Running Accuracy: 57.67% (425/737)
+Question 737 - CORRECT
+Running Accuracy: 57.72% (426/738)
+Question 738 - CORRECT
+Running Accuracy: 57.78% (427/739)
+Question 739 - INCORRECT
+  - Gold: SELECT COUNT(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = "Afghanistan" AND IsOfficial = "T"
+  - Pred: SELECT COUNT(*) FROM countrylanguage WHERE CountryCode = 'AFN' AND IsOfficial = 'T'
+Running Accuracy: 57.70% (427/740)
+Question 740 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Name ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT T2.Name FROM Country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T2.CountryCode ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.62% (427/741)
+Question 741 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Name ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT T2.Name FROM country AS T1 JOIN countrylanguage AS T3 ON T1.Code = T3.CountryCode GROUP BY T1.Code ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 57.55% (427/742)
+Question 742 - INCORRECT
+  - Gold: SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT Continent FROM countrylanguage GROUP BY Continent ORDER BY count(DISTINCT Language) DESC LIMIT 1
+Running Accuracy: 57.47% (427/743)
+Question 743 - INCORRECT
+  - Gold: SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT Continent FROM country GROUP BY Continent ORDER BY count(Language) DESC LIMIT 1
+Running Accuracy: 57.39% (427/744)
+Question 744 - CORRECT
+Running Accuracy: 57.45% (428/745)
+Question 745 - INCORRECT
+  - Gold: SELECT COUNT(*) FROM (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "Dutch")
+  - Pred: SELECT COUNT(DISTINCT Country.Name) FROM Country JOIN countrylanguage ON Country.Code = countrylanguage.CountryCode WHERE (countrylanguage.Language IN ('English', 'Dutch'))
+Running Accuracy: 57.37% (428/746)
+Question 746 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "French"
+  - Pred: SELECT Name FROM Country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'French'
+Running Accuracy: 57.30% (428/747)
+Question 747 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "French"
+  - Pred: SELECT Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'French'
+Running Accuracy: 57.22% (428/748)
+Question 748 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" AND T2.IsOfficial = "T" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "French" AND T2.IsOfficial = "T"
+  - Pred: SELECT Name FROM Country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'French'
+Running Accuracy: 57.14% (428/749)
+Question 749 - INCORRECT
+  - Gold: SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" AND T2.IsOfficial = "T" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "French" AND T2.IsOfficial = "T"
+  - Pred: SELECT T3.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE (T2.Language = 'French' AND T2.IsOfficial = 'T')
+Running Accuracy: 57.07% (428/750)
+Question 750 - CORRECT
+Running Accuracy: 57.12% (429/751)
+Question 751 - CORRECT
+Running Accuracy: 57.18% (430/752)
+Question 752 - CORRECT
+Running Accuracy: 57.24% (431/753)
+Question 753 - CORRECT
+Running Accuracy: 57.29% (432/754)
+Question 754 - INCORRECT
+  - Gold: SELECT t1.name from country as t1 join countrylanguage as t2 on t1.code = t2.countrycode where t2.language = "english" and isofficial = "t" union select t1.name from country as t1 join countrylanguage as t2 on t1.code = t2.countrycode where t2.language = "dutch" and isofficial = "t"
+  - Pred: SELECT T2.Name FROM countrylanguage AS T1 JOIN country AS T2 ON T1.CountryCode = T2.Code WHERE (T1.Language = 'English' AND T1.IsOfficial = 'T') OR (T1.Language = 'Dutch' AND T1.IsOfficial = 'T')
+Running Accuracy: 57.22% (432/755)
+Question 755 - INCORRECT
+  - Gold: SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" AND IsOfficial = "T" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "Dutch" AND IsOfficial = "T"
+  - Pred: SELECT Name FROM country INNER JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE (Language = 'English' OR Language = 'Dutch') AND IsOfficial = 'T'
+Running Accuracy: 57.14% (432/756)
+Question 756 - CORRECT
+Running Accuracy: 57.20% (433/757)
+Question 757 - CORRECT
+Running Accuracy: 57.26% (434/758)
+Question 758 - INCORRECT
+  - Gold: SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.GovernmentForm = "Republic" GROUP BY T2.Language HAVING COUNT(*) = 1
+  - Pred: SELECT * FROM countrylanguage AS T3 WHERE T1.Language = T3.Language AND T3.CountryCode != T1.CountryCode)
+Running Accuracy: 57.18% (434/759)
+Question 759 - INCORRECT
+  - Gold: SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.GovernmentForm = "Republic" GROUP BY T2.Language HAVING COUNT(*) = 1
+  - Pred: SELECT Language FROM CountryLanguage GROUP BY Language HAVING COUNT(*) = 1 AND GovernmentForm = 'Republic'
+Running Accuracy: 57.11% (434/760)
+Question 760 - CORRECT
+Running Accuracy: 57.16% (435/761)
+Question 761 - CORRECT
+Running Accuracy: 57.22% (436/762)
+Question 762 - INCORRECT
+  - Gold: SELECT Name , Population , LifeExpectancy FROM country WHERE Continent = "Asia" ORDER BY SurfaceArea DESC LIMIT 1
+  - Pred: SELECT MAX(SurfaceArea) FROM Country WHERE Continent = 'Asia')
+Running Accuracy: 57.14% (436/763)
+Question 763 - CORRECT
+Running Accuracy: 57.20% (437/764)
+Question 764 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" AND T2.IsOfficial = "T")
+  - Pred: SELECT CountryCode FROM countrylanguage WHERE Language = 'English' AND IsOfficial = 'T' )
+Running Accuracy: 57.12% (437/765)
+Question 765 - INCORRECT
+  - Gold: SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English" AND T2.IsOfficial = "T")
+  - Pred: SELECT AVG(T1.LifeExpectancy) FROM country AS T1 LEFT JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language != "English" AND T2.IsOfficial = 'F'
+Running Accuracy: 57.05% (437/766)
+Question 766 - INCORRECT
+  - Gold: SELECT sum(Population) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English")
+  - Pred: SELECT COUNT(DISTINCT c.Name) FROM country AS c LEFT JOIN countrylanguage AS cl ON c.Code = cl.CountryCode WHERE NOT EXISTS ( SELECT * FROM countrylanguage WHERE CountryCode = c.Code AND Language = 'English' )
+Running Accuracy: 56.98% (437/767)
+Question 767 - INCORRECT
+  - Gold: SELECT sum(Population) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = "English")
+  - Pred: SELECT COUNT(DISTINCT c.Name) FROM city AS c LEFT JOIN countrylanguage AS cl ON c.CountryCode = cl.CountryCode WHERE cl.Language != 'English'
+Running Accuracy: 56.90% (437/768)
+Question 768 - CORRECT
+Running Accuracy: 56.96% (438/769)
+Question 769 - INCORRECT
+  - Gold: SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.HeadOfState = "Beatrix" AND T2.IsOfficial = "T"
+  - Pred: SELECT T1.Language FROM Country AS T1 JOIN Countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.HeadOfState = 'Beatrix' AND T2.IsOfficial = 'T'
+Running Accuracy: 56.88% (438/770)
+Question 770 - CORRECT
+Running Accuracy: 56.94% (439/771)
+Question 771 - CORRECT
+Running Accuracy: 56.99% (440/772)
+Question 772 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE SurfaceArea > (SELECT min(SurfaceArea) FROM country WHERE Continent = "Europe")
+  - Pred: SELECT MAX(SurfaceArea) FROM country WHERE Continent = 'Europe')
+Running Accuracy: 56.92% (440/773)
+Question 773 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE SurfaceArea > (SELECT min(SurfaceArea) FROM country WHERE Continent = "Europe")
+  - Pred: SELECT MAX(SurfaceArea) FROM country WHERE Continent = 'Europe')
+Running Accuracy: 56.85% (440/774)
+Question 774 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE Continent = "Africa" AND population < (SELECT max(population) FROM country WHERE Continent = "Asia")
+  - Pred: SELECT DISTINCT T1.Name FROM Country AS T1 JOIN CountryLanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = 'Africa' AND T1.Population < (SELECT MIN(T3.Population) FROM Country AS T4 JOIN CountryLanguage AS T5 ON T4.Code = T5.CountryCode WHERE T4.Continent = 'Asia')
+Running Accuracy: 56.77% (440/775)
+Question 775 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE Continent = "Africa" AND population < (SELECT min(population) FROM country WHERE Continent = "Asia")
+  - Pred: SELECT CountryCode, MAX(Population) as Population FROM city GROUP BY CountryCode) AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = "Africa" AND T2.Population < (SELECT MIN(Population) FROM city WHERE CountryCode IN (SELECT Code FROM country WHERE Continent = "Asia"))
+Running Accuracy: 56.70% (440/776)
+Question 776 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE Continent = "Asia" AND population > (SELECT max(population) FROM country WHERE Continent = "Africa")
+  - Pred: SELECT MAX(T3.Population) FROM city AS T4 JOIN country AS T3 ON T4.CountryCode = T3.Code WHERE T3.Continent = 'Africa')
+Running Accuracy: 56.63% (440/777)
+Question 777 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE Continent = "Asia" AND population > (SELECT min(population) FROM country WHERE Continent = "Africa")
+  - Pred: SELECT T3.Population FROM city AS T4 JOIN country AS T5 ON T4.CountryCode = T5.Code WHERE T5.Continent = 'Africa' )
+Running Accuracy: 56.56% (440/778)
+Question 778 - INCORRECT
+  - Gold: SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = "English"
+  - Pred: SELECT T1.Code FROM COUNTRY AS T1 LEFT JOIN COUNTRYLANGUAGE AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language != "English" OR T2.Language IS NULL
+Running Accuracy: 56.48% (440/779)
+Question 779 - INCORRECT
+  - Gold: SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = "English"
+  - Pred: SELECT T3.Code FROM Country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language != "English" AND T1.Continent != 'Asia'
+Running Accuracy: 56.41% (440/780)
+Question 780 - CORRECT
+Running Accuracy: 56.47% (441/781)
+Question 781 - CORRECT
+Running Accuracy: 56.52% (442/782)
+Question 782 - INCORRECT
+  - Gold: SELECT Code FROM country WHERE GovernmentForm != "Republic" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = "English"
+  - Pred: SELECT sql country.Code FROM country LEFT JOIN countrylanguage ON country.Code = countrylanguage.CountryCode AND language = 'English' WHERE IsOfficial != 'T' OR Language IS NULL
+Running Accuracy: 56.45% (442/783)
+Question 783 - INCORRECT
+  - Gold: SELECT Code FROM country WHERE GovernmentForm != "Republic" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = "English"
+  - Pred: SELECT CountryCode, Language FROM countrylanguage WHERE Language = 'English') AS T2 ON T1.Code = T2.CountryCode WHERE T1.GovernmentForm != "Republic" AND T2.CountryCode IS NULL
+Running Accuracy: 56.38% (442/784)
+Question 784 - INCORRECT
+  - Gold: SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode = T1.Code WHERE T1.Continent = 'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English')
+  - Pred: SELECT 1 FROM countrylanguage WHERE CountryCode = country.Code AND Language = 'English' AND IsOfficial = 'T' )
+Running Accuracy: 56.31% (442/785)
+Question 785 - INCORRECT
+  - Gold: SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode = T1.Code WHERE T1.Continent = 'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English')
+  - Pred: SELECT city.Name FROM city INNER JOIN country ON city.CountryCode = country.Code INNER JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE country.Continent = 'Europe' AND (countrylanguage.Language <> 'English' OR countrylanguage.IsOfficial = 'F')
+Running Accuracy: 56.23% (442/786)
+Question 786 - INCORRECT
+  - Gold: SELECT distinct t3.name from country as t1 join countrylanguage as t2 on t1.code = t2.countrycode join city as t3 on t1.code = t3.countrycode where t2.isofficial = 't' and t2.language = 'chinese' and t1.continent = "asia"
+  - Pred: SELECT * FROM countrylanguage WHERE CountryCode = country.Code AND Language = 'Chinese' AND IsOfficial = 'T')
+Running Accuracy: 56.16% (442/787)
+Question 787 - CORRECT
+Running Accuracy: 56.22% (443/788)
+Question 788 - CORRECT
+Running Accuracy: 56.27% (444/789)
+Question 789 - INCORRECT
+  - Gold: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1
+  - Pred: SELECT CountryCode FROM countrylanguage WHERE Language = 'English' GROUP BY CountryCode HAVING COUNT(Language) > 5) AS T2 ON T1.Code = T2.CountryCode ORDER BY T1.Population ASC LIMIT 1
+Running Accuracy: 56.20% (444/790)
+Question 790 - CORRECT
+Running Accuracy: 56.26% (445/791)
+Question 791 - CORRECT
+Running Accuracy: 56.31% (446/792)
+Question 792 - CORRECT
+Running Accuracy: 56.37% (447/793)
+Question 793 - CORRECT
+Running Accuracy: 56.42% (448/794)
+Question 794 - INCORRECT
+  - Gold: SELECT count(*) , District FROM city WHERE Population > (SELECT avg(Population) FROM city) GROUP BY District
+  - Pred: SELECT AVG(Population) FROM city)
+Running Accuracy: 56.35% (448/795)
+Question 795 - INCORRECT
+  - Gold: SELECT count(*) , District FROM city WHERE Population > (SELECT avg(Population) FROM city) GROUP BY District
+  - Pred: SELECT AVG(Population) FROM city) GROUP BY District
+Running Accuracy: 56.28% (448/796)
+Question 796 - CORRECT
+Running Accuracy: 56.34% (449/797)
+Question 797 - INCORRECT
+  - Gold: SELECT sum(Population) , GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy) > 72
+  - Pred: SELECT GovernmentForm, AVG(LifeExpectancy) as Avg_LE FROM country GROUP BY GovernmentForm ) AS GovtAvg ON GovtAvg.GovernmentForm = country.GovernmentForm WHERE GovtAvg.Avg_LE > 72 GROUP BY GovernmentForm
+Running Accuracy: 56.27% (449/798)
+Question 798 - CORRECT
+Running Accuracy: 56.32% (450/799)
+Question 799 - CORRECT
+Running Accuracy: 56.38% (451/800)
+Question 800 - CORRECT
+Running Accuracy: 56.43% (452/801)
+Question 801 - CORRECT
+Running Accuracy: 56.48% (453/802)
+Question 802 - INCORRECT
+  - Gold: SELECT Name FROM country ORDER BY Population DESC LIMIT 3
+  - Pred: SELECT CountryCode, SUM(Population) as Total_Population FROM city GROUP BY CountryCode) AS T2 ON T1.Code = T2.CountryCode ORDER BY T2.Total_Population DESC LIMIT 3
+Running Accuracy: 56.41% (453/803)
+Question 803 - INCORRECT
+  - Gold: SELECT Name FROM country ORDER BY Population DESC LIMIT 3
+  - Pred: SELECT T1.Name, T1.Population FROM country AS T1 ORDER BY T1.Population DESC LIMIT 3
+Running Accuracy: 56.34% (453/804)
+Question 804 - CORRECT
+Running Accuracy: 56.40% (454/805)
+Question 805 - INCORRECT
+  - Gold: SELECT Name FROM country ORDER BY Population ASC LIMIT 3
+  - Pred: SELECT MIN(Population) FROM country)
+Running Accuracy: 56.33% (454/806)
+Question 806 - CORRECT
+Running Accuracy: 56.38% (455/807)
+Question 807 - CORRECT
+Running Accuracy: 56.44% (456/808)
+Question 808 - CORRECT
+Running Accuracy: 56.49% (457/809)
+Question 809 - INCORRECT
+  - Gold: SELECT Name FROM country WHERE continent = "Europe" AND Population = "80000"
+  - Pred: SELECT T2.Name FROM country AS T1 JOIN continent AS T2 ON T1.Continent = T2.Continent WHERE T2.Continent = 'Europe' AND T1.Population = 80000
+Running Accuracy: 56.42% (457/810)
+Question 810 - INCORRECT
+  - Gold: SELECT sum(population) , avg(surfacearea) from country where continent = "north america" and surfacearea > 3000
+  - Pred: SELECT sum(T1.Population), avg(T1.SurfaceArea) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Continent = 'North America' AND T1.SurfaceArea > 3000
+Running Accuracy: 56.35% (457/811)
+Question 811 - INCORRECT
+  - Gold: SELECT sum(population) , avg(surfacearea) from country where continent = "north america" and surfacearea > 3000
+  - Pred: SELECT sum(T1.Population), avg(T1.SurfaceArea) FROM country AS T1 JOIN continent AS T2 ON T1.Continent = T2.Name WHERE T2.Region = 'North America' AND T1.SurfaceArea > 3000
+Running Accuracy: 56.28% (457/812)
+Question 812 - CORRECT
+Running Accuracy: 56.33% (458/813)
+Question 813 - CORRECT
+Running Accuracy: 56.39% (459/814)
+Question 814 - INCORRECT
+  - Gold: SELECT LANGUAGE FROM countrylanguage GROUP BY LANGUAGE ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT t1.Language, COUNT(*) as NumberOfCountries FROM countrylanguage AS t1 GROUP BY t1.Language ORDER BY NumberOfCountries DESC LIMIT 1
+Running Accuracy: 56.32% (459/815)
+Question 815 - INCORRECT
+  - Gold: SELECT LANGUAGE FROM countrylanguage GROUP BY LANGUAGE ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT t2.Language FROM countrylanguage AS t1 JOIN country AS t2 ON t1.CountryCode = t2.Code GROUP BY t2.Language ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 56.25% (459/816)
+Question 816 - INCORRECT
+  - Gold: SELECT LANGUAGE , CountryCode , max(Percentage) FROM countrylanguage GROUP BY CountryCode
+  - Pred: SELECT CountryCode, MAX(Percentage) FROM countrylanguage GROUP BY CountryCode ) ORDER BY t2.Percentage DESC
+Running Accuracy: 56.18% (459/817)
+Question 817 - INCORRECT
+  - Gold: SELECT LANGUAGE , CountryCode , max(Percentage) FROM countrylanguage GROUP BY CountryCode
+  - Pred: SELECT CountryCode, Language, MAX(Percentage) as Max_percentage FROM countrylanguage GROUP BY CountryCode ) AS T2 ON T1.Code = T2.CountryCode
+Running Accuracy: 56.11% (459/818)
+Question 818 - INCORRECT
+  - Gold: SELECT count(*) , max(Percentage) FROM countrylanguage WHERE LANGUAGE = "Spanish" GROUP BY CountryCode
+  - Pred: SELECT CountryCode, MAX(Percentage) as MaxPercentage FROM countrylanguage WHERE Language = 'Spanish' GROUP BY CountryCode) AS T2 ON T1.CountryCode = T2.CountryCode AND T1.Percentage = T2.MaxPercentage
+Running Accuracy: 56.04% (459/819)
+Question 819 - INCORRECT
+  - Gold: SELECT count(*) , max(Percentage) FROM countrylanguage WHERE LANGUAGE = "Spanish" GROUP BY CountryCode
+  - Pred: SELECT COUNT(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'Spanish' AND T2.IsOfficial = 'T'
+Running Accuracy: 55.98% (459/820)
+Question 820 - INCORRECT
+  - Gold: SELECT CountryCode , max(Percentage) FROM countrylanguage WHERE LANGUAGE = "Spanish" GROUP BY CountryCode
+  - Pred: SELECT MAX(T2.Percentage) FROM countrylanguage AS T2 WHERE T2.Language = 'Spanish' )
+Running Accuracy: 55.91% (459/821)
+Question 821 - INCORRECT
+  - Gold: SELECT CountryCode , max(Percentage) FROM countrylanguage WHERE LANGUAGE = "Spanish" GROUP BY CountryCode
+  - Pred: SELECT t1.CountryCode FROM countrylanguage AS t1 JOIN country AS t2 ON t1.CountryCode = t2.Code WHERE t1.Language = 'Spanish' AND t1.IsOfficial = 'T'
+Running Accuracy: 55.84% (459/822)
+Question 822 - CORRECT
+Running Accuracy: 55.89% (460/823)
+Question 823 - CORRECT
+Running Accuracy: 55.95% (461/824)
+Question 824 - CORRECT
+Running Accuracy: 56.00% (462/825)
+Question 825 - CORRECT
+Running Accuracy: 56.05% (463/826)
+Question 826 - CORRECT
+Running Accuracy: 56.11% (464/827)
+Question 827 - CORRECT
+Running Accuracy: 56.16% (465/828)
+Question 828 - CORRECT
+Running Accuracy: 56.21% (466/829)
+Question 829 - CORRECT
+Running Accuracy: 56.27% (467/830)
+Question 830 - CORRECT
+Running Accuracy: 56.32% (468/831)
+Question 831 - CORRECT
+Running Accuracy: 56.37% (469/832)
+Question 832 - INCORRECT
+  - Gold: SELECT max(SHARE) , min(SHARE) FROM performance WHERE TYPE != "Live final"
+  - Pred: SELECT MAX(T1.Share), MIN(T1.Share) FROM performance AS T1 JOIN show AS T2 ON T1.Performance_ID = T2.Performance_ID WHERE T1.Type != "Live final" AND T2.Result NOT LIKE "%cancelled%" AND T2.Result NOT LIKE "%postponed%"
+Running Accuracy: 56.30% (469/833)
+Question 833 - CORRECT
+Running Accuracy: 56.35% (470/834)
+Question 834 - CORRECT
+Running Accuracy: 56.41% (471/835)
+Question 835 - CORRECT
+Running Accuracy: 56.46% (472/836)
+Question 836 - CORRECT
+Running Accuracy: 56.51% (473/837)
+Question 837 - INCORRECT
+  - Gold: SELECT Name FROM conductor ORDER BY Year_of_Work DESC
+  - Pred: SELECT T1.Name, T1.Year_of_Work FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.Conductor_ID ORDER BY COUNT(T1.Year_of_Work) DESC
+Running Accuracy: 56.44% (473/838)
+Question 838 - CORRECT
+Running Accuracy: 56.50% (474/839)
+Question 839 - INCORRECT
+  - Gold: SELECT Name FROM conductor ORDER BY Year_of_Work DESC LIMIT 1
+  - Pred: SELECT T1."Name" FROM "conductor" AS T1 JOIN "orchestra" AS T2 ON T1."Conductor_ID" = T2."Conductor_ID" GROUP BY T1."Conductor_ID", T1."Name" ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 56.43% (474/840)
+Question 840 - CORRECT
+Running Accuracy: 56.48% (475/841)
+Question 841 - CORRECT
+Running Accuracy: 56.53% (476/842)
+Question 842 - CORRECT
+Running Accuracy: 56.58% (477/843)
+Question 843 - CORRECT
+Running Accuracy: 56.64% (478/844)
+Question 844 - CORRECT
+Running Accuracy: 56.69% (479/845)
+Question 845 - CORRECT
+Running Accuracy: 56.74% (480/846)
+Question 846 - CORRECT
+Running Accuracy: 56.79% (481/847)
+Question 847 - CORRECT
+Running Accuracy: 56.84% (482/848)
+Question 848 - CORRECT
+Running Accuracy: 56.89% (483/849)
+Question 849 - CORRECT
+Running Accuracy: 56.94% (484/850)
+Question 850 - CORRECT
+Running Accuracy: 56.99% (485/851)
+Question 851 - INCORRECT
+  - Gold: SELECT Major_Record_Format FROM orchestra GROUP BY Major_Record_Format ORDER BY COUNT(*) ASC
+  - Pred: SELECT Major_Record_Format FROM orchestra GROUP BY Major_Record_Format ORDER BY COUNT(*) DESC
+Running Accuracy: 56.92% (485/852)
+Question 852 - INCORRECT
+  - Gold: SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT Record_Company, COUNT(*) as NumberOfOrchestras FROM orchestra GROUP BY Record_Company ORDER BY NumberOfOrchestras DESC LIMIT 1
+Running Accuracy: 56.86% (485/853)
+Question 853 - INCORRECT
+  - Gold: SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1
+  - Pred: SELECT t1.Record_Company, COUNT(*) as num_orchestras FROM conductor t0 JOIN orchestra t1 ON t0.Conductor_ID = t1.Conductor_ID GROUP BY t1.Record_Company ORDER BY num_orchestras DESC LIMIT 1
+Running Accuracy: 56.79% (485/854)
+Question 854 - INCORRECT
+  - Gold: SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)
+  - Pred: SELECT Orchestra_ID FROM performance)
+Running Accuracy: 56.73% (485/855)
+Question 855 - INCORRECT
+  - Gold: SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)
+  - Pred: SELECT Orchestra_ID FROM performance)
+Running Accuracy: 56.66% (485/856)
+Question 856 - INCORRECT
+  - Gold: SELECT Record_Company FROM orchestra WHERE Year_of_Founded < 2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded > 2003
+  - Pred: SELECT record_company FROM orchestra WHERE year_of_founded < 2003 OR year_of_founded > 2003
+Running Accuracy: 56.59% (485/857)
+Question 857 - INCORRECT
+  - Gold: SELECT Record_Company FROM orchestra WHERE Year_of_Founded < 2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded > 2003
+  - Pred: SELECT DISTINCT T1.Record_Company FROM orchestra AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID WHERE T1.Year_of_Founded < 2003 AND T2.Year_of_Founded > 2003
+Running Accuracy: 56.53% (485/858)
+Question 858 - INCORRECT
+  - Gold: SELECT COUNT(*) FROM orchestra WHERE Major_Record_Format = "CD" OR Major_Record_Format = "DVD"
+  - Pred: SELECT count(*) FROM orchestra JOIN performance ON orchestra.Orchestra_ID = performance.Orchestra_ID WHERE performance.Major_Record_Format IN ('CD', 'DVD')
+Running Accuracy: 56.46% (485/859)
+Question 859 - CORRECT
+Running Accuracy: 56.51% (486/860)
+Question 860 - INCORRECT
+  - Gold: SELECT Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID = T2.Orchestra_ID GROUP BY T2.Orchestra_ID HAVING COUNT(*) > 1
+  - Pred: SELECT T1."Year_of_Founded" FROM "orchestra" AS T1 JOIN "performance" AS T2 ON T1."Orchestra_ID" = T2."Orchestra_ID" GROUP BY T1."Year_of_Founded" HAVING COUNT(T2."Performance_ID") > 1
+Running Accuracy: 56.45% (486/861)
+Question 861 - CORRECT
+Running Accuracy: 56.50% (487/862)
+Question 862 - CORRECT
+Running Accuracy: 56.55% (488/863)
+Question 863 - CORRECT
+Running Accuracy: 56.60% (489/864)
+Question 864 - CORRECT
+Running Accuracy: 56.65% (490/865)
+Question 865 - CORRECT
+Running Accuracy: 56.70% (491/866)
+Question 866 - CORRECT
+Running Accuracy: 56.75% (492/867)
+Question 867 - CORRECT
+Running Accuracy: 56.80% (493/868)
+Question 868 - CORRECT
+Running Accuracy: 56.85% (494/869)
+Question 869 - CORRECT
+Running Accuracy: 56.90% (495/870)
+Question 870 - CORRECT
+Running Accuracy: 56.95% (496/871)
+Question 871 - CORRECT
+Running Accuracy: 57.00% (497/872)
+Question 872 - CORRECT
+Running Accuracy: 57.04% (498/873)
+Question 873 - INCORRECT
+  - Gold: SELECT ID FROM Highschooler WHERE name = "Kyle"
+  - Pred: SELECT sql ID FROM Highschooler WHERE name = 'Kyle'
+Running Accuracy: 56.98% (498/874)
+Question 874 - CORRECT
+Running Accuracy: 57.03% (499/875)
+Question 875 - CORRECT
+Running Accuracy: 57.08% (500/876)
+Question 876 - CORRECT
+Running Accuracy: 57.13% (501/877)
+Question 877 - CORRECT
+Running Accuracy: 57.18% (502/878)
+Question 878 - CORRECT
+Running Accuracy: 57.22% (503/879)
+Question 879 - CORRECT
+Running Accuracy: 57.27% (504/880)
+Question 880 - CORRECT
+Running Accuracy: 57.32% (505/881)
+Question 881 - INCORRECT
+  - Gold: SELECT grade FROM Highschooler GROUP BY grade HAVING count(*) >= 4
+  - Pred: SELECT grade, COUNT(*) as num_students FROM Highschooler GROUP BY grade HAVING COUNT(*) >= 4
+Running Accuracy: 57.26% (505/882)
+Question 882 - CORRECT
+Running Accuracy: 57.30% (506/883)
+Question 883 - INCORRECT
+  - Gold: SELECT student_id , count(*) FROM Friend GROUP BY student_id
+  - Pred: SELECT Highschooler.name, COUNT(Friend.friend_id) as num_friends FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id GROUP BY Highschooler.ID
+Running Accuracy: 57.24% (506/884)
+Question 884 - INCORRECT
+  - Gold: SELECT T2.name , count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id
+  - Pred: SELECT Highschooler.name, COUNT(Friend.friend_id) as num_of_friends FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id GROUP BY Highschooler.ID
+Running Accuracy: 57.18% (506/885)
+Question 885 - INCORRECT
+  - Gold: SELECT T2.name , count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id
+  - Pred: SELECT Highschooler.name, COUNT(Friend.friend_id) AS num_friends FROM Highschooler LEFT JOIN Friend ON Highschooler.ID = Friend.student_id GROUP BY Highschooler.ID
+Running Accuracy: 57.11% (506/886)
+Question 886 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Highschooler.name FROM Friend GROUP BY Highschooler.ID ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 57.05% (506/887)
+Question 887 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Highschooler.name, COUNT(Friend.friend_id) as num_friends FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id GROUP BY Highschooler.name ORDER BY num_friends DESC LIMIT 1
+Running Accuracy: 56.98% (506/888)
+Question 888 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id HAVING count(*) >= 3
+  - Pred: SELECT Highschooler.name FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id GROUP BY Highschooler.name HAVING COUNT(*) >= 3
+Running Accuracy: 56.92% (506/889)
+Question 889 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id HAVING count(*) >= 3
+  - Pred: SELECT Highschooler.name FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id GROUP BY Highschooler.ID HAVING COUNT(*) >= 3
+Running Accuracy: 56.85% (506/890)
+Question 890 - INCORRECT
+  - Gold: SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id JOIN Highschooler AS T3 ON T1.friend_id = T3.id WHERE T2.name = "Kyle"
+  - Pred: SELECT Highschooler.name FROM Friend JOIN Highschooler ON Friend.friend_id = Highschooler.ID WHERE Highschooler.name = 'Kyle'
+Running Accuracy: 56.79% (506/891)
+Question 891 - INCORRECT
+  - Gold: SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id JOIN Highschooler AS T3 ON T1.friend_id = T3.id WHERE T2.name = "Kyle"
+  - Pred: SELECT Highschooler.name FROM Friend JOIN Highschooler ON Highschooler.ID = Friend.friend_id WHERE Highschooler.name = 'Kyle'
+Running Accuracy: 56.73% (506/892)
+Question 892 - INCORRECT
+  - Gold: SELECT count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.name = "Kyle"
+  - Pred: SELECT COUNT(*) FROM (Highschooler AS T1 JOIN Friend AS T2 ON T1.ID = T2.student_id OR T1.ID = T2.friend_id) WHERE T1.name = 'Kyle'
+Running Accuracy: 56.66% (506/893)
+Question 893 - INCORRECT
+  - Gold: SELECT count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.name = "Kyle"
+  - Pred: SELECT ID FROM Highschooler WHERE name = 'Kyle')
+Running Accuracy: 56.60% (506/894)
+Question 894 - CORRECT
+Running Accuracy: 56.65% (507/895)
+Question 895 - INCORRECT
+  - Gold: SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend
+  - Pred: SELECT Highschooler.ID FROM Highschooler LEFT JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id WHERE Friend.student_id IS NULL
+Running Accuracy: 56.58% (507/896)
+Question 896 - CORRECT
+Running Accuracy: 56.63% (508/897)
+Question 897 - INCORRECT
+  - Gold: SELECT name FROM Highschooler EXCEPT SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id
+  - Pred: SELECT student_id FROM Friend)
+Running Accuracy: 56.57% (508/898)
+Question 898 - INCORRECT
+  - Gold: SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes
+  - Pred: SELECT Highschooler.ID FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id JOIN Likes ON Highschooler.ID = Likes.liked_id WHERE Friend.friend_id = Likes.student_id
+Running Accuracy: 56.51% (508/899)
+Question 899 - INCORRECT
+  - Gold: SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes
+  - Pred: SELECT Likes.student_id FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id AND Highschooler.name = 'Gabriel' JOIN Likes ON Highschooler.ID = Likes.liked_id
+Running Accuracy: 56.44% (508/900)
+Question 900 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id = T2.id
+  - Pred: SELECT Friend.student_id, COUNT(*) as friend_count FROM Friend GROUP BY Friend.student_id) AS F1 JOIN (SELECT Likes.student_id, COUNT(*) as like_count FROM Likes GROUP BY Likes.student_id) AS F2 ON F1.student_id = F2.student_id JOIN Highschooler ON F1.student_id = Highschooler.ID WHERE F1.friend_count > 0 AND F2.like_count > 0
+Running Accuracy: 56.38% (508/901)
+Question 901 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id = T2.id
+  - Pred: SELECT Highschooler.name FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id JOIN Likes ON Highschooler.ID = Likes.liked_id AND Friend.friend_id = Likes.student_id
+Running Accuracy: 56.32% (508/902)
+Question 902 - CORRECT
+Running Accuracy: 56.37% (509/903)
+Question 903 - CORRECT
+Running Accuracy: 56.42% (510/904)
+Question 904 - INCORRECT
+  - Gold: SELECT T2.name , count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id
+  - Pred: SELECT Highschooler.name, COUNT(Likes.liked_id) AS num_likes FROM Highschooler JOIN Likes ON Highschooler.ID = Likes.student_id GROUP BY Highschooler.name
+Running Accuracy: 56.35% (510/905)
+Question 905 - INCORRECT
+  - Gold: SELECT T2.name , count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id
+  - Pred: SELECT Highschooler.name, COUNT(Likes.liked_id) AS num_likes FROM Highschooler JOIN Likes ON Highschooler.ID = Likes.student_id GROUP BY Highschooler.name
+Running Accuracy: 56.29% (510/906)
+Question 906 - INCORRECT
+  - Gold: SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT Highschooler.name FROM Likes JOIN Highschooler ON Likes.liked_id = Highschooler.ID GROUP BY Likes.student_id ORDER BY COUNT(*) DESC LIMIT 1
+Running Accuracy: 56.23% (510/907)
+Question 907 - CORRECT
+Running Accuracy: 56.28% (511/908)
+Question 908 - CORRECT
+Running Accuracy: 56.33% (512/909)
+Question 909 - CORRECT
+Running Accuracy: 56.37% (513/910)
+Question 910 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.grade > 5 GROUP BY T1.student_id HAVING count(*) >= 2
+  - Pred: SELECT student_id, COUNT(*) as friend_count FROM Friend GROUP BY student_id) AS FriendsCount ON Highschooler.ID = FriendsCount.student_id WHERE Highschooler.grade > 5 AND FriendsCount.friend_count >= 2
+Running Accuracy: 56.31% (513/911)
+Question 911 - INCORRECT
+  - Gold: SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.grade > 5 GROUP BY T1.student_id HAVING count(*) >= 2
+  - Pred: SELECT student_id, COUNT(*) as friend_count FROM Friend GROUP BY student_id) AS F ON Highschooler.ID = F.student_id WHERE Highschooler.grade > 5 AND F.friend_count >= 2
+Running Accuracy: 56.25% (513/912)
+Question 912 - CORRECT
+Running Accuracy: 56.30% (514/913)
+Question 913 - INCORRECT
+  - Gold: SELECT count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.name = "Kyle"
+  - Pred: SELECT ID FROM Highschooler WHERE name = 'Kyle')
+Running Accuracy: 56.24% (514/914)
+Question 914 - INCORRECT
+  - Gold: SELECT avg(grade) FROM Highschooler WHERE id IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id)
+  - Pred: SELECT avg(Highschooler.grade) as avg_grade FROM Highschooler JOIN Friend ON Highschooler.ID = Friend.student_id OR Highschooler.ID = Friend.friend_id
+Running Accuracy: 56.17% (514/915)
+Question 915 - INCORRECT
+  - Gold: SELECT avg(grade) FROM Highschooler WHERE id IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id)
+  - Pred: SELECT avg(H.grade) as avg_grade FROM Highschooler H, Friend F WHERE H.ID = F.student_id OR H.ID = F.friend_id
+Running Accuracy: 56.11% (514/916)
+Question 916 - INCORRECT
+  - Gold: SELECT min(grade) FROM Highschooler WHERE id NOT IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id)
+  - Pred: SELECT student_id FROM Friend)
+Running Accuracy: 56.05% (514/917)
+Question 917 - INCORRECT
+  - Gold: SELECT min(grade) FROM Highschooler WHERE id NOT IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id)
+  - Pred: SELECT student_id FROM Friend)
+Running Accuracy: 55.99% (514/918)
+Question 918 - INCORRECT
+  - Gold: SELECT state FROM Owners INTERSECT SELECT state FROM Professionals
+  - Pred: SELECT state FROM Professionals
+Running Accuracy: 55.93% (514/919)
+Question 919 - INCORRECT
+  - Gold: SELECT state FROM Owners INTERSECT SELECT state FROM Professionals
+  - Pred: SELECT state FROM Professionals
+Running Accuracy: 55.87% (514/920)
+Question 920 - INCORRECT
+  - Gold: SELECT avg(age) FROM Dogs WHERE dog_id IN ( SELECT dog_id FROM Treatments )
+  - Pred: SELECT dog_id FROM Treatments)
+Running Accuracy: 55.81% (514/921)
+Question 921 - INCORRECT
+  - Gold: SELECT avg(age) FROM Dogs WHERE dog_id IN ( SELECT dog_id FROM Treatments )
+  - Pred: SELECT dog_id FROM Treatments)
+Running Accuracy: 55.75% (514/922)
+Question 922 - INCORRECT
+  - Gold: SELECT professional_id , last_name , cell_number FROM Professionals WHERE state = 'Indiana' UNION SELECT T1.professional_id , T1.last_name , T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) > 2
+  - Pred: SELECT professional_id FROM Treatments GROUP BY professional_id HAVING COUNT(treatment_id) > 2 )
+Running Accuracy: 55.69% (514/923)
+Question 923 - INCORRECT
+  - Gold: SELECT professional_id , last_name , cell_number FROM Professionals WHERE state = 'Indiana' UNION SELECT T1.professional_id , T1.last_name , T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) > 2
+  - Pred: SELECT professional_id, COUNT(*) as treatment_count FROM Treatments GROUP BY professional_id) AS T2 ON T1.professional_id = T2.professional_id WHERE T1.state = 'Indiana' OR T2.treatment_count > 2
+Running Accuracy: 55.63% (514/924)
+Question 924 - INCORRECT
+  - Gold: SELECT name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment) > 1000 )
+  - Pred: SELECT sql T2.name FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T2.cost_of_treatment <= 1000
+Running Accuracy: 55.57% (514/925)
+Question 925 - INCORRECT
+  - Gold: SELECT name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment) > 1000 )
+  - Pred: SELECT T1.name FROM Dogs AS T1 JOIN Owners AS T2 ON T1.owner_id = T2.owner_id JOIN Treatments AS T3 ON T1.dog_id = T3.dog_id WHERE T3.cost_of_treatment <= 1000
+Running Accuracy: 55.51% (514/926)
+Question 926 - INCORRECT
+  - Gold: SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs
+  - Pred: SELECT name FROM Dogs) UNION SELECT first_name FROM Professionals WHERE first_name NOT IN (SELECT name FROM Dogs)
+Running Accuracy: 55.45% (514/927)
+Question 927 - INCORRECT
+  - Gold: SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs
+  - Pred: SELECT name FROM Dogs) UNION SELECT first_name FROM Professionals WHERE first_name NOT IN (SELECT name FROM Dogs)
+Running Accuracy: 55.39% (514/928)
+Question 928 - CORRECT
+Running Accuracy: 55.44% (515/929)
+Question 929 - INCORRECT
+  - Gold: SELECT professional_id , role_code , email_address FROM Professionals EXCEPT SELECT T1.professional_id , T1.role_code , T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id
+  - Pred: SELECT professional_id FROM Treatments)
+Running Accuracy: 55.38% (515/930)
+Question 930 - CORRECT
+Running Accuracy: 55.42% (516/931)
+Question 931 - CORRECT
+Running Accuracy: 55.47% (517/932)
+Question 932 - CORRECT
+Running Accuracy: 55.52% (518/933)
+Question 933 - INCORRECT
+  - Gold: SELECT T1.professional_id , T1.role_code , T1.first_name FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) >= 2
+  - Pred: SELECT T1.professional_id AS 'ID', T2.role_code AS 'Role', T1.first_name AS 'First Name' FROM Treatments AS T1 JOIN Professionals AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) >= 2
+Running Accuracy: 55.46% (518/934)
+Question 934 - INCORRECT
+  - Gold: SELECT T1.breed_name FROM Breeds AS T1 JOIN Dogs AS T2 ON T1.breed_code = T2.breed_code GROUP BY T1.breed_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT b.breed_name, COUNT(d.dog_id) as dog_count FROM Breeds b JOIN Dogs d ON b.breed_code = d.breed_code GROUP BY b.breed_name ORDER BY dog_count DESC LIMIT 1
+Running Accuracy: 55.40% (518/935)
+Question 935 - INCORRECT
+  - Gold: SELECT T1.breed_name FROM Breeds AS T1 JOIN Dogs AS T2 ON T1.breed_code = T2.breed_code GROUP BY T1.breed_name ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT b.breed_name, COUNT(*) as dog_count FROM Breeds b JOIN Dogs d ON b.breed_code = d.breed_code GROUP BY b.breed_name ORDER BY dog_count DESC LIMIT 1
+Running Accuracy: 55.34% (518/936)
+Question 936 - INCORRECT
+  - Gold: SELECT T1.owner_id , T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.owner_id, T2.last_name FROM Owners AS T1 JOIN Dogs AS T3 ON T1.owner_id = T3.owner_id JOIN Treatments AS T4 ON T3.dog_id = T4.dog_id GROUP BY T1.owner_id ORDER BY COUNT(T4.treatment_id) DESC LIMIT 1
+Running Accuracy: 55.28% (518/937)
+Question 937 - INCORRECT
+  - Gold: SELECT T1.owner_id , T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1
+  - Pred: SELECT T1.owner_id, T2.last_name FROM Owners AS T1 JOIN Treatments AS T3 ON T1.owner_id = T3.professional_id JOIN Professionals AS T2 ON T2.professional_id = T3.professional_id GROUP BY T1.owner_id ORDER BY sum(T3.cost_of_treatment) DESC LIMIT 1
+Running Accuracy: 55.22% (518/938)
+Question 938 - INCORRECT
+  - Gold: SELECT T1.treatment_type_description FROM Treatment_types AS T1 JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(cost_of_treatment) ASC LIMIT 1
+  - Pred: SELECT treatment_type_description, charge_amount FROM Treatment_Types AS t1 JOIN Charges AS t2 ON t1.treatment_type_code = t2.charge_id
+Running Accuracy: 55.17% (518/939)
+Question 939 - INCORRECT
+  - Gold: SELECT T1.treatment_type_description FROM Treatment_types AS T1 JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(cost_of_treatment) ASC LIMIT 1
+  - Pred: SELECT treatment_type_description, SUM(cost_of_treatment) as TotalCost FROM Treatments JOIN Treatment_Types ON Treatments.treatment_type_code = Treatment_Types.treatment_type_code GROUP BY treatment_type_description ORDER BY TotalCost ASC LIMIT 1
+Running Accuracy: 55.11% (518/940)
+Question 940 - CORRECT
+Running Accuracy: 55.15% (519/941)
+Question 941 - CORRECT
+Running Accuracy: 55.20% (520/942)
+Question 942 - CORRECT
+Running Accuracy: 55.25% (521/943)
+Question 943 - INCORRECT
+  - Gold: SELECT T1.professional_id , T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) >= 2
+  - Pred: SELECT professional_id FROM Treatments GROUP BY professional_id HAVING COUNT(DISTINCT treatment_type_code) >= 2 ) AS professionals_with_multiple_treatment_types ON professionals.professional_id = professionals_with_multiple_treatment_types.professional_id
+Running Accuracy: 55.19% (521/944)
+Question 944 - INCORRECT
+  - Gold: SELECT DISTINCT T1.first_name , T1.last_name FROM Professionals AS T1 JOIN Treatments AS T2 WHERE cost_of_treatment < ( SELECT avg(cost_of_treatment) FROM Treatments )
+  - Pred: SELECT professional_id FROM Treatments WHERE cost_of_treatment < ( SELECT AVG(cost_of_treatment) FROM Treatments ) )
+Running Accuracy: 55.13% (521/945)
+Question 945 - INCORRECT
+  - Gold: SELECT DISTINCT T1.first_name , T1.last_name FROM Professionals AS T1 JOIN Treatments AS T2 WHERE cost_of_treatment < ( SELECT avg(cost_of_treatment) FROM Treatments )
+  - Pred: SELECT AVG(cost_of_treatment) FROM Treatments)
+Running Accuracy: 55.07% (521/946)
+Question 946 - CORRECT
+Running Accuracy: 55.12% (522/947)
+Question 947 - CORRECT
+Running Accuracy: 55.17% (523/948)
+Question 948 - INCORRECT
+  - Gold: SELECT T1.cost_of_treatment , T2.treatment_type_description FROM Treatments AS T1 JOIN treatment_types AS T2 ON T1.treatment_type_code = T2.treatment_type_code
+  - Pred: SELECT T1.charge_amount, T2.treatment_type_description FROM Charges AS T1 JOIN Treatments AS T2 ON T1.charge_id = T2.cost_of_treatment
+Running Accuracy: 55.11% (523/949)
+Question 949 - CORRECT
+Running Accuracy: 55.16% (524/950)
+Question 950 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.last_name , T2.size_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id
+  - Pred: SELECT T1.first_name, T1.last_name, T2.size_description FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id JOIN Sizes AS T3 ON T2.size_code = T3.size_code
+Running Accuracy: 55.10% (524/951)
+Question 951 - INCORRECT
+  - Gold: SELECT T1.first_name , T1.last_name , T2.size_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id
+  - Pred: SELECT T1.first_name, T1.last_name, T2.size_description FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id JOIN Sizes AS T3 ON T2.size_code = T3.size_code
+Running Accuracy: 55.04% (524/952)
+Question 952 - CORRECT
+Running Accuracy: 55.09% (525/953)
+Question 953 - CORRECT
+Running Accuracy: 55.14% (526/954)
+Question 954 - INCORRECT
+  - Gold: SELECT T1.name , T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )
+  - Pred: SELECT b1.breed_code FROM Breeds b1 LEFT JOIN Dogs d1 ON b1.breed_code = d1.breed_code WHERE d1.dog_id IS NULL ) ORDER BY t.date_of_treatment DESC LIMIT 1
+Running Accuracy: 55.08% (526/955)
+Question 955 - INCORRECT
+  - Gold: SELECT T1.name , T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )
+  - Pred: SELECT b1.breed_code FROM Breeds b1 LEFT JOIN Dogs d1 ON b1.breed_code = d1.breed_code WHERE d1.dog_id IS NULL ) ORDER BY t.date_of_treatment DESC
+Running Accuracy: 55.02% (526/956)
+Question 956 - INCORRECT
+  - Gold: SELECT T1.first_name , T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T1.state = 'Virginia'
+  - Pred: SELECT O.first_name, D.name FROM Owners O JOIN Dogs D ON O.owner_id = D.owner_id WHERE O.state = 'VA'
+Running Accuracy: 54.96% (526/957)
+Question 957 - INCORRECT
+  - Gold: SELECT T1.first_name , T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T1.state = 'Virginia'
+  - Pred: SELECT T1.first_name, T3.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id JOIN Treatments AS T4 ON T2.dog_id = T4.dog_id JOIN Professionals AS T5 ON T4.professional_id = T5.professional_id JOIN Dogs AS T3 ON T1.dog_id = T3.dog_id WHERE T1.state = 'Virginia'
+Running Accuracy: 54.91% (526/958)
+Question 958 - CORRECT
+Running Accuracy: 54.95% (527/959)
+Question 959 - CORRECT
+Running Accuracy: 55.00% (528/960)
+Question 960 - INCORRECT
+  - Gold: SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T2.age = ( SELECT max(age) FROM Dogs )
+  - Pred: SELECT t1.last_name FROM Owners AS t1 JOIN Dogs AS t2 ON t1.owner_id = t2.owner_id ORDER BY t2.date_of_birth DESC LIMIT 1
+Running Accuracy: 54.94% (528/961)
+Question 961 - INCORRECT
+  - Gold: SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T2.age = ( SELECT max(age) FROM Dogs )
+  - Pred: SELECT owners.last_name FROM owners JOIN dogs ON owners.owner_id = dogs.owner_id ORDER BY dogs.date_of_birth DESC LIMIT 1
+Running Accuracy: 54.89% (528/962)
+Question 962 - INCORRECT
+  - Gold: SELECT email_address FROM Professionals WHERE state = 'Hawaii' OR state = 'Wisconsin'
+  - Pred: SELECT T1.email_address FROM Professionals AS T1 JOIN Owners AS T2 ON T1.professional_id = T2.owner_id WHERE T2.state IN ('HI', 'WI')
+Running Accuracy: 54.83% (528/963)
+Question 963 - INCORRECT
+  - Gold: SELECT email_address FROM Professionals WHERE state = 'Hawaii' OR state = 'Wisconsin'
+  - Pred: SELECT email_address FROM Professionals WHERE state = 'HI' OR state = 'WI'
+Running Accuracy: 54.77% (528/964)
+Question 964 - CORRECT
+Running Accuracy: 54.82% (529/965)
+Question 965 - CORRECT
+Running Accuracy: 54.87% (530/966)
+Question 966 - INCORRECT
+  - Gold: SELECT count(DISTINCT dog_id) FROM Treatments
+  - Pred: SELECT dog_id FROM Treatments)
+Running Accuracy: 54.81% (530/967)
+Question 967 - CORRECT
+Running Accuracy: 54.86% (531/968)
+Question 968 - CORRECT
+Running Accuracy: 54.90% (532/969)
+Question 969 - CORRECT
+Running Accuracy: 54.95% (533/970)
+Question 970 - CORRECT
+Running Accuracy: 54.99% (534/971)
+Question 971 - CORRECT
+Running Accuracy: 55.04% (535/972)
+Question 972 - CORRECT
+Running Accuracy: 55.09% (536/973)
+Question 973 - CORRECT
+Running Accuracy: 55.13% (537/974)
+Question 974 - CORRECT
+Running Accuracy: 55.18% (538/975)
+Question 975 - INCORRECT
+  - Gold: SELECT count(*) FROM Dogs WHERE age < ( SELECT avg(age) FROM Dogs )
+  - Pred: SELECT AVG(age) FROM Dogs)
+Running Accuracy: 55.12% (538/976)
+Question 976 - INCORRECT
+  - Gold: SELECT cost_of_treatment FROM Treatments ORDER BY date_of_treatment DESC LIMIT 1
+  - Pred: SELECT MAX(date_of_treatment) FROM Treatments)
+Running Accuracy: 55.07% (538/977)
+Question 977 - CORRECT
+Running Accuracy: 55.11% (539/978)
+Question 978 - INCORRECT
+  - Gold: SELECT count(*) FROM Dogs WHERE dog_id NOT IN ( SELECT dog_id FROM Treatments )
+  - Pred: SELECT DISTINCT dog_id FROM Treatments)
+Running Accuracy: 55.06% (539/979)
+Question 979 - INCORRECT
+  - Gold: SELECT count(*) from dogs where dog_id not in ( select dog_id from treatments )
+  - Pred: SELECT dog_id FROM Treatments)
+Running Accuracy: 55.00% (539/980)
+Question 980 - INCORRECT
+  - Gold: SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )
+  - Pred: SELECT owner_id FROM Dogs WHERE abandoned_yn = 'Y')
+Running Accuracy: 54.94% (539/981)
+Question 981 - INCORRECT
+  - Gold: SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )
+  - Pred: SELECT owner_id FROM Dogs WHERE date_departed IS NULL)
+Running Accuracy: 54.89% (539/982)
+Question 982 - INCORRECT
+  - Gold: SELECT count(*) FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments )
+  - Pred: SELECT professional_id FROM Treatments)
+Running Accuracy: 54.83% (539/983)
+Question 983 - INCORRECT
+  - Gold: SELECT count(*) FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments )
+  - Pred: SELECT professional_id FROM Treatments)
+Running Accuracy: 54.78% (539/984)
+Question 984 - CORRECT
+Running Accuracy: 54.82% (540/985)
+Question 985 - CORRECT
+Running Accuracy: 54.87% (541/986)
+Question 986 - CORRECT
+Running Accuracy: 54.91% (542/987)
+Question 987 - CORRECT
+Running Accuracy: 54.96% (543/988)
+Question 988 - CORRECT
+Running Accuracy: 55.01% (544/989)
+Question 989 - CORRECT
+Running Accuracy: 55.05% (545/990)
+Question 990 - CORRECT
+Running Accuracy: 55.10% (546/991)
+Question 991 - CORRECT
+Running Accuracy: 55.14% (547/992)
+Question 992 - CORRECT
+Running Accuracy: 55.19% (548/993)
+Question 993 - CORRECT
+Running Accuracy: 55.23% (549/994)
+Question 994 - CORRECT
+Running Accuracy: 55.28% (550/995)
+Question 995 - CORRECT
+Running Accuracy: 55.32% (551/996)
+Question 996 - INCORRECT
+  - Gold: SELECT DISTINCT breed_code , size_code FROM dogs
+  - Pred: SELECT It seems like you're trying to create a SQL query that will return all possible breed-size combinations. However, your question is incomplete. Could you please provide more details or clarify what exactly you want to achieve with this query? Are you looking for the combination of Breeds and Sizes in the Dogs table, or something else?
+Running Accuracy: 55.27% (551/997)
+Question 997 - INCORRECT
+  - Gold: SELECT DISTINCT breed_code , size_code FROM dogs
+  - Pred: SELECT DISTINCT b.breed_name, s.size_description FROM Dogs d JOIN Breeds b ON d.breed_code = b.breed_code JOIN Sizes s ON d.size_code = s.size_code
+Running Accuracy: 55.21% (551/998)
+Question 998 - CORRECT
+Running Accuracy: 55.26% (552/999)
+Question 999 - CORRECT
+Running Accuracy: 55.30% (553/1000)
+Question 1000 - CORRECT
+Running Accuracy: 55.34% (554/1001)
+Question 1001 - CORRECT
+Running Accuracy: 55.39% (555/1002)
+Question 1002 - CORRECT
+Running Accuracy: 55.43% (556/1003)
+Question 1003 - CORRECT
+Running Accuracy: 55.48% (557/1004)
+Question 1004 - CORRECT
+Running Accuracy: 55.52% (558/1005)
+Question 1005 - CORRECT
+Running Accuracy: 55.57% (559/1006)
+Question 1006 - CORRECT
+Running Accuracy: 55.61% (560/1007)
+Question 1007 - INCORRECT
+  - Gold: SELECT Name FROM singer WHERE Citizenship != "France"
+  - Pred: SELECT Name FROM singer WHERE Citizenship != 'French'
+Running Accuracy: 55.56% (560/1008)
+Question 1008 - CORRECT
+Running Accuracy: 55.60% (561/1009)
+Question 1009 - CORRECT
+Running Accuracy: 55.64% (562/1010)
+Question 1010 - CORRECT
+Running Accuracy: 55.69% (563/1011)
+Question 1011 - CORRECT
+Running Accuracy: 55.73% (564/1012)
+Question 1012 - CORRECT
+Running Accuracy: 55.77% (565/1013)
+Question 1013 - CORRECT
+Running Accuracy: 55.82% (566/1014)
+Question 1014 - CORRECT
+Running Accuracy: 55.86% (567/1015)
+Question 1015 - INCORRECT
+  - Gold: SELECT citizenship from singer group by citizenship order by count(*) desc limit 1
+  - Pred: SELECT Citizenship, COUNT(*) FROM singer GROUP BY Citizenship ORDER BY count(*) DESC LIMIT 1
+Running Accuracy: 55.81% (567/1016)
+Question 1016 - CORRECT
+Running Accuracy: 55.85% (568/1017)
+Question 1017 - CORRECT
+Running Accuracy: 55.89% (569/1018)
+Question 1018 - CORRECT
+Running Accuracy: 55.94% (570/1019)
+Question 1019 - CORRECT
+Running Accuracy: 55.98% (571/1020)
+Question 1020 - CORRECT
+Running Accuracy: 56.02% (572/1021)
+Question 1021 - CORRECT
+Running Accuracy: 56.07% (573/1022)
+Question 1022 - CORRECT
+Running Accuracy: 56.11% (574/1023)
+Question 1023 - CORRECT
+Running Accuracy: 56.15% (575/1024)
+Question 1024 - INCORRECT
+  - Gold: SELECT T1.Name , sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID = T2.Singer_ID GROUP BY T1.Name
+  - Pred: SELECT s.Name, SUM(s.Sales) as Total_Sales FROM singer s JOIN song so ON s.Singer_ID = so.Singer_ID GROUP BY s.Singer_ID
+Running Accuracy: 56.10% (575/1025)
+Question 1025 - INCORRECT
+  - Gold: SELECT T1.Name , sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID = T2.Singer_ID GROUP BY T1.Name
+  - Pred: SELECT s.Name, SUM(s.Sales) as Total_Sales FROM singer s JOIN song so ON s.Singer_ID = so.Singer_ID GROUP BY s.Name
+Running Accuracy: 56.04% (575/1026)
+Question 1026 - INCORRECT
+  - Gold: SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)
+  - Pred: SELECT Singer_ID FROM song)
+Running Accuracy: 55.99% (575/1027)
+Question 1027 - INCORRECT
+  - Gold: SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)
+  - Pred: SELECT Singer_ID FROM song)
+Running Accuracy: 55.93% (575/1028)
+Question 1028 - INCORRECT
+  - Gold: SELECT Citizenship FROM singer WHERE Birth_Year < 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955
+  - Pred: SELECT Citizenship FROM singer WHERE Birth_Year > 1955
+Running Accuracy: 55.88% (575/1029)
+Question 1029 - INCORRECT
+  - Gold: SELECT Citizenship FROM singer WHERE Birth_Year < 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955
+  - Pred: SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+Running Accuracy: 55.83% (575/1030)
+Question 1030 - CORRECT
+Running Accuracy: 55.87% (576/1031)
+Question 1031 - INCORRECT
+  - Gold: SELECT T2.feature_type_name FROM Other_Available_Features AS T1 JOIN Ref_Feature_Types AS T2 ON T1.feature_type_code = T2.feature_type_code WHERE T1.feature_name = "AirCon"
+  - Pred: SELECT T1.feature_type_name FROM Other_Available_Features AS T1 JOIN Ref_Feature_Types AS T2 ON T1.feature_type_code = T2.feature_type_code WHERE T1.feature_name = "AirCon"
+Running Accuracy: 55.81% (576/1032)
+Question 1032 - INCORRECT
+  - Gold: SELECT T2.property_type_description FROM Properties AS T1 JOIN Ref_Property_Types AS T2 ON T1.property_type_code = T2.property_type_code GROUP BY T1.property_type_code
+  - Pred: SELECT Ref_Property_Types.property_type_description, COUNT(*) as number_of_properties FROM Properties JOIN Ref_Property_Types ON Properties.property_type_code = Ref_Property_Types.property_type_code GROUP BY Properties.property_type_code
+Running Accuracy: 55.76% (576/1033)
+Question 1033 - INCORRECT
+  - Gold: SELECT property_name FROM Properties WHERE property_type_code = "House" UNION SELECT property_name FROM Properties WHERE property_type_code = "Apartment" AND room_count > 1
+  - Pred: SELECT sql property_name FROM Properties WHERE (property_type_code = 'HOU' AND room_count > 1) OR property_type_code = 'APT'
+Running Accuracy: 55.71% (576/1034)
+
+====================
+      FINAL RESULTS      
+====================
+Total Questions Evaluated: 1034
+Correct Predictions: 576
+Final Execution Accuracy: 55.71%
