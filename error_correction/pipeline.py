@@ -1198,8 +1198,12 @@ class ErrorCorrectionPipeline:
         validated_clusters = []
 
         for cluster in clusters:
-            # Get the rule for this cluster
-            rule = cluster.rule
+            # Get the combined rule for this cluster
+            rule = cluster.combined_rule
+            if not rule:
+                logger.warning(f"Cluster {cluster.cluster_id} has no combined rule, skipping")
+                continue
+
             passed_count = 0
             false_positives = 0
             total = 0
