@@ -3,3 +3,4 @@ third_party/
 .env
 vector_cache/
 img/
+dataset/process/SPIDER-TEST_SQL_3-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-200_ANS-4096
