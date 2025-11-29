@@ -50,7 +50,21 @@ if __name__ == '__main__':
            args.model not in LLM.BATCH_FORWARD and args.batch_size == 1, \
         f"{args.model} doesn't support batch_size > 1"
 
-    questions_json = json.load(open(os.path.join(args.question, QUESTION_FILE), "r"))
+    # Find the questions.json file - check if it's directly in args.question or in a subdirectory
+    question_file_path = os.path.normpath(os.path.join(args.question, QUESTION_FILE))
+    if not os.path.exists(question_file_path):
+        # If not found directly, search for it in subdirectories
+        found = False
+        for root, dirs, files in os.walk(args.question):
+            if QUESTION_FILE in files:
+                question_file_path = os.path.normpath(os.path.join(root, QUESTION_FILE))
+                args.question = os.path.normpath(root)  # Update args.question to the correct subdirectory
+                found = True
+                break
+        if not found:
+            raise FileNotFoundError(f"Could not find {QUESTION_FILE} in {args.question} or its subdirectories")
+    
+    questions_json = json.load(open(question_file_path, "r"))
     
     # MODIFICATION: We need the full question objects, not just the prompts
     all_questions_data = questions_json["questions"]
@@ -69,12 +83,12 @@ if __name__ == '__main__':
         mini_index = json.load(open(args.mini_index_path, 'r'))
         # MODIFICATION: Filter the full data objects
         all_questions_data = [all_questions_data[i] for i in mini_index]
-        out_file = f"{args.question}/RESULTS_MODEL-{safe_model}_MINI.txt"
+        out_file = os.path.normpath(os.path.join(args.question, f"RESULTS_MODEL-{safe_model}_MINI.txt"))
     else:
-        out_file = f"{args.question}/RESULTS_MODEL-{safe_model}.txt"
+        out_file = os.path.normpath(os.path.join(args.question, f"RESULTS_MODEL-{safe_model}.txt"))
 
     # MODIFICATION: Create evaluation results file path
-    eval_out_file = os.path.join("results", f"eval_{safe_model}.txt")
+    eval_out_file = os.path.normpath(os.path.join("results", f"eval_{safe_model}.txt"))
 
     # The DataLoader will now handle dictionaries
     question_loader = DataLoader(all_questions_data, batch_size=args.batch_size, shuffle=False, drop_last=False)
