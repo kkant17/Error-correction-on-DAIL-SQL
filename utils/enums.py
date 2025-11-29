@@ -57,7 +57,7 @@ class LLM:
     OLLAMA_DEEPSEEK_CODER_6_7B = "deepseek-coder:6.7b"
     OLLAMA_MISTRAL_7B = "mistral:7b"
     OLLAMA_PHI3_INSTRUCT = "phi3:instruct"
-    OLLAMA_QWEN_2_5_CODER_7B = "qwen-2.5-coder:7b"
+    OLLAMA_QWEN_2_5_CODER_7B = "qwen2.5-coder:7b"
     OLLAMA_DEEPSEEK_V2_LITE = "deepseek-v2:lite"
 
     # LLMs that use openai completion api

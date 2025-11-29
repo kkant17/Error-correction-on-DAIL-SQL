@@ -1218,6 +1218,11 @@ class ErrorCorrectionPipeline:
                 # Apply rule transformation
                 transformed = rule.apply(query_sql)
 
+                # If rule didn't match (returned None), count as pass (rule correctly ignored this query)
+                if transformed is None:
+                    passed_count += 1
+                    continue
+
                 # Validate transformation using RuleValidationService
                 validation_result = self.validation_service.validate_transformation(
                     original_query=query_sql,
