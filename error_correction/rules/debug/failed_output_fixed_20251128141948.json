@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+ FROM\\s+flights\\s+WHERE\\s+FlightNo\\s+IN\\s+\\( SELECT\\s+SourceAirport|DestAirport\\s+AS\\s+Airport[12]\\s+FROM\\s+\\( SELECT\\s+SourceAirport|DestAirport,\\s+COUNT(\\*)\\s+as\\s+flight_count\\s+FROM\\s+flights\\s+GROUP BY\\s+SourceAirport|DestAirport\\s+HAVING\\s+flight_count\\s=1\\)\\s+subquery\\s+WHERE\\s+Airport[12]\\s+=\\s+'[A-Za-z]+'\\s+\\)",
+    "correction": "Join the AIRLINES and FLIGHTS tables using a common field, filter flights by source airport, and use INTERSECT to find common airlines for multiple airports.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not directly join the AIRLINES and FLIGHTS tables, which can lead to incorrect results."
+    }
+}

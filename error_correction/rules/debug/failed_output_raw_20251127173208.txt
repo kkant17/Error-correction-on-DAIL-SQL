@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+ON\\s+[A-Za-z0-9]+\\.Document\_Name = [A-Za-z0-9]+\\.(?!Document\_Name)",
+    "correction": "Remove the unnecessary join to the 'Paragraphs' table and directly reference the document name from the 'Documents' table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join to a table containing columns not relevant to the query, potentially causing incorrect results."
+    }
+}
+
+{
+    "pattern": "\\bData? base\\b",
+    "correction": "Correct the spelling of 'Database' in the WHERE clause.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies queries with misspelled words that may lead to incorrect results."
+    }
+}

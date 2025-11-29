@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count(\*) FROM (?P<table>[a-zA-Z]+)(\s+AS\s+(?P<alias>[a-zA-Z0-9]+)?)?\s+WHERE\s+(?P<condition>\w+\s*=\s*(?:'|\"|\\)\\w+)",
+    "correction": "Join the missing table using appropriate JOIN clause and filter by country name",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that miss a join with the necessary table to filter on the desired condition"
+    }
+}

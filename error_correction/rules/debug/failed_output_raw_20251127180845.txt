@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT \w+\.\w+ FROM \w+ JOIN \w+ ON \w+\.\w+ = \w+(\.\w+){2} WHERE (\w+)\.\w+ = 'French' AND (\w+)\.\w+ = 'T'",
+    "correction": "The query should be corrected by including the condition for English-speaking countries using the INTERSECT operator to find the common names of countries that are both English and French speaking with an official language status.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data for one specific language (in this case, French), while the gold query requires data for two languages."
+    }
+}

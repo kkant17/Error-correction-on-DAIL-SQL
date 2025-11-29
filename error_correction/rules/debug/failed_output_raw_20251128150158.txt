@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[A-Za-z]+,\s*[A-Za-z]+\s+FROM\s+[A-Za-z]+\s+WHERE\s+Code\s+=\s+'[A-Za-z]+'",
+    "correction": "Replace 'Code' with 'Name' in the WHERE clause",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that use the incorrect column name for filtering."
+    }
+}

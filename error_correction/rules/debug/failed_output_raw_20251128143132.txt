@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\((\w+\._+\d+)\) as .+ FROM Documents LEFT JOIN Paragraphs ON Documents\.\w+ = Paragraphs\.\w+ GROUP BY \w+,\w+",
+    "correction": "Replace COUNT(\\w+\_\\d+) with count(*) and group by the column mentioned in the join clause only",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly count a specific column instead of the total number of rows and suggests replacing it with count(*)"
+    }
+}

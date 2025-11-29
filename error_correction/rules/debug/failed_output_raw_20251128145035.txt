@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Students WHERE (?P<subquery>\\(SELECT .+ FROM Students WHERE Students\.student\_id = s\.student\_id\\))\\.+ != .+\n",
+    "correction": "DIRECTLY COMPARE THE `current_address_id` AND `permanent_address_id` OF EACH STUDENT WITHOUT THE NEED FOR A SUBQUERY OR SELF-JOIN",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use correlated subqueries to compare columns within the same table, which can lead to inefficient self-joins. The correction is to directly compare the relevant columns without the need for a subquery or self-join."
+    }
+}

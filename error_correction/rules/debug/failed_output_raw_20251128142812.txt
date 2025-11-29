@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Ref_Template_Types JOIN \(\s*(SELECT Template_Type_Code, COUNT\(*\) as total FROM Templates GROUP BY Template_Type_Code)\s+ ON Ref_Template_Types.Template_Type_Code = temp_count.Template_Type_Code",
+    "correction": "Remove the unnecessary join with 'Ref_Template_Types' table and group by template type code directly in the subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join a table in a subquery, which can be avoided when counting distinct values."
+    }
+}

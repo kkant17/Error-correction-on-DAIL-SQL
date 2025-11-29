@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (MAX|AVG|SUM|COUNT)\\(.*\\), Make FROM .* WHERE Cylinders = [0-9]+ GROUP BY Make$",
+    "correction": "Join the required tables and select specific column values instead of aggregating, filtering by Id from the joining table, and order by the selected column.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly aggregate data without joining tables or selecting specific column values."
+    }
+}

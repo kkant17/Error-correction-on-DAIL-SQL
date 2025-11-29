@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z0-9]+ \. [A-Za-z0-9]+ FROM ([A-Za-z0-9]+) AS [A-Za-z0-9]+ JOIN ([A-Za-z0-9]+) AS [A-Za-z0-9]+ ON ([A-Za-z0-9]+)\.([A-Za-z0-9]+) = ([A-Za-z0-9]+)\.id",
+    "correction": "Filter the results based on the required conditions without using a join, if the necessary columns are available in a single table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables and provides guidance on how to avoid such errors."
+    }
+}

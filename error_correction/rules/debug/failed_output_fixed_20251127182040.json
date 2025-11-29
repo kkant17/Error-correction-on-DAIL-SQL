@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\\*\\) FROM ([A-Za-z0-9]+) WHERE ([A-Za-z0-9]+) = [0-9]+ AND ([A-Za-z0-9]+) = [0-9]+",
+    "correction": "The query seems to be correct as it is. It filters the specified table for students in grade 9 or grade 10, counting the number of records that match the condition.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies a correct SQL query filtering a table for students in specific grades."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+count\\(\*\)\\s+FROM\\s+[A-Za-z0-9]+\\s+WHERE\\s+age\\s+<\\s+(?-s)(?:SELECT\\s+avg\\(age\\)\\s+FROM\\s+[A-Za-z0-9]+)",
+    "correction": "Move the COUNT(*) outside the subquery and use a comparison operator between the individual dog's age and the calculated average age.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where COUNT(*) is used incorrectly in a subquery calculating an average."
+    }
+}

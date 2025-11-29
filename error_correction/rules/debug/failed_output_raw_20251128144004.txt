@@ -1,0 +1,9 @@
+{
+  "pattern": "SELECT .+\bFROM\s+.*\bJOIN\s+(?:.*\bON\s+)?(?=(?:.*\bWHERE\s+)?(?:\((?:SELECT|MAX)\(\s*\w+\.\w+\s*=\s*(?:'Australian Open'|\(SELECT\s*MAX\(\s*\w+\.\w+\s*\))\s*\)))",
+  "correction": "Replace the subquery with an ORDER BY and LIMIT clause within the same query",
+  "metadata": {
+    "error_type": "SUBQUERY_ERROR",
+    "confidence": "high",
+    "description": "Avoid using correlated subqueries when possible for better performance"
+  }
+}

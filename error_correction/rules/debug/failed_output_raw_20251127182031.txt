@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[a-zA-Z]+\s*,\s+[a-zA-Z]+\sFROM\s+(.*)\sWHERE\s+name\s=.*",
+    "correction": "Select only the required column, in this case 'grade'. The corrected query should be: SELECT grade FROM Highschooler WHERE name = 'Kyle'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary column selection in the SQL query, where extra columns are selected that are not needed for the specific task"
+    }
+}

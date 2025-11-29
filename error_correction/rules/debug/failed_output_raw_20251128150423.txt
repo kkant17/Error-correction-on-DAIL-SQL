@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(*\) FROM .+ WHERE Language = 'English' AND IsOfficial = 'T' AND CountryCode IN \(\s*(SELECT CountryCode FROM countrylanguage WHERE Language = 'Dutch' AND IsOfficial = 'T')\)",
+    "correction": "Use a subquery to join the country and countrylanguage tables twice, once for each language (English and Dutch), and separate the English and Dutch queries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery in an IN clause, leading to a different result set."
+    }
+}

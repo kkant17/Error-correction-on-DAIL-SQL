@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN.*FROM (teacher|course_arrange) JOIN .* GROUP BY teacher\.(.*) ORDER BY count DESC LIMIT 10",
+    "correction": "Remove unnecessary join and modify the query to only select from 'teacher' table, group by the specified column, order by COUNT(*), limit the result to 1.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join multiple tables and suggests removing the unnecessary join."
+    }
+}

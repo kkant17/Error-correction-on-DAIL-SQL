@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT ([A-Z]+)\\.id FROM TV_[A-Z]+ AS [A-Z]+\\sJOIN\\sTV_[A-Z]+ AS [A-Z]+\\sON\\s([A-Z]+)\\.[A-Z]+ = [A-Z]+\\.[A-Z]+ \\sWHERE\\s([A-Z]+)\\.Country GROUP BY ([A-Z]+)\\.Country HAVING COUNT(\\*) > 2",
+    "correction": "SELECT id FROM tv_[table_name] GROUP BY country HAVING count(*) > 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that join additional tables to the main table, causing a shift in focus from counting channels per country."
+    }
+}

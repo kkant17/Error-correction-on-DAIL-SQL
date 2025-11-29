@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT SUM\(surfaceArea\) FROM country WHERE Continent = '([A-Z]*)'",
+    "correction": "Replace the single quote around the continent name with double quotes or remove the single quotes and make sure the column name is consistent with the database schema (Continent, not 'Continent')",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors in column selection where a single quote is used around the continent name instead of double quotes or no quotes at all, and the column name does not match the database schema."
+    }
+}

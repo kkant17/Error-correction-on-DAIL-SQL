@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\* FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON (\\w+)\\.(\\w+) = (\\w+)\\.(\\w+) WHERE ([A-Za-z0-9]+)\\.(\\w+) = ([A-Za-z0-9]+)\\.(\\w+) AND ([A-Za-z0-9]+)\\.PetType = 'Cat'\\)$",
+    "correction": "Include a subquery to exclude students who have cats by using NOT IN operator.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that miss the condition for students without cats in a subquery."
+    }
+}

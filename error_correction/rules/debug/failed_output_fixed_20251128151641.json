@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(*\\) FROM ([A-Za-z0-9]+) WHERE (grade = [0-9]|grade = [0-9] OR)",
+    "correction": "The query seems to be correct as it is, but if there's a need for improvement, ensure that the WHERE clause conditions are properly grouped.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "low",
+        "description": "This rule identifies queries with a structure similar to the provided example where the WHERE clause conditions are not properly grouped."
+    }
+}

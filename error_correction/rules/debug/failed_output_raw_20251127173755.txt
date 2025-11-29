@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* GROUP BY .* ORDER BY COUNT(*) DESC LIMIT 1(?!\w+)(\s|$)",
+    "correction": "No correction needed as the provided SQL query is correct",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies a correctly formatted SQL query that groups, orders, and limits results based on count."
+    }
+}

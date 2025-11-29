@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+.*\bLEFT\\s+JOIN\\s+.*\bON\\s+.*=\\s*.*\bWHERE\\s+`Directed_by`\\s+NOT\\s+LIKE\\s+'Ben\\s+Jones'\b\\s+AND\\s+`.*`.*\bIS\\s+NULL",
+    "correction": "Replace the query with a subtraction (EXCEPT or MINUS operator) instead of LEFT JOIN, and check for rows in the Cartoon table where `Directed_by` equals 'Ben Jones'.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use an incorrect subquery structure and suggests a correction to fix the error."
+    }
+}

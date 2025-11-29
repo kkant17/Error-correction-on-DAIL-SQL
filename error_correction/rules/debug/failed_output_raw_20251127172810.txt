@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+shop\s+WHERE\s+Number\_products\s*(<|<=|>=|>)[\w\d]+\s+(AS\s+t[0-9]+)\s+JOIN\s.*",
+    "correction": "Replace the subquery with INTERSECT operator to filter the shop table directly.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries in JOIN statements, and suggests replacing them with INTERSECT operator to improve query efficiency."
+    }
+}

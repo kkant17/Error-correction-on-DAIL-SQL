@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s(?:\\(SELECT\\s.*?\\sFROM\\s.*?\\)\\sJOIN\\s|(?:SELECT\\s.*?\\sFROM\\s.*?\\))\\sON\\s.*?\bWHERE\\s.*?\b>(.*?)\\.avg_age",
+    "correction": "Simplify the query by directly selecting song names from singers whose age is greater than the average age of all singers.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily complicate the query by including extra subqueries and joins, which are not required to answer the original question."
+    }
+}

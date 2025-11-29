@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\* FROM ([A-Za-z0-9]+) WHERE Airline = '(.*?)' AND ([A-Za-z0-9]+).([A-Za-z0-9]+) = '(.*)'",
+    "correction": "Join the two tables using the airline ID and apply count(*) after the join.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies cases where the SQL query does not properly join two tables, specifically when trying to find flights for a specific airline."
+    }
+}

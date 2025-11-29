@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+Paragraphs\\s+ON\\s+Documents\\.Document\_ID\\s+=\\s+Paragraphs\\.Document\_ID",
+    "correction": "Remove the unnecessary join to Paragraphs table",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects when a query unnecessarily joins an irrelevant table"
+    }
+}
+
+{
+    "pattern": "Documents\\.Document\_Name\\s+=\\s+\"Data base\"",
+    "correction": "Correct the spelling of 'Data base' to 'Database'",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "medium",
+        "description": "This rule detects incorrect table name references"
+    }
+}

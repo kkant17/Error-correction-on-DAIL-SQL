@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Continent,\s+COUNT\(DISTINCT\s+Language\)\s+as\s+NumberOfLanguages\s+FROM\s+countrylanguage\s+GROUP BY\s+Continent\s+ORDER BY\s+NumberOfLanguages\s+DESC\s+LIMIT\s+1$",
+    "correction": "Join the 'country' and 'countrylanguage' tables, count all rows for each continent to find the one with the most countries.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join necessary tables and suggests a correction by joining the missing table."
+    }
+}

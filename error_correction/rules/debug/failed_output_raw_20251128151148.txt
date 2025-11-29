@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Name\s+FROM\s+country\s+WHERE\s+Continent\s+=\s+"Europe"\s+AND\s+Population\s+=\s+[0-9]+\b",
+    "correction": "Enclose the population value in quotes when it is used in the SQL query.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of integer values for string columns, specifically the Population column."
+    }
+}

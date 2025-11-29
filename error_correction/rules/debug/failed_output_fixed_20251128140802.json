@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM [A-Za-z]+_data WHERE Make = \\( SELECT Make FROM car_names WHERE Model = '[^)]+' \\)",
+    "correction": "Replace the subquery with a join operation, using the respective Id fields of both tables.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries to find table relationships. It suggests replacing them with join operations."
+    }
+}

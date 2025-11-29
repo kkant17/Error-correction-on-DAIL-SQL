@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+ON\\s+D\\.Document\_ID=P\\.Document\_ID",
+    "correction": "Remove the join and use INTERSECT operator to select from Paragraphs table twice",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins that can be replaced with the INTERSECT operator for better query efficiency."
+    }
+}

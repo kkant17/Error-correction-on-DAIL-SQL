@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+(?P<table>\\w+)\\)\\s*$",
+    "correction": "SELECT Name FROM <table> WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that select data from a table without any subquery conditions, and suggests adding a NOT IN condition to filter out the rows not present in another table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\sAS\s[a-zA-Z]+\._[a-zA-Z]+,\s[a-zA-Z]+\._[a-zA-Z]+\sAS\s[a-zA-Z]+\._[a-zA-Z]+\sFROM\s(?P<table>[a-zA-Z]+\s)+JOIN\splayers\sON\s.*player_id\s=",
+    "correction": "Select only necessary columns and avoid unnecessary joins. Use the table directly when possible.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join a table multiple times, causing overcomplication and inefficiency."
+    }
+}

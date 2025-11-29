@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM Students AS S JOIN .* ON S\\.current\\_address\\_id = .*\\.address\\_id WHERE .* = '.*' AND S\\.student\\_id NOT IN \\(\\s*( SELECT DISTINCT student\\_id FROM Student_Enrolment )\\s*\\)",
+    "correction": "Replace the EXCEPT operator with a subquery using the NOT EXISTS clause to find students from North Carolina who have not enrolled, and use NOT IN for those who live outside North Carolina but have enrolled.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the incorrect usage of the EXCEPT operator in a subquery, which leads to unintended filtering of students enrolled in a degree program."
+    }
+}

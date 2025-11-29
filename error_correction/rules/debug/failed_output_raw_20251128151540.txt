@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE .* NOT IN \(\(SELECT .*\ FROM\)",
+    "correction": "Select orchestras that have no performances associated with them by using a subquery to exclude orchestras whose ID is found in the `performance` table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use a NOT IN subquery to select orchestras without performances."
+    }
+}

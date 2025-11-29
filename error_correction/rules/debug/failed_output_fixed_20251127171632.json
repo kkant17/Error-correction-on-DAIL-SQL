@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+\\s+GROUP BY \\w+\\s+HAVING COUNT\\(\\*\\) > \\d+$",
+    "correction": "Replace the query with a join between the required tables, group by the relevant column in one table and count the occurrences of rows in the other table to get the number of instances per group.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use subqueries for aggregation and filtering, instead of joining tables to achieve the same result."
+    }
+}

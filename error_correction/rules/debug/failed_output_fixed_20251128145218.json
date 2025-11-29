@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (Students|[a-z]+) AS T(.*?) ON (\\w+\\s*\\d+\\s*=\\s*\\w+\\s*\\d+)(?!\\sJOIN Students)",
+    "correction": "Count the distinct ID from the specified table",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "The query is incorrect as it attempts to select specific fields from a table, while the correct query should count unique records."
+    }
+}

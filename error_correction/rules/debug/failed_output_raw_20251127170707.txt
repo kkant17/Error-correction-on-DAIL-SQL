@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+\\.([A-Z]+)\\s+FROM[^\\w\\s]+JOIN[^\\w\\s]+ON[^\\w\\s]+\.[A-Z]+=[^\\w\\s]+\\.([A-Z]+)\\s+FROM",
+    "correction": "Correct the table name and remove unnecessary join",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in the FROM clause, including those involved in unnecessary joins."
+    }
+}

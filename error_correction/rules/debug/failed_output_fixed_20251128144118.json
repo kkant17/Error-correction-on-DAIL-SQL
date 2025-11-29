@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+\\s+GROUP BY .+\\s+COUNT\\(.*\\)\\s+ORDER BY COUNT\\(.*\\)\\s+DESC\\s+LIMIT 1",
+    "correction": "Replace `COUNT(*)` within the `GROUP BY` clause with just `count(*)` and remove it from the `ORDER BY` clause.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that count each row instead of counting the number of occurrences for each group in a `GROUP BY` clause."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT DISTINCT model FROM car_(?:names|\_data) JOIN cars(?:\_data)?\s+ON\s+car_[a-zA-Z0-9]+\.MakeId = cars_data\.Id",
+    "correction": "Join the required tables (MODEL_LIST, CAR_NAMES, and CARS_DATA) correctly and ensure all necessary columns are included in the JOIN conditions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table joins that omit one or more required tables."
+    }
+}

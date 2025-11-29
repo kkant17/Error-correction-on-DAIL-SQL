@@ -1,0 +1,9 @@
+{
+  "pattern": "JOIN_ERROR: \\bSE ON DP\\.department\_id = SE\\.degree\_program\_id JOIN Students S ON SE\\.student\_id = S\\.student\_id\\b",
+  "correction": "Replace the invalid join conditions with the correct ones: JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id and remove the unnecessary joins to Students table.",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies incorrect join conditions that do not exist in the original schema."
+  }
+}

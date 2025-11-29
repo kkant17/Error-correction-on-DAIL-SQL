@@ -1,0 +1,9 @@
+{
+    "pattern": "^(?=SELECT\\s+Country\\s*,\\s+COUNT\\(\\*\\)\\s+as\\s+num\\_manufacturers\\s+FROM\\s+car\\_makers\\s+GROUP BY\\s+Country\\s+HAVING\\s+COUNT\\(\\*\\)\\s+\\ge\\s+3\\s+)?(?!\bJOIN\b)(?!\bWHERE\b)",
+    "correction": "Join all required tables (COUNTRIES, CONTINENTS, CAR_MAKERS) and filter by continent while grouping by CountryName with a count that is greater than or equal to 3.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join all necessary tables and suggests joining them."
+    }
+}

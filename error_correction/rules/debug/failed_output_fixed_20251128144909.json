@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bGROUP\b BY \\w+\bHAVING COUNT\\(\\*\\) > 0$",
+    "correction": "Remove GROUP BY and HAVING COUNT(*) > 0 clauses",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that include unnecessary GROUP BY and HAVING COUNT(*) > 0 clauses, which can be removed to correct the query."
+    }
+}

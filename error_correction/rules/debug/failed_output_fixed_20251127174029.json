@@ -1,0 +1,9 @@
+{
+    "pattern": "^select\\s+[a-zA-Z0-9_]+(?:\\s+from)?\\)\\s*$",
+    "correction": "SELECT name FROM museum WHERE Museum_ID NOT IN (SELECT museum_id FROM visit)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that selects from a subquery without the main table and proper formatting."
+    }
+}

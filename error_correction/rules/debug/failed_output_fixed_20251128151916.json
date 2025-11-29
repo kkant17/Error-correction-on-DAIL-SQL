@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE Highschooler\\.ID = ([a-zA-Z0-9]+)\\) AND ID NOT EXISTS \\(\\(SELECT liked\\_id FROM Likes WHERE Highschooler\\.ID = liked\\_id\\)",
+    "correction": "Replace the query with: SELECT name FROM Highschooler EXCEPT SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use incorrect subqueries and operators to find students not in both the Friend and Likes tables."
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "pattern": "SELECT .* FROM (.*?) ON \d+.\w+.\* = (.*?).player\_id",
+  "correction": "Replace with: SELECT T1.\* FROM players AS T1 JOIN rankings AS T2 ON T1.player\_id = T2.player\_id",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule corrects incorrect joins between tables, ensuring the subquery is not used to join but instead the tables are correctly joined using the ON clause."
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9\\s]+) WHERE Airline = '(.*?)'(\\s)*FROM",
+    "correction": "The query should include a JOIN to link the tables properly and use the uid returned from the subquery in the ON clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the necessary tables, which can lead to incorrect results."
+    }
+}

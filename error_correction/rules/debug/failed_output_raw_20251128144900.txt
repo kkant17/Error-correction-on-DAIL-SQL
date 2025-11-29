@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM Semesters WHERE Semesters.semester_id NOT IN \(\s*(SELECT .+\bFROM\s*.+\bGROUP BY\s*.+\bHAVING COUNT(*) = 0)\s*\)",
+    "correction": "Select semesters that have not been enrolled by any student by using a subquery to filter out the semester_ids from Student_Enrolment table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that overcomplicate the problem by adding unnecessary grouping and counting steps when selecting semesters with no enrolled students."
+    }
+}

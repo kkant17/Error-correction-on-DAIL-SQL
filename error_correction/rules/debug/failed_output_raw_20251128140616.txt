@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-zA-Z0-9]+)_names JOIN cars_data ON ([a-zA-Z0-9]+)\._Id = cars_data\.Id WHERE cars_data\.(.*) < ( SELECT AVG\(cars_data\.Weight\) FROM cars_data )",
+    "correction": "SELECT T1.\<column\_name\> FROM CAR\_NAMES AS T1 JOIN CARS\_DATA AS T2 ON T1.\<MakeId\> = T2.\<Id\> WHERE T2.\<Weight\> < (SELECT avg(T2.Weight) FROM CARS\_DATA)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors in SQL queries where the incorrect table aliases are used during a join operation, and the wrong column is selected for aggregation."
+    }
+}

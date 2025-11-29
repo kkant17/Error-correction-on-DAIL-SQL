@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-zA-Z0-9]+) JOIN ([a-zA-Z0-9]+) ON ([a-zA-Z0-9]+)\_.+ = ([a-zA-Z0-9]+)\_.+ ORDER BY Age ASC LIMIT 1",
+    "correction": "SELECT required_columns FROM correct_table_name ORDER BY age LIMIT 1",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that join tables unnecessarily, which may lead to incorrect results. It suggests replacing the query with a correct table reference."
+    }
+}

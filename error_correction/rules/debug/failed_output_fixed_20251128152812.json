@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+Treatments)",
+    "correction": "Replace with: SELECT count(*) from <table> where dog_id not in ( select dog_id from treatments )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that incorrectly selects from the Treatments table and instead suggests counting the number of rows where dog_id does not exist in the treatments table."
+    }
+}

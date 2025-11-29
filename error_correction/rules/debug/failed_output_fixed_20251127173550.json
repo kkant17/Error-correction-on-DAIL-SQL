@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s*FROM\\s*(?<!Paragraphs)\\s+ON\\s+Documents\\.\\w+\\s*=\\s*Paragraphs\\.\\w+",
+    "correction": "Join the 'Paragraphs' table directly instead of joining with 'Documents'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies cases where the SQL query incorrectly joins the Documents table instead of the Paragraphs table."
+    }
+}

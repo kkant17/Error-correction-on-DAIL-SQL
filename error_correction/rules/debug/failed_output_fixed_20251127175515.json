@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?!\\w+\\_Enrolment\\_Courses) .+ GROUP BY course\\_id$",
+    "correction": "Replace the table name with a valid one and group by the correct column",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors where the incorrect table is referenced in the FROM clause and groups by an incorrect column"
+    }
+}

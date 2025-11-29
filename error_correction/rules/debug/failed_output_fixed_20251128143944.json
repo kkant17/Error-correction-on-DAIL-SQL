@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS total_.+\\s+FROM\\s+(matches|table1)\\s+JOIN\\s+(players|table2)\\s+ON\\s+(\\w+)=\\s+(\\w+)\\s+GROUP BY\\s+(\\w+)\\s+ORDER BY\\s+total_wins\\s+DESC\\s+LIMIT\\s+1",
+    "correction": "Replace the query with a new one that groups and orders by winner name instead of player ID, calculates the count of wins instead of total wins, and uses the correct table references.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects queries that incorrectly calculate the total number of matches won by each player instead of finding the player with the most wins."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(DISTINCT ([a-z]+)\\.\\w+\\) AS \\w+, (\\w+\\s+\\w+)\\s+AS\\s+(\\w+\\s+\\w+)\\s+FROM\\s+(\\w+\\s+\\w+)\\s+AS\\s+(\\w+\\s+\\w+)\\s+JOIN\\s+(\\w+\\s+\\w+)\\s+ON\\s+(\\w+\\.\\w+)\\s+= (\\w+\\.\\w+)\\s+.*GROUP BY\\s+(\\w+\\.\\w+),\\s+(\\w+\\s+\\w+)",
+    "correction": "SELECT count(DISTINCT \\1) FROM \\3",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that group by unnecessary columns and return aggregated values for those columns."
+    }
+}

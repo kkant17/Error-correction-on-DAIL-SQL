@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9]+) AS [A-Za-z0-9]+ FROM ([A-Za-z0-9]+) GROUP BY ([A-Za-z0-9]+) ORDER BY COUNT\(*\) DESC LIMIT 1$",
+    "correction": "Join the appropriate table, consider both SourceAirport and DestAirport, and group by the airport code from the joined table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only consider one side of a flight (either DestAirport or SourceAirport) and do not join the appropriate table."
+    }
+}

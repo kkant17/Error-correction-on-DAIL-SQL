@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s.*GROUP BY\\s.+\bHAVING\\scount\\(\\*\\)\\s>",
+    "correction": "Replace 'count(\\*)' with 'COUNT(*)'",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the issue where a SQL query incorrectly uses 'count(*)' instead of 'COUNT(*)' in the HAVING clause."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count(\\*) FROM (?P<table1>[a-zA-Z0-9_\\s]+) WHERE Template_Type_Code = 'PPT'",
+    "correction": "SELECT count(*) FROM (?P<table1>[a-zA-Z0-9_\\s]+) AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Template_Type_Code = 'PPT'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that does not join the Templates table with the specified table on the Template_ID field, which is necessary to ensure that only documents associated with PowerPoint templates are counted."
+    }
+}

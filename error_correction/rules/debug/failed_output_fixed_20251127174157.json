@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\\_id, MIN\\(.*\\) as .+\bFROM\\s+(matches|any other table)\\s+JOIN\\s+players\\sON\\s+(\\w+)_id\\s+=\\s+player_id\\s+GROUP BY\\s+(\\w+)_id",
+    "correction": "Select the minimum value of the column directly from the table without joining with another table and using GROUP BY.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables to find minimum values, when the minimum value can be directly selected from a single table."
+    }
+}

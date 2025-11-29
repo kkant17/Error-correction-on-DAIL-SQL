@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM)\\s*(Students\\s+JOIN\\s+Addresses\\s+ON\\s+Students\\.\w+\s*=\\s+Addresses\\.\w+\\s*)((\\s+Students\\.\w+\s*=\\s+Addresses\\.\w+)*)",
+    "correction": "Join the tables only once and correctly match the primary key of Addresses with the foreign key in Students",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies multiple matches between Students and Addresses, which can lead to incorrect results."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: (?<=GROUP\\s+BY)\\s*(Addresses\\.\w+\\s*,)",
+    "correction": "Only group by the columns that are needed for aggregation and avoid including unnecessary columns",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "medium",
+        "description": "This rule identifies columns in the GROUP BY clause that are not being aggregated, which can lead to inconsistent results."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+count(\*)\s+FROM\s+(?P<table>[A-Z]+\s+AS\s+)?(Student|student)\s+AS\s+(?P<alias1>\w+)\s+JOIN\s+(Has_Pet|has_pet)\s+AS\s+(?P<alias2>\w+)\s+ON\s+(?P<condition>T1\.\w+\s*=\s*T2\.\w+)\s+JOIN\s+(Pets|pets)\s+AS\s+(?P<alias3>\w+)\s+ON\s+(?P<condition2>T2\.\w+\s*=\s*T3\.\w+)\s+WHERE\s+(?P<filter>T1\.\w+\s*=\s*\'\w+\')\s+AND\s+(?P<petType>\w+\.PetType|T3\.\w+\s*=\s*\'Dog'\')",
+    "correction": "Replace table names with lowercase and remove initial capital letters from aliases, ensure column names are consistent, and correct the pet type to 'dog'",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors in table referencing caused by inconsistencies in case sensitivity and naming conventions"
+    }
+}

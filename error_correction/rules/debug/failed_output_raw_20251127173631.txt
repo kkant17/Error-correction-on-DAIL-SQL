@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ JOIN ( SELECT Course_ID, MAX\(Grade\) as Max_Grade FROM .+ GROUP BY Course_ID ) AS max_grades ON .+\.Course_ID = max_grades\.Course_ID AND .+\.Grade = max_grades\.Max_Grade",
+    "correction": "The query should be corrected to retrieve the teacher names sorted by age. Replace the query with: SELECT Name FROM teacher ORDER BY Age ASC.",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are intended to sort data but do not have the correct ordering clause."
+    }
+}

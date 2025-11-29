@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+\w+\s+FROM\s+\w+\s+WHERE\s+\w+\s+=\s+'(\w+)'",
+    "correction": "Replace the query with: SELECT \<column_to_keep>\s+FROM \<table_name>\s+WHERE \<column_name>\s+=\s+'(\w+)'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that include unnecessary columns when only one column is needed for a specific request."
+    }
+}

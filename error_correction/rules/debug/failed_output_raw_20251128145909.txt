@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+[a-zA-Z0-9_\s]+\s*WHERE\s*.+\b>",
+    "correction": "The query should include an aggregate function (such as AVG, SUM, COUNT) and join the required tables if necessary.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only filter data without performing any aggregation."
+    }
+}

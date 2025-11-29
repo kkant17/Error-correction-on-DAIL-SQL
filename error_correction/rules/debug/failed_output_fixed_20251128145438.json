@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+.\\w+ FROM (TV_[A-Z]+) AS T[0-9] JOIN TV_[A-Z]+ AS T2 ON T[0-9].\\d+ = T2.\\w+ WHERE T[0-9].\\w+ = '.*'",
+    "correction": "Correct the table aliases consistency throughout the query and ensure the join condition is correct",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors where the table aliases are inconsistent or the join condition is incorrect"
+    }
+}

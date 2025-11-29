@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Z]+)\.([A-Z]+)from ([A-Z]+) join ([A-Z]+) on ([A-Z]+)\.(\w+) = ([A-Z]+)\.(.+\w+) where ([A-Z]+) = '(.*)'",
+    "correction": "Replace the table name in the SELECT clause with the assigned alias and ensure the column names follow the naming convention used in the query",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where the table name in the SELECT clause does not match the assigned alias"
+    }
+}

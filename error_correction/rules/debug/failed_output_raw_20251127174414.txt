@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[1-9]\.\w+\s*,\s*ON\s+T[1-9]\.\w+=.*JOIN\s+rankings\s+AS\s+T[1-9]\s+WHERE\s+tourney\_name\s+=\s+'Australian Open'\s+AND\s+(?!\(SELECT\s+MAX\(\w+\)\s+FROM\s+players\s+AS\s+T[1-9]\s+JOIN\s+matches\s+AS\s+T[1-9]\s+ON\s+T[1-9]\.\w+=.*JOIN\s+rankings\s+AS\s+T[1-9]\s+\)).*$",
+    "correction": "Instead of using a subquery to find the player with the highest ranking points, directly order the results by winner_rank_points in descending order and limit the result set to only the top 1 row.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use a subquery to find the player with the highest ranking points, which can lead to performance issues. It suggests a more efficient approach by ordering the results directly."
+    }
+}

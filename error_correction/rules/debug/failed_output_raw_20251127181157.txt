@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+[a-zA-Z0-9]+(\s+JOIN|WHERE|GROUP BY|HAVING|ORDER BY|\s+AS)?$",
+    "correction": "The query should include the necessary JOIN operation with another table, and it may require additional conditions (WHERE), aggregation functions (COUNT, SUM, AVG, etc.), filtering (IsOfficial), or ordering (ORDER BY).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that lack a JOIN operation with another table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM Owners JOIN Dogs ON Owners\\.owner\\_id = Dogs\\.owner\\_id ORDER BY Dogs\\.date\\_of\\_birth ASC LIMIT 1",
+    "correction": "Replace the ORDER BY clause with a subquery to find the dog with the maximum age, and include the WHERE clause to filter the owners based on their oldest dog's age.",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that order the results incorrectly, in this case by date of birth instead of finding the dog with the maximum age."
+    }
+}

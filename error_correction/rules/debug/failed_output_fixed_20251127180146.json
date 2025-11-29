@@ -1,0 +1,9 @@
+{
+    "pattern": "selecting\\s+the\\s+first\\s+result\\.\\.\\.\\.",
+    "correction": "Replace 'selecting' with 'SELECT'",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule corrects the informal language used in SQL queries, specifically replacing 'selecting' with 'SELECT'."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Code,\s+Max\(SurfaceArea\)\s+as\s+MaxArea\s+FROM\s+country\s+GROUP\s+BY\s+Code\s+ON\s+country\.\w+\s+=\s+max\_area\.\w+\s+WHERE\s+SurfaceArea\s+=\s+max\_area\.MaxArea\s+ORDER\s+BY\s+Population\s+DESC\s+LIMIT\s+1",
+    "correction": "Select the necessary columns (Name, population, HeadOfState) from the country table and order by SurfaceArea DESC to find the country with the largest surface area.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not select necessary columns and instead group by irrelevant columns."
+    }
+}

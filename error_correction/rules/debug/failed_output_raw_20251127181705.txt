@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+CountryCode\s+FROM\s+country\s+WHERE\s+(Continent|IsOfficial)\s+=\s+'[^']*'\s+AND\s+Language\s+=\s+'Spanish'",
+    "correction": "The query should target the correct table (countrylanguage instead of country) and remove unnecessary conditions (Continent = 'Antarctica' and IsOfficial = 'T'). Instead, it should use an aggregation function to get the count of rows and the maximum Percentage where Language is 'Spanish', grouped by CountryCode.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that target the wrong table when trying to retrieve data related to language."
+    }
+}

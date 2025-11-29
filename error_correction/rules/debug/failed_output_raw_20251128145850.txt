@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+TABLE\_ALIAS\.COLUMN\_NAME\s+FROM\s+TABLE\_ALIAS\s+AS\s+TABLE\_ALIAS\s+JOIN\s+.*\s+ON\s+TABLE\_ALIAS\.\*.*\s+ORDER BY\s+.*\s+LIMIT\s*1",
+    "correction": "Replace the duplicate table alias with the correct one used in the JOIN statement and ensure the column name is consistent.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule detects when a table alias is referenced multiple times in the same query, which can lead to incorrect results."
+    }
+}

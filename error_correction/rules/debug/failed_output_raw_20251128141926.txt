@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+(?:\s+\*\*)?\s+FROM\s+[A-Za-z]+\s+WHERE\s+EXISTS\s+\( SELECT\s+1\s+FROM\s+[A-Za-z]+\s+WHERE\s+([A-Za-z]+)\.uid\s+=[A-Za-z]+\.\*",
+    "correction": "Replace the subquery with a join, and explicitly state the table for each column used.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a subquery instead of a join to combine data from multiple tables, and suggests replacing the subquery with a join for better performance."
+    }
+}

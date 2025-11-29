@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+(?:\\s+FROM\\s+)?(?:WHERE\\s+)?(\\( SELECT\\s+[A-Za-z0-9_\\s]+\\s+FROM\\s+)[a-zA-Z0-9_]+\\s+ORDER\\s+BY\\s+[a-zA-Z0-9_]+\\s+DESC\\s+LIMIT\\s+1\\s*\\))",
+    "correction": "Replace the subquery within the WHERE clause with a join operation between the relevant tables, followed by ordering and limiting the results.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries within the WHERE clause. It suggests replacing these subqueries with join operations to improve query performance and avoid potential errors."
+    }
+}

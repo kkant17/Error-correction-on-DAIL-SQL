@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(*\\) as [a-zA-Z0-9]+\\_contestants FROM CONTESTANTS WHERE contestant\\_number NOT IN \\(\\s*( SELECT contestant\\_number FROM VOTES GROUP BY contestant\\_number HAVING COUNT\\(DISTINCT phone\\_number\\) = 0 )\\)",
+    "correction": "Remove the subquery and the condition HAVING COUNT(DISTINCT phone_number) = 0 from the WHERE clause.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a subquery is incorrectly used in the WHERE clause, filtering out records based on an unnecessary condition."
+    }
+}

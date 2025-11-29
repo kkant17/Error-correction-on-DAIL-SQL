@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE .+ NOT IN \(SELECT .+ FROM .+\)",
+    "correction": "This query correctly selects the names of singers who do not have any songs associated with them in the database.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "Matches queries that find singers without songs, no error correction needed."
+    }
+}

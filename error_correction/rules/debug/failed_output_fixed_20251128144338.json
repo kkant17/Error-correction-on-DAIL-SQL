@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM ).* JOIN .* ON \\w+.\\w+ = \\w+.\\w+ WHERE .*",
+    "correction": "Join the tables based on the foreign key in the `death` table instead of the primary key of the `ship` table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins based on primary keys rather than foreign keys in SQL queries."
+    }
+}

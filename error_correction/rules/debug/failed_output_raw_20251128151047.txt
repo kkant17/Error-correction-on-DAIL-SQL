@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT District, AVG\(Population\) as avg_[A-Za-z0-9]+ FROM city GROUP BY District \\) as [A-Za-z0-9]+_avg ON city\.District = district\_avg\.District WHERE city\.Population > district\_avg\.avg_[A-Za-z0-9]+ GROUP BY District",
+    "correction": "Calculate the overall average population of all cities first, then filter the cities based on that average.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the average is calculated per group instead of overall, and suggests correcting it by calculating the overall average first."
+    }
+}

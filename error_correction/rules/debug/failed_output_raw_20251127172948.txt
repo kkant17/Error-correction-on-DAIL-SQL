@@ -1,0 +1,9 @@
+{
+    "pattern": "COUNT\(\*\) as [A-Za-z0-9\_]+",
+    "correction": "Remove the alias for COUNT(*) if not necessary",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule corrects queries that unnecessarily provide an alias for the COUNT(*) function, which can be seen as a deviation from best practices for writing clean and concise SQL code."
+    }
+}

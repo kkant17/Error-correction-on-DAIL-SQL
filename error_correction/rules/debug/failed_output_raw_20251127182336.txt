@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (.+) AS H1 WHERE EXISTS \(\s*( SELECT \* FROM .+ AS F[0-9]+ )\s*\) AND EXISTS \(\s*( SELECT \* FROM .+ AS L[0-9]+ )\s*\)",
+    "correction": "Use the INTERSECT operator to find common rows between two tables instead of performing a join operation.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use subqueries in a way that does not represent the intended intersection operation between tables."
+    }
+}

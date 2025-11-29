@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\\(*\\) as [a-zA-Z0-9]+ FROM (concert|[a-zA-Z]+) JOIN stadium ON (concert|[a-zA-Z]+)\\._ID = stadium\\._ID WHERE stadium\\.Capacity = \\(\\(SELECT MAX\\(Capacity\\) FROM stadium\\)\\)",
+    "correction": "SELECT count\\(*\\) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessary joins and subqueries in the WHERE clause. Instead, use a subquery to select the relevant stadium ID and filter concerts based on it."
+    }
+}

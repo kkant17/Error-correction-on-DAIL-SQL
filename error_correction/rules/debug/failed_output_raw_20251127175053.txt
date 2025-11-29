@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bJOIN\s*\(\s*SELECT\s*.+\bCOUNT\(DISTINCT\s*.+\)\s+AS\s+.*\bFROM\s*.+\bGROUP\bBY\s*.+\)",
+    "correction": "Replace the subquery with a direct join to the appropriate table and count the number of unique students instead of distinct enrollments",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use a subquery to count distinct student enrollments, rather than counting unique students directly."
+    }
+}

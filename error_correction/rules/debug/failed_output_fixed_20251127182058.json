@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(*\\), ([a-zA-Z]+) FROM ([a-zA-Z]+) GROUP BY ([a-zA-Z]+)",
+    "correction": "The order of the selected columns should be reversed. The corrected query would be: SELECT ([a-zA-Z]+), count\\(*\\) FROM ([a-zA-Z]+) GROUP BY ([a-zA-Z]+)",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies and corrects errors where the order of selected columns in a SQL query is incorrect, specifically when count(\\*) is used after the column being grouped by."
+    }
+}

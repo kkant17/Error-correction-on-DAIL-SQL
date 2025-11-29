@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON \w+\.(\\w+)=([A-Za-z0-9]+)\.\w+",
+    "correction": "The query should only access the main table directly without any unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that perform an unnecessary join, which can potentially return incorrect results."
+    }
+}

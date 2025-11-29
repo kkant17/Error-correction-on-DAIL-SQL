@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)\.([A-Za-z]+) FROM ([A-Za-z]+) JOIN ([A-Za-z]+) ON ([A-Za-z]+)\.([A-Za-z]+) = ([A-Za-z]+)\.([A-Za-z]+)",
+    "correction": "Replace the table references with the correct ones and ensure they match the database name used in the gold SQL query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references that may be causing errors in a SQL query."
+    }
+}

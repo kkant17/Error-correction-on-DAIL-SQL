@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT T[0-9]+.id FROM TV_[A-Z]+ AS T[0-9]+\s+JOIN\s+TV_[A-Z]+ AS T[0-9]+ ON T[0-9]+\.id = T[0-9]+.Channel\s+WHERE\s+T[0-9]+\.Country GROUP BY T[0-9]+\.Country HAVING COUNT(\*) > [0-9]+",
+    "correction": "SELECT id FROM tv_channel GROUP BY country HAVING count(*) > 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join multiple tables, and instead, only select data from the required table."
+    }
+}

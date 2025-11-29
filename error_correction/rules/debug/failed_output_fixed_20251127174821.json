@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(DISTINCT ([a-zA-Z0-9]+)\\) FROM ([a-zA-Z0-9]+)$",
+    "correction": "Replace the lowercase and uppercase letters in the column name with proper case, if necessary. Ensure that the table name is also properly capitalized.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the column name in the COUNT(DISTINCT) function has incorrect case."
+    }
+}

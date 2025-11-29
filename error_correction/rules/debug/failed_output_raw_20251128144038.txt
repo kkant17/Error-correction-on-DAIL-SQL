@@ -1,0 +1,9 @@
+{
+    "pattern": "^(?=SELECT .+ FROM matches)(?=(WHERE tourney\_name = \(SELECT .+\)))(?!ORDER BY minutes DESC LIMIT 1 )",
+    "correction": "Directly select names from longest match without unnecessary subqueries and calculations",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The query includes unnecessary subqueries and does not directly answer the question"
+    }
+}

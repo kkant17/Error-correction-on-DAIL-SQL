@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9\s]+\s+AS\s+[A-Za-z0-9]+\s+JOIN\s+)[A-Za-z0-9\s]+\s+AS\s+[A-Za-z0-9]\s+ON\s+(\w+\s*=\s*)((\'[^\']+\')\s*(IN|INTERSECT)\s*).+$",
+    "correction": "Replace the IN operator with INTERSECT and split the query into two separate queries using INTERSECT to find common rows between the two result sets.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of an IN operator instead of INTERSECT when combining multiple queries with a JOIN."
+    }
+}

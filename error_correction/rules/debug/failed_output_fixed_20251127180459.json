@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ WHERE IndepYear > \\d+",
+    "correction": "No correction is needed as the query is correct.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies the correct SQL query for selecting the names of all countries that became independent after a specific year."
+    }
+}

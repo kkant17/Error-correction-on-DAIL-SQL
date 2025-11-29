@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT MIN\\(.*\\) FROM .* \\(AND .*\\)",
+    "correction": "Ensure to select specific columns and join tables correctly. Use a subquery to find the minimum value and compare it in the WHERE clause.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use a subquery's result as a condition instead of comparing with the original table."
+    }
+}

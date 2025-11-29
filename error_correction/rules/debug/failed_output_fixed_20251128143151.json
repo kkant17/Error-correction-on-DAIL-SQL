@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ JOIN .+ ON .+\\.ID = .+\\.ID GROUP BY .+\\.ID HAVING COUNT(.\\+) >= .+",
+    "correction": "SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) >= 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins when the question asks for distinct IDs from a specific table and counts their occurrences."
+    }
+}

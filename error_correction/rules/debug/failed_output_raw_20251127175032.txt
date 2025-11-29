@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9\s]+\.[\w]+\s+FROM\s+Courses\s+AS\s+[A-Za-z0-9]\s+LEFT\s+JOIN\s+Sections\s+AS\s+[A-Za-z0-9]\s+ON\s+\w+\.\w+\s*=\s+\w+\.\w+\s*(?=(\s+LEFT\s+JOIN\s*\(|\s+WHERE)))",
+    "correction": "Replace the subquery and WHERE clause with a GROUP BY and HAVING clause",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that use unnecessary subqueries and filters, instead suggesting the use of a more efficient GROUP BY and HAVING clause."
+    }
+}

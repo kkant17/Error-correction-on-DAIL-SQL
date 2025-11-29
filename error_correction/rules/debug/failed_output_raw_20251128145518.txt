@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[1-9]+\.[A-Za-z0-9_]+(?:\s+AS\s+)[A-Za-z0-9_]+(?:\s+FROM)?\s+TV\_Channel\s+JOIN\s+TV\_series\s+ON\s+T[1-9]+\.[A-Za-z0-9_]\s*=\s*T2\.Channel\s*(WHERE\s+T[1-9]+\.[A-Za-z0-9_]\s*=\s*['']Yes[''])?\s*(LIMIT\s+1)?",
+    "correction": "Select the required columns directly from the TV\_Channel table where hight\_definition\_TV is 'yes'. Avoid joining with unnecessary tables and incorrectly aliasing columns.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the issue of incorrect column selection, incorrect aliasing, and extraneous joins."
+    }
+}

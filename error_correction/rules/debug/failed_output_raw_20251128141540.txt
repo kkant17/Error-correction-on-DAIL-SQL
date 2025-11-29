@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+\\.([A-Za-z]+) FROM ([A-Za-z]+) AS [A-Za-z]+ JOIN ([A-Za-z]+) AS [A-Za-z]+ ON ([A-Za-z]+)\\.([A-Za-z]+) = ([A-Za-z]+)\.([A-Za-z]+) WHERE ([A-Za-z]+)\.([A-Za-z]+) = '.*'",
+    "correction": "SELECT [column] FROM [table] WHERE [condition]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join tables, which can be identified by the presence of multiple table aliases and a WHERE clause referring to both joined tables."
+    }
+}

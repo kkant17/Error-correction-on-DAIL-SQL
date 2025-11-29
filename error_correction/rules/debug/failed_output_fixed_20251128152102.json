@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+ AS [A-Z] FROM [A-Z] AS [A-Z_0-9]+ ON ([A-Z_0-9]+).([A-Z_0-9]+) = ([A-Z]+).(ID|liked\\_id) GROUP BY ([A-Z_0-9]+).ID HAVING COUNT(\\*) >= 2",
+    "correction": "Replace the table aliases and column names to match each other, ensure the correct foreign key is used for joining, and update the group by and having clauses accordingly.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies join errors where the aliases of the tables involved in the join are not consistent or the foreign key used for joining is incorrect."
+    }
+}

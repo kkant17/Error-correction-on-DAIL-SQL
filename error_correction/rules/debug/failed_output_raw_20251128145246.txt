@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[A-Za-z\s]+\.\w+\s*,\s*[A-Za-z\s]+\.\w+\s+FROM\s+[A-Za-z\s]+\s+AS\s+[A-Za-z\s]\s+JOIN\s+[A-Za-z\s]+\s+AS\s+[A-Za-z\s]+(\s+ON\s+[A-Za-z\s]+\.\w+\s*=\s*[A-Za-z\s]+\.\w+)?(\s+WHERE\s+[A-Za-z\s]+\.\w+\s*=\s*<your_section_id>)?",
+    "correction": "Select only the required column(s) and remove unnecessary join and filter conditions.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily select multiple columns from different tables and joins, while the intended query only seeks specific column(s) without unnecessary conditions."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+average\\(\\w+\\)\\s+FROM\\s+matches$",
+    "correction": "Replace 'average' with 'AVG' and ensure there are no quotation marks around 'winner_rank'",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of the AVG function in SQL queries, specifically when it is misspelled as 'average'."
+    }
+}

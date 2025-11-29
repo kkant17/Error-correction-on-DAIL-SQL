@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (.*?) JOIN stadium ON (?!.*stadium\_id).*$",
+    "correction": "Join the tables on `stadium_id` instead of an incorrect column.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins in SQL queries that do not involve the `stadium_id` column."
+    }
+}

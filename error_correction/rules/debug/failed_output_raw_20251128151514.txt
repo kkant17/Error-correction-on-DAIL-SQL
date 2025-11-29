@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bCOUNT\(\*\)\b.*FROM\s+[a-zA-Z0-9_\s]+\s+GROUP\s+BY\s+[a-zA-Z0-9_\s]+",
+    "correction": "Place the COUNT(*) outside of the GROUP BY clause and use an alias for it.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where COUNT(\*) is included in the GROUP BY clause."
+    }
+}

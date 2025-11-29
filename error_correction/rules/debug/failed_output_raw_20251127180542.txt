@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Language\s+FROM\s+countrylanguage\s+WHERE\s+CountryCode\s+=\s+'[A-Za-z]{2}' AND IsOfficial\s+=\s?'T'\s+ORDER BY\s+Percentage\s+DESC\s+LIMIT\s+1",
+    "correction": "The query should include a join with the 'country' table and filter on the country name instead of 'IsOfficial'. The correct format is: SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = '<country_name>' ORDER BY Percentage DESC LIMIT 1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that miss the join with the 'country' table and suggests a correction to include the join condition on the country name."
+    }
+}

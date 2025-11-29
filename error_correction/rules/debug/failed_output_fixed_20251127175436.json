@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9\\._]+(?:\\s+AS\\s+[A-Za-z0-9\\._]+)*\\s+FROM\\s+Students\\s+JOIN\\s+Addresses\\s+ON\\s+\\w+\\.\\w+\\s*=\\s*\\w+\\.\\w+\\s*(?=(\bGROUP\\s+BY[^,\\s]*,\\s*){2,}|(?=\bORDER\\s+BY))",
+    "correction": "Ensure that only the necessary columns are included in the SELECT clause and that they are also present in either GROUP BY or ORDER BY clauses.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where unnecessary columns are included in the SELECT clause, potentially leading to unexpected results."
+    }
+}

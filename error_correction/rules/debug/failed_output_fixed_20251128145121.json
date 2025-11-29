@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+course\\_id,\\s+COUNT\\(DISTINCT\\s+.*\\)\\s+as\\s+max\\_\\w+\\_occurrences\\s+FROM\\s+Student\\_Enrolment\\_Courses\\s+GROUP BY\\s+course\\_id",
+    "correction": "Replace the table reference with Transcript\\_Contents, calculate total count instead of maximum occurrences, sort and limit results by count in descending order.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that calculates the maximum number of occurrences per course, instead of counting total occurrences and ordering them by frequency."
+    }
+}

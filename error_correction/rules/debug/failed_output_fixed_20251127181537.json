@@ -1,0 +1,9 @@
+{
+    "pattern": "ORDER BY Population ASC LIMIT \\d+",
+    "correction": "Replace ASC with DESC to sort in descending order for getting top records",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are incorrectly sorted by population in ascending order, and suggests the correction to sort in descending order for getting top records"
+    }
+}

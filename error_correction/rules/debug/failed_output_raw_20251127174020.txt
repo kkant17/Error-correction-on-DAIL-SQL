@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ AS t1 JOIN .+ GROUP BY .+ ON .+ \(.*\) ON .+\n(?!\s+AS .+ ON museum.Museum\_ID = .+)",
+    "correction": "Replace the subquery with a join between the two tables, group by the necessary field and order/filter as required.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries when they should be using a join between tables."
+    }
+}

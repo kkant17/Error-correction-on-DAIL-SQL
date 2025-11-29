@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Country,\s+COUNT\(*\s+as\s+[a-zA-Z0-9_]+)\s+FROM\s+\( SELECT\s+DISTINCT\s+Country\s+FROM\s+[a-zA-Z0-9_]+\s+\)\s+AS\s+T[0-9]\s+LEFT\s+JOIN\s+[a-zA-Z0-9_]+\s+ON\s+T[0-9]\.Country\s+=\s+[a-zA-Z0-9_]\.Country\s+GROUP\s+BY\s+T[0-9]\.Country",
+    "correction": "SELECT country , count(*) FROM singer GROUP BY country",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessary subqueries and joins when counting distinct values from a single table."
+    }
+}

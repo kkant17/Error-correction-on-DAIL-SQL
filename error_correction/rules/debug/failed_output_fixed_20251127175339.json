@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<subquery>SELECT .+ FROM ).+(?P<main_table>Transcripts|Student_Enrolment_Courses) JOIN .+ ON (?P=subquery).+\\.(?P<id_column>student_course_id|transcript_id) = (?P=main_table)\\.(?P=id_column) WHERE (?P<count_clause>.+ >= 2)$",
+    "correction": "Join the Transcripts and Transcript_Contents tables directly, group by transcript ID, and count the number of rows in each group.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between tables that do not have a direct relationship."
+    }
+}

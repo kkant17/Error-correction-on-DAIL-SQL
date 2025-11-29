@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+[a-zA-Z0-9_]+\\s+AS\\s+T1\\s+JOIN\\s+(?P<subquery>[\\(\\)]+)\\s+ON\\s+T1\\.\\w+\\s+=\\s+T2\\.\\w+.*(?=WHERE|GROUP BY|HAVING).*",
+    "correction": "Replace the subquery with a direct join to the required table, filter by the necessary conditions in the WHERE clause, group by the desired column, and use HAVING COUNT(*) = 1 to select only the columns that meet the specified criteria.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries using subqueries where a direct join and filtering in the WHERE clause would be more appropriate."
+    }
+}

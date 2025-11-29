@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Z_]+\\.\*,\s+Ref_[A-Z_]+\\.[A-Z_]+\s+FROM\s+[A-Z_]+\\s+INNER\s+JOIN\s+Ref_[A-Z_]+\s+ON\s+[A-Z_]+\\.[A-Z_]+=\s+Ref_[A-Z_]+\\.[A-Z_]+",
+    "correction": "SELECT <column1> , <column2> , <column3> FROM <table>",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that join a table with another table to get columns that are already available in the initial table."
+    }
+}

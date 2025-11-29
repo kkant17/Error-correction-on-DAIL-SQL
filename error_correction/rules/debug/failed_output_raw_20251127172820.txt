@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+) FROM ([A-Za-z]+) WHERE Number\_products > ([0-9]+)",
+    "correction": "SELECT district FROM shop WHERE (Number_products < 3000 OR Number_products > 10000) GROUP BY district HAVING COUNT(*) > 0",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that selects districts from shops with a specific number of products, but the intended behavior is to find common districts between shops with fewer than 3000 products and those with more than 10,000 products."
+    }
+}

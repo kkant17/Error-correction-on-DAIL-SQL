@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ WHERE .+ IN \(\s*SELECT .+\s+FROM .+\s*\)",
+    "correction": "Replace the subquery with a simple NOT EXISTS clause to find airports without any flights",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries using a subquery in the WHERE clause with IN operator, which can be replaced with NOT EXISTS to find airports without any flights"
+    }
+}

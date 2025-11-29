@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \w+ FROM (\\w+ \\w+ \\S+) WHERE Id = ( SELECT \w+Id FROM \\w+ \\S+ JOIN \\w+ \\S+ ON \\w+ = \\w+ \\S+ .* JOIN \\w+ \\S+ ON \\w+.Continent = \\w+.ContId .* JOIN \\w+ \\S+ ON \\w+.Model = \\w+.Model JOIN \\w+_data ON \\w+.MakeId = \\w+_data.Id ORDER BY \\w+ DESC LIMIT 1 )",
+    "correction": "SELECT T1.\w+ FROM \\w+_data AS T1 ORDER BY T1.\w+ DESC LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries when the required information can be directly accessed from the main table."
+    }
+}

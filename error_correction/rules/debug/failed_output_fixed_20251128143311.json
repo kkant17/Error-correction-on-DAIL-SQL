@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+(.*?)\\s+FROM\\s+teacher$",
+    "correction": "Replace with: SELECT Age , Hometown FROM teacher",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "low",
+        "description": "This rule suggests to optimize the query by selecting only necessary columns instead of using SELECT * when working with large tables."
+    }
+}

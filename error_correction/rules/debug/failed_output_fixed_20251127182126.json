@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM Highschooler LEFT JOIN Friend ON Highschooler\\.ID = Friend\\.student_id GROUP BY Highschooler\\.(?<name>[a-z]+), Highschooler\\.ID",
+    "correction": "Replace the GROUP BY clause with 'GROUP BY <table_alias>.student_id', where <table_alias> is the alias for either Highschooler or Friend, depending on which table the student_id column originates from.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects issues where the GROUP BY clause groups by multiple columns, leading to incorrect results."
+    }
+}

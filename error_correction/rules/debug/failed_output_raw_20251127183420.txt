@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT \w+ FROM \w+ WHERE Citizenship != '\w+'",
+    "correction": "Replace 'Citizenship != '\w+' with 'Citizenship != \"\w+\"'",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where an adjective form of a country name is used instead of a noun form in SQL comparison."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[1-9]\.\w+\s+AS\s+([A-Za-z_]+)\s+FROM\s+teacher\s+JOIN\s+course\_arrange\s+ON\s+T[1-9]\.(\w+)\s*=\s+T2\.(\w+)\s*(?!\s+JOIN\s+course\s+ON)",
+    "correction": "Include the `course` table in the JOIN and select the course name from it.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule detects cases where the SQL query does not include the `course` table in the JOIN and misses the column for the course name."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z_]+(?:\\s+AS\\s+[a-zA-Z_]+\\s+)?\\s+FROM\\s+[a-zA-Z_]+(?:\\s+JOIN\\s+(?:SELECT\\s+MIN\\(\\w+\\)\\s+AS\\s+[a-zA-Z_]+\\s+FROM\\s+[a-zA-Z_]+)?)?\\s+ON\\s+[a-zA-Z_]+\\.\\w+\\s+=\\s+(?:min_[a-zA-Z]+\\.)?Min[\\w]+(?:\\s+ORDER\\s+BY\\s+[a-zA-Z_]+\\s+ASC)?",
+    "correction": "Directly select the desired columns from the original table, order them by the relevant column, limit the results to 1, and filter for the minimum value if necessary.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The error occurs when a subquery is incorrectly used in a join operation without including any columns from the subquery in the final result set."
+    }
+}

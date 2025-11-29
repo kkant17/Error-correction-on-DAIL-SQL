@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (min|max)\\(.*\\), \\*(min|max)\\(.*\\) FROM .*",
+    "correction": "Replace the query with SELECT min(\\*\\*column\\_name\\*), max(\\*\\*column\\_name\\*) FROM where column\\_name is not null",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the issue of using aggregate functions (min, max) on columns with potential null values without handling them properly. The correction ensures that only rows with non-null values are considered when calculating minimum and maximum."
+    }
+}

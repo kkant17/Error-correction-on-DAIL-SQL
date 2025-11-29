@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s[A-Z0-9_]+\sAS\s[A-Z0-9_]+\sLEFT\sJOIN\s[A-Z0-9_]+\sAS\s[A-Z0-9_]\s(?!\bON\s[A-Z0-9_]+\.\bid\s=\s[A-Z0-9_]+\.id\b).*",
+    "correction": "Remove unnecessary self-joins and ensure ON clause includes the correct id column reference.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with unnecessary self-joins, which can lead to incorrect results."
+    }
+}

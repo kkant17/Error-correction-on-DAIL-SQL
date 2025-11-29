@@ -1,0 +1,9 @@
+{
+    "pattern": "Average\\(\\)",
+    "correction": "Replace 'Average(' with 'avg('",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the usage of non-standard SQL aggregate function 'Average()'."
+    }
+}

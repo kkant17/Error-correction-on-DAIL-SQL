@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (city|country) AS C1 JOIN (city|country) AS C2 ON C1\.(CountryCode|CityName) = C2\.(Code|CityName) WHERE (Country|City).Continent = '(.*)' AND (C1|C3).Population < \(\s*(SELECT MIN|MAX)\(.*(city|country) AS .*\.(Population|CityPopulation)\s*FROM\s*.+\s*WHERE\s*(Country|City).Continent = '(.*)'\)\s*\)",
+    "correction": "Join the `country` table with itself and compare country populations directly",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "The query incorrectly joins city and country tables, and compares city populations instead of country populations."
+    }
+}

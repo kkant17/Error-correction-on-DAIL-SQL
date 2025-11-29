@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM (?P<table>[a-z]+) WHERE DestAirport = '(?P<airport>[A-Z]+)'",
+    "correction": "Replace the table name with the correct case and spacing as it appears in the gold SQL query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies a mismatch between the case and spacing of the table name in the predicted and gold SQL queries."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\\*\\) FROM (.+)$",
+    "correction": "No correction is needed as the query is correct.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies correctly formatted COUNT queries."
+    }
+}

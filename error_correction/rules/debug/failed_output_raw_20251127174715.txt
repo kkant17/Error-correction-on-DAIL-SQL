@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-z]+)\(.*\) as \w+_, ([a-z]+)\(.*\) as \w+\s+from\s+.*\s+group\s+by\s+.*$",
+    "correction": "SELECT max(\\1), min(\\1) FROM \\2",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where aggregation functions (max, min) are used with a group by clause that is not relevant to the column being aggregated."
+    }
+}

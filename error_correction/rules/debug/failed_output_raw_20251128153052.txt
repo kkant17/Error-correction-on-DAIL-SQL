@@ -1,0 +1,9 @@
+{
+    "pattern": "selects.*Birth\_Year.is(?=\\s*(\\w+)\\s*is\\s*either\\s*1948|1949)",
+    "correction": "Replace 'is either' with '=', and ensure proper capitalization for keywords.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use 'is either' instead of the correct SQL operator '=' in filtering conditions."
+    }
+}

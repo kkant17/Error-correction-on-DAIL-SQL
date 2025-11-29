@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Dogs WHERE abandoned_yn = 'N') AND owner_id NOT IN \(\S+\) SELECT owner_id FROM AdoptedDogs",
+    "correction": "SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly select columns from the wrong table and include unnecessary conditions or subqueries."
+    }
+}

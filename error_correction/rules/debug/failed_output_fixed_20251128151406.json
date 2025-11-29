@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ ORDER BY .+\\s*DESC\\s*(LIMIT|OFFSET)\\s*1",
+    "correction": "SELECT <column_name> FROM <table_name> ORDER BY <column_name> DESC LIMIT 1",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that include unnecessary columns in the SELECT statement, which can lead to confusion and affect the order of results."
+    }
+}

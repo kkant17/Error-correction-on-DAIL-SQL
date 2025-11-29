@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ AS TotalCost FROM .+ JOIN .+ ON .+\.treatment_type_code = .+\.treatment_type_code GROUP BY treatment_type_description ORDER BY TotalCost",
+    "correction": "Replace the SUM(cost_of_treatment) with sum(cost_of_treatment), group by treatment_type_code instead of treatment_type_description, and remove the AS TotalCost from the SELECT statement.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses incorrect aggregation of cost_of_treatment in the SQL query."
+    }
+}

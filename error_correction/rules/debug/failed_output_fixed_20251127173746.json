@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [a-z]+, COUNT\\(*\\) as [a-z\\_\\]+\\_count FROM [a-z]+ LEFT JOIN [a-z]+ ON [a-z]+\\.[a-z]+ = [a-z]+\\.[a-z]+ GROUP BY [a-z]+",
+    "correction": "SELECT [group_by], COUNT\\(*\\) FROM [table] GROUP BY [group_by]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join another table when grouping and counting rows, potentially leading to incorrect results."
+    }
+}

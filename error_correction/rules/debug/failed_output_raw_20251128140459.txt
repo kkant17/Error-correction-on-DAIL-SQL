@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\(Has_[A-Za-z]+\.\w+\) FROM .+ JOIN .+ ON .+\.[\w]+ = .+\.\w+ GROUP BY .+\.\w+",
+    "correction": "Replace the COUNT function with count(*), and ensure that the count(*) is included in the SELECT clause.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the COUNT function is incorrectly used to count a specific column instead of all records."
+    }
+}

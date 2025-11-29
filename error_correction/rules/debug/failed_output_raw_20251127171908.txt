@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\*\) FROM (a|A){2,}LINES$",
+    "correction": "Replace the table name with 'AIRLINES' in uppercase.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the table name is misspelled or case-insensitive."
+    }
+}

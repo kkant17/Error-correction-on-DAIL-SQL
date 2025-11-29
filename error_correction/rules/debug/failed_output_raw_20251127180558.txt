@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM country WHERE Code = '(.*?)'",
+    "correction": "Replace 'Code' with 'Name' and change single quotes around 'Brazil' to double quotes",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that use the Country Code instead of the Country Name"
+    }
+}

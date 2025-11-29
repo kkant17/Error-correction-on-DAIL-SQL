@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9\\s]+) AS t1 JOIN \\(\\s*SELECT\\s*.+\\sFROM\\s(?<table2>[A-Za-z0-9\\s]+)\\s*\\) AS t2 ON t1\\.[\\w\\.]+\\s*=\\s*t2\\.\\w+ WHERE\\s*\\(\\s*(SELECT\\s+COUNT\\(*\\)\\s+FROM\\s+([A-Za-z0-9\\s]+)\\s+WHERE\\s*\\[\\w\\.]+\\s*=\\s*t1\\.\\w+\\s*)+\\s*\\)\\s*$",
+    "correction": "Replace the query with SELECT state FROM Owners INTERSECT SELECT state FROM Professionals",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that uses an unnecessary COUNT(*) function and performs a join with a subquery, replacing it with the INTERSECT operator to find common values between two tables."
+    }
+}

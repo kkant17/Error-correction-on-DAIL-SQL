@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9\s]+\s+FROM\s+[A-Za-z0-9\s]+\s+WHERE\s+[A-Za-z0-9\s]+\s+=\s+(SELECT\s+MAX\([A-Za-z0-9\s]\+\s+FROM\s+[A-Za-zz0-9\s]+\s+)$",
+    "correction": "Join the tables correctly and order by the column in descending order to select the top row.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join tables properly, instead using a subquery to find the maximum value of a column."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-zA-Z0-9\s]+) AS T1 JOIN ([a-zA-Z0-9\s]+) AS T2 ON T1.\w+ = T2.\w+ WHERE YEAR\(\w+\.\w+\) IN \(([0-9]{4}),([0-9]{4})\) GROUP BY T1.\w+ HAVING COUNT\(DISTINCT YEAR\(T1.\w+\)\) = ([0-9]+)",
+    "correction": "Replace the query with SELECT <column_name> FROM <table_name> WHERE YEAR = <year1> INTERSECT SELECT <column_name> FROM <table_name> WHERE YEAR = <year2>",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use JOIN and subqueries when a simple INTERSECT operation would suffice for finding common values across specific years."
+    }
+}

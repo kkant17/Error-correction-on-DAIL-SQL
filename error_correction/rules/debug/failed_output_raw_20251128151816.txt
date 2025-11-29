@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \w+ FROM Friend WHERE (\w+\s+=\s+(SELECT\s+ID\s+FROM\s+Highschooler\s+WHERE\s+name\s+=\s+'[^']*')))",
+    "correction": "Join the Friend and Highschooler tables based on student_id and friend_id, and filter the results by Kyle's name.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to find a specific ID and then search for related records using that ID. Instead, the query should join the tables directly."
+    }
+}

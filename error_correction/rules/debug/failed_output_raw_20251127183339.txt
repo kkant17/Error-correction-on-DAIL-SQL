@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s+Dogs\s+JOIN\s+(Breeds|Sizes)\s+ON\s+Dogs\.\w+\s+=\\1\.\w+",
+    "correction": "The query should only select columns from the 'dogs' table without any join operations.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join the 'Dogs' table with either 'Breeds' or 'Sizes' tables."
+    }
+}

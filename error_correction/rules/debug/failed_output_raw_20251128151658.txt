@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+, count(\*), (.+) FROM .+ GROUP BY (.+)$",
+    "correction": "The order of selected columns should be reversed: SELECT (.+), count(*) FROM ... GROUP BY ...",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the error where the order of selected columns is incorrect in a SQL query, causing incorrect results."
+    }
+}

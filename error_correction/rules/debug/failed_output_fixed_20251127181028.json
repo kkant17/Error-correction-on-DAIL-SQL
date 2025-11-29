@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\* FROM ( SELECT .* FROM country WHERE GovernmentForm = 'Republic' GROUP BY .* HAVING COUNT(\\*) = 1 ) AS c1 JOIN countrylanguage AS cl1 ON .* WHERE cl1\\.IsOfficial = 'T' AND NOT EXISTS \\(\\( SELECT \\* FROM countrylanguage AS cl2 WHERE cl2\\.CountryCode <> cl1\\.CountryCode AND cl2\\.Language = cl1\\.Language \\)\\)",
+    "correction": "Filter for single-country republics after joining with the countrylanguage table",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects queries that first filter out specific records from a table before joining it with another table, which can lead to incorrect results."
+    }
+}

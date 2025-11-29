@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM\s+AS\s+DP\s+JOIN\s+Student\_Enrolment\s+SE\s+ON\s+DP\.\w+\s+=\s+SE\.\w+\s+JOIN\s+Students\s+S\s+ON\s+SE\.student\_id\s+=\s+S\.student\_id)",
+    "correction": "The query should only join with the Student Enrolment table and remove the unnecessary Students table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join multiple tables unnecessarily."
+    }
+}

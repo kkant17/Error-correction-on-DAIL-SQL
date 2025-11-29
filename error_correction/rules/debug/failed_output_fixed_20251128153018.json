@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\\*\\) FROM ([A-Za-z]+)$",
+    "correction": "The given SQL query is correct and there seems to be no error in it.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies a correct SQL query that counts all records from a table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ WHERE ([A-Z]+)\(.*FROM ([A-Za-z ]+) \)([>]|[<])\\s*(\\w+)\\b",
+    "correction": "Replace with: SELECT Name FROM country WHERE SurfaceArea > (SELECT min(SurfaceArea) FROM country WHERE Continent = 'Europe')",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery with an aggregate function and compares the result with a column from another table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s[a-zA-Z0-9]*\sFROM\sFriend\sWHERE\sstudent_id\s=\\(\sSELECT\sID\sFROM\sHighschooler\sWHERE\sname\s='Kyle'\)$,",
+    "correction": "Join the Friend and Highschooler tables correctly and apply the condition for Kyle in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between tables."
+    }
+}

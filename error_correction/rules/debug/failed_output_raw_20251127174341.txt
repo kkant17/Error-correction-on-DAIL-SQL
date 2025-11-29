@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM matches JOIN players ON matches\.winner\_id = players\.player\_id GROUP BY players\.player\_id ORDER BY total\_wins DESC LIMIT 1",
+    "correction": "The query should group by winner\_name, order by count(*) desc and limit the result to top 1 instead of grouping by player\_id, summing match numbers, and ordering by total\_wins.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly aggregate data in a manner inconsistent with the gold SQL query."
+    }
+}

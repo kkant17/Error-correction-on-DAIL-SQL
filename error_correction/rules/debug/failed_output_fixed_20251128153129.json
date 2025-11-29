@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z_]+ FROM [A-Za-z]+\\) ",
+    "correction": "SELECT [A-Za-z_]+ FROM [A-Za-z] WHERE [A-Za-z_]+ NOT IN (SELECT [A-Za-z_]+ FROM [A-Za-z])",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects data from a subquery instead of using the subquery in a NOT IN clause."
+    }
+}

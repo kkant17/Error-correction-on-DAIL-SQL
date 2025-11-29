@@ -1,0 +1,9 @@
+{
+    "pattern": "NOT IN \\( SELECT .* FROM .* WHERE directed\_by = 'Ben Jones' \\)",
+    "correction": "Use EXCEPT operator instead of NOT IN to exclude rows that exist in TV_Channel but not in Cartoon where the cartoons are directed by Ben Jones.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies the use of NOT IN operator with a subquery that returns rows from a different table, and suggests replacing it with EXCEPT to correct the error."
+    }
+}

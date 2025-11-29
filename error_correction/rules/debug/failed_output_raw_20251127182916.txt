@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+(.*?)\s+FROM\s+Owners\s+AS\s+T1\s+JOIN\s+Dogs\s+AS\s+T2\s+ON\s+T1\.(owner_id|zip_code)\s+=\s+T2\.owner_id\s+JOIN\s+Charges\s+AS\s+T3\s+ON\s+T2\.dog_id\s+=\s+T3\.charge_id",
+    "correction": "Join with the correct table using the correct column for the dog id.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins where the wrong table or column is used for the dog id."
+    }
+}

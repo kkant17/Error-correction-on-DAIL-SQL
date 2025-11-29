@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z0-9]+\\.\\w+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+)\\.(\\w+) = ([A-Za-z0-9]+)\.(\\w+) AND (SELECT [A-Za-z0-9]+\\.\\w+ FROM ([A-Za-z0-9]+)) does not contain the requested columns",
+    "correction": "Ensure that the requested columns are included in the SELECT clause if they are not from the joined table or if a join is unnecessary.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "Rule for identifying cases where the requested columns are not present in the selected table or incorrectly joined tables."
+    }
+}

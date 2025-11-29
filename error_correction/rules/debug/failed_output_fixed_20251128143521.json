@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM\\s+)[a-zA-Z]+(?=\\s+AS\\s+)[a-zA-Z]+\\s*(?=ON)",
+    "correction": "The alias for the table in the FROM clause should match the alias used when joining another table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects errors where the aliases for tables in a JOIN statement do not match the aliases used when defining the tables."
+    }
+}

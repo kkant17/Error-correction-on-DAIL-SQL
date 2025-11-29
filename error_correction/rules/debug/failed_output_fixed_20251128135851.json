@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ( SELECT .+ FROM .+ WHERE .+ GROUP BY .+ ) AS .+ ON .+\\.Stadium\\_ID = (.+)\\.Stadium\\_ID",
+    "correction": "Join the two tables directly with the condition on stadium_id, and then perform the aggregation and sorting within the main query.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect subqueries that are used for joining tables, instead of directly joining them."
+    }
+}

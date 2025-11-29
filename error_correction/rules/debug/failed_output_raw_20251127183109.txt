@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT(\*) FROM ([A-Za-z0-9]+) WHERE [A-Za-z0-9]+_id IN\(SELECT [A-Za-z0-9]+_id FROM ([A-Za-z0-9]+)\)",
+    "correction": "Replace the COUNT(\*) with count(DISTINCT [table_name]_id) and remove the subquery",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery in the WHERE clause, causing double counting of records."
+    }
+}

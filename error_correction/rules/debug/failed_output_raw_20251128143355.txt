@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT (.+), COUNT\(*\) FROM (.+) GROUP BY (.+)",
+    "correction": "The query is correct as it stands.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies the given SQL query, which correctly groups results by a column and counts the number of rows in each group."
+    }
+}

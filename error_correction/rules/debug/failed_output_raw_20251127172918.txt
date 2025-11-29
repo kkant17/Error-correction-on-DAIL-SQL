@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT \w+\.\w+ AS \w+ FROM Documents AS D JOIN Templates AS T ON D\.Template_ID = T\.Template_ID WHERE D\.Document_Name = '(.*?)' AND \w+\.\w+ \w+= '(.*?)'",
+    "correction": "Replace the table reference for the column being selected if it is incorrect, and ensure that the correct column is filtered in the WHERE clause.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies situations where a column is being fetched from an incorrect table in a SQL query involving a JOIN operation."
+    }
+}

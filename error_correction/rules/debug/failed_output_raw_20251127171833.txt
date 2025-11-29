@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM .* WHERE Airline = '\'.*\''",
+    "correction": "Replace single quotes with double quotes or no quotes around the airline name and select the correct column from the airlines table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of single quotes for airline names in the WHERE clause and incorrect column selection."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT MAX\(\).+FROM .+\s+WHERE\s+CONTINENT\s+=\s+'Asia'\s+AND\s+CONTINENT\s+=\s+'Asia'\s*\)$",
+    "correction": "Replace the outermost SELECT statement with a SELECT statement that includes the desired columns (Name, Population, LifeExpectancy) and remove the unnecessary subquery.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects only the maximum surface area of Asian countries without retrieving the associated name, population, and life expectancy."
+    }
+}

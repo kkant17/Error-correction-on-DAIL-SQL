@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+Transcripts\\s+AS\\s+t1\\s+JOIN\\s+(?:(?:SELECT\\s+.*?\bFROM\\s+Student_Enrolment_Courses)\\s+AS\\s+t2|(?:Transcript_Contents|.+))\\s+ON\\s+t1\\.(?:transcript_id|transcript_date)\\s*=\\s*(?:t2\\.\\w+\b|\\d+)",
+    "correction": "Join the Transcripts and Transcript_Contents tables instead, group by transcript ID, count the number of occurrences, and filter out transcripts with at least 2 entries.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "The query incorrectly joins Transcripts with an unrelated table or subquery, causing a missing transcript information error."
+    }
+}

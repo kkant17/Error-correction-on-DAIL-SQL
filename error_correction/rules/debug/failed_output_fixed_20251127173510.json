@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\\(Paragraph_ID\\) .+ FROM Documents LEFT JOIN Paragraphs ON Documents\\.Document_ID = Paragraphs\\.Document_ID GROUP BY Document_ID, Document_Name",
+    "correction": "Replace the aggregation function with COUNT(*), and group by document_id only.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that count Paragraph_IDs instead of all records for each document_id group."
+    }
+}

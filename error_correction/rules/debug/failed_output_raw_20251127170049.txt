@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT (?<aggregate>AVG|SUM|MIN|MAX|COUNT)(\(?<column>[a-zA-Z]+)) as (?<alias>.+?) FROM (?<table>[a-zA-Z]+)",
+    "correction": "SELECT song_name FROM $table WHERE age > (SELECT $aggregate($column) FROM $table)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that return an aggregate function without a proper filter condition, by adding a WHERE clause with a subquery to compare the aggregated value."
+    }
+}

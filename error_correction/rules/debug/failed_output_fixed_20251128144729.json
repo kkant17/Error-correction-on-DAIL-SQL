@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+S1\\.\\w+\\s+FROM\\s+Student_Enrolment\\s+AS\\s+S1\\s+JOIN\\s+(?<!\\()\\s*(SELECT\\s+student_enrolment_id,\\s+COUNT(\\*)\\s+as\\s+count\\s+FROM\\s+Student_Enrolment\\s+GROUP BY\\s+student_enrolment_id\\s+HAVING\\s+count\\s+>\\s+1)\\s+AS\\s+S2\\s+ON\\s+S1\\.student_enrolment_id\\s+=\\s+S2\\.student_enrolment_id",
+    "correction": "Join the Students and Student_Enrolment tables, group by student_id, and filter for students with exactly two enrollments.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly assume each student can only be enrolled in one degree program per semester, and suggests a correction by joining the Students and Student_Enrolment tables and grouping by student_id."
+    }
+}

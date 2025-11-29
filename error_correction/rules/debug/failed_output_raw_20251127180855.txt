@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM country JOIN countrylanguage ON country\.Code = countrylanguage\.CountryCode WHERE countrylanguage\.(Language|IsOfficial) = '(English|French)' AND countrylanguage\.(Language|IsOfficial) = '(English|French)'",
+    "correction": "The query should be transformed to check for either English or French, not both, in the language column. Also, the INTERSECT operator should be used to find common rows between two queries if we want to compare countries that have both English and French as official languages.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with an inconsistency in the condition for the language column, where both English and French are checked."
+    }
+}

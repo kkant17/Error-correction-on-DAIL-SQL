@@ -1,0 +1,9 @@
+{
+    "pattern": "COUNT\(T[0-9]+\.\w+\) as \w+\_count",
+    "correction": "Replace COUNT(\\w+\\.\w+) as \\w+\_count with COUNT(\*)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the issue where the COUNT function is incorrectly referencing a specific column instead of using COUNT(*) to count all rows."
+    }
+}

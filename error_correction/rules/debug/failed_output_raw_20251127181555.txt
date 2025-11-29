@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+SUM\(\w+\.\w+\)\s*,\s+AVG\(\w+\.\w+\)\s*FROM\s+country\s+AS\s+T1\s+WHERE\s+T1\.Continent\s+=\s+'North America'\s+AND\s+T1\.SurfaceArea\s+>\s+3000",
+    "correction": "Replace 'North America' with \"north america\" and remove the period before SurfaceArea",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects a case sensitivity issue in column selection for continent names"
+    }
+}

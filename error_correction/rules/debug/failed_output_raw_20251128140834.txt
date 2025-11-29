@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(DISTINCT (?P<table1>[a-zA-Z0-9]+)\) FROM (?P<table2>\w+)_names JOIN .+\sON\s(?P<join_condition>[a-zA-Z0-9]+).Country = (?P<country_table>[a-zA-Z0-9]+)(\.CountryName)? WHERE continents\.Continent = 'North America' AND (?P<country_name>[a-zA-Z0-9 ]+)(\.CountryName)?=",
+    "correction": "The query should be adjusted to use the correct table names and join conditions, and it should check the country name directly from the COUNTRIES table instead of using a non-existent continents table. The table names in the FROM clause should match the actual database table names (MODEL_LIST, CAR_MAKERS, and COUNTRIES), and the join condition should be corrected to associate countries with car makers. Also, the column name for country names in the COUNTRIES table should be 'CountryName' without the 's'.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references and suggests corrections to ensure that the tables used in the query match the actual database schema."
+    }
+}

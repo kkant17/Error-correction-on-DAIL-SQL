@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\\s+FROM\\s+Cartoon\\s+ORDER\\s+BY\\s+.*?\\s+DESC\\s+LIMIT\\s+1",
+    "correction": "Replace 'Cartoon' with the correct table name and ensure column names are consistent with the table schema.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references that lead to errors."
+    }
+}

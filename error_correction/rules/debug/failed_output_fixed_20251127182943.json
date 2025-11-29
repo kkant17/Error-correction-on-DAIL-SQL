@@ -1,0 +1,9 @@
+{
+    "pattern": "Dogs\\.\\w+",
+    "correction": "use the alias for the Dogs table instead (e.g., T2.\\w+)",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where a column is referenced directly from a joined table without using the alias."
+    }
+}

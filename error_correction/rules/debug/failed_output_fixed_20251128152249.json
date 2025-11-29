@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .*\nFROM .*\\)\n",
+    "correction": "The query should include the main SELECT statement that calculates the desired aggregate function (e.g., AVG, SUM, COUNT) and a JOIN operation to filter out the relevant records from both tables.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are missing the main SELECT statement and a JOIN operation, which are essential for aggregating data."
+    }
+}

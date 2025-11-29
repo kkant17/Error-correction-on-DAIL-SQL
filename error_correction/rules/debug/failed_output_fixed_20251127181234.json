@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (MAX|MIN)(\\(.*\\)) as .* FROM country WHERE Continent = '(.*)'",
+    "correction": "SELECT Name FROM country WHERE Continent = \"Asia\" AND population > (SELECT min(population) FROM country WHERE Continent = \"Africa\")",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use MAX or MIN aggregation functions without properly filtering the results based on continent and comparing with minimum population of another continent."
+    }
+}

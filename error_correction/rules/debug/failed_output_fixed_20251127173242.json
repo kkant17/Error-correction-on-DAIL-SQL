@@ -1,0 +1,9 @@
+{
+    "pattern": "LEFT JOIN .+ ON Ref_Template_Types\\.Template_Type_Code = (.+\\.)(\\w+)\\._ID",
+    "correction": "Joining 'Ref_Template_Types' table with multiple tables is not necessary. Instead, join 'Templates' table twice: once to itself and once to 'Documents'.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect join structure that results in a different set of rows being selected."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Z]+)\\.(PetType|pet_age|weight) FROM ([A-Z]+) JOIN Has\_Pet ON ([A-Z]+)\.StuID = Has\_Pet\.StuID JOIN Pets ON Has\_Pet\.PetID = Pets\.PetID",
+    "correction": "SELECT pets.pettype, pets.weight FROM pets ORDER BY pets.pet_age LIMIT 1",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly reference tables other than the intended one (pets), and also removes unnecessary columns and joins."
+    }
+}

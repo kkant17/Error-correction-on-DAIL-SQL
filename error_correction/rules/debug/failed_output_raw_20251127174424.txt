@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR|(?=SELECT .+ FROM matches JOIN players AS loser ON loser\.player\_id = matches\.loser\_id JOIN players AS winner ON winner\.player\_id = matches\.winner\_id)",
+    "correction": "Simplify the query by joining the tables once and selecting only required columns",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that join the same table multiple times, which can lead to redundancy and potentially slower query performance"
+    }
+}

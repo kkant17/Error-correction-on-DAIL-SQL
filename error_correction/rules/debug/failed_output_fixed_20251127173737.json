@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .*, COUNT(\\*) FROM (.*?) GROUP BY .*",
+    "correction": "Replace 'COUNT(*)' with 'COUNT(.)' to avoid counting null values",
+    "metadata": {
+        "error_type": "NULL_HANDLING",
+        "confidence": "high",
+        "description": "This rule corrects the issue of counting null values when using COUNT(*)"
+    }
+}

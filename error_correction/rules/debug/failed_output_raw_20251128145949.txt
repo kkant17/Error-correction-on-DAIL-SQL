@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?<!\w)(\\w+\\s+JOIN\\s+)\\w+(?!\w) GROUP BY .+$",
+    "correction": "Remove the unnecessary join and group by clause, only select and group by the relevant columns from the specified table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include an unnecessary join which could potentially introduce irrelevant data."
+    }
+}

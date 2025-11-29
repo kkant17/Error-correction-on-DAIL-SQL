@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE NOT IN \\(\\s*( SELECT .*\bFROM\\s*.*\b)\\)",
+    "correction": "Replace with: SELECT <table_alias>.\\* EXCEPT SELECT <table_alias>\\.* from the original query, where <table_alias> is the alias of the table in the main query",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses NOT IN with a subquery to find templates without associated documents. The corrected query uses the EXCEPT operator to find templates that are used but not linked to a Document_ID."
+    }
+}

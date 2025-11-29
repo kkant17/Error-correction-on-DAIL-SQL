@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+DISTINCT\s+(.*?)\s+FROM\s+TV\_Channel\s+WHERE\sid\s+NOT\s+IN\s+\( SELECT\s+(.*?)\s+FROM\s+(.*?)\s+WHERE\s+directed\_by\s+=\s+'Ben\s+Jones'\)",
+    "correction": "Replace the column name 'Channel' with 'id', and ensure that the table names are consistent throughout the query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors where the table or column names are inconsistent in a SQL query involving DISTINCT, NOT IN, and subqueries."
+    }
+}

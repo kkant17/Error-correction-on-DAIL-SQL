@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(*\) FROM ([a-zA-Z0-9]+) \.([a-zA-Z0-9]+) WHERE ([a-zA-Z0-9]+)\.(CountryId|Country) = ([a-zA-Z0-9]+)\.(CountryId|Country)(?!\s+GROUP\s+BY|JOIN)",
+    "correction": "Replace the query with a corrected version that includes JOIN operations between tables, uses appropriate aggregation functions, and correct syntax for filtering and column selection.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that lack proper JOIN operations between tables."
+    }
+}

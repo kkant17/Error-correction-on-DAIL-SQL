@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (?!.*FROM).*GROUP BY (?!.*T1\.Country|.*countryid).*ORDER BY num_makers DESC LIMIT 1 .*$",
+    "correction": "Join with COUNTRIES table and group by Country instead of Continent and countryid.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly group by a column other than the intended one."
+    }
+}

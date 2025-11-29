@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+(airlines|flights|airports)\s+WHERE\s+Airline|DestAirport\s*=\s*(SELECT\s.*?FROM\sairports)",
+    "correction": "Join the FLIGHTS, AIRPORTS, and AIRLINES tables properly and count the number of flights as required.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join or do not join the FLIGHTS, AIRPORTS, and AIRLINES tables."
+    }
+}

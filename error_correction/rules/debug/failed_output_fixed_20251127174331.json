@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ COUNT\\(.*\\) as .+\bFROM\\s.*GROUP BY\\s.*ORDER BY COUNT\\(\\w*\\)\\sDESC LIMIT 1",
+    "correction": "Replace the GROUP BY clause with a JOIN clause to join the required tables, and remove the COUNT and ORDER BY clauses from the SELECT statement. Also, adjust the query to select the appropriate columns.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries and aggregations to solve a problem that should be addressed with proper JOINs."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+.*FROM\\s+TABLE1\\s+JOIN\\s+(?P<subquery>SELECT\\s*.*\\sAS\\s*.*\\sFROM\\s*TABLE2)\\s+ON\\s+TABLE1\\.\\w+\\s+=\\s+subquery\\.\\w+",
+    "correction": "Replace the subquery with a join to the correct table, group by the common column, calculate the total cost of treatment, order and limit the results.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between tables where a subquery is used instead of joining the correct table directly."
+    }
+}

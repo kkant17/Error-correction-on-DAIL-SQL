@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM ([a-zA-Z0-9_\\s]*) GROUP BY [a-zA-Z0-9_\\s]* HAVING count(\\*).*$",
+    "correction": "Add a join condition with the required table and specify an alias for it, also include the necessary join condition in the group by clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only reference one table without specifying a join condition."
+    }
+}

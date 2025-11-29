@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+,\s+[A-Za-z]+\s+FROM\s+[A-Za-z]+\s+JOIN\s+\( SELECT\s+[A-Za-z]+\, COUNT\(*\) as\s+[A-Za-z]+\s+FROM\s+[A-Za-z]+\s+GROUP BY\s+[A-Za-z]+\s+ORDER BY\s+[A-Za-z]+\s+ASC\s+LIMIT\s+1\s+\) AS\s+[A-Za-z]+\s+ON\s+[A-Za-z]+\.uid\s+=\s+[A-Za-z]+\.Airline",
+    "correction": "Join the 'AIRLINE' table and 'FLIGHTS' table directly using the 'uid' field, use a subquery in the SELECT statement to get the airline with the least number of flights and then join that result back to the 'AIRLINES' table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries in the JOIN clause and suggests a correct approach for using subqueries."
+    }
+}

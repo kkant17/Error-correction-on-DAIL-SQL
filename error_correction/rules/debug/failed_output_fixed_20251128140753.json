@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+ FROM [A-Z_]+ WHERE Make = \\( SELECT Make FROM [A-Z_]+ WHERE Model = '[a-z ]+' AND Make LIKE '%[A-Z]+%'\\)",
+    "correction": "JOIN the CAR_NAMES table using MakeId as the join condition, and filter on the specific model",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where a subquery is used to find the make, but should instead use the MakeId from the CAR_NAMES table as the join condition."
+    }
+}

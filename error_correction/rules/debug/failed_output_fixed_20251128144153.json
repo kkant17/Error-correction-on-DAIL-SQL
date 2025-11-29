@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z]+(?:\\s+FROM)?\\s*matches\\s*(?:GROUP BY\\s+[a-zA-Z]+)*",
+    "correction": "Add count(*) before the GROUP BY clause and select any column from the matches table.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that are missing the count(*) function when grouping by a column, and suggests adding the necessary function to properly count rows in each group."
+    }
+}

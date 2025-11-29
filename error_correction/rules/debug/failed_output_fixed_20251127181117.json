@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT SUM\\(Population\\) FROM (?P<table>[a-z]+) (JOIN|INNER JOIN) countryLanguage cl ON (?P<country_column>\\w+)\\.(CountryCode|ISOCODE) = cl\\.(CountryCode|ISOCODE) WHERE cl\\.Language != 'English' AND cl\\.IsOfficial = 'T'",
+    "correction": "Replace the table reference with the correct one (in this case, 'country') and remove the filtering on IsOfficial since it is not used in the gold SQL query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect table is referenced in a JOIN statement."
+    }
+}

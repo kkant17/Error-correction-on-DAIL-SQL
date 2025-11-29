@@ -1,0 +1,9 @@
+{
+    "pattern": "HAVING \\*(.*?)\\s+>",
+    "correction": "replacing '*>' with '>= '",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of using '>' instead of '>= ' in the HAVING clause when counting the number of occurrences for each grade."
+    }
+}

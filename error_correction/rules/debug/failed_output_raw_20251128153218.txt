@@ -1,0 +1,19 @@
+{
+    "pattern": "^SELECT .+ FROM (Properties|Ref_Property_Types) JOIN (Properties|Ref_Property_Types) ON .*$",
+    "correction": "Include an alias for each table in the JOIN clause and use the aliases to reference the tables later in the query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "Ensures that every table is properly referenced with an alias for clarity and avoids syntax errors."
+    }
+}
+
+{
+    "pattern": "^SELECT .+ FROM Properties JOIN Ref_Property_Types ON Properties.property_type_code = Ref_Property_Types.property_type_code$",
+    "correction": "Add a GROUP BY clause to aggregate the results by property type code.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "Ensures that the query groups the results by property type code for accurate data aggregation."
+    }
+}

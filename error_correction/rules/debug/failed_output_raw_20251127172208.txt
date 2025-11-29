@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Airline,\s+COUNT\(FlightNo\)\s+as\s+TotalFlights\s+FROM\s+flights\s+GROUP BY\s+Airline\s+ORDER BY\s+TotalFlights\s+DESC\s+LIMIT\s+1",
+    "correction": "Join the AIRLINES and FLIGHTS tables on a common column, group by Airline, order by count(*) desc and limit to one record.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the AIRLINES and FLIGHTS tables correctly."
+    }
+}

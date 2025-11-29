@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM ([a-z]+) JOIN ([a-z]+) ON (\\w+\\.\\w+) = (\\w+\\.\\w+) GROUP BY \\w+ ORDER BY SUM\\((\\w+\\)) DESC LIMIT 1",
+    "correction": "Replace the ORDER BY clause with ORDER BY count(*) and ensure that the GROUP BY clause includes all columns not used in the aggregate function",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the ORDER BY clause orders results by an incorrect aggregation function, such as SUM() instead of count(*)"
+    }
+}

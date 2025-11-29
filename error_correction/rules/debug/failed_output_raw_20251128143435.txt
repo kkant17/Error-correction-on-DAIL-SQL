@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (?P<table>[a-zA-Z]+) JOIN \\( SELECT DISTINCT .+ FROM (?P<subquery>[a-zA-Z]+) \\) AS (?P<alias>[a-zA-Z0-9_]+) ON (?P<table>[a-zA-Z]+).(?:DISTINCT|UNIQUE)? .+ = (?P<subquery>.+)\\.\\1 GROUP BY \\1 HAVING COUNT\\(DISTINCT (?P<table>[a-zA-Z]+)\.\d+\\) > 1",
+    "correction": "SELECT \\1 FROM \\1 GROUP BY \\1 HAVING COUNT(\*) >= 2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessarily joining a table with a subquery that selects distinct values from another table, especially when the subquery does not provide additional information for the intended purpose."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-z]+)_names JOIN cars_data ON (\\w+)_names\\.\\w+ = cars_data\\.\\w+ WHERE Horsepower = \\(SELECT MIN\\(Horsepower\\) FROM cars_data\\)",
+    "correction": "Replace the WHERE clause with ORDER BY and LIMIT to order results by horsepower in ascending order and limit the result set to one record.",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that filter results based on a specific value (minimum horsepower in this case), and instead orders the results by the specified column and limits the result set to one record."
+    }
+}

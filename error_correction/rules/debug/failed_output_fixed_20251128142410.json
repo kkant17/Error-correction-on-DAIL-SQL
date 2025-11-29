@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+\\) AND (NOT IN|NOT EXISTS) .+",
+    "correction": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use the NOT IN operator to exclude rows from a result set, and instead select the wrong column or table."
+    }
+}

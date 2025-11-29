@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ( SELECT professional_id.* AS .* ) AS \\w+_count ON .+\bWHERE\\s+num_[A-Za-z0-9]+ \\>\\= \\d+",
+    "correction": "Join the tables correctly and perform the count after the join, use GROUP BY for aggregation, and move the WHERE clause to filter the results after the grouping.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables and perform counts in a subquery, instead of joining the tables correctly and performing the count after grouping."
+    }
+}

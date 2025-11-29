@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM (table1) JOIN (table2) ON (table1.\* = table2.\*) WHERE (table1.\* = table3.\*) AND (subquery to check for specific animal type)",
+    "correction": "Replace the subquery with a NOT EXISTS or NOT IN operator to exclude records that match the specific animal type",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a subquery is used incorrectly to check for the absence of a certain condition, and suggests replacing it with NOT EXISTS or NOT IN operator."
+    }
+}

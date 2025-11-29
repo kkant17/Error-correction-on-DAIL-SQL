@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+[a-zA-Z_]+(?:\\s+JOIN\\s+)[a-zA-Z_]+\\s*(?:WHERE\\s+)?(\\(SELECT\\s.*?\\))",
+    "correction": "Join the missing table and avoid using subqueries in the WHERE clause. Instead, use JOIN to combine data from multiple tables.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use subqueries incorrectly in the WHERE clause. It suggests joining the missing table and avoiding subqueries."
+    }
+}

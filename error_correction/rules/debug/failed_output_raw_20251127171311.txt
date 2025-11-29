@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+max\(\w+\)\s+as\s+[a-zA-Z]+(?:\s+from)?\s*",
+    "correction": "The query should select a specific column to aggregate and group by the required column. Instead of using MAX(column), use GROUP BY column and then select MAX(column) from the grouped results.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use aggregate functions without specifying a column to aggregate."
+    }
+}

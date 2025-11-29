@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT [A] FROM Tables A JOIN OtherTables B ON A\\.[Column] = B\\.[Column] + UNNECESSARY_JOIN",
+    "correction": "REMOVE THE UNNECESSARY JOIN AND SELECT DIRECTLY FROM THE TABLE: SELECT DISTINCT [A].[Column] FROM Tables",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins that are not required to retrieve the requested data, causing inefficiency and potential errors."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR|LIKE\s+.*\%(.*?)\%.+\bLIKE\s+.*\%(.*?)\%",
+    "correction": "Replace unnecessary joins and use exact matches instead of wildcards with the LIKE keyword",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join unnecessarily and use wildcards with the LIKE keyword, which can lead to inefficient queries. The correction suggests replacing unnecessary joins and using exact matches instead of wildcards."
+    }
+}

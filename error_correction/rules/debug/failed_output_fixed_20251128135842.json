@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+(.*?),(?!capacity)\\s+FROM\\s+stadium\\s+JOIN\\s+concert\\s+ON\\s+stadium\\.\\w+\\s*=\\s+concert\\.\\w+\\s*(?:JOIN\\s+singer_in_concert\\s+ON\\s+concert\\.\\w+\\s*=\\s+singer_in_concert\\.\\w+)+(?:WHERE\\s+Year\\s*=\\s*\\'\\d{4}\\')?(?:GROUP BY\\s+Stadium_Name,\\s+Capacity)?(ORDER BY\\s+COUNT\\(*\\))?\\s*(LIMIT\\s1)?",
+    "correction": "The query should only join the 'concert' and 'stadium' tables, group by 'stadium_id', and select only the stadium's name and capacity. The unnecessary join to the 'singer_in_concert' table and incorrect grouping by 'Stadium_Name' and 'Capacity' should be removed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that include an unnecessary join to the 'singer_in_concert' table and incorrect grouping by 'Stadium_Name' and 'Capacity'. It suggests removing these errors."
+    }
+}

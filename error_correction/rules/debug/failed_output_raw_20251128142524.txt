@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+\\.[A-Z]+\\.[A-Z]+ FROM ([A-Z]+) JOIN ([A-Z]+) ON ([A-Z]+)\_.* = ([A-Z]+)\_.*",
+    "correction": "Add the required columns from the first table in the SELECT statement",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that select data from another table while only including columns from the joined table in the SELECT statement. It suggests adding the necessary columns from the first table to fix the error."
+    }
+}

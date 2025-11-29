@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+T[1-9]\.\w+\s+AS\s+Package\_Choice,\s*FROM\s+TV\_Channel\s+AS\s+T[1-9]\s+JOIN\s+TV\_series\s+AS\s+T[2-9]\s+ON\s+T[1-9]\.\w+\s+=\s+T[2-9]\.\w+\s*WHERE\s+T[1-9]\.\w+\s+=\s+'Yes'\s*LIMIT\s+1",
+    "correction": "Replace the extraneous aliases and unnecessary JOIN, and ensure that the WHERE clause correctly filters for high-definition TV channels. Also, rename Package_Choice to package_option.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly alias columns and include unnecessary JOINs, potentially leading to inaccurate results."
+    }
+}

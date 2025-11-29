@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT SUM\(\(SurfaceArea\)\) FROM country WHERE Continent = 'Caribbean'",
+    "correction": "Replace 'Continent' with 'Region'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect column is used for filtering, in this case, using Continent instead of Region."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT avg\\(\\w+\\) FROM ([a-zA-Z]+) AS [a-zA-Z]+ JOIN ([a-zA-Z]+) AS [a-zA-Z]+\s*ON\s*([a-zA-Z]+).[a-zA-Z]+ = ([a-zA-Z]+)\_.*(visitor_ID|visit_ID)",
+    "correction": "Remove the unnecessary join and aggregate function should be applied to the desired column",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join a table which is not required for the specific operation, and suggests removing the unnecessary join."
+    }
+}

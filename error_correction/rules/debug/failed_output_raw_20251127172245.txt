@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+(?:\s+FROM\s+)?(airlines|flights)\s*(?:WHERE\s+EXISTS\s*\()?\s*(SELECT\s+1\s+FROM\s+)(flights|airlines)\s*JOIN\s*(?!\1)\s*(?:ON\s+)?\s*",
+    "correction": "Replace the subquery with a join operation and filter the results based on the required conditions.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries instead of joining tables directly."
+    }
+}

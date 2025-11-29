@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT count\(*\) FROM ([a-zA-Z]+) AS T1 JOIN ([a-zA-Z]+) AS T2 ON T1\.[a-zA-Z]+ = T2\[a-zA-Z\]+\.[a-zA-Z]+ WHERE T1\.[a-zA-Z]+ = '([Ff]|[Mm]|...)' AND T2\[a-zA-Z\]+\.[a-zA-Z]+ = '(Dog|cat|...)'",
+    "correction": "Replace inconsistent table aliases and column names with lowercase, and ensure consistent case sensitivity for better readability.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references and inconsistent case sensitivity in SQL queries."
+    }
+}

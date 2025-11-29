@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\s+(?<=FROM)\s+AS\s+[A-Za-z0-9]+\s+ON\s+C\.\w+\s+=\s+S\.\w+",
+    "correction": "Remove unnecessary joins and filter data separately in subsequent queries if needed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, potentially leading to inefficient or incorrect results."
+    }
+}

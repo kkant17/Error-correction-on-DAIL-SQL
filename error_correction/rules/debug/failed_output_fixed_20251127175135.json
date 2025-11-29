@@ -1,0 +1,9 @@
+{
+  "pattern": "WHERE T3\\.degree\\_summary\\_name LIKE '.*Bachelor.*'",
+  "correction": "Replace the LIKE operator and wildcards with an equal comparison for the exact degree name",
+  "metadata": {
+    "error_type": "OPERATOR_ERROR",
+    "confidence": "high",
+    "description": "This rule corrects queries that use a LIKE operator with wildcards to filter results based on a specific term, instead of using an exact comparison."
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(*\\) FROM (?P<table>\\w+) WHERE Document\\_Name = '(?P<document>\\w+)'",
+    "correction": "SELECT count\\(*\\) FROM (?P<table>[A-Z_]+) AS T1 JOIN Documents AS T2 ON T1.document\\_ID = T2.document\\_ID WHERE T2.document\\_name = '(?P<document>\\w+)'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that miss the join operation between tables when counting records based on document name."
+    }
+}

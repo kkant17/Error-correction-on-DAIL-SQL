@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+(?P<table>[a-zA-Z0-9_]+)\s+GROUP BY\s+(?P<column>\w+)\s+HAVING\s+COUNT\(\*\)\s*(>=|<=|=)\s*10",
+    "correction": "Join the specified table with the required table and use the correct table alias for column reference, then apply the filter.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly select columns without joining them with their respective tables."
+    }
+}

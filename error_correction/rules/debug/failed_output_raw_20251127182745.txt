@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\sDISTINCT\s(?:Owners|Professionals)\.first\_name(?:\sFROM\s(?:Owners|Professionals))?\s(?:LEFT\sJOIN\sDogs\sON\s(?:Owners|Professionals)\.\w+\s=\sDogs\.\w+)?\s(?:WHERE\s(?:Dogs\.name\sIS\sNULL|\s(?:Professionals\.first\_name\sNOT\sIN\s(?:SELECT\sDogs\.name\sFROM\sDogs))?))?\sUNION",
+    "correction": "Replace with: SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses subqueries to filter out duplicate names between tables, instead of using the EXCEPT operator."
+    }
+}

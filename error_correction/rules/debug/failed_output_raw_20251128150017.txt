@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(\*\) as [a-zA-Z0-9]+\_contestants FROM CONTESTANTS WHERE contestant\_number NOT IN \(\s*( SELECT contestant\_number FROM VOTES GROUP BY contestant\_number HAVING COUNT\\(DISTINCT phone\_number\\) = 0 )\)",
+    "correction": "Replace the subquery with a simple NOT IN clause against the votes table",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly filter out unvoted contestants by applying unnecessary conditions to the votes subquery."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Code,\s+Max\(SurfaceArea\)\s+as\s+MaxArea\s+FROM\s+country\s+GROUP BY\s+Code\s+)",
+    "correction": "Select the required columns (Name, population, HeadOfState) from the country table and order by SurfaceArea in descending order to find the row with the maximum SurfaceArea.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly select columns and orders results by a different column than intended."
+    }
+}

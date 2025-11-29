@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM ([a-zA-Z]+) JOIN ([a-zA-Z]+) ON ([a-zA-Z]+).(.*?) = ([a-zA-Z]+).(.*?) GROUP BY ([a-zA-Z]+)\\.?(.*?) ORDER BY SUM\\(([a-zA-Z]+)\\) DESC LIMIT 1",
+    "correction": "The query should either aggregate by the count of records or sum of bonuses, but not both in the same query. Also, ensure that the GROUP BY clause includes all columns from the JOIN table that are not part of the aggregation function.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries where both count of records and sum of bonuses are used for ordering, which can lead to incorrect results."
+    }
+}

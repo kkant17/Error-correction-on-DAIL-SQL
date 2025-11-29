@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-ZA-Z0-9\\s]+) AS T1 JOIN \\(\\s*SELECT\\s+Channel,\\s+COUNT\\(*\\s+as\\s+channel_count\\s+FROM\\s+([A-ZA-Z0-9\\s]+\\s+GROUP\\s+BY\\s+Channel\\s+UNION\\s+ALL\\s+SELECT\\s+Channel,\\s+COUNT\\(*\\s+as\\s+channel_count\\s+FROM\\s+[A-ZA-Z0-9\\s]+\\s+GROUP\\s+BY\\s+Channel)\\s+) AS T2 ON T1.id = T2.Channel WHERE T2.channel_count > [0-9]+",
+    "correction": "SELECT id FROM tv_channel GROUP BY country HAVING count(*) > 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that join the TV_Channel table with a subquery counting TV series and cartoons by channel, instead of grouping by country as required."
+    }
+}

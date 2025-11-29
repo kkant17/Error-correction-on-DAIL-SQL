@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR: Documents\\s+JOIN\\s+Templates",
+    "correction": "Join Paragraphs table instead of Templates",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the Documents table is joined with an incorrect table, in this case, Templates."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: GROUP BY\\s+Documents\\.Document\_ID\\s*,\\s*Documents\\.Document\_Name",
+    "correction": "Group by only Documents.Document_ID",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the GROUP BY clause includes multiple columns that may lead to incorrect results."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+(people)\s+WHERE\s+[a-zA-Z0-9_]+ > [0-9]+)",
+    "correction": "Join the required table and include aggregation function for the column of interest, along with the appropriate WHERE clause",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data from a single table without joining any other tables and provides guidance on how to correct it."
+    }
+}

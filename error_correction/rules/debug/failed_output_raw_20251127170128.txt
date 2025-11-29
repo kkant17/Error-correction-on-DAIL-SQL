@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \* FROM \(\(SELECT [A-Z_]+ AS [A-Z]_, (?<aggregate>AVG|SUM|MAX|MIN|COUNT)[\(\)]+ as [A-Z]+\) FROM [A-Z]+ JOIN [A-Z]+ ON [A-Z]+.[A-Z]+ = [A-Z]+.[A-Z]+ GROUP BY [A-Z_]+)(?!\s+JOIN|WHERE|\s+FROM|ORDER BY)",
+    "correction": "Join the initial query with the required table to get the necessary columns, and apply the desired filtering, sorting, or aggregation operations directly on the joined table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that attempt to select columns from a subquery without joining with the necessary table."
+    }
+}

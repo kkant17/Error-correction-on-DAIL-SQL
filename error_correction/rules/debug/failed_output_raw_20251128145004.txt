@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+\\.[\w]+ FROM [A-Za-z]+ JOIN [A-Za-z]+ ON [A-Za-z]+\.[A-Za-z]+ = [A-Za-z]+\.[A-Za-z]+\s+WHERE\s+[A-Za-z]+\.[\w]+ = '[A-Za-z]*' AND [A-Za-z]+\.[\w]+ = '[A-Za-z]*' AND [A-Za-z]+\.[A-Za-z]+ = '[A-Z]*'",
+    "correction": "SELECT [column_name] FROM [table_name] WHERE [condition1] AND [condition2]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary JOINs in SQL queries that are not required to answer the question."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+(?P<subquery>CONCERT)\s+WHERE\s+NOT\s+IN\s*\(\s*(?P<subquery_id>[0-9]+)\)",
+    "correction": "Replace the query with: SELECT name FROM stadium WHERE stadium_id NOT EXISTS (SELECT 1 FROM concert WHERE concert.stadium_id = stadium.stadium_id)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is incorrectly used outside of the NOT IN clause, causing it to include instead of exclude records."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r'".*"',
+    "correction": "Avoid using double quotes around SQL keywords or table names. Use single quotes if the name contains special characters or spaces.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies the usage of double quotes around SQL keywords or table names, which is not necessary in standard SQL syntax."
+    }
+}

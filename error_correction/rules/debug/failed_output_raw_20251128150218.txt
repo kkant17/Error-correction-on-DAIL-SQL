@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\sAS\s[A-Za-z]+\s,(.+)\sAS\sCountry,\s(.+), COUNT(\*)\sas\sTotalPopulation\sFROM\scity\sAS\sT1\sJOIN\scountry\sAS\sT2\sON\sT1\.CountryCode\s=\sT2\.Code\sWHERE\sT2\.Continent\s= 'Asia'\sGROUP BY\sT1\.ID\sORDER BY\s(.+)\sDESC\sLIMIT\s1",
+    "correction": "The query should be transformed to perform aggregation instead of joining individual city and country records. The population sum and maximum GNP for all countries in Asia can be found by using the aggregate functions SUM() and MAX().",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that aim to find detailed information about a single city and its corresponding country, but should instead be aggregating the population or finding the maximum GNP for all Asian countries."
+    }
+}

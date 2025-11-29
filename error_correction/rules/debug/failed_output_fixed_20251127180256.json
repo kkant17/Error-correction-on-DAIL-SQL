@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z0-9\\(\\)]+) AVG\\([A-Za-z0-9]+\\) FROM ([A-Za-z0-9]+)_player WHERE ([A-Za-z0-9]+) > [0-9]+",
+    "correction": "Join the tables using a common ID and filter the data based on the specified condition.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join tables correctly when calculating aggregates."
+    }
+}

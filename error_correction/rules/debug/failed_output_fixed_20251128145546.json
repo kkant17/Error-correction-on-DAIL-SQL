@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\d+ FROM Table1 WHERE Table1\\.[A-Z]+ = Table2\\.[A-Z]+ AND Written\\_by = '(.*)'",
+    "correction": "Join the tables correctly and select the required column instead of a constant value, use EXCEPT operator for excluding overlapping rows as needed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table joins and suggests the proper way to join tables."
+    }
+}

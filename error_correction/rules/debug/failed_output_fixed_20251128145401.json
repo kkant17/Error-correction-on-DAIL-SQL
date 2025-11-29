@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+).([A-Za-z0-9]+) = ([A-Za-z0-9]+)\\.id ORDER BY .+",
+    "correction": "Use a simple SELECT statement on the required table without any unnecessary JOINs, and ensure the correct columns are specified in the SELECT clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, which can often lead to errors."
+    }
+}

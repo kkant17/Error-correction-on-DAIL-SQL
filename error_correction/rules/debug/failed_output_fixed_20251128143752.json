@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9\\(\\)]+) AVG\\(([a-z]+\\s*[a-z]+\\s*)\/ 2\\s*as\\s*([a-z]+)_height\\s*from\\s*matches$",
+    "correction": "Replace the query with SELECT min(loser_rank) FROM matches",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that calculate incorrect aggregations, such as average height instead of minimum loser rank."
+    }
+}

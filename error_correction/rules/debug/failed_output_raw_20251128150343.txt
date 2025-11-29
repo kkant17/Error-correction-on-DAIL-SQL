@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+, COUNT\(DISTINCT (.+)\) AS .+\sFROM\s.* JOIN .*\sON .*=\s.*\.\w+\sGROUP BY .+\sORDER BY .+\sLIMIT 1",
+    "correction": "Replace the aggregation part with COUNT(*), and ensure that the country name is correctly referenced in the SELECT and GROUP BY clauses.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly calculate the number of distinct values instead of counting occurrences."
+    }
+}

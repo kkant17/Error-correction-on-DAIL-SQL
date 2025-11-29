@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Continent,\s+COUNT\(DISTINCT\s+Language\)\s+as\s+NumberOfLanguages\s+FROM\s+countrylanguage\s+GROUP BY\s+Continent\s+ORDER BY\s+NumberOfLanguages\s+DESC\s+LIMIT\s+1$",
+    "correction": "Join the country and countrylanguage tables, group by continent, count the number of occurrences for each continent, order the result in descending order by count, and then limit the output to the top 1 result.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the country and countrylanguage tables correctly."
+    }
+}

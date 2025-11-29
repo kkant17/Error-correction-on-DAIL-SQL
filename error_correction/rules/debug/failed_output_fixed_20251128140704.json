@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z]+\\s*,\\s+[0-9]+ FROM\\s+[A-Za-z]+\\s+ORDER\\sBY\\s+[0-9]+\\sASC\\sLIMIT\\s1$",
+    "correction": "Join the required tables using their common Id field, and include a subquery to select the minimum year from the main table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only order data by a specific column without joining it with the necessary table."
+    }
+}

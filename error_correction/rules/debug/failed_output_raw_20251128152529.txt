@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \d+ FROM (\w+\s+\w+\s*)+ JOIN \( SELECT avg\(\w+\) as \w+\ FROM \w+\) AS (\w+)\s*ON \d+=1 WHERE (\w+\.\w+) < (\w+\.\w+)\.(\w+)\)$",
+    "correction": "Join the correct table and filter treatments based on their cost being less than the average cost, select distinct first_name and last_name from the professionals table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that join a table with an aggregate function result instead of the intended table."
+    }
+}

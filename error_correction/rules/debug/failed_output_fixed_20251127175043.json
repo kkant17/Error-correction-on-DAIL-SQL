@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Courses AS C LEFT JOIN Sections AS S ON C\\.course\\_id = S\\.course\\_id WHERE S\\.section\\_id IS NULL OR COUNT\\(S\\.section\\_id\\) < 2",
+    "correction": "Replace the query with: SELECT T1.course_name , T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id HAVING count(*) <= 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that uses an inappropriate left join and filtering condition for finding courses with fewer than 2 sections."
+    }
+}

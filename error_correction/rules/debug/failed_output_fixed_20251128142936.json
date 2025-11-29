@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT Distinct ([A-Za-z0-9]+) from ([A-Za-z0-9]+) join ([A-Za-z0-9]+) on ([A-Za-z0-9]+)\\.([A-Za-z0-9]+) = ([A-Za-z0-9]+)\\.([A-Za-z0-9]+)(\\s+JOIN\\s+)?(.*?)(Template_Type_Description|template_type_description)",
+    "correction": "The query should include a JOIN with the necessary table (in this case Ref_template_types) to get the required column. Also, ensure that all keywords are spelled correctly.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries missing a JOIN with a specific table and suggests adding the necessary JOIN."
+    }
+}

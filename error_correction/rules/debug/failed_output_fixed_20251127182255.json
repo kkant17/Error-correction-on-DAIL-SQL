@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+(?P<table>[A-Za-z0-9]+)\\s+AS\\s+(?P<alias1>\\w+)\\s+WHERE\\s+NOT\\s+EXISTS\\s+\\( SELECT\\s*.+\bFROM\\s+(?P<table2>\\w+)\\s+AS\\s+(?P<alias2>\\w+)\\s+WHERE\\s+\b(?P=table)\\.(?P=alias1)\\s+=\\s+(?P=table2)\\.(?P=alias2)\\s+AND\\s+(?P=table)\\.(?P=alias1)\\s+=\\s+(?P=table2)\\.(?P=alias2)\\)",
+    "correction": "Compare the main table and the problematic table directly using the EXCEPT operator.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a self-join on a single table to find students without friends, and suggests using the EXCEPT operator instead."
+    }
+}

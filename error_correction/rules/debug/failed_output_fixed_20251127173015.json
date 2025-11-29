@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT\\s+Templates\\.\\w+\\s*,\\s+Templates\\.(\\w+)\\s+FROM\\s+Templates\\s+JOIN\\s*\\(.*\\)\\s+AS\\s+DocumentCount\\s+ON\\s+Templates\\.\\w+\\s*=\\s+DocumentCount\\.\\w+\\s*(WHERE\\s+DocumentCount\\.\\w+\\s*=\\s*(SELECT\\s+MAX\\(\\w+\\)\\s+FROM\\s*\\(.*\\)\\s+as\\s+MaxDocumentCount))?",
+  "correction": "Join the Documents and Templates tables directly on the 'template_id' column, group by template_id, order by count(*) DESC, and limit to the first result.",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies SQL queries that incorrectly join the Templates and Documents tables through a subquery, instead of joining them directly on the 'template_id' column."
+  }
+}

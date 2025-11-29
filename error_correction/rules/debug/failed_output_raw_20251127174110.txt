@@ -1,0 +1,9 @@
+{
+  "pattern": "SELECT \\* FROM ([a-z]+)\\s+COUNT\\(\\)\\s+FROM\s+matches",
+  "correction": "Replace 'SELECT \*' with 'SELECT count(*)' to adhere to standard SQL naming conventions for keywords like COUNT()",
+  "metadata": {
+    "error_type": "COLUMN_SELECTION",
+    "confidence": "high",
+    "description": "Rule for correcting incorrect use of SELECT \* in SQL queries"
+  }
+}

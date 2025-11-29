@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[a-z_]+,\s+[a-z_]+\s+FROM\s+Dogs",
+    "correction": "Only select the requested columns and exclude any unnecessary fields.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that include extra, unrequested columns when selecting data from the Dogs table."
+    }
+}

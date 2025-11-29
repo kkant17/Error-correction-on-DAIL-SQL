@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s.*\(\s(SELECT\s[a-zA-Z0-9_]+)\sFROM",
+    "correction": "SELECT [table_name] FROM [table_name] WHERE [column_name] NOT IN (SELECT [column_name] FROM subquery)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the subquery is missing the table name, leading to a syntax error."
+    }
+}

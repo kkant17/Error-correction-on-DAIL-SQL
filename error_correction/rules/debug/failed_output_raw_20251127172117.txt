@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (?P<column>[A-Za-z0-9\s]+\w) AS [A-Za-z]+, COUNT\(*\) as Total(?P<count>\w+) FROM (?P<table>[A-Za-z0-9\s]+\w) GROUP BY (?P<group_by>[A-Za-z0-9\s]+\w) ORDER BY Total(?P<order>[A-Za-z]+) LIMIT 1$",
+    "correction": "Join the required table to get city information, select city column from the joined table, group by city, order by count and limit results.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the required table to retrieve city information."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-z]+) WHERE .+ = \\d$",
+    "correction": "JOIN the required table and use an aggregation function to calculate the desired value",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select a column without performing any aggregation or joining, and suggests adding an aggregation function and a join to the query."
+    }
+}

@@ -1,0 +1,1810 @@
+[
+  {
+    "triplet_id": "triplet_985c0d03_20251129152222",
+    "incorrect_query": "SELECT DISTINCT Singer_Country FROM singer WHERE Age > 20",
+    "correct_query": "SELECT DISTINCT country FROM singer WHERE age > 20",
+    "explanation": "The predicted SQL query is incorrect because it uses \"Singer_Country\" instead of \"country\". In the given database schema, \"country\" is the actual column name for storing the country of origin for singers, while \"Singer_Country\" does not exist in the provided table structure. Therefore, the correct query should reference the existing \"country\" column.",
+    "rules": [
+      {
+        "rule_id": "rule_a9757518_20251128192716",
+        "pattern": "SELECT DISTINCT ([A-Z]+)_Country FROM singer WHERE Age > 20",
+        "correction": "Replace '(<column>)_Country' with '<column>' in the SELECT statement.",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_a870f84f_20251129152222",
+    "incorrect_query": "SELECT Average(Capacity) AS Average_Capacity, Max(Capacity) AS Max_Capacity FROM stadium",
+    "correct_query": "SELECT avg(capacity) , max(capacity) from stadium",
+    "explanation": "The predicted SQL query is incorrect because it uses `Average()` instead of `AVG()`, and `Max()` is correct as is. The SQL standard uses function names in uppercase with no parentheses, while some database systems like MySQL allow lowercase functions with parentheses for readability. However, to be compatible with the SQL standard, it's best to use uppercase without parentheses.",
+    "rules": [
+      {
+        "rule_id": "rule_3371996b_20251128192809",
+        "pattern": "SELECT ([A-Za-z]+)(\\(.*\\)) AS .* FROM .*",
+        "correction": "Replace with: SELECT uppercase(function_name) without parentheses from table",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_3cd02210_20251129152222",
+    "incorrect_query": "SELECT Stadium_ID FROM concert JOIN singer_in_concert ON concert.concert_ID = singer_in_concert.concert_ID WHERE YEAR(concert.Year) = 2014) This SQL query will return the names of all stadiums that did not host any concert in the year 2014, based on the provided database schema. The query first selects the Stadium_IDs of concerts held in 2014 by joining the concert and singer_in_concert tables. Then it uses the NOT IN operator to exclude stadiums with those IDs from the stadium table.",
+    "correct_query": "SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year = 2014",
+    "explanation": "The predicted SQL query is incorrect because it does not provide the names of all stadiums that did not host any concert in the year 2014. Instead, it returns the Stadium_IDs of concerts held in 2014 and then tries to exclude stadiums with those IDs from the stadium table using NOT IN operator. However, this approach will exclude only those stadiums that hosted a concert with a matching ID in the year 2014, but not necessarily all the stadiums that did not host any concert in that year. The correct query should use EXCEPT or MINUS operator to find the difference between the set of all stadium names and the set of stadium names that hosted concerts in the year 2014.",
+    "rules": [
+      {
+        "rule_id": "rule_918bee12_20251128192930",
+        "pattern": "SELECT .* FROM concert JOIN .* ON concert\\.concert\\_ID = .*\\.concert\\_ID WHERE YEAR\\(concert\\.Year\\) = \\d{4}\\)",
+        "correction": "Use EXCEPT or MINUS operator to find the difference between the set of all stadium names and the set of stadium names that hosted concerts in the year 2014.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_9a7c8ccc_20251129152222",
+    "incorrect_query": "SELECT Stadium_ID FROM concert WHERE Year = '2014') This SQL query will return the names of all stadiums that did not host any concerts in the year 2014. The query first selects the IDs of all stadiums that hosted a concert in 2014, and then finds the IDs of all stadiums that are not included in this list, which corresponds to the stadiums that did not have a concert in 2014. Finally, it retrieves the names of these stadiums from the Stadium table.",
+    "correct_query": "SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year = 2014",
+    "explanation": "The predicted SQL query is incorrect because it only selects the Stadium_ID from the concert table where year equals '2014'. This will return all stadiums that hosted a concert in 2014, not the ones that did not host any concerts. In contrast, the gold SQL query correctly identifies the stadiums that did not host any concerts by first selecting all stadium names and then excluding those that had concerts in 2014.",
+    "rules": [
+      {
+        "rule_id": "rule_dc73e50c_20251128192939",
+        "pattern": "^SELECT .+ FROM .+ WHERE Year = '(.{4})'",
+        "correction": "Select names from stadium and exclude those that have concerts in the specified year using EXCEPT or NOT EXISTS clause",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_50d69869_20251129152222",
+    "incorrect_query": "SELECT Stadium_ID FROM concert GROUP BY Stadium_ID HAVING YEAR(Year) = 2014 AND YEAR(Year) = 2015)",
+    "correct_query": "SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2014 INTERSECT SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2015",
+    "explanation": "The predicted SQL query is incorrect because it does not return the names and locations of stadiums for specific years (2014 and 2015) as required by the question. Instead, it groups all concert records by Stadium_ID and checks if any of them fall within the specified years, which does not provide the desired output format or filtering by year. The gold SQL query correctly joins the concert and stadium tables, filters by specific years using a WHERE clause, and uses INTERSECT to find common results between the two queries for both years.",
+    "rules": [
+      {
+        "rule_id": "rule_12540a8a_20251128193016",
+        "pattern": "SELECT .* FROM (.*) GROUP BY .* HAVING YEAR\\(.*\\) = ([0-9]{4}) AND YEAR\\(.*\\) = ([0-9]{4})",
+        "correction": "Use separate WHERE clauses for each year and use INTERSECT to find common results between the two queries.",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_62751f12_20251129152222",
+    "incorrect_query": "SELECT MAX(Capacity) FROM stadium)",
+    "correct_query": "SELECT count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)",
+    "explanation": "The predicted SQL query is incorrect because it returns the maximum stadium capacity, not the stadium ID with the highest capacity as required by the gold SQL query. The gold SQL query correctly uses a subquery to find the stadium_id with the highest capacity and then counts the number of concerts in that stadium. The predicted query does not use a subquery and instead tries to use the MAX function on the stadium table, which would return the maximum capacity, not the stadium ID.",
+    "rules": [
+      {
+        "rule_id": "rule_e9f322dd_20251128193033",
+        "pattern": "SELECT MAX\\(.*\\) FROM .*",
+        "correction": "Replace with: SELECT count(*) from <table> where <column> = (select <column> from <table> order by <column> desc limit 1)",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "concert_singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_03153d64_20251129152222",
+    "incorrect_query": "SELECT Pets.PetID from Students inner join Has_Pet on Students.StuID = Has_Pet.StuID where Students.LName = 'Smith'",
+    "correct_query": "SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid WHERE T1.Lname = 'Smith'",
+    "explanation": "The predicted SQL query is incorrect because it refers to the table as \"Pets\" instead of \"has_pet\", which is the actual table name in the schema. Additionally, the alias for the student table in the gold SQL query is \"T1\", while in the predicted query it is simply \"Students\". This inconsistency can lead to confusion and errors when joining tables.",
+    "rules": [
+      {
+        "rule_id": "rule_85d7bcbd_20251128193441",
+        "pattern": "Students|Pets",
+        "correction": "Ensure that table names are consistent and use correct aliases in JOIN statements.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "pets_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_300b7d82_20251129152222",
+    "incorrect_query": "SELECT Student.StuID, COUNT(Has_Pet.PetID) FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID GROUP BY Student.StuID This SQL query will return the IDs of students who have pets and the number of pets each student has. The query joins the Student table with the Has_Pet table on the common StuID field, groups by the student ID, and counts the number of pet IDs associated with each student ID.",
+    "correct_query": "SELECT count(*) , t1.stuid from student as t1 join has_pet as t2 on t1.stuid = t2.stuid group by t1.stuid",
+    "explanation": "The predicted SQL query is incorrect because it counts the number of PetIDs instead of counting the total number of students (count(*)) for each unique student ID. Additionally, the gold SQL query correctly includes the count(*) of all records in the result set, while the predicted query does not.",
+    "rules": [
+      {
+        "rule_id": "rule_9be65a12_20251128193459",
+        "pattern": "SELECT .+ COUNT\\(Has_[A-Za-z]+\\.\\w+\\) FROM .+ JOIN .+ ON .+\\.[\\w]+ = .+\\.\\w+ GROUP BY .+\\.\\w+",
+        "correction": "Replace the COUNT function with count(*), and ensure that the count(*) is included in the SELECT clause.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "pets_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_12df36eb_20251129152222",
+    "incorrect_query": "SELECT Model FROM car_names JOIN cars_data ON car_names.MakeId = cars_data.Id WHERE Horsepower = (SELECT MIN(Horsepower) FROM cars_data)",
+    "correct_query": "SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1;",
+    "explanation": "The predicted SQL query is incorrect because it filters the results based on the minimum horsepower, while the gold SQL query does not filter the results at all and orders them by horsepower in ascending order. This means that the predicted query will return only one row with the minimum horsepower, whereas the gold SQL query will return the car model of the car with the lowest horsepower among all cars, regardless of its exact horsepower value.",
+    "rules": [
+      {
+        "rule_id": "rule_a9572614_20251128193556",
+        "pattern": "SELECT .* FROM .* JOIN .* ON .*.MakeId = .*.Id WHERE Horsepower = \\(SELECT MIN\\(Horsepower\\) FROM .*\\)",
+        "correction": "Replace with: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_07498ec5_20251129152222",
+    "incorrect_query": "SELECT Model FROM car_names JOIN cars_data ON car_names.MakeId = cars_data.Id WHERE Horsepower = ( SELECT MIN(Horsepower) FROM car_names JOIN cars_data ON car_names.MakeId = cars_data.Id )",
+    "correct_query": "SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1;",
+    "explanation": "The predicted SQL query is incorrect because it's trying to find the minimum horsepower value before joining the tables, which is not necessary for the given question. The correct approach is to join the tables first and then order by horsepower, as shown in the gold SQL query. Additionally, the predicted query should filter records after the join, not during the join.",
+    "rules": [
+      {
+        "rule_id": "rule_fa43a573_20251128193605",
+        "pattern": "SELECT .* FROM (.*?) JOIN (.*?) ON (.*?) \\( SELECT MIN\\(.*\\) FROM (.*?) JOIN (.*?) ON (.*?)\\)",
+        "correction": "Join tables first and then order by the specified column for minimum value",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8a87abf5_20251129152222",
+    "incorrect_query": "SELECT continents.Continent, COUNT(countries.CountryId) as number_of_car_makers FROM countries JOIN car_makers ON countries.CountryId = car_makers.Country GROUP BY continents.ContId, countries.CountryName",
+    "correct_query": "SELECT T1.Continent , count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId = T2.continent JOIN car_makers AS T3 ON T2.CountryId = T3.Country GROUP BY T1.Continent;",
+    "explanation": "The predicted SQL query is incorrect because it references the \"continents\" table where it should be referencing the \"CONTINENTS\" table (case sensitivity matters in SQL). Additionally, it groups by \"continents.ContId\" instead of \"T1.Continent\", which was used in the gold SQL query for better readability and consistency across the join tables. Lastly, it counts the number of countries' CountryIds instead of counting all records in the car_makers table, which is what the gold SQL query does by joining with COUNTRIES and then CAR_MAKERS.",
+    "rules": [
+      {
+        "rule_id": "rule_b34be7e5_20251128193734",
+        "pattern": "^SELECT\\s+continents\\.(.*?)\\s+AS\\s+number_of_car_makers\\s+FROM\\s+countries\\s+JOIN\\s+car_makers\\s+ON\\s+countries\\.\\w+\\s*=\\s+car_makers\\.\\w+\\s*(GROUP\\s+BY\\s+continents\\.ContId,\\s+countries\\.CountryName)$",
+        "correction": "Ensure case sensitivity is correct for table names and group by the appropriate column from the first join table.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_f14bdf11_20251129152222",
+    "incorrect_query": "SELECT max(Horsepower), Make FROM cars_data WHERE Cylinders = 3 GROUP BY Make",
+    "correct_query": "SELECT T2.horsepower , T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T2.cylinders = 3 ORDER BY T2.horsepower DESC LIMIT 1;",
+    "explanation": "The predicted SQL query is incorrect because it does not join the `CAR_NAMES` and `CARS_DATA` tables, which are necessary to retrieve both the horsepower and make information. Additionally, the predicted query selects the maximum horsepower instead of a specific horsepower value, and it does not filter by the Id from the `CAR_NAMES` table as in the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_cbb7390b_20251128193940",
+        "pattern": "^SELECT (MAX|AVG|SUM|COUNT)\\(.*\\), Make FROM .* WHERE Cylinders = [0-9]+ GROUP BY Make$",
+        "correction": "Join the required tables and select specific column values instead of aggregating, filtering by Id from the joining table, and order by the selected column.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_d26011fe_20251129152222",
+    "incorrect_query": "SELECT avg(Edispl) FROM cars_data WHERE Make = 'volvo' AND Model IS NOT NULL",
+    "correct_query": "SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T1.Model = 'volvo';",
+    "explanation": "The predicted SQL query is incorrect because it lacks the necessary join operation with the CAR_NAMES table, which provides the Model value 'volvo'. Additionally, the predicted query references the column name as 'Edispl', while the correct column name should be 'T2.edispl' based on the join operation with the CARS_DATA table in the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_8d17f88b_20251128194021",
+        "pattern": "^SELECT\\s+avg\\(\\w+\\)\\s+FROM\\s+([a-zA-Z]+)_data\\s+WHERE\\s+Make\\s+=\\s+'volvo'\\s+AND\\s+Model\\s+IS\\s+NOT\\s+NULL",
+        "correction": "Join the necessary table for Model value and reference the correct column name in the SELECT statement.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_fb60b613_20251129152222",
+    "incorrect_query": "SELECT AVG(Edispl) FROM cars_data WHERE Make = 'Volvo'",
+    "correct_query": "SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id WHERE T1.Model = 'volvo';",
+    "explanation": "The predicted SQL query is incorrect because it lacks the necessary join with the CAR_NAMES table, which provides the specific model ('volvo') for filtering the data from the CARS_DATA table. This results in an incomplete query that doesn't accurately represent the relationship between the tables and may not return the correct average value for 'edispl'. The gold SQL query correctly joins both tables using MakeId as the common identifier, ensuring accurate results.",
+    "rules": [
+      {
+        "rule_id": "rule_7708a208_20251128194030",
+        "pattern": "SELECT ([A-Za-z]+)\\((\\w+)\\) FROM (\\w+)_data WHERE Make = '(\\w+)'",
+        "correction": "Join with the necessary table and use the correct column name and identifier for filtering.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_63215aa6_20251129152222",
+    "incorrect_query": "SELECT Id, Maker FROM car_makers WHERE Id IN ( SELECT MakeId FROM car_names GROUP BY MakeId HAVING COUNT(DISTINCT Model) >= 2 ) AND ( SELECT COUNT(DISTINCT Id) FROM car_names WHERE MakeId = car_makers.Id ) > 3",
+    "correct_query": "SELECT t1.id , t1.maker from car_makers as t1 join model_list as t2 on t1.id = t2.maker group by t1.id having count(*) >= 2 intersect select t1.id , t1.maker from car_makers as t1 join model_list as t2 on t1.id = t2.maker join car_names as t3 on t2.model = t3.model group by t1.id having count(*) > 3;",
+    "explanation": "The predicted SQL query is incorrect compared to the gold SQL query because:\n\n1. The predicted query uses subqueries to find car makers that have at least 2 models and also have more than 3 cars associated with them, whereas the gold SQL query first finds car makers with at least 2 models and then separately finds those with more than 3 cars associated with their models.\n\n2. The predicted query uses a single subquery to find both the number of models (>= 2) and the number of cars (> 3), while the gold SQL query separates these conditions into two separate subqueries, each with its own join to the `model_list` and `car_names` tables. This difference in structure makes the predicted query less efficient and potentially less flexible for handling different conditions.",
+    "rules": [
+      {
+        "rule_id": "rule_6c9f7158_20251128194420",
+        "pattern": "^SELECT .* FROM (.*?) WHERE Id IN \\((.*?)\\) AND \\(.*COUNT\\(DISTINCT Id\\).*\\) > (.*)$",
+        "correction": "Separate conditions into two separate subqueries, each with its own join to the `model_list` and `car_names` tables.",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "car_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_c9eef2e7_20251129152222",
+    "incorrect_query": "SELECT count(*) FROM flights WHERE DestAirport = 'ATO' This SQL query will count the number of flights that have 'ATO' as their destination airport, assuming 'ATO' is the IATA code for an airport in the 'airports' table. The 'flights' table should be joined with the 'airports' table using the DestAirport column to match the airport codes.",
+    "correct_query": "SELECT count(*) FROM FLIGHTS WHERE DestAirport = \"ATO\"",
+    "explanation": "The predicted SQL query is incorrect because it does not join the 'flights' table with the 'airports' table, which means it doesn't ensure that 'DestAirport' in the 'flights' table corresponds to an actual airport IATA code. In the gold SQL query, the join operation is implied by referencing the 'FLIGHTS' table directly, assuming that there is a foreign key relationship between 'FLIGHTS' and 'airports' on the 'DestAirport' column.",
+    "rules": [
+      {
+        "rule_id": "rule_7f859753_20251128194622",
+        "pattern": "^SELECT count\\(\\*\\) FROM ([a-zA-Z0-9]+) WHERE DestAirport = '(ATO|[A-Z]{3})'",
+        "correction": "Join the table with the airports table using DestAirport column",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b03bdd21_20251129152222",
+    "incorrect_query": "SELECT AirportCode FROM airports WHERE City = 'Aberdeen')",
+    "correct_query": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.City = \"Aberdeen\"",
+    "explanation": "The predicted SQL query is incorrect because it only selects the `AirportCode` from the `AIRPORTS` table, whereas the gold SQL query joins the `FLIGHTS` and `AIRPORTS` tables on the condition that the destination airport code matches the airport code in the `AIRPORTS` table. Additionally, the predicted query does not count the number of flights as the gold SQL query does by using the aggregate function `COUNT(*)`.",
+    "rules": [
+      {
+        "rule_id": "rule_a288acbb_20251128194640",
+        "pattern": "^SELECT\\s+[A-Za-z0-9]+(?:\\s+FROM)?\\s*FROM\\s+airports\\s+WHERE\\s+City\\s*=.*$",
+        "correction": "Join the FLIGHTS and AIRPORTS tables on the condition that the destination airport code matches the airport code in the AIRPORTS table, count the number of flights using COUNT(*), and select the AirportCode.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_200b67cc_20251129152222",
+    "incorrect_query": "SELECT uid FROM airlines WHERE Airline = 'JetBlue Airways') This SQL query will find the unique ID of JetBlue Airways in the airlines table, and then use that ID to count the number of rows in the flights table where the airline matches JetBlue Airways.",
+    "correct_query": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline = T2.uid WHERE T2.Airline = \"JetBlue Airways\"",
+    "explanation": "The predicted SQL query is incorrect because it does not join the 'FLIGHTS' and 'AIRLINES' tables, which is necessary to count the number of flights for a specific airline. Instead, it only retrieves the unique ID of JetBlue Airways from the 'AIRLINES' table, but doesn't use this information to filter or count the flights in the 'FLIGHTS' table. The gold SQL query correctly joins both tables and counts the number of flights for JetBlue Airways by using a WHERE clause on the joined result set.",
+    "rules": [
+      {
+        "rule_id": "rule_b2f568db_20251128194650",
+        "pattern": "^SELECT\\s+[a-zA-Z0-9\\s]+\\s+FROM\\s+[a-zA-Z0-9]+\\s+WHERE\\s+Airline\\s*=\\s*'[A-Za-z ]*\\'.*$",
+        "correction": "JOIN the required tables and use a WHERE clause on the joined result set to filter the flights for the specific airline.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_c198f382_20251129152222",
+    "incorrect_query": "SELECT uid FROM airlines WHERE Airline = 'Jetblue Airways') This SQL query will give you the number of Jetblue Airways flights by first finding the unique ID of Jetblue Airways in the airlines table, and then using that ID to count the number of rows in the flights table where the Airline column matches the ID found.",
+    "correct_query": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline = T2.uid WHERE T2.Airline = \"JetBlue Airways\"",
+    "explanation": "The predicted SQL query is incorrect because it only retrieves the unique ID of JetBlue Airways from the AIRLINES table, but it does not join this information with the FLIGHTS table to count the number of flights for that airline. In contrast, the gold SQL query correctly joins the AIRLINES and FLIGHTS tables on the Airline column and counts the total number of rows where the airline is JetBlue Airways.",
+    "rules": [
+      {
+        "rule_id": "rule_ee521095_20251128194659",
+        "pattern": "^SELECT \\w+ FROM ([A-Za-z]+) WHERE Airline = '(.*?)'",
+        "correction": "JOIN the specified table with the flights table on Airline column and count the total number of rows where the airline is the provided value.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_21ae90bc_20251129152222",
+    "incorrect_query": "SELECT AirportCode FROM flights GROUP BY DestAirport ORDER BY COUNT(*) DESC LIMIT 1",
+    "correct_query": "SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode = T2.DestAirport OR T1.AirportCode = T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only references the FLIGHTS table (without joining with the AIRPORTS table), and it groups by DestAirport instead of T1.AirportCode, which would not account for both departure and arrival airports. Additionally, the predicted query does not include the condition for checking either the destination or source airport in the join condition.",
+    "rules": [
+      {
+        "rule_id": "rule_902e22b0_20251128194823",
+        "pattern": "^SELECT\\s+[A-Za-z0-9_]+(?:\\s+FROM\\s+FLIGHTS\\s+GROUP\\s+BY\\s+DestAirport)?",
+        "correction": "Join the AIRPORTS and FLIGHTS tables on AirportCode, group by T1.AirportCode, and include both destination and source airports in the join condition.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_6d6009f5_20251129152222",
+    "incorrect_query": "SELECT Airline, Country FROM airlines JOIN ( SELECT Airline, COUNT(*) as flight_count FROM flights GROUP BY Airline ORDER BY flight_count ASC LIMIT 1 ) AS least_flights ON airlines.uid = least_flights.Airline",
+    "correct_query": "SELECT T1.Abbreviation , T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it does not correctly join the 'airlines' and 'flights' tables on the 'Airline' column, which results in an incorrect subquery that counts flights for each airline separately rather than joining them together. Additionally, the predicted query groups by 'Airline' instead of 'T1.Abbreviation', and orders by the count of flights instead of using a LIMIT 1 to select only the airline with the most flights.",
+    "rules": [
+      {
+        "rule_id": "rule_4553a94a_20251128194903",
+        "pattern": "^SELECT\\s+Airline,\\s+Country\\s+FROM\\s+airlines\\s+JOIN\\s+\\(.*\\)\\s+AS\\s+least_flights\\s+ON\\s+airlines\\.(uid|Airline)\\s+=\\s+least_flights\\.Airline\\s*(?!\\s+GROUP\\s+BY\\s+T1\\.(Abbreviation|Airline))",
+        "correction": "Join the 'airlines' and 'flights' tables correctly on the 'Airline' column, group by the correct column (T1.Abbreviation or Airline), order by count(*) and use LIMIT 1 to select only the airline with the most flights.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_9d73de59_20251129152222",
+    "incorrect_query": "SELECT Airline FROM flights WHERE FlightNo IN ( SELECT SourceAirport AS Airport1, DestAirport AS Airport2 FROM ( SELECT SourceAirport, DestAirport, COUNT(*) as flight_count FROM flights GROUP BY SourceAirport, DestAirport HAVING flight_count = 1 ) subquery WHERE Airport1 = 'APG' ) AND FlightNo IN ( SELECT SourceAirport AS Airport1, DestAirport AS Airport2 FROM ( SELECT SourceAirport, DestAirport, COUNT(*) as flight_count FROM flights GROUP BY SourceAirport, DestAirport HAVING flight_count = 1 ) subquery WHERE Airport2 = 'CVO' ) This query first identifies the unique flights for each airport by grouping the flights by source and destination airports and filtering out those with more than one flight. Then, it uses two subqueries to find the common flights between APG and CVO, and finally selects the airlines associated with those flights.",
+    "correct_query": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = \"APG\" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = \"CVO\"",
+    "explanation": "The predicted SQL query is incorrect because it does not directly join the AIRLINES table with the FLIGHTS table, which is necessary to retrieve the airline names for each flight. Instead, it filters flights based on their source and destination airports but does not explicitly link them to a specific airline. In contrast, the gold SQL query correctly joins the AIRLINES and FLIGHTS tables using the 'uid' field and filters flights by source airport (APG or CVO) before intersecting the results to find common airlines for both airports.",
+    "rules": [
+      {
+        "rule_id": "rule_58abd1ec_20251128194948",
+        "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+ FROM\\s+flights\\s+WHERE\\s+FlightNo\\s+IN\\s+\\( SELECT\\s+SourceAirport|DestAirport\\s+AS\\s+Airport[12]\\s+FROM\\s+\\( SELECT\\s+SourceAirport|DestAirport,\\s+COUNT(\\*)\\s+as\\s+flight_count\\s+FROM\\s+flights\\s+GROUP BY\\s+SourceAirport|DestAirport\\s+HAVING\\s+flight_count\\s=1\\)\\s+subquery\\s+WHERE\\s+Airport[12]\\s+=\\s+'[A-Za-z]+'\\s+\\)",
+        "correction": "Join the AIRLINES and FLIGHTS tables using a common field, filter flights by source airport, and use INTERSECT to find common airlines for multiple airports.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_d6774765_20251129152222",
+    "incorrect_query": "SELECT uid FROM airlines WHERE Airline = 'United Airlines') This SQL query will return the flight numbers for United Airlines. The subquery is used to get the uid of United Airlines from the airlines table, and then it's used in the main query to filter the flights table for United Airlines.",
+    "correct_query": "SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid = T1.Airline WHERE T2.Airline = \"United Airlines\"",
+    "explanation": "The predicted SQL query is incorrect because it does not join the `FLIGHTS` table with the `AIRLINES` table, which is necessary to retrieve the flight numbers for a specific airline. Instead, the predicted query only retrieves the `uid` of United Airlines from the `AIRLINES` table and does not use this information to filter the `FLIGHTS` table. The correct approach is to join the two tables on the `uid` field and then filter the results based on the airline name, as shown in the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_c2e64d78_20251128195048",
+        "pattern": "^SELECT .+ FROM (.*?) WHERE Airline = '(.*?)'",
+        "correction": "JOIN the specified table with AIRLINES on a common field (like uid) and filter the results based on the airline name in the WHERE clause.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_ae9f1596_20251129152222",
+    "incorrect_query": "SELECT FlightNo FROM flights WHERE DestAirport = 'APG' This SQL query will return the flight numbers for all flights that land at the airport with the code 'APG'. You can replace 'APG' with any valid airport code from your database.",
+    "correct_query": "SELECT FlightNo FROM FLIGHTS WHERE DestAirport = \"APG\"",
+    "explanation": "The predicted SQL query is correct, but there seems to be a minor inconsistency between the table name and the schema used. In the question, it mentions the database as \"flight_2\", while the predicted query uses \"flights\". If the table name in the actual database is \"flights\" (without the \"_2\"), then the predicted query would be correct. However, if the table name is indeed \"flight_2\", then the correct query should be: SELECT FlightNo FROM flight_2 WHERE DestAirport = 'APG'.",
+    "rules": [
+      {
+        "rule_id": "rule_543e763d_20251128195114",
+        "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+FROM\\s+[A-Za-z0-9_\\s]+\\s+WHERE\\s+DestAirport\\s+=\\s+'[A-Za-z3]{3}'",
+        "correction": "Replace the table name with the correct one, if it differs from 'flights'. If the table name is indeed 'flights', then no correction is needed.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "flight_2",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_e0e49510_20251129152222",
+    "incorrect_query": "SELECT Name FROM employee JOIN evaluation ON employee.Employee_ID = evaluation.Employee_ID GROUP BY Employee_ID ORDER BY SUM(Bonus) DESC LIMIT 1",
+    "correct_query": "SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID = t2.Employee_ID GROUP BY t2.Employee_ID ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it orders the results by the sum of bonuses instead of the count of records, which was required in the gold SQL query. Additionally, the predicted query does not include the GROUP BY clause for the final result set, which is necessary to ensure that each employee's name appears only once in the output.",
+    "rules": [
+      {
+        "rule_id": "rule_cdcc2276_20251128195256",
+        "pattern": "SELECT .* FROM ([a-z]+) JOIN ([a-z]+) ON (\\w+\\.\\w+) = (\\w+\\.\\w+) GROUP BY \\w+ ORDER BY SUM\\((\\w+\\)) DESC LIMIT 1",
+        "correction": "Replace the ORDER BY clause with ORDER BY count(*) and ensure that the GROUP BY clause includes all columns not used in the aggregate function",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b0ce0020_20251129152222",
+    "incorrect_query": "SELECT Shop_ID FROM hiring GROUP BY Shop_ID ORDER BY COUNT(Employee_ID) DESC LIMIT 1 )",
+    "correct_query": "SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted query is incorrect because it misses the join with the 'shop' table, which is necessary to get the shop names. Additionally, it does not count the number of hires for each shop, as required by the GROUP BY clause. Instead, it counts Employee_IDs, which is not relevant to the question. Lastly, it wraps the entire query in parentheses, which is unnecessary and potentially introduces an error. The correct query groups by shop_id from the hiring table and then joins with the shop table to get the names of the shops.",
+    "rules": [
+      {
+        "rule_id": "rule_cf91ce4a_20251128195337",
+        "pattern": "^SELECT\\s+(.*?)\\s+FROM\\s+(hiring|anyothertable)\\s+GROUP\\s+BY\\s+(Shop_ID|anyothercolumn)\\s+ORDER\\s+BY\\s+COUNT\\((\\w+)_ID\\)\\s+DESC\\s+LIMIT\\s+1",
+        "correction": "Join the missing table, count the correct column and use an appropriate aggregate function for grouping.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_027d57e0_20251129152222",
+    "incorrect_query": "SELECT Shop_ID FROM hiring) This SQL query will return the names of all shops that do not have any employees hired. The query uses a subquery to find the IDs of shops with employees, and then excludes those IDs from the list of all shop IDs. This leaves only the IDs of shops without any employees, which are then used to retrieve their names from the 'shop' table.",
+    "correct_query": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+    "explanation": "The predicted SQL query is incorrect because it has a syntax error and an incorrect subquery reference. Instead of selecting Shop_ID from the hiring subquery, it should be selecting shop_id NOT IN (subquery). This would correctly exclude shops with hired employees, but the subquery should reference the shop table to get the correct shop IDs.",
+    "rules": [
+      {
+        "rule_id": "rule_97073851_20251128195401",
+        "pattern": "SELECT .+ FROM (.*)",
+        "correction": "SELECT .+ FROM \\1 WHERE \\1_id NOT IN (SELECT \\1_id FROM hiring)",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_839c6ff8_20251129152222",
+    "incorrect_query": "SELECT shop.Name, COUNT(hiring.Employee_ID) as Number_of_Employees FROM shop LEFT JOIN hiring ON shop.Shop_ID = hiring.Shop_ID GROUP BY shop.Name",
+    "correct_query": "SELECT count(*) , t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t2.name",
+    "explanation": "The predicted SQL query is incorrect because it misses the aggregation function `COUNT(*)` for the total count of records, which should be equivalent to the result of the gold SQL query. Additionally, the predicted query does not include the `name` column from the `shop` table, which is part of the `SELECT` clause in the gold SQL query. This omission may lead to a different result set compared to the expected outcome.",
+    "rules": [
+      {
+        "rule_id": "rule_c630e1fb_20251128195420",
+        "pattern": "^SELECT\\s+shop\\.\\w+\\s*,\\s+COUNT\\(hiring\\.Employee\\_ID\\)\\s+as\\s+Number\\_of\\_Employees\\s+FROM\\s+shop\\s+LEFT\\s+JOIN\\s+hiring\\s+ON\\s+shop\\.Shop\\_ID\\s+=\\s+hiring\\.Shop\\_ID\\s+GROUP\\s+BY\\s+shop\\.Name",
+        "correction": "SELECT count(*) , t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t2.name",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_55ebb4b2_20251129152222",
+    "incorrect_query": "SELECT District FROM shop WHERE Number_products > 10000",
+    "correct_query": "SELECT district FROM shop WHERE Number_products < 3000 INTERSECT SELECT district FROM shop WHERE Number_products > 10000",
+    "explanation": "The predicted SQL query is incorrect because it only selects districts from shops where the number of products exceeds 10,000, while the gold SQL query requires both shops with fewer than 3000 products and shops with more than 10000 products to be selected. The INTERSECT operator in the gold SQL query ensures that only districts common to both sets are returned, effectively filtering out districts from shops with a number of products between 3000 and 10,000.",
+    "rules": [
+      {
+        "rule_id": "rule_269e0ead_20251128195500",
+        "pattern": "SELECT .+ FROM .+ WHERE Number_products > (\\d{4,})",
+        "correction": "SELECT district FROM shop WHERE (Number_products < 3000 OR Number_products > 10000) INTERSECT SELECT district FROM shop WHERE Number_products > 10000",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_26f33755_20251129152222",
+    "incorrect_query": "selects and counts the distinct values from the 'Location' column in the 'shop' table. Here is the SQL query: sql SELECT COUNT(DISTINCT Location) FROM shop",
+    "correct_query": "SELECT count(DISTINCT LOCATION) FROM shop",
+    "explanation": "The predicted SQL query is correct in terms of selecting and counting distinct values from the 'Location' column in the 'shop' table, but it misspells the column name as \"Location\" instead of the correct \"location\". This spelling mistake causes the query to fail if the database schema is case-sensitive.",
+    "rules": [
+      {
+        "rule_id": "rule_3de2a7fa_20251128195508",
+        "pattern": "SELECT COUNT\\(DISTINCT ([A-Z]+)\\) FROM [a-z]+",
+        "correction": "Replace the capitalized column name with its lowercase equivalent in the SELECT statement",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "employee_hire_evaluation",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_6cb4a7be_20251129152222",
+    "incorrect_query": "SELECT count(*) FROM Documents This SQL query will return the number of rows in the 'Documents' table, which represents the total number of documents in your database.",
+    "correct_query": "SELECT count(*) FROM Documents",
+    "explanation": "The predicted SQL query is correct and there is no error in it. It will correctly count the number of rows in the 'Documents' table as intended. Therefore, there is no need for correction in this case.",
+    "rules": [
+      {
+        "rule_id": "rule_7f6d58d4_20251128195515",
+        "pattern": "^SELECT count\\(\\*\\) FROM (.+)$",
+        "correction": "No correction is needed as the given SQL query is correct.",
+        "error_type": "OTHER"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_f8394719_20251129152222",
+    "incorrect_query": "SELECT D.Document_ID, T.Template_ID, T.Template_Type_Description FROM Documents AS D JOIN Templates AS T ON D.Template_ID = T.Template_ID WHERE D.Document_Name = \"Robbin CV\" This query assumes that the document name you're looking for is stored in the `Documents` table, and that the relationship between documents and templates is established through the `Template_ID`. The `JOIN` operation combines rows from `Documents` and `Templates` based on the common column `Template_ID`, and the `WHERE` clause filters the results to only include the document with the name \"Robbin CV\". The `Template_Type_Description` is then selected from the `Templates` table.",
+    "correct_query": "SELECT document_id , template_id , Document_Description FROM Documents WHERE document_name = \"Robbin CV\"",
+    "explanation": "The predicted SQL query is correct in terms of structure and syntax, but there seems to be an assumption that the `document_name` column is present in the `Documents` table. If the actual database schema doesn't include this column, the query will return an error. To resolve this issue, one should ensure that the `document_name` column exists in the `Documents` table or use the correct column name if it differs from the predicted query.",
+    "rules": [
+      {
+        "rule_id": "rule_a0bd10f0_20251128195552",
+        "pattern": "DOCUMENTS AS D JOIN Templates AS T ON D\\.Template\\_ID = T\\.Template\\_ID WHERE D\\.Document\\_Name",
+        "correction": "Ensure that the 'document_name' column exists in the 'Documents' table or use the correct column name if it differs from the predicted query.",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_fc3aacea_20251129152222",
+    "incorrect_query": "select the `Template_Type_Code` from the resulting joined table. Here's an example SQL query: sql SELECT T1.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T1.Document_Name = \"Data base\"",
+    "correct_query": "SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id WHERE T2.document_name = \"Data base\"",
+    "explanation": "The predicted SQL query is incorrect because it has a mistake in the table alias for the Templates table. In the gold SQL query, the Templates table is aliased as 'T1', but in the predicted query, it's aliased as 'T1' for the Documents table and 'T2' for the Templates table. This inconsistency causes confusion and results in an incorrect query. The correct alias for the Templates table should be 'T1' throughout the query.",
+    "rules": [
+      {
+        "rule_id": "rule_7a95a914_20251128195827",
+        "pattern": "Documents AS T1 JOIN Templates AS (T1|T2) ON .*",
+        "correction": "Ensure that both tables have consistent aliases throughout the query.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_5598f731_20251129152222",
+    "incorrect_query": "SELECT Ref_Template_Types.Template_Type_Code FROM Ref_Template_Types LEFT JOIN Templates ON Ref_Template_Types.Template_Type_Code = Templates.Template_Type_Code LEFT JOIN Documents ON Templates.Template_ID = Documents.Template_ID WHERE Templates.Template_ID IS NULL OR Documents.Document_ID IS NULL This SQL query will return all template type codes that are not used by any document. It does this by joining the Ref_Template_Types table with the Templates and Documents tables, and then using a LEFT JOIN to include rows from Ref_Template_Types even if there are no matching rows in the other tables (i.e., when a template type code is not used by any document). The WHERE clause filters out these rows where either the Template_ID or Document_ID is NULL, indicating that the template type code is not associated with any document.",
+    "correct_query": "SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id = T2.template_id",
+    "explanation": "The predicted SQL query is incorrect because it does not match the requirement to return template type codes that are used by at least one document but not by the specific T1 templates, as per the gold SQL query. The predicted query returns all template type codes that are not associated with any document, while the gold SQL query aims to exclude those template type codes that are associated with the T1 templates and not with any other documents. This difference is due to the use of a LEFT JOIN instead of an EXCEPT clause and the different conditions in the WHERE clause.",
+    "rules": [
+      {
+        "rule_id": "rule_f0ef95e0_20251128195858",
+        "pattern": "^SELECT\\s+Ref_[A-Z_]+(?:\\s+LEFT\\s+JOIN\\s+[A-Z_]+\\s+ON\\s+)?(?:(?!\bTemplates\b).)*WHERE\\s+(Templates\\.Template_ID|Documents\\.Document_ID)\\s+IS\\s+NULL",
+        "correction": "Replace the LEFT JOIN with an EXCEPT clause and adjust the WHERE clause to filter out template type codes associated with the T1 templates but not with any other documents.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_45dbea07_20251129152222",
+    "incorrect_query": "selects the `Template_Type_Code` from the `Ref_Template_Types` table where the `Template_Type_Description` is equal to \"Book\". Here's how you can write it: sql SELECT Template_Type_Code FROM Ref_Template_Types WHERE Template_Type_Description = \"Book\" This query assumes that the database schema provided in your question is accurate and up-to-date. If there are any changes or discrepancies, you may need to adjust the query accordingly.",
+    "correct_query": "SELECT template_type_code FROM Ref_template_types WHERE template_type_description = \"Book\"",
+    "explanation": "The predicted SQL query is correct and matches the gold SQL query. There seems to be no error in either of them. Both queries are selecting the `Template_Type_Code` from the `Ref_Template_Types` table where the `Template_Type_Description` is equal to \"Book\". Therefore, there's no need for an explanation regarding any errors in these queries.",
+    "rules": [
+      {
+        "rule_id": "rule_55a7dce1_20251128195926",
+        "pattern": "SELECT .+ FROM .+ WHERE Template_Type_Description = .+",
+        "correction": "The given query is correct as it is.",
+        "error_type": "OTHER"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_6a3b4641_20251129152222",
+    "incorrect_query": "SELECT Documents.Document_Name, Documents.Document_Description, Paragraphs.Paragraph_Text, Paragraphs.Other_Details FROM Documents JOIN Templates ON Documents.Template_ID = Templates.Template_ID JOIN Ref_Template_Types ON Templates.Template_Type_Code = Ref_Template_Types.Template_Type_Code JOIN Paragraphs ON Documents.Document_ID = Paragraphs.Document_ID WHERE Paragraphs.Paragraph_Text LIKE '%Korea%' This query joins the necessary tables and filters the results to include only paragraphs that contain 'Korea'. The `LIKE '%Korea%'` condition is used to search for any paragraph text that contains 'Korea', regardless of its position within the text.",
+    "correct_query": "SELECT other_details from paragraphs where paragraph_text like 'korea'",
+    "explanation": "The predicted SQL query is incorrect because it includes unnecessary columns from multiple tables (Documents, Templates, Ref_Template_Types) and does not directly filter the results based on the 'other_details' column as required by the gold SQL query. The gold SQL query only joins the 'paragraphs' table and filters the results based on the 'paragraph_text' column with the specific condition 'like 'korea''. Although both queries are searching for paragraphs containing 'Korea', the predicted query is more complex and less efficient than the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_3537005c_20251128200024",
+        "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) JOIN.* WHERE [A-Za-z0-9]+.([A-Za-z0-9_]+) LIKE '%(.+)%'",
+        "correction": "SELECT <column_name> from <table_name> where <column_name> like '<search_term>'",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8a990b2f_20251129152222",
+    "incorrect_query": "SELECT course, teacher, grade FROM course_arrange JOIN ( SELECT Course_ID, MAX(Grade) as Max_Grade FROM course_arrange GROUP BY Course_ID ) AS max_grades ON course_arrange.Course_ID = max_grades.Course_ID AND course_arrange.Grade = max_grades.Max_Grade",
+    "correct_query": "SELECT Name FROM teacher ORDER BY Age ASC",
+    "explanation": "The predicted SQL query is incorrect because it does not match the original question, which asks for the teacher's name sorted by age, not for course information or grades. The predicted query is focused on finding the maximum grade for each course in the `course_arrange` table, while the gold SQL query is asking for the names of teachers and their sorting is based on their ages.",
+    "rules": [
+      {
+        "rule_id": "rule_180e16fe_20251128200253",
+        "pattern": "^SELECT\\s+course|teacher|grade\\s+FROM\\s+.*JOIN\\s+\\(.*\\)\\s+AS\\s+[a-zA-Z0-9_]+\\s*ON\\s*.*\\s*AND\\s*(course_arrange|max_grades).*\\s*=",
+        "correction": "Replace the query with a new one that selects teacher's name ordered by age: SELECT Name FROM teacher ORDER BY Age ASC",
+        "error_type": "ORDERING_ERROR"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_635de243_20251129152222",
+    "incorrect_query": "SELECT Name FROM teacher WHERE Hometown != 'Little Lever Urban District'",
+    "correct_query": "SELECT name from teacher where hometown != \"little lever urban district\"",
+    "explanation": "The predicted SQL query is incorrect because it misspells the column name \"name\" as \"Name\". In SQL, column names are case sensitive and should be written exactly as they were defined in the table schema. Therefore, the correct column name should be \"name\", not \"Name\".",
+    "rules": [
+      {
+        "rule_id": "rule_49ee3087_20251128200318",
+        "pattern": "Name",
+        "correction": "name",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_3d4836e5_20251129152222",
+    "incorrect_query": "SELECT Name, Hometown FROM teacher JOIN ( SELECT Teacher_ID, MIN(Age) AS MinAge FROM teacher GROUP BY Teacher_ID ) AS YoungestTeacher ON teacher.Teacher_ID = YoungestTeacher.Teacher_ID AND teacher.Age = YoungestTeacher.MinAge",
+    "correct_query": "SELECT Hometown FROM teacher ORDER BY Age ASC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it's not directly answering the question, which asks for the hometown of the youngest teacher. Instead, it attempts to find the name and hometown of the teacher with the minimum age, but it doesn't guarantee that the returned teacher will be the youngest one as the query does not consider ties in age. In contrast, the gold SQL query correctly retrieves the hometown of the youngest teacher by ordering all teachers by age in ascending order and limiting the result to the first row.",
+    "rules": [
+      {
+        "rule_id": "rule_7f93b368_20251128200347",
+        "pattern": "SELECT .+ FROM teacher JOIN \\(\\s*(SELECT Teacher\\_ID, MIN\\(Age\\) AS MinAge FROM teacher GROUP BY Teacher\\_ID )\\s*\\) AS YoungestTeacher ON teacher\\.Teacher\\_ID = YoungestTeacher\\.Teacher\\_ID AND teacher\\.Age = YoungestTeacher\\.MinAge",
+        "correction": "Use ORDER BY and LIMIT to find the youngest teacher instead of joining with a subquery.",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_22e6bddf_20251129152222",
+    "incorrect_query": "SELECT Hometown FROM teacher GROUP BY Hometown ORDER BY COUNT(*) DESC LIMIT 1 To get this result, we are grouping the 'teacher' table by the 'Hometown' column and then ordering the results in descending order based on the count of each hometown. The LIMIT 1 at the end ensures that only the most common hometown is returned.",
+    "correct_query": "SELECT Hometown FROM teacher GROUP BY Hometown ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is correct, but it misses out on one important aspect. In SQL, when counting rows (as in this case), the COUNT() function does not require an argument and counts all rows by default. So, the COUNT(*) function can be simplified to just COUNT without any arguments. Therefore, a more optimized version of the query would be:\n\n`SELECT Hometown FROM teacher GROUP BY Hometown ORDER BY COUNT DESC LIMIT 1`\n\nThis version is still correct and will return the same result as the gold SQL query, but it's slightly more efficient because it omits the unnecessary * in the COUNT() function.",
+    "rules": [
+      {
+        "rule_id": "rule_8fe627ce_20251128200414",
+        "pattern": "SELECT .* FROM .* GROUP BY .* ORDER BY COUNT\\(.*\\) DESC LIMIT 1",
+        "correction": "Replace COUNT(\\*) with just COUNT in the ORDER BY clause",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_fbfb3dda_20251129152222",
+    "incorrect_query": "SELECT T1.Name AS Teacher_Name, T2.Course AS Course_Taught FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID",
+    "correct_query": "SELECT T3.Name , T2.Course FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID = T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID = T3.Teacher_ID",
+    "explanation": "The predicted SQL query is incorrect because it does not join the 'course' table and does not select the course name (T3.Name). The gold SQL query correctly joins all three tables ('course_arrange', 'course', and 'teacher') to provide both teacher names and course names as requested.",
+    "rules": [
+      {
+        "rule_id": "rule_377e69ca_20251128200504",
+        "pattern": "^SELECT (.*?) AS Teacher_Name, (.*?) FROM (teacher|course) AS T[0-9]+ JOIN (.*?)(?! AS).+ ON (.*?)\\.(.*?) = (.*?)\\.(.*?)$",
+        "correction": "SELECT (.*?), (.*?) FROM (.*?) AS T1 JOIN (.*?) AS T2 ON T1.(.*?) = T2.(*) JOIN teacher AS T3",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_852eb327_20251129152222",
+    "incorrect_query": "SELECT T2.Name, COUNT(*) as NumCourses FROM teacher AS T1 JOIN course_arrange AS CA ON T1.Teacher_ID = CA.Teacher_ID GROUP BY T1.Teacher_ID ORDER BY NumCourses DESC",
+    "correct_query": "SELECT T2.Name , COUNT(*) FROM course_arrange AS T1 JOIN teacher AS T2 ON T1.Teacher_ID = T2.Teacher_ID GROUP BY T2.Name",
+    "explanation": "The predicted SQL query is incorrect because it has a few issues:\n\n1. Incorrect table alias usage: The teacher table should be aliased as T2, like in the gold SQL query, instead of T1.\n2. Incorrect table reference: The course_arrange table should be joined with the correct alias (T1) instead of CA.\n3. Order by clause: There is an unnecessary ORDER BY clause that groups by teacher ID instead of teacher name, and it sorts by NumCourses which is not defined in the predicted query.\n\nThe corrected predicted SQL query would look like this:\n\nSELECT T2.Name, COUNT(*) as NumCourses FROM course_arrange AS T1 JOIN teacher AS T2 ON T1.Teacher_ID = T2.Teacher_ID GROUP BY T2.Name ORDER BY NumCourses DESC",
+    "rules": [
+      {
+        "rule_id": "rule_e1a92d37_20251128200534",
+        "pattern": "^SELECT\\s+T[0-9]+\\.Name,\\s*COUNT\\(\\*\\)\\s+as\\s+NumCourses\\s+FROM\\s+teacher\\s+AS\\s+T[0-9]\\s+JOIN\\s+course_arrange\\s+AS\\s+CA\\s+ON\\s+T[0-9]+\\.Teacher_ID\\s*=\\s+CA\\.Teacher_ID\\s+GROUP BY\\s+T[0-9]+\\.Teacher_ID\\s+ORDER BY\\s+NumCourses\\s+DESC",
+        "correction": "Change the table alias for teacher from T1 to T2, use the correct table reference (T1) for course_arrange, and update the GROUP BY clause to group by T2.Name instead of Teacher ID.",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "course_teach",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_54e6971f_20251129152222",
+    "incorrect_query": "SELECT MIN(Num_of_Staff) FROM museum WHERE Open_Year > '2010') This SQL query finds the names of museums that have more staff than the minimum number of staff for all museums opened after 2010. The subquery `MIN(Num_of_Staff) FROM museum WHERE Open_Year > '2010'` first calculates the minimum number of staff for museums opened after 2010, and then the main query compares this value with the number of staff for each museum in the main table.",
+    "correct_query": "SELECT name FROM museum WHERE num_of_staff > (SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)",
+    "explanation": "The predicted SQL query is incorrect because it returns a single minimum value instead of comparing that minimum value to the `num_of_staff` column in the main query. In other words, the predicted query calculates the smallest number of staff for museums opened after 2010, but does not compare this value with the actual staff count for each museum in the main table. The correct query should return the names of museums that have more staff than the minimum number of staff for all museums opened after 2010, which is achieved by using `SELECT name FROM museum WHERE num_of_staff > (subquery)`.",
+    "rules": [
+      {
+        "rule_id": "rule_50fae1ec_20251128200610",
+        "pattern": "SELECT MIN\\(.*\\) FROM museum WHERE Open\\_Year > '2010'\\)",
+        "correction": "SELECT name FROM museum WHERE num\\_of\\_staff > (SELECT min(num\\_of\\_staff) FROM museum WHERE open\\_year > 2010)",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "museum_visit",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_c3050a98_20251129152222",
+    "incorrect_query": "SELECT avg(winner_rank) FROM matches where winner_id IS NOT NULL This query calculates the average rank of the winners in all matches by filtering out the null values (indicating no winner) and then taking the average of the remaining ranks.",
+    "correct_query": "SELECT avg(winner_rank) FROM matches",
+    "explanation": "The predicted SQL query is incorrect because it filters out rows where the `winner_id` is NULL, which may not necessarily mean that there was no winner in those matches. Instead, it could indicate that the `winner_id` column has null values for non-winning matches (like when a match ends in a double retirement or disqualification). Therefore, filtering out rows with NULL `winner_id` would exclude these cases and provide an incorrect average rank of winners. The gold SQL query correctly calculates the average rank of all winners regardless of any missing values in the `winner_id` column.",
+    "rules": [
+      {
+        "rule_id": "rule_f272109d_20251128200743",
+        "pattern": "SELECT avg\\(\\w+\\) FROM (.*) where (\\w+)_id IS NOT NULL",
+        "correction": "Remove the filtering condition 'where \\w+_id IS NOT NULL' to include all rows in the calculation of average.",
+        "error_type": "NULL_HANDLING"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_3f054564_20251129152222",
+    "incorrect_query": "SELECT winner_name FROM matches m1 WHERE year = 2013 AND m1.winner_id IN ( SELECT winner_id FROM matches m2 WHERE year = 2016 ) This query first finds all the players who won in 2013, then checks if their player ID is among those who won in 2016. The result will be the names of players who won in both years.",
+    "correct_query": "SELECT winner_name FROM matches WHERE YEAR = 2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR = 2016",
+    "explanation": "The predicted SQL query is incorrect because it assumes that there's a one-to-many relationship between matches and winners, implying that each match has multiple winners. However, in the given scenario, each match has only one winner. Therefore, using a subquery to find the winner_id from 2016 matches and checking if it exists in the winner_id of 2013 matches is not necessary, as both years' data can be directly compared using the INTERSECT operator. The gold SQL query correctly uses this operator to find common winners between the two specified years.",
+    "rules": [
+      {
+        "rule_id": "rule_93bc22ac_20251128200823",
+        "pattern": "SELECT .* FROM matches m1 WHERE year = [0-9]{4} AND m1\\.winner\\_id IN \\(\\ SELECT winner\\_id FROM matches m2 WHERE year = [0-9]{4} \\)",
+        "correction": "Use the INTERSECT operator to find common winners between the two specified years.",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8b14f181_20251129152222",
+    "incorrect_query": "SELECT first_name || ' ' || last_name as full_name FROM players ORDER BY birth_date",
+    "correct_query": "SELECT first_name , last_name FROM players ORDER BY birth_date",
+    "explanation": "The predicted SQL query is incorrect because it combines the first name and last name using the concatenation operator `||` (double pipe), which creates a single column named `full_name`. However, the gold SQL query separates them as two distinct columns: `first_name` and `last_name`. The gold SQL query also does not perform any string manipulation on the names. Therefore, the predicted query does not match the expected output format.",
+    "rules": [
+      {
+        "rule_id": "rule_9d0bafd1_20251128200902",
+        "pattern": "SELECT ([a-zA-Z]+)_name .+ as full_name",
+        "correction": "SELECT [a-zA-Z]+ , [a-zA-Z]+ from players",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_0c3d0f06_20251129152222",
+    "incorrect_query": "SELECT Country_name, COUNT(*) FROM players GROUP BY Country_name This SQL query will return a list of countries and the number of players from each country in the 'players' table. The GROUP BY clause groups the results by the 'Country_name' column, and the COUNT(*) function counts the number of rows in each group.",
+    "correct_query": "SELECT count(*) , country_code FROM players GROUP BY country_code",
+    "explanation": "The predicted SQL query is incorrect because it uses 'Country_name' instead of 'country_code' for grouping. While both columns might contain country names, the gold SQL query groups by 'country_code', which could potentially be different from 'Country_name'. Therefore, the predicted query does not match the expected output since it groups and counts players based on a different column.",
+    "rules": [
+      {
+        "rule_id": "rule_34923c9b_20251128201108",
+        "pattern": "SELECT .+? FROM players GROUP BY Country\\_name",
+        "correction": "Replace 'Country\\_name' with 'country\\_code' in the GROUP BY clause",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_46a5206e_20251129152222",
+    "incorrect_query": "SELECT country_code FROM players GROUP BY country_code COUNT(*) ORDER BY COUNT(*) DESC LIMIT 1",
+    "correct_query": "SELECT country_code FROM players GROUP BY country_code ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it counts each player instead of counting the number of occurrences of each country_code. In the gold SQL query, `count(*)` is used within the `GROUP BY` clause to count the number of rows for each group (country_code), which results in the correct count of unique countries. In contrast, the predicted query counts the total number of players for each country, which is not what's intended by the question.",
+    "rules": [
+      {
+        "rule_id": "rule_aeaa88a2_20251128201118",
+        "pattern": "^SELECT .+ FROM .+\\s+GROUP BY .+\\s+COUNT\\(.*\\)\\s+ORDER BY COUNT\\(.*\\)\\s+DESC\\s+LIMIT 1",
+        "correction": "Replace `COUNT(*)` within the `GROUP BY` clause with just `count(*)` and remove it from the `ORDER BY` clause.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_cfdde464_20251129152222",
+    "incorrect_query": "SELECT year FROM matches GROUP BY year",
+    "correct_query": "SELECT count(*) , YEAR FROM matches GROUP BY YEAR",
+    "explanation": "The predicted SQL query is incorrect because it does not include the `count(*)` function, which is necessary to count the number of rows in each group (year). Also, it does not select any column from the `matches` table, which would result in an error when executing the query. The correct query groups by year and counts the number of matches for each year.",
+    "rules": [
+      {
+        "rule_id": "rule_eb560804_20251128201153",
+        "pattern": "^SELECT\\s+[a-zA-Z]+(?:\\s+FROM)?\\s*matches\\s*(?:GROUP BY\\s+[a-zA-Z]+)*",
+        "correction": "Add count(*) before the GROUP BY clause and select any column from the matches table.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_bf4b8148_20251129152222",
+    "incorrect_query": "SELECT Year, COUNT(*) FROM matches GROUP BY Year This SQL query will return a list of years that matches are recorded in the 'matches' table and the count of matches for each year. The 'GROUP BY' clause groups the results by the specified column (Year), and the 'COUNT(*)' function counts the number of rows in each group.",
+    "correct_query": "SELECT count(*) , YEAR FROM matches GROUP BY YEAR",
+    "explanation": "The predicted SQL query is incorrect because it uses 'Year' as a column name instead of an aggregate function like YEAR() to extract the year from the date field in the 'matches' table. This results in an error since 'Year' is not a recognized column or function in SQL. To correct this, you should use the YEAR() function and group by the result of that function.",
+    "rules": [
+      {
+        "rule_id": "rule_6530b876_20251128201201",
+        "pattern": "GROUP BY\\s+(\\w+)\\s*",
+        "correction": "Replace 'GROUP BY \\1' with 'GROUP BY YEAR( \\1 )'",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "wta_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_806c9c74_20251129152222",
+    "incorrect_query": "SELECT avg(injured) FROM death This SQL query calculates the average number of injuries per incident, assuming that each row in the \"death\" table represents an individual injury event. The `foreign key (\"caused_by_ship_id\") references ship(\"id\")` indicates that each injury is associated with a specific ship, so this query assumes that all injuries within the same row are related to the same incident.",
+    "correct_query": "SELECT avg(injured) FROM death",
+    "explanation": "The predicted SQL query is incorrect because it does not take into account that multiple rows might represent one incident (since each injury is associated with a specific ship). Therefore, summing the injured column and then averaging would be more appropriate to calculate the average number of injuries per incident. The correct query should group by the relevant foreign key (\"caused_by_ship_id\") before calculating the average.",
+    "rules": [
+      {
+        "rule_id": "rule_1e6e94f3_20251128201328",
+        "pattern": "SELECT \\w+\\((\\w+)\\) FROM .*",
+        "correction": "Group by the relevant foreign key before calculating the average",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "battle_death",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8dbf5b37_20251129152222",
+    "incorrect_query": "SELECT battle_id FROM ship WHERE name = 'Lettice' UNION SELECT battle_id FROM ship WHERE name = 'HMS Atalanta' )",
+    "correct_query": "SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'Lettice' INTERSECT SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'HMS Atalanta'",
+    "explanation": "The predicted SQL query is incorrect because it does not join the `battle` table and selects only the `battle_id` from the `ship` table, whereas the gold SQL query joins both the `battle` and `ship` tables on the `lost_in_battle` foreign key and selects the `name` and `date` columns from the `battle` table. The predicted query also uses a UNION operator instead of INTERSECT, which would return different results as UNION combines rows where values in corresponding columns are equal, while INTERSECT returns rows that have the same values in all columns.",
+    "rules": [
+      {
+        "rule_id": "rule_9b65de1d_20251128201444",
+        "pattern": "^SELECT .+ FROM (ship|battle) WHERE .+ UNION SELECT .+ FROM (ship|battle) WHERE .+$",
+        "correction": "Replace with: SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE condition",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "battle_death",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_171f15ee_20251129152222",
+    "incorrect_query": "SELECT line_1, line_2 FROM Addresses ORDER BY address_id ASC LIMIT 2",
+    "correct_query": "SELECT line_1 , line_2 FROM addresses",
+    "explanation": "The predicted SQL query is incorrect because it attempts to sort and limit the results from the 'addresses' table, which is not necessary for the original question. The gold SQL query only requires selecting 'line_1' and 'line_2' from the 'addresses' table without any sorting or limiting. Adding ORDER BY address_id ASC LIMIT 2 would return only two addresses in ascending order of their IDs, which is not relevant to the original question.",
+    "rules": [
+      {
+        "rule_id": "rule_91160688_20251128201509",
+        "pattern": "SELECT .+ FROM .+ ORDER BY .+ LIMIT .+",
+        "correction": "SELECT <column1> , <column2> FROM <table_name>",
+        "error_type": "OTHER"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b6ed15fc_20251129152222",
+    "incorrect_query": "SELECT department_name, COUNT(degree_program_id) as total_degrees FROM Degree_Programs JOIN Departments ON Degree_Programs.department_id = Departments.department_id WHERE Departments.department_name = 'Engineering' GROUP BY department_name",
+    "correct_query": "SELECT count(*) FROM Departments AS T1 JOIN Degree_Programs AS T2 ON T1.department_id = T2.department_id WHERE T1.department_name = 'engineer'",
+    "explanation": "The predicted SQL query is incorrect because it counts the number of degree programs (`COUNT(degree_program_id)`) instead of counting the total number of departments that have the name 'engineer'. Additionally, the predicted query groups by `department_name`, which is not necessary in the gold SQL query as it only requires a count. The correct department count should be obtained without grouping the results.",
+    "rules": [
+      {
+        "rule_id": "rule_197948a2_20251128201557",
+        "pattern": "SELECT .+ COUNT\\(.*\\) as total\\_[A-Za-z]+\\sFROM\\s[A-Za-z]+\\_Programs JOIN Departments ON [A-Za-z]+\\_Programs\\.\\w+ = Departments\\.\\w+ WHERE Departments\\.department\\_name = 'Engineering' GROUP BY department\\_name",
+        "correction": "Count the total number of departments instead of degree programs by using COUNT(*) and removing the grouping.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_ffc6325c_20251129152222",
+    "incorrect_query": "SELECT Sections.section_name, Sections.section_description, Courses.course_name, Courses.course_description FROM Sections JOIN Courses ON Sections.course_id = Courses.course_id",
+    "correct_query": "SELECT section_name , section_description FROM Sections",
+    "explanation": "The predicted SQL query is incorrect because it includes columns from the Courses table (course_name, course_description) that are not relevant to the question asked, which was to retrieve section details only. The join condition also assumes a relationship between Sections and Courses on course_id, but since the question does not ask for any information related to courses, this unnecessary join is causing an error in the query.",
+    "rules": [
+      {
+        "rule_id": "rule_f15ed0ad_20251128201615",
+        "pattern": "SELECT .+ FROM Sections JOIN .+ ON Sections\\..* = .+\\..*",
+        "correction": "Retrieve only columns relevant to the question and remove unnecessary join condition",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_49194804_20251129152222",
+    "incorrect_query": "SELECT T1.first_name, T1.middle_name, T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id = T3.degree_program_id WHERE T3.degree_summary_name LIKE '%Bachelors%' This query first joins the Students table with the Student_Enrolment table on the student_id field, then it joins the Degree_Programs table on the degree_program_id field. The WHERE clause filters out only the rows where the degree summary name contains 'Bachelors'.",
+    "correct_query": "SELECT DISTINCT T1.first_name , T1.middle_name , T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id = T3.degree_program_id WHERE T3.degree_summary_name = 'Bachelor'",
+    "explanation": "The predicted SQL query is incorrect because it uses an imprecise LIKE operator with '%Bachelors%' instead of an exact match for the 'Bachelor' degree summary name in the Gold SQL query. This could potentially return results that contain 'Bachelors' in a different context, not just as a degree summary name. The correct use of the equals operator ('=') ensures a more precise and accurate result set.",
+    "rules": [
+      {
+        "rule_id": "rule_0d368b15_20251128201747",
+        "pattern": "LIKE .*'Bachelors'.*",
+        "correction": "Replace LIKE '%Bachelors%' with = 'Bachelor'",
+        "error_type": "OPERATOR_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_2927f71e_20251129152222",
+    "incorrect_query": "SELECT T1.department_name, COUNT(T2.student_id) as student_count FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.department_name ORDER BY student_count DESC LIMIT 1",
+    "correct_query": "SELECT T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.degree_summary_name ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it selects `T1.department_name` instead of `T1.degree_summary_name`, which was the required column in the gold SQL query. Additionally, the predicted query counts students (`COUNT(T2.student_id) as student_count`) while the gold SQL query groups by and counts the number of each degree summary name occurrence.",
+    "rules": [
+      {
+        "rule_id": "rule_c06d7caa_20251128201756",
+        "pattern": "SELECT .+? AS student_[A-Za-z]+ FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.department_name",
+        "correction": "Replace `AS student_[A-Za-z]+` with `COUNT(*) as count` and change the selected column to the correct one (e.g., replace `T1.department_name` with the appropriate column name)",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_5a9793d3_20251129152222",
+    "incorrect_query": "SELECT S.last_name FROM Students AS S JOIN Addresses AS A ON S.current_address_id = A.address_id WHERE A.state_province_county = 'North Carolina' AND S.student_id NOT IN ( SELECT DISTINCT student_id FROM Student_Enrolment ) This query first joins the Students and Addresses tables to get the students who currently live in North Carolina. Then, it filters out those students who have registered in any degree program by checking if their student ID is not present in the Student_Enrolment table. Finally, it selects the last names of these students.",
+    "correct_query": "SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id WHERE T2.state_province_county = 'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id = T4.student_id",
+    "explanation": "The predicted SQL query is incorrect because it does not correctly implement the EXCEPT operation and filters out students who have enrolled in a degree program unintentionally. The EXCEPT operator in SQL returns records that are in the first query but not in the second, while the predicted query uses NOT IN to exclude students who are enrolled, which includes those who are not currently living in North Carolina. The correct query should use EXCEPT to find students from North Carolina who have not enrolled, and NOT IN for those who live outside North Carolina but have enrolled.",
+    "rules": [
+      {
+        "rule_id": "rule_fe2ac11c_20251128201920",
+        "pattern": "SELECT .* FROM Students AS S JOIN .* ON S\\.current\\_address\\_id = .*\\.address\\_id WHERE .* = '.*' AND S\\.student\\_id NOT IN \\(\\s*( SELECT DISTINCT student\\_id FROM Student_Enrolment )\\s*\\)",
+        "correction": "Replace the EXCEPT operator with a subquery using the NOT EXISTS clause to find students from North Carolina who have not enrolled, and use NOT IN for those who live outside North Carolina but have enrolled.",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_225559b9_20251129152222",
+    "incorrect_query": "SELECT transcript_date FROM Transcripts ORDER BY transcript_date ASC LIMIT 1",
+    "correct_query": "SELECT transcript_date , other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1",
+    "explanation": "The predicted SQL query is missing the `other_details` column, which was included in the gold (correct) SQL query. This means that the predicted query only returns the transcript dates and not the other details associated with each date. To correct this, the predicted query should be modified to include the `other_details` column:\n\n```sql\nSELECT transcript_date, other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1\n```",
+    "rules": [
+      {
+        "rule_id": "rule_bda6952c_20251128202111",
+        "pattern": "^SELECT .* FROM .* ORDER BY .* ASC LIMIT 1$",
+        "correction": "Modify the query to include all required columns: SELECT transcript\\_date, other\\_details FROM Transcripts ORDER BY transcript\\_date ASC LIMIT 1",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_22eab37d_20251129152222",
+    "incorrect_query": "SELECT course_id, COUNT(DISTINCT student_course_id) as max_transcript_occurrences FROM Student_Enrolment_Courses GROUP BY course_id",
+    "correct_query": "SELECT count(*) , student_course_id FROM Transcript_Contents GROUP BY student_course_id ORDER BY count(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it uses the `Student_Enrolment_Courses` table instead of `Transcript_Contents`, which was used in the gold SQL query. Additionally, the predicted query calculates the maximum number of transcript occurrences per course (DISTINCT student_course_id), while the gold SQL query counts the total number of transcripts for each student_course_id and orders them by that count in descending order to find the most frequently occurring student-course combination. The predicted query does not sort or limit the results, which is a crucial difference from the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_335a050e_20251128202121",
+        "pattern": "^SELECT\\s+course\\_id,\\s+COUNT\\(DISTINCT\\s+.*\\)\\s+as\\s+max\\_\\w+\\_occurrences\\s+FROM\\s+Student\\_Enrolment\\_Courses\\s+GROUP BY\\s+course\\_id",
+        "correction": "Replace the table reference with Transcript\\_Contents, calculate total count instead of maximum occurrences, sort and limit results by count in descending order.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_dbe057ac_20251129152222",
+    "incorrect_query": "SELECT first_name, middle_name, last_name, cell_mobile_number, email_address, ssn, date_first_registered, date_left, other_student_details FROM Students ORDER BY last_name DESC, first_name DESC",
+    "correct_query": "SELECT other_student_details FROM Students ORDER BY other_student_details DESC",
+    "explanation": "The predicted SQL query is incorrect because it includes more columns than the gold SQL query, which was asking for only the 'other_student_details' column. Additionally, the predicted query sorts by 'last_name' and 'first_name', while the gold SQL query does not specify any sorting order. This difference in column selection and sorting order makes the predicted query incorrect compared to the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_44e221db_20251128202226",
+        "pattern": "SELECT.*FROM Students ORDER BY .*",
+        "correction": "The query should only select the required column and remove the sorting order if not specified.",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "student_transcripts_tracking",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_abc42eb9_20251129152222",
+    "incorrect_query": "SELECT T1.id, T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = 'The Rise of the Blue Beetle!'",
+    "correct_query": "SELECT T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = \"The Rise of the Blue Beetle!\";",
+    "explanation": "The predicted SQL query is incorrect because it includes the column `T1.id` which was not required as the question asks for the series name, not the id. Also, the title in the WHERE clause is enclosed in single quotes instead of double quotes, which might cause a syntax error depending on the SQL dialect being used. The gold SQL query correctly selects only the `series_name` and has the correct quotation marks around the title.",
+    "rules": [
+      {
+        "rule_id": "rule_34c688e2_20251128202342",
+        "pattern": "SELECT .+ FROM .+ AS T1 JOIN .+ AS T2 ON T1\\.id = T2\\.Channel WHERE T2\\.Title = '(.*?)'",
+        "correction": "Replace the SELECT clause with SELECT T1.\\<series_column>\nRemove T1.id from the SELECT clause\nEnsure that the title in the WHERE clause is enclosed in double quotes",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "tvshow",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_bccae661_20251129152222",
+    "incorrect_query": "SELECT Channel FROM Cartoon WHERE Title = 'The Rise of the Blue Beetle') This SQL query will return the series name of the TV channel that shows the cartoon \"The Rise of the Blue Beetle\". It works by first finding the ID of the TV channel associated with the cartoon using a subquery, and then joining that result with the TV_Channel table to get the series name.",
+    "correct_query": "SELECT T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = \"The Rise of the Blue Beetle!\";",
+    "explanation": "The predicted SQL query is incorrect because it does not join the `TV_Channel` and `Cartoon` tables correctly. It only selects the 'Channel' from the `Cartoon` table, whereas the correct query joins both tables on their common 'id' field to get the series name from the `TV_Channel` table. The predicted query does not account for this join, which is why it is incorrect.",
+    "rules": [
+      {
+        "rule_id": "rule_27af3f1d_20251128202350",
+        "pattern": "SELECT ([A-Za-z]+) FROM Cartoon WHERE Title = '(.*?)'",
+        "correction": "Join TV_Channel and Cartoon tables correctly on their common 'id' field to get the series name from the TV_Channel table",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "tvshow",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_ba646066_20251129152222",
+    "incorrect_query": "SELECT count(*) FROM poker_player This SQL query will count the number of rows in the \"poker_player\" table, which represents the total number of poker players in your database.",
+    "correct_query": "SELECT count(*) FROM poker_player",
+    "explanation": "The predicted SQL query is correct and there is no error in it. It correctly counts the number of rows (i.e., the total number of poker players) in the \"poker_player\" table, as intended. Therefore, this query matches the gold (correct) SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_31c5584d_20251128202725",
+        "pattern": "^SELECT count\\(\\*\\) FROM ([a-zA-Z0-9]+)",
+        "correction": "No correction is needed as the given SQL query is correct.",
+        "error_type": "OTHER"
+      }
+    ],
+    "db_id": "poker_player",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_76ba7202_20251129152222",
+    "incorrect_query": "SELECT Money Rank from poker_player ORDER BY Earnings DESC LIMIT 1",
+    "correct_query": "SELECT Money_Rank FROM poker_player ORDER BY Earnings DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it has a typo in the column name \"Money Rank\" which should be corrected to \"Money_Rank\". Additionally, the space between \"Money\" and \"Rank\" is not necessary in SQL syntax, so it should be written as \"MoneyRank\" instead.",
+    "rules": [
+      {
+        "rule_id": "rule_d757d25f_20251128202758",
+        "pattern": "Money\\s+Rank",
+        "correction": "MoneyRank",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "poker_player",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_fec734fa_20251129152222",
+    "incorrect_query": "SELECT contestant_name FROM CONTESTANTS WHERE contestant_name != \"Jessie Alloway\" This SQL query will return the names of all contestants in the `CONTESTANTS` table, excluding those named 'Jessie Alloway'. The `WHERE` clause is used to filter out rows that do not meet the specified condition. In this case, the condition is that the `contestant_name` column should not be equal to \"Jessie Alloway\".",
+    "correct_query": "SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'",
+    "explanation": "The predicted SQL query is incorrect because it uses an uppercase 'C' for the table name (CONTESTANTS), while the gold SQL query correctly uses lowercase (contestants). In MySQL, table names are case-insensitive but they should be consistent within a single query. Therefore, to match the gold SQL query, the predicted SQL query should be corrected as:\n\nSELECT contestant_name FROM contestants WHERE contestant_name != \"Jessie Alloway\"",
+    "rules": [
+      {
+        "rule_id": "rule_46ccd4cf_20251128202940",
+        "pattern": "^SELECT .+ FROM ([A-Z]+)",
+        "correction": "Replace the uppercase table name with lowercase",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "voter_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b80fcc8f_20251129152222",
+    "incorrect_query": "SELECT C.contestant_number, C.contestant_name FROM CONTESTANTS AS C LEFT JOIN VOTES AS V ON C.contestant_number = V.contestant_number GROUP BY C.contestant_number ORDER BY COUNT(V.vote_id) ASC LIMIT 1",
+    "correct_query": "SELECT T1.contestant_number , T1.contestant_name FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number GROUP BY T1.contestant_number ORDER BY count(*) ASC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it counts the number of vote_ids instead of the actual votes for each contestant, and it doesn't account for multiple votes from the same voter. The correct query groups by the contestant_number and orders the results by the count of unique contestants (votes), which is more accurate in determining the most voted contestant.",
+    "rules": [
+      {
+        "rule_id": "rule_2205c556_20251128203007",
+        "pattern": "SELECT .* FROM CONTESTANTS AS C LEFT JOIN VOTES AS V ON C\\.contestant\\_number = V\\.contestant\\_number GROUP BY C\\.contestant\\_number ORDER BY COUNT\\(V\\.vote\\_id\\) ASC LIMIT 1",
+        "correction": "Replace the aggregation function with count(*), and ensure it counts unique contestants instead of vote_ids.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "voter_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_d332ead8_20251129152222",
+    "incorrect_query": "SELECT Continent FROM country WHERE Code = 'AG'",
+    "correct_query": "SELECT Continent FROM country WHERE Name = \"Anguilla\"",
+    "explanation": "The predicted SQL query is incorrect because it uses the country code (AG) instead of the country name (Anguilla). While the country code is unique for each country, it may not always correspond directly to the country name, making it an unreliable choice for a direct match in this context. Instead, using the country name ensures a more accurate result.",
+    "rules": [
+      {
+        "rule_id": "rule_90adbcf3_20251128203123",
+        "pattern": "WHERE Code = '([A-Z]{2})'",
+        "correction": "Replace WHERE Code = 'AG' with SELECT Continent FROM country WHERE Name = 'Anguilla'",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_00cd48b1_20251129152222",
+    "incorrect_query": "SELECT Continent from country where Code = 'AG' This SQL query will return the continent that Anguilla (with code AG) belongs to, assuming that the country table contains the required information.",
+    "correct_query": "SELECT Continent FROM country WHERE Name = \"Anguilla\"",
+    "explanation": "The predicted SQL query is incorrect because it uses the 'Code' column instead of the 'Name' column to match the country name \"Anguilla\". While the Code for Anguilla is 'AG', using this column would not directly provide the continent that Anguilla belongs to, as the required information is stored in the Name column.",
+    "rules": [
+      {
+        "rule_id": "rule_d96fd9e5_20251128203130",
+        "pattern": "WHERE Code = '(.*)'",
+        "correction": "Replace WHERE Code = '(.*)' with WHERE Name = '(.*)'",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_20c736d1_20251129152222",
+    "incorrect_query": "SELECT Language FROM countrylanguage WHERE CountryCode = 'ABW' AND IsOfficial = 'T' ORDER BY Percentage DESC LIMIT 1",
+    "correct_query": "SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = \"Aruba\" ORDER BY Percentage DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only filters for the specific language records where `CountryCode` equals 'ABW' and `IsOfficial` equals 'T', whereas the gold SQL query joins the `country` and `countrylanguage` tables on the condition that the country code in both tables matches the given country name \"Aruba\". The predicted query does not consider the country name at all, which is a significant difference.",
+    "rules": [
+      {
+        "rule_id": "rule_ba55a350_20251128203140",
+        "pattern": "SELECT .+ FROM countrylanguage WHERE CountryCode = '(.*)' AND IsOfficial = 'T' ORDER BY Percentage DESC LIMIT 1",
+        "correction": "Join the country and countrylanguage tables on the condition that the country code in both tables matches the given country name, then filter, sort, and limit as needed.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_e754f6d8_20251129152222",
+    "incorrect_query": "SELECT Language FROM countrylanguage WHERE CountryCode = 'ABW' AND IsOfficial = 'T'",
+    "correct_query": "SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.Name = \"Aruba\" ORDER BY Percentage DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only selects languages where `CountryCode` is 'ABW' and `IsOfficial` is 'T', but the gold SQL query also joins this with the `country` table on the condition that the country name is \"Aruba\". Additionally, the predicted query does not include the ORDER BY Percentage DESC LIMIT 1 clause to sort by percentage in descending order and limit the result set to one row.",
+    "rules": [
+      {
+        "rule_id": "rule_470ac060_20251128203149",
+        "pattern": "SELECT .+ FROM countrylanguage WHERE CountryCode = '(.*)' AND IsOfficial = 'T'(?!\\sJOIN\\scountry\\sAS\\sT1\\sON\\sT1\\.Name\\s=\\s.*')",
+        "correction": "Join the country table and filter on the correct country name, sort by Percentage in descending order and limit the result set to one row.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_1084604a_20251129152222",
+    "incorrect_query": "SELECT Region FROM country WHERE Code = 'AGO'",
+    "correct_query": "SELECT Population , Region FROM country WHERE Name = \"Angola\"",
+    "explanation": "The predicted SQL query is incorrect because it only selects the Region and filters by the Country Code 'AGO', while the gold SQL query correctly selects both Population and Region, and filters by the Country Name \"Angola\". In this case, the predicted query does not provide the complete information requested (Population) and uses a different filtering method (Code instead of Name).",
+    "rules": [
+      {
+        "rule_id": "rule_a94003d7_20251128203206",
+        "pattern": "SELECT .+ FROM country WHERE Code = '(.+)'",
+        "correction": "SELECT Population , Region FROM country WHERE Name = \"Angola\"",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_e6a0c4ab_20251129152222",
+    "incorrect_query": "SELECT SUM(surfaceArea) FROM country WHERE Continent = 'Asia' OR Continent = 'Europe' This SQL query will sum up the surface area of all countries that are located in either Asia or Europe, as per the provided database schema.",
+    "correct_query": "SELECT sum(SurfaceArea) FROM country WHERE Continent = \"Asia\" OR Continent = \"Europe\"",
+    "explanation": "The predicted SQL query is correct, but there seems to be a minor inconsistency with the table and column names. In the world_1 database, the column name for surface area is SurfaceArea (capitalized) instead of surfaceArea (lowercase). Therefore, the corrected predicted SQL query should be:\n\nSELECT SUM(SurfaceArea) FROM country WHERE Continent = 'Asia' OR Continent = 'Europe'\n\nThis corrected version will correctly sum up the surface area of all countries that are located in either Asia or Europe from the world_1 database.",
+    "rules": [
+      {
+        "rule_id": "rule_c6781481_20251128203245",
+        "pattern": "^SELECT SUM\\(.*Area\\) FROM country WHERE Continent = '(.*?)' OR Continent = '(.*?)'(?!\\s+AS)",
+        "correction": "Replace the column name with the correct capitalization: SurfaceArea",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_a7d23154_20251129152222",
+    "incorrect_query": "SELECT CountryName, COUNT(DISTINCT Language) as NumberOfLanguages FROM countrylanguage JOIN country ON country.Code = countrylanguage.CountryCode GROUP BY CountryName ORDER BY NumberOfLanguages DESC LIMIT 1",
+    "correct_query": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Name ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it does not align with the original question's requirement to select the country name, and it also calculates the number of languages per country instead of counting the occurrences of each country name. In addition, the predicted query uses `CountryName` which is not present in the provided schema, while the gold SQL query correctly references `T1.Name`.",
+    "rules": [
+      {
+        "rule_id": "rule_30ee387f_20251128203343",
+        "pattern": "^SELECT .+, COUNT\\(DISTINCT (.+)\\) AS .+\\sFROM\\s.* JOIN .*\\sON .*=\\s.*\\.\\w+\\sGROUP BY .+\\sORDER BY .+\\sLIMIT 1",
+        "correction": "Replace the aggregation part with COUNT(*), and ensure that the country name is correctly referenced in the SELECT and GROUP BY clauses.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_d6232745_20251129152222",
+    "incorrect_query": "SELECT Continent, COUNT(DISTINCT Language) as NumberOfLanguages FROM countrylanguage GROUP BY Continent ORDER BY NumberOfLanguages DESC LIMIT 1",
+    "correct_query": "SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it does not join the 'country' and 'countrylanguage' tables, which is necessary to get the continent information. Additionally, it counts the distinct languages for each continent (NumberOfLanguages), but the gold SQL query counts all rows (implicitly using COUNT(*)) for each continent to find the one with the most countries.",
+    "rules": [
+      {
+        "rule_id": "rule_9145b970_20251128203352",
+        "pattern": "^SELECT\\s+Continent,\\s+COUNT\\(DISTINCT\\s+Language\\)\\s+as\\s+NumberOfLanguages\\s+FROM\\s+countrylanguage\\s+GROUP BY\\s+Continent\\s+ORDER BY\\s+NumberOfLanguages\\s+DESC\\s+LIMIT\\s+1$",
+        "correction": "Join the 'country' and 'countrylanguage' tables, count all rows for each continent to find the one with the most countries.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_9a9f38b1_20251129152222",
+    "incorrect_query": "SELECT Continent, COUNT(DISTINCT Language) as NumberOfLanguages FROM countrylanguage GROUP BY Continent ORDER BY NumberOfLanguages DESC LIMIT 1 This SQL query will return the continent that speaks the most unique languages. The `COUNT(DISTINCT Language)` function is used to count the number of distinct languages spoken in each continent, and the `GROUP BY Continent` clause groups the results by continent. Finally, the `ORDER BY NumberOfLanguages DESC LIMIT 1` clause sorts the results in descending order and returns only the top result (the continent with the most unique languages).",
+    "correct_query": "SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it doesn't join the `country` table to get the corresponding continents for each language, which is necessary to determine the number of unique languages per continent. Instead, it directly groups and counts the distinct languages from the `countrylanguage` table without considering the association between countries and their respective languages.",
+    "rules": [
+      {
+        "rule_id": "rule_b20745e0_20251128203402",
+        "pattern": "^SELECT\\s+Continent,\\s+COUNT\\(DISTINCT\\s+Language\\)\\s+as\\s+NumberOfLanguages\\s+FROM\\s+[a-zA-Z0-9_\\s]+\\s+GROUP\\s+BY\\s+Continent\\s+ORDER\\s+BY\\s+NumberOfLanguages\\s+DESC\\s+LIMIT\\s+1",
+        "correction": "Join the country table to get the corresponding continents for each language, and count the number of unique languages per continent.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_575bd05e_20251129152222",
+    "incorrect_query": "SELECT country.Name FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE countrylanguage.Language = 'French' AND countrylanguage.IsOfficial = 'T'",
+    "correct_query": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\" AND T2.IsOfficial = \"T\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"French\" AND T2.IsOfficial = \"T\"",
+    "explanation": "The predicted SQL query is incorrect because it only selects countries where the primary language is French and official, but it does not include the condition for English-speaking countries as required by the gold SQL query. The gold SQL query uses the INTERSECT operator to find common names of countries that are both English-speaking and French-speaking.",
+    "rules": [
+      {
+        "rule_id": "rule_409a0b57_20251128203442",
+        "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(French|English)' AND",
+        "correction": "Use INTERSECT operator to find common names of countries that are both English-speaking and French-speaking.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_224ce6da_20251129152222",
+    "incorrect_query": "SELECT country.Name FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE countrylanguage.Language = 'English' AND countrylanguage.Language = 'French'",
+    "correct_query": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\" AND T2.IsOfficial = \"T\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"French\" AND T2.IsOfficial = \"T\"",
+    "explanation": "The predicted SQL query is incorrect because it has an inconsistency in the condition for the language column, which should be equal to either \"English\" or \"French\", not both. Additionally, the INTERSECT operator in the gold SQL query is used to find common rows between two queries, while the predicted query does not include any such operation and instead combines the conditions for English and French languages into a single WHERE clause.",
+    "rules": [
+      {
+        "rule_id": "rule_e642135c_20251128203452",
+        "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(English|French)' AND countrylanguage\\.(Language|IsOfficial) = '(English|French)'",
+        "correction": "Separate the conditions for English and French languages into separate WHERE clauses or use OR operator instead of AND, and ensure that each condition only checks for one language.",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_ec4d8ab7_20251129152222",
+    "incorrect_query": "SELECT country.Name FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE countrylanguage.Language = 'English' OR countrylanguage.Language = 'Dutch'",
+    "correct_query": "SELECT DISTINCT T1.Region FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\" OR T2.Language = \"Dutch\"",
+    "explanation": "The predicted SQL query is incorrect because it selects the `Name` field from the `country` table, while the gold SQL query correctly uses an alias `T1` to refer to the `country` table and selects the `Region` field instead. Additionally, the predicted query does not include a condition for the \"Dutch\" language in the join between the `country` and `countrylanguage` tables, unlike the gold SQL query which uses aliases `T1` and `T2`.",
+    "rules": [
+      {
+        "rule_id": "rule_c944f8c3_20251128203512",
+        "pattern": "SELECT ([a-z]+).([a-z]+) FROM ([a-z]+) JOIN ([a-z]+)([a-z]+) ON ([a-z]+).([a-z]+) = ([a-z]+)\\.(CountryCode|Language) WHERE ([a-z]+)\\.(Language|CountryCode) = '(.*)' OR ([a-z]+)\\.(Language|CountryCode) = '(.*)'",
+        "correction": "Use aliases for both tables, select the correct column from the country table, and include conditions for all specified languages in the join condition.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_5a94ef6f_20251129152222",
+    "incorrect_query": "SELECT MAX(SurfaceArea) FROM country WHERE Continent = 'Asia' )",
+    "correct_query": "SELECT Name , Population , LifeExpectancy FROM country WHERE Continent = \"Asia\" ORDER BY SurfaceArea DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only retrieves the maximum surface area for Asia, not the country details as required by the question. The correct query should select the name, population, and life expectancy of the Asian country with the largest surface area, ordered by descending surface area and limited to one result.",
+    "rules": [
+      {
+        "rule_id": "rule_2679a9d4_20251128203647",
+        "pattern": "SELECT MAX\\(.*\\) FROM .* WHERE Continent = '.*'",
+        "correction": "SELECT Name , Population , LifeExpectancy FROM country WHERE Continent = 'Asia' ORDER BY SurfaceArea DESC LIMIT 1",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_132c786a_20251129152222",
+    "incorrect_query": "SELECT Code FROM country WHERE HeadOfState = 'Beatrix' ) AND IsOfficial = 'T' This SQL query will return the official language used in the country where the head of state is named Beatrix. The first subquery selects the `Code` for the relevant country, and the main query then uses that code to find the corresponding language data from the `countrylanguage` table.",
+    "correct_query": "SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T1.HeadOfState = \"Beatrix\" AND T2.IsOfficial = \"T\"",
+    "explanation": "The predicted SQL query is incorrect because it does not correctly join the `country` and `countrylanguage` tables. The correct way to do this is by using a JOIN clause, as shown in the gold SQL query. Additionally, the predicted SQL query performs the filtering on the subquery result instead of the combined data from both tables, which leads to an incorrect result set.",
+    "rules": [
+      {
+        "rule_id": "rule_8408987b_20251128203745",
+        "pattern": "SELECT .* FROM country WHERE .* = 'Beatrix' \\) AND IsOfficial = 'T'",
+        "correction": "Replace the subquery with a JOIN clause to correctly join the `country` and `countrylanguage` tables.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_d2c2a6f4_20251129152222",
+    "incorrect_query": "SELECT CountryCode FROM country WHERE Language <> 'English' AND Language IS NOT NULL",
+    "correct_query": "SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = \"English\"",
+    "explanation": "The predicted SQL query is incorrect because it's based on the wrong table (country instead of countrylanguage) and it checks for the language column which does not exist in the countrytable. The correct query should be based on the countrylanguage table and should filter out English-speaking countries using the 'WHERE LANGUAGE = \"English\"' clause, whereas the predicted query filters out non-English speaking countries with the incorrect condition 'Language <> 'English''.",
+    "rules": [
+      {
+        "rule_id": "rule_c571e412_20251128203851",
+        "pattern": "SELECT .+ FROM .+ WHERE Language <> 'English' AND Language IS NOT NULL",
+        "correction": "SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = 'English'",
+        "error_type": "TABLE_REFERENCE"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_91bd27e4_20251129152222",
+    "incorrect_query": "SELECT T1.Code FROM countrylanguage AS T1 WHERE T1.Language = 'English' AND T1.IsOfficial = 'F'",
+    "correct_query": "SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != \"English\"",
+    "explanation": "The predicted SQL query is incorrect because it is looking for countries where the language is English and IsOfficial is False, while the gold SQL query is intended to find countries where the language is not English. The predicted query misses the requirement that the language should be different from English.",
+    "rules": [
+      {
+        "rule_id": "rule_a36dba2d_20251128203911",
+        "pattern": "SELECT .+ FROM .+ AS T[0-9]+ WHERE (T[0-9]+\\.)?Language = 'English' AND T[0-9]+\\.IsOfficial = 'F'",
+        "correction": "SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != 'English'",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_362f7122_20251129152222",
+    "incorrect_query": "SELECT country.Code FROM country WHERE Language != 'English' AND GovernmentForm != 'Republic'",
+    "correct_query": "SELECT Code FROM country WHERE GovernmentForm != \"Republic\" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = \"English\"",
+    "explanation": "The predicted SQL query is incorrect because it checks for the language of countries, not the languages spoken in those countries. The correct query should filter countries by their government form (GovernmentForm) and then exclude English-speaking countries separately using the countrylanguage table.",
+    "rules": [
+      {
+        "rule_id": "rule_83d12c08_20251128203919",
+        "pattern": "WHERE ([A-Za-z]+) != 'English' AND GovernmentForm != 'Republic'",
+        "correction": "Filter countries by their government form (GovernmentForm) and then exclude English-speaking countries separately using the countrylanguage table.",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_01e8fae1_20251129152222",
+    "incorrect_query": "SELECT MIN(Population) FROM country)",
+    "correct_query": "SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only returns the minimum population value from the 'country' table, whereas the gold SQL query aims to select the top (first) country based on population, along with its name, surface area, and independence year. The predicted query does not provide the necessary details about the country, such as its name or other attributes.",
+    "rules": [
+      {
+        "rule_id": "rule_4dec930b_20251128204009",
+        "pattern": "^SELECT MIN\\(.*\\) FROM .*$",
+        "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_fa021baf_20251129152222",
+    "incorrect_query": "SELECT MIN(Population) FROM country )",
+    "correct_query": "SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it only returns the minimum population value from the `country` table, whereas the gold SQL query intends to select the top 1 country based on population and also includes the `Name`, `SurfaceArea`, and `IndepYear` columns along with an order by `Population` clause. The predicted query does not provide the required details about the specific country, nor does it maintain the desired sorting order.",
+    "rules": [
+      {
+        "rule_id": "rule_4dec930b_20251128204017",
+        "pattern": "^SELECT MIN\\(.*\\) FROM .*$",
+        "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b004212c_20251129152222",
+    "incorrect_query": "SELECT Continent, AVG(LifeExpectancy) as Average_Life_Expectancy, SUM(Population) as Total_Population FROM country WHERE AVG(LifeExpectancy) < 72 GROUP BY Continent",
+    "correct_query": "SELECT sum(Population) , avg(LifeExpectancy) , Continent FROM country GROUP BY Continent HAVING avg(LifeExpectancy) < 72",
+    "explanation": "The predicted SQL query is incorrect because it applies the `WHERE` clause filtering before the aggregation functions (`AVG()`, `SUM()`) and grouping (`GROUP BY`). In contrast, the correct SQL query correctly groups the data by continent first, calculates the average life expectancy for each group, filters out those with an average less than 72, and then performs the summation operation on the population. The order of operations in SQL is crucial for correct results, and the predicted query violates this principle.",
+    "rules": [
+      {
+        "rule_id": "rule_a525bb41_20251128204130",
+        "pattern": "WHERE [A-Z]+\\(.*\\) < [0-9]+ GROUP BY .+",
+        "correction": "Replace the WHERE clause with a HAVING clause after the GROUP BY and remove the aggregation function from the WHERE clause.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_1b7d9a16_20251129152222",
+    "incorrect_query": "SELECT country.Name FROM country ORDER BY Population ASC LIMIT 3 This SQL query will return the names of the 3 countries with the least population. The `ORDER BY` clause sorts the results in ascending order (ASC) based on the Population column, and the `LIMIT 3` clause limits the output to the top 3 records.",
+    "correct_query": "SELECT Name FROM country ORDER BY Population ASC LIMIT 3",
+    "explanation": "The predicted SQL query is incorrect because it will return the names of the countries with the least population instead of the most populated ones as required by the question. This is due to the `ASC` (ascending) sort order specified in the `ORDER BY` clause, which sorts the results from lowest to highest, and the `LIMIT 3` clause limiting the output to the first three records with the smallest population values. To correct this, the `DESC` (descending) sort order should be used instead, so that the most populated countries are returned in descending order of their population.",
+    "rules": [
+      {
+        "rule_id": "rule_9a1a62e9_20251128204139",
+        "pattern": "ORDER BY Population ASC LIMIT .*",
+        "correction": "Replace 'ASC' with 'DESC' to sort in descending order and return the top 3 records instead of the bottom ones.",
+        "error_type": "ORDERING_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_43db5e3b_20251129152222",
+    "incorrect_query": "SELECT country.Code FROM countrylanguage WHERE country.Code = country_code AND language = 'Spanish' AND IsOfficial = 'T'",
+    "correct_query": "SELECT CountryCode , max(Percentage) FROM countrylanguage WHERE LANGUAGE = \"Spanish\" GROUP BY CountryCode",
+    "explanation": "The predicted SQL query is incorrect because it attempts to join the `country` table with the `countrylanguage` table, but no JOIN operation or alias for the `country` table is specified. Additionally, the predicted query selects only the country code, while the gold SQL query also includes the maximum percentage and groups by country code. The gold SQL query correctly filters data based on language and country code without requiring a join with another table.",
+    "rules": [
+      {
+        "rule_id": "rule_2f80d2db_20251128204329",
+        "pattern": "^SELECT\\s+[a-zA-Z]+\\.[a-zA-Z]+(?:\\s+FROM\\s+countrylanguage\\s+WHERE\\s+)[a-zA-Z]+\\.[a-zA-Z]+\\s*=\\s*country_code\\s*(?:AND\\s.*?)*$",
+        "correction": "Ensure to join the `country` table with `countrylanguage` using an appropriate JOIN operator and provide an alias for the `country` table. Also, modify the query to select relevant columns and apply necessary aggregation functions.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "world_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_f29d6635_20251129152222",
+    "incorrect_query": "SELECT Orchestra FROM orchestra ORDER BY Year_of_Founded DESC",
+    "correct_query": "SELECT Record_Company FROM orchestra ORDER BY Year_of_Founded DESC",
+    "explanation": "The predicted SQL query is incorrect because it references \"Orchestra\" instead of \"Record_Company\". The \"orchestra\" table likely contains multiple columns, and the \"Record_Company\" column is the one intended to be selected for this query. The correct column name should be used for accurate results.",
+    "rules": [
+      {
+        "rule_id": "rule_55039ffe_20251128204337",
+        "pattern": "SELECT (.*?) FROM (.*?) ORDER BY (.*?)",
+        "correction": "Replace '.*?' with the correct column name and table name in the SELECT and FROM clauses respectively",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8b4597bf_20251129152222",
+    "incorrect_query": "SELECT Conductor_Name, COUNT(Year_of_Work) as YearsWorked FROM conductor GROUP BY Conductor_Name ORDER BY YearsWorked DESC",
+    "correct_query": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC",
+    "explanation": "The predicted SQL query is incorrect because it does not match the original question's requirement. The original question asks for the names of conductors ordered by the number of years they have worked, in descending order. However, the predicted query counts the number of years each conductor has worked (YearsWorked) and orders the results based on that count, rather than the actual years of work. Additionally, it only selects the Conductor_Name and not the Name column from the conductor table.",
+    "rules": [
+      {
+        "rule_id": "rule_71094e3a_20251128204357",
+        "pattern": "SELECT ([A-Za-z]+)_Name, COUNT\\((\\w+)\\) as (\\w+)Worked FROM (\\w+) GROUP BY ([A-Za-z]+)_Name ORDER BY (\\w+)Worked DESC",
+        "correction": "SELECT Name FROM <table_name> ORDER BY Year_of_Work DESC",
+        "error_type": "ORDERING_ERROR"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_dcc416f3_20251129152222",
+    "incorrect_query": "SELECT Name, Year_of_Work FROM conductor ORDER BY Year_of_Work DESC LIMIT 1",
+    "correct_query": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it includes the `Year_of_Work` column in the `SELECT` statement, which is not necessary since the question only asks for the `Name`. Including unnecessary columns can lead to confusion and may affect the order of results if those columns are used in the `ORDER BY` clause. In this case, the correct query should only select the `Name` column and order by `Year_of_Work DESC LIMIT 1`, as stated in the gold SQL query.",
+    "rules": [
+      {
+        "rule_id": "rule_1deaf5ed_20251128204406",
+        "pattern": "SELECT .+ FROM .+ ORDER BY .+\\s*DESC\\s*(LIMIT|OFFSET)\\s*1",
+        "correction": "SELECT <column_name> FROM <table_name> ORDER BY <column_name> DESC LIMIT 1",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_1647aafe_20251129152222",
+    "incorrect_query": "SELECT Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID GROUP BY Name ORDER BY COUNT(orchestra.Orchestra_ID) DESC LIMIT 1",
+    "correct_query": "SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it groups by 'Name' instead of 'T2.Conductor_ID', which is the intended grouping column in the gold SQL query. Additionally, the predicted query counts the number of orchestra records for each conductor (using `COUNT(orchestra.Orchestra_ID)`) while the gold SQL query counts all records (implicitly using COUNT(*)) to find the most frequently conducted orchestra by a conductor.",
+    "rules": [
+      {
+        "rule_id": "rule_0248fe7b_20251128204427",
+        "pattern": "SELECT ([A-Za-z]+) FROM ([\\w\\s]+\\s+JOIN\\s+[\\w\\s]+\\s+ON\\s+([\\w\\s]+)\\.(\\w+)_ID\\s+=\\s+([\\w\\s]+)\\.(\\w+)_ID)\\s+GROUP BY (\\w+)",
+        "correction": "Replace 'GROUP BY' with 'GROUP BY [JOINed table alias].[grouping column]', and ensure the aggregation function counts all records instead of specific columns",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_acd654cc_20251129152222",
+    "incorrect_query": "SELECT DISTINCT Record_Company FROM orchestra",
+    "correct_query": "SELECT Record_Company , COUNT(*) FROM orchestra GROUP BY Record_Company",
+    "explanation": "The predicted SQL query is incorrect because it only selects distinct record companies from the orchestra table, but does not count them nor group them by record company. The gold SQL query correctly counts the number of records for each distinct record company and groups them accordingly. In other words, the predicted query lacks the COUNT(*) and GROUP BY clauses that are necessary to get the correct results.",
+    "rules": [
+      {
+        "rule_id": "rule_6f8b8377_20251128204446",
+        "pattern": "SELECT DISTINCT .* FROM .*",
+        "correction": "Add COUNT(*) and GROUP BY clause to count the number of records for each distinct value in the specified column",
+        "error_type": "DISTINCT_ERROR"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_56345ab7_20251129152222",
+    "incorrect_query": "select the one with the highest count. Here's the SQL query: sql SELECT Record_Company FROM ( SELECT Record_Company, COUNT(DISTINCT Orchestra_ID) as num_orchestras FROM orchestra GROUP BY Record_Company ) AS subquery ORDER BY num_orchestras DESC LIMIT 1",
+    "correct_query": "SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it creates a subquery, which is unnecessary for this specific task. The gold SQL query directly groups by Record_Company and counts the number of orchestras in each company without the need for a subquery. Additionally, the predicted query orders the results before limiting them to one, while the gold SQL query first limits the result set to one and then orders it by count.",
+    "rules": [
+      {
+        "rule_id": "rule_fd7d1745_20251128204522",
+        "pattern": "SELECT\\s+.*\\s+FROM\\s+\\(.*\\)\\s+AS\\s+subquery",
+        "correction": "Directly group by the required column and count the number of rows without using a subquery",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_0fcb500a_20251129152222",
+    "incorrect_query": "SELECT DISTINCT Record_Company FROM orchestra WHERE Year_of_Founded < 2003 AND Year_of_Founded > 2003",
+    "correct_query": "SELECT Record_Company FROM orchestra WHERE Year_of_Founded < 2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded > 2003",
+    "explanation": "The predicted SQL query is incorrect because it uses an AND operator instead of INTERSECT, which is required to find the common Record Companies that were founded both before and after 2003. The AND operator would return records where both conditions are true, but since a record cannot be founded both before and after 2003, this query would not yield the correct results.",
+    "rules": [
+      {
+        "rule_id": "rule_97294e48_20251128204549",
+        "pattern": "SELECT DISTINCT .+ FROM orchestra WHERE Year\\_of\\_Founded < 2003 AND Year\\_of\\_Founded > 2003",
+        "correction": "Replace with: SELECT Record\\_Company FROM orchestra WHERE Year\\_of\\_Founded < 2003 INTERSECT SELECT Record\\_Company FROM orchestra WHERE Year\\_of\\_Founded > 2003",
+        "error_type": "OPERATOR_ERROR"
+      }
+    ],
+    "db_id": "orchestra",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_17b538e1_20251129152222",
+    "incorrect_query": "SELECT name, grade FROM Highschooler",
+    "correct_query": "SELECT grade FROM Highschooler",
+    "explanation": "The predicted SQL query is incorrect because it includes an unnecessary column 'name' in the SELECT statement. The gold SQL query only requires the 'grade' column from the 'Highschooler' table, whereas the predicted query also selects the 'name' column which is not relevant to the question.",
+    "rules": [
+      {
+        "rule_id": "rule_580c6e21_20251128204616",
+        "pattern": "SELECT .+ FROM .+",
+        "correction": "The query should only select the necessary columns for the task at hand.",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "network_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_17b538e1_20251129152222",
+    "incorrect_query": "SELECT name, grade FROM Highschooler",
+    "correct_query": "SELECT grade FROM Highschooler",
+    "explanation": "The predicted SQL query is incorrect because it includes an unnecessary column \"name\" in the SELECT statement. The original gold SQL query only requires the \"grade\" column from the \"Highschooler\" table, not the \"name\". Including an extra column can lead to unexpected results or errors if the data is not intended to be used for that purpose.",
+    "rules": [
+      {
+        "rule_id": "rule_92238350_20251128204624",
+        "pattern": "SELECT .+ FROM (.+)",
+        "correction": "Replace with: SELECT <specific_column> FROM <table_name>",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "network_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_44e1ef58_20251129152222",
+    "incorrect_query": "SELECT Highschooler.ID FROM Highschooler LEFT JOIN Friend ON Highschooler.ID = Friend.student_id WHERE Friend.friend_id IS NULL This query will return the IDs of high school students who do not have any friends in the `Friend` table.",
+    "correct_query": "SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend",
+    "explanation": "The predicted SQL query is incorrect because it uses a LEFT JOIN instead of EXCEPT, and it checks for NULL values in the 'friend_id' column of the Friend table, which would return high school students who do not have friends (i.e., they are not friends with anyone), not high school students who do not appear as friends in the Friend table (i.e., their IDs do not exist in the Friend table). The EXCEPT operator is used to find records that are in one table but not in another, which is what's needed for the given question.",
+    "rules": [
+      {
+        "rule_id": "rule_eb80023e_20251128204905",
+        "pattern": "LEFT JOIN .* WHERE (.*) IS NULL",
+        "correction": "Replace with EXCEPT operator to find records that are in one table but not in another",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "network_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_912fe679_20251129152222",
+    "incorrect_query": "SELECT name, COUNT(*) FROM Highschooler JOIN Likes ON Highschooler.ID = Likes.liked_id GROUP BY Highschooler.ID",
+    "correct_query": "SELECT T2.name , count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id",
+    "explanation": "The predicted SQL query is incorrect because it joins the tables on the wrong column ID (liked_id). In the gold SQL query, the correct column to join on is student_id, which corresponds to the id in the Highschooler table. Additionally, the FROM clause should reference Likes first, followed by Highschooler for the proper JOIN syntax.",
+    "rules": [
+      {
+        "rule_id": "rule_ed61674e_20251128205009",
+        "pattern": "SELECT .+ FROM (.*?) JOIN (.*) ON (.*?).ID = (.*)\\.(.*?)",
+        "correction": "SELECT T2.\\1 , count(*) FROM \\4 AS T1 JOIN \\3 AS T2 ON T1.\\5 = T2.\\6 GROUP BY T1.\\5",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "network_1",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_8019d41a_20251129152222",
+    "incorrect_query": "SELECT DISTINCT Owners.state FROM Owners JOIN Professionals ON Owners.state = Professionals.state",
+    "correct_query": "SELECT state FROM Owners INTERSECT SELECT state FROM Professionals",
+    "explanation": "The predicted SQL query is incorrect because it performs a join operation, which combines rows from two or more tables based on a related column. However, the gold SQL query uses the INTERSECT keyword, which returns the rows that have the same values in corresponding columns from two or more SELECT statements, but does not combine the entire rows. The predicted query is trying to find common states between owners and professionals within each row, while the gold query is finding common state values across all rows of both tables.",
+    "rules": [
+      {
+        "rule_id": "rule_41dea3b5_20251128205232",
+        "pattern": "SELECT DISTINCT [A-Za-z0-9_.]+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9_.]+) = ([A-Za-z0-9_.]+)",
+        "correction": "Replace the JOIN and ON clauses with INTERSECT or UNION, depending on whether you want to find common values or unique values from both tables. Avoid using DISTINCT in this case.",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_f14b4b35_20251129152222",
+    "incorrect_query": "SELECT DISTINCT Owners.first_name FROM Owners LEFT JOIN Dogs ON Owners.owner_id = Dogs.owner_id WHERE Dogs.name IS NULL AND Owners.first_name != '' UNION SELECT DISTINCT Professionals.first_name FROM Professionals WHERE Professionals.first_name NOT IN (SELECT Dogs.name FROM Dogs) This query first joins the `Owners` and `Dogs` tables to find any first names that are used for both owners and dogs, then filters out those duplicates by checking if the `name` column in the `Dogs` table is null (indicating that it's an owner but not a dog). Next, it joins the `Professionals` table to find any first names that are used for professionals but not dogs. It does this by filtering out any first names that appear in the `name` column of the `Dogs` table (indicating that they're used as dog names). Finally, it uses the `UNION` operator to combine the results from both parts of the query. The `DISTINCT` keyword ensures that each unique first name appears only once in the final result set.",
+    "correct_query": "SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs",
+    "explanation": "The predicted SQL query is incorrect because it does not correctly perform the UNION operation as required by the original question. The UNION operator combines the result sets of two or more SELECT statements, but the predicted query performs a LEFT JOIN and a subquery instead, which results in a different outcome. Furthermore, the predicted query filters out dog names from professionals, while the gold SQL query aims to find first names that are used for both professionals and owners but not as dog names.",
+    "rules": [
+      {
+        "rule_id": "rule_123a58ac_20251128205343",
+        "pattern": "^(SELECT .* FROM .* LEFT JOIN .* ON .* WHERE .* IS NULL AND .*) UNION SELECT .* FROM .* (?!(SELECT .* FROM .* EXCEPT SELECT .* FROM))",
+        "correction": "Replace the UNION operation with a combination of UNION and EXCEPT operators to correctly combine result sets without performing unnecessary joins.",
+        "error_type": "OPERATOR_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_7daf41b3_20251129152222",
+    "incorrect_query": "SELECT professional_id, role_code, email_address FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments ) This query will return the id, role, and email address of professionals who have not operated any treatment on dogs.",
+    "correct_query": "SELECT professional_id , role_code , email_address FROM Professionals EXCEPT SELECT T1.professional_id , T1.role_code , T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id",
+    "explanation": "The predicted SQL query is incorrect because it only retrieves the information for professionals who have not been associated with any treatments recorded in the Treatments table. However, the gold SQL query is designed to exclude professionals who have been associated with treatments from the Professionals result set. This difference arises due to the use of the EXCEPT operator instead of NOT IN or a JOIN operation without a WHERE clause that filters out the matching records on both sides of the join.",
+    "rules": [
+      {
+        "rule_id": "rule_51abdd20_20251128205354",
+        "pattern": "^SELECT .+ FROM Professionals WHERE professional_id NOT IN \\(\\s*(SELECT professional_id FROM\\s+Treatments)\\s*\\)",
+        "correction": "Replace the query with: SELECT professional_id , role_code , email_address FROM Professionals EXCEPT SELECT T1.professional_id , T1.role_code , T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id",
+        "error_type": "SUBQUERY_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_420b7734_20251129152222",
+    "incorrect_query": "SELECT treatment_type_description, SUM(cost_of_treatment) as TotalCost FROM Treatments JOIN Treatment_Types ON Treatments.treatment_type_code = Treatment_Types.treatment_type_code GROUP BY treatment_type_description ORDER BY TotalCost ASC LIMIT 1",
+    "correct_query": "SELECT T1.treatment_type_description FROM Treatment_types AS T1 JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(cost_of_treatment) ASC LIMIT 1",
+    "explanation": "The predicted SQL query is incorrect because it does not properly aggregate the sum of cost_of_treatment for each treatment type as required by the gold SQL query. In the predicted query, the SUM(cost_of_treatment) is not grouped by treatment_type_code, which results in an incorrect total cost for each treatment type description. Additionally, the predicted query orders by TotalCost (which does not exist in the database), while the gold SQL query orders by sum(cost_of_treatment).",
+    "rules": [
+      {
+        "rule_id": "rule_6f416641_20251128205508",
+        "pattern": "SELECT .+ AS TotalCost FROM .+ JOIN .+ ON .+\\.treatment_type_code = .+\\.treatment_type_code GROUP BY treatment_type_description ORDER BY TotalCost",
+        "correction": "Replace the SUM(cost_of_treatment) with sum(cost_of_treatment), group by treatment_type_code instead of treatment_type_description, and remove the AS TotalCost from the SELECT statement.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_07b3e394_20251129152222",
+    "incorrect_query": "SELECT LastName FROM Owners JOIN Dogs ON Owners.owner_id = Dogs.owner_id ORDER BY Dogs.date_of_birth ASC LIMIT 1",
+    "correct_query": "SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T2.age = ( SELECT max(age) FROM Dogs )",
+    "explanation": "The predicted SQL query is incorrect because it orders the dogs by date of birth instead of finding the dog with the maximum age, as required in the gold SQL query. Additionally, it does not include the subquery to find the maximum age from the Dogs table, which is necessary to filter the owners based on their oldest dog's age.",
+    "rules": [
+      {
+        "rule_id": "rule_69cc5663_20251128205634",
+        "pattern": "SELECT .* FROM Owners JOIN Dogs ON Owners\\.owner\\_id = Dogs\\.owner\\_id ORDER BY Dogs\\.date\\_of\\_birth ASC LIMIT 1",
+        "correction": "Replace the ORDER BY clause with a subquery to find the dog with the maximum age, and include the WHERE clause to filter the owners based on their oldest dog's age.",
+        "error_type": "ORDERING_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_a89c6ce9_20251129152222",
+    "incorrect_query": "selects the dog name, age, and weight from the `Dogs` table where the `abandoned_yn` column is equal to '1', which indicates that the dog was abandoned.",
+    "correct_query": "SELECT name , age , weight FROM Dogs WHERE abandoned_yn = 1",
+    "explanation": "The predicted SQL query is correct in its structure and logic, but there seems to be an inconsistency in the spelling of the reserved keyword \"SELECT\" compared to the gold SQL query. In standard SQL syntax, the correct spelling for the command that selects columns from a table is \"SELECT\", not \"selects\".",
+    "rules": [
+      {
+        "rule_id": "rule_6861a8a7_20251128205846",
+        "pattern": "selects",
+        "correction": "Replace 'selects' with 'SELECT'",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_9c1bff04_20251129152222",
+    "incorrect_query": "SELECT AGE(CURDATE(), date_of_birth) as AgeOfOldestDog FROM Dogs ORDER BY AGE(CURDATE(), date_of_birth) DESC LIMIT 1",
+    "correct_query": "SELECT max(age) FROM Dogs",
+    "explanation": "The predicted SQL query is incorrect because it calculates the age using the built-in function AGE(CURDATE(), date_of_birth), but this function does not exist in standard SQL. Instead, to find the maximum age from the 'Dogs' table, you should directly select the max(age) as in the gold SQL query. The predicted query also includes an ORDER BY clause and a LIMIT 1, which are unnecessary for finding the maximum age since the MAX function automatically returns the highest value without sorting the entire dataset.",
+    "rules": [
+      {
+        "rule_id": "rule_7a643f1d_20251128205905",
+        "pattern": "AGE\\(CURDATE\\(\\), [a-zA-Z0-9_]+\\)",
+        "correction": "Replace with max(<column_name>) where <column_name> is the column representing the date of birth",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_9365986b_20251129152222",
+    "incorrect_query": "SELECT age, YEAR(CURDATE()) - YEAR(date_of_birth) AS current_year_minus_year_of_birth FROM Dogs ORDER BY current_year_minus_year_of_birth DESC LIMIT 1",
+    "correct_query": "SELECT max(age) FROM Dogs",
+    "explanation": "The predicted SQL query is incorrect compared to the gold SQL query because it returns not only the maximum age but also the current year minus the year of birth for each dog, orders them by this calculated field, and limits the result to the oldest dog (which may not be the same as finding the dog with the maximum age). The gold SQL query directly finds the maximum age from the Dogs table, which is a more straightforward and efficient way to answer the question.",
+    "rules": [
+      {
+        "rule_id": "rule_089fd065_20251128205914",
+        "pattern": "^SELECT .+\\sAS\\s.*FROM\\s.*ORDER BY\\s.*LIMIT 1$",
+        "correction": "Avoid using calculated fields for ordering and limiting. Instead, use aggregate functions to find the maximum value directly.",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_b6588fbe_20251129152222",
+    "incorrect_query": "SELECT charge_type, charge_amount FROM Charges ORDER BY charge_amount DESC LIMIT 1",
+    "correct_query": "SELECT max(charge_amount) FROM Charges",
+    "explanation": "The predicted SQL query is incorrect because it not only selects unnecessary columns (charge_type) but also orders and limits the results, which are not necessary for finding the maximum charge amount as required by the question. The correct query should only select the max(charge_amount) from the Charges table.",
+    "rules": [
+      {
+        "rule_id": "rule_b7dc5e49_20251128205922",
+        "pattern": "SELECT .+ FROM \\w+ ORDER BY .+ LIMIT 1",
+        "correction": "SELECT max(<column_name>) FROM <table_name>",
+        "error_type": "AGGREGATION_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_42667a05_20251129152222",
+    "incorrect_query": "selects the combination of `breed_code` and `size_code`. Here's an example: sql SELECT Breeds.breed_code, Sizes.size_code FROM Breeds JOIN Sizes ON 1=1",
+    "correct_query": "SELECT DISTINCT breed_code , size_code FROM dogs",
+    "explanation": "The predicted SQL query is incorrect because it joins the `Breeds` and `Sizes` tables without any conditions (ON 1=1), which results in a Cartesian product (cross join) of all rows from both tables, rather than selecting distinct combinations of breed_code and size_code from the `dogs` table as required by the gold SQL query. The predicted query should join the tables based on relevant columns (e.g., breed_id or size_id in both tables) to correctly retrieve the requested data.",
+    "rules": [
+      {
+        "rule_id": "rule_8dab73c0_20251128205940",
+        "pattern": "SELECT [A-Za-z_]+\\.\\w+, [A-Za-z_]+\\.\\w+ FROM ([A-Za-z_]+) JOIN ([A-Za-z_]+) ON 1=1",
+        "correction": "SELECT DISTINCT [column1] , [column2] FROM [table_name]",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "db_id": "dog_kennels",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_c32fd1f2_20251129152222",
+    "incorrect_query": "SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song) This query selects the names of singers whose IDs are not found in the `Singer_ID` column of the `song` table. In other words, it finds the names of singers who do not have any songs associated with them in the database.",
+    "correct_query": "SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)",
+    "explanation": "The predicted SQL query is correct and does not contain any errors. It correctly selects the names of singers who do not have any songs associated with them in the database, as intended by the question. Therefore, there is no need for correction in this case.",
+    "rules": [
+      {
+        "rule_id": "rule_16b6fb44_20251128210137",
+        "pattern": "SELECT .+ FROM .+ WHERE .+ NOT IN \\(SELECT .+ FROM .+\\)",
+        "correction": "This query correctly selects the names of singers who do not have any songs associated with them in the database.",
+        "error_type": "OTHER"
+      }
+    ],
+    "db_id": "singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_212ddb09_20251129152222",
+    "incorrect_query": "SELECT Citizenship FROM singer WHERE Birth_Year > 1955 This SQL query will return the citizenship shared by singers who were born before 1945 and after 1955. The `INTERSECT` operator is used to find common values between two sets of results. In this case, it finds the common citizenship among singers from different generations.",
+    "correct_query": "SELECT Citizenship FROM singer WHERE Birth_Year < 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955",
+    "explanation": "The predicted SQL query is incorrect because it only selects the Citizenship of singers born after 1955, while the gold SQL query aims to find the common citizenship among singers born before 1945 and after 1955 using the `INTERSECT` operator. The predicted query does not consider the condition for singers born before 1945, which is essential for finding the intersection of two sets.",
+    "rules": [
+      {
+        "rule_id": "rule_5859fdc5_20251128210146",
+        "pattern": "SELECT .* FROM .* WHERE Birth\\_Year > ([0-9]{4})",
+        "correction": "The query should be corrected by adding a second condition for singers born before 1945 and using the INTERSECT operator to find the common citizenship among these two sets.",
+        "error_type": "FILTER_ERROR"
+      }
+    ],
+    "db_id": "singer",
+    "question": ""
+  },
+  {
+    "triplet_id": "triplet_e2f5264c_20251129152222",
+    "incorrect_query": "SELECT Singer_ID FROM Singer WHERE Birth_Year < 1945 UNION ALL SELECT Singer_ID FROM Singer WHERE Birth_Year > 1955 ) AS SingerIDs ON Singer.Singer_ID = SingerIDs.Singer_ID",
+    "correct_query": "SELECT Citizenship FROM singer WHERE Birth_Year < 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955",
+    "explanation": "The predicted SQL query is incorrect because it selects `Singer_ID` instead of `Citizenship`, which was the intended column to be compared in the gold SQL query. Additionally, the use of `UNION ALL` would return all unique rows combined from both queries, while the gold SQL query uses `INTERSECT` to find common rows between the two subqueries. This means that the predicted query will return different results than the gold SQL query, as it includes all singer IDs instead of just the citizenships that appear in both age ranges (<1945 and >1955).",
+    "rules": [
+      {
+        "rule_id": "rule_d27f613f_20251128210156",
+        "pattern": "SELECT .+ FROM Singer WHERE Birth\\_Year (<|>|<=|>=) [0-9]+ UNION ALL SELECT .+ FROM Singer",
+        "correction": "SELECT Citizenship FROM singer WHERE Birth_Year <|> 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "db_id": "singer",
+    "question": ""
+  }
+]

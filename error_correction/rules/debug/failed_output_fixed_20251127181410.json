@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT MIN\\(\\(.*\\)\\) FROM .*$",
+    "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that only selects the minimum value of an aggregated column, by providing a query that retrieves multiple columns for the record with the maximum value and orders them by population in descending order."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+FROM\s+[A-Za-z0-9_\s]+\s+WHERE\s+DestAirport\s+=\s+'[A-Za-z3]{3}'",
+    "correction": "Replace the table name with the correct one, if it differs from 'flights'. If the table name is indeed 'flights', then no correction is needed.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the table reference may be incorrect, specifically when selecting from a table named 'flights' but using a different table name in the WHERE clause."
+    }
+}

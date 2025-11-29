@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE dog_id IN \\(\\s*(SELECT dog_id FROM .+\\s+JOIN\\s+.+\\s+ON\\s+.+\\s+GROUP BY dog_id HAVING SUM\\(.+\\)\\s*<= \\d+\\s*\\)",
+    "correction": "REPLACE the condition (SUM(.+) <= \\d+) with (NOT IN (SELECT dog_id FROM .+ GROUP BY dog_id HAVING SUM(.+) > \\d+))",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is used incorrectly in the WHERE clause, leading to an inaccurate result. The error occurs when summing up values that should not be added together."
+    }
+}

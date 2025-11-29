@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ AS T1 JOIN .+ AS T2 ON T1\.id = T2\.Channel WHERE T2\.Title = '(.*?)'",
+    "correction": "Replace the SELECT clause with SELECT T1.\<series_column>\nRemove T1.id from the SELECT clause\nEnsure that the title in the WHERE clause is enclosed in double quotes",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries where the incorrect column (id) is selected instead of the required series column"
+    }
+}

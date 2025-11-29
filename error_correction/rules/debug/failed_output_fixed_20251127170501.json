@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(DISTINCT ([A-Z]+\\w*)\\) FROM ([A-Z]+\\w*)",
+    "correction": "Replace the table name and column name with their lowercase equivalents",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects capitalization errors in table names and column names when using COUNT(DISTINCT) function."
+    }
+}

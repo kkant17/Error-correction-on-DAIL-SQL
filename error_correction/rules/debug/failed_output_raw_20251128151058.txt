@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(*\) FROM [a-z]+ WHERE Population > \(SELECT AVG\(Population\) FROM [a-z]+\) AS [A-Za-z0-9]+ FROM [a-z]+ GROUP BY District HAVING NumberOfCities > 0 AND [A-Za-z0-9]+ > 0",
+    "correction": "SELECT count\(*\) , District FROM city WHERE Population > (SELECT avg(Population) FROM city) GROUP BY District",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that count unnecessary columns and apply unwanted filters, as well as those that use subqueries improperly."
+    }
+}

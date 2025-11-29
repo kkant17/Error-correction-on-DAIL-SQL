@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(DISTINCT ([A-Z]+Type)\\) FROM ([A-Z]+)S?$",
+    "correction": "Replace the table name and column name with their correct lowercase versions: replace '([A-Z]+)' with 'pets' for table name, and '([A-Z]+Type)' with 'pettype' for column name.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies errors in SQL queries where the table or column names are misspelled, especially when using case-sensitive databases."
+    }
+}

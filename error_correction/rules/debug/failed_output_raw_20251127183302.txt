@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+, YEAR\\(CURDATE\\(\\)\) - YEAR\\(\\w+\(\\w+\)\\) AS [a-zA-Z0-9_]+ FROM .+ ORDER BY [a-zA-Z0-9_]+ DESC LIMIT 1$",
+    "correction": "Replace the query with SELECT max(<age_column>) FROM <table_name>",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that unnecessarily calculate additional fields and sort the results, making them less efficient."
+    }
+}

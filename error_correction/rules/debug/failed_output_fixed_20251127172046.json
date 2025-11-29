@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-z]+) WHERE Name = '(.*)' AND DestAirport = \\(SELECT AirportCode FROM airports WHERE City = '(.*)'\\)$",
+    "correction": "Join the tables directly using Airline and SourceAirport columns, filter by desired conditions.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries to retrieve necessary table identifiers. It suggests joining the tables directly instead."
+    }
+}

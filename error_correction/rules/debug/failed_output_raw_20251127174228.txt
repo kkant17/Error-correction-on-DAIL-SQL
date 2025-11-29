@@ -1,0 +1,9 @@
+{
+    "pattern": "\\bSELECT COUNT\\(\*\) AS MatchCount FROM matches WHERE YEAR\\(.*\\) IN \\(([0-9]{4}), ([0-9]{4})\\)",
+    "correction": "SELECT count(*) FROM matches WHERE YEAR = [0-9]{4} OR YEAR = [0-9]{4}",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of the YEAR() function on a date column, replacing it with a direct comparison to the stored year value."
+    }
+}

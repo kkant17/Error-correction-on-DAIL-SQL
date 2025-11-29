@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+, Rating FROM TV_[A-Za-z0-9]+ INNER JOIN TV_[A-Za-z0-9]+ ON TV_[A-Za-z0-9]+.\w+ = TV_[A-Za-z0-9]+\.id ORDER BY Rating",
+    "correction": "SELECT [A-Za-z]+ FROM TV_[A-Za-z0-9]+ ORDER BY rating",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries that unnecessarily join tables, which can lead to incorrect results or an empty result set."
+    }
+}

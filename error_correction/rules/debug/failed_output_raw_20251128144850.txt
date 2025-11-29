@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s[A-Za-z0-9_\s]+\sAS\s[A-Za-z0-9_\s]+\sLEFT\sJOIN\s[A-Za-z0-9_\s]+\sON\s.+\bWHERE\s[A-Za-z0-9_\s]+\.\bstudent_enrolment_id\sIS\sNULL",
+    "correction": "Replace the query with a subquery that excludes semesters with student enrollments in the same database.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use left joins and NULL handling to find semesters with no student enrollments, instead of using a subquery to exclude semesters with student enrollments in the same database."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (?P<airport>[A-Z]+) AS AirportCode FROM flights GROUP BY (?P<source>[A-Z]+) ORDER BY COUNT\\(*\\) ASC LIMIT 1$",
+    "correction": "Join with the AIRPORTS table and consider both SourceAirport and DestAirport in the query",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects queries that only consider source airports and do not join with the AIRPORTS table."
+    }
+}

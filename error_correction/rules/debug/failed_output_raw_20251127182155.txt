@@ -1,0 +1,29 @@
+{
+    "pattern": "SELECT ([a-z]+) FROM Highschooler AS h JOIN Friend AS f1 ON h\.(ID|name) = f1\.student_id .* GROUP BY h\.(ID|name)",
+    "correction": "Replace the column being grouped by with the correct column from the Highschooler table (h.ID), and ensure that the JOIN condition for the second Friend table uses the correct friend_id.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column references in the GROUP BY clause and JOIN conditions."
+    }
+}
+
+{
+    "pattern": "SELECT .* FROM Highschooler AS h JOIN Friend AS f1 ON h.ID = f1\.(student_id|friend_id) JOIN Friend AS f2 ON h.ID = f2\.(student_id|friend_id)",
+    "correction": "Ensure that the second Friend table is joined using the correct friend_id column.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect JOIN conditions with respect to the friend tables."
+    }
+}
+
+{
+    "pattern": "COUNT\(DISTINCT f1\.student_id\) >= 3",
+    "correction": "Replace COUNT(DISTINCT f1.student_id) with count(*), as the question requires a count of all rows for each student_id.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of COUNT(DISTINCT) in the HAVING clause."
+    }
+}

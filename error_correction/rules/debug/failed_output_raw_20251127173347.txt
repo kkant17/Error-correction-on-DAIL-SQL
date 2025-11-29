@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z0-9\s]+\.\w+\s*,\s*[a-zA-Z0-9\s]+\.\w+\s*,\s*(Paragraphs|Documents)\.(\w+)\s+FROM\s+Documents\s+JOIN\s+Paragraphs\s+ON\s+([a-zA-Z0-9_]+)\.(\d+)\s*=\s*Paragraphs\.(\d+)\s*(WHERE|AND)\s*(Paragraph_Text|[a-zA-Z0-9\s]+\.\w+)\s+LIKE\s+'%(\w+)%'$,",
+    "correction": "SELECT other_details from paragraphs where paragraph_text like '\\w+'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that select unnecessary columns and incorrectly reference the target column in a WHERE clause."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM country JOIN countrylanguage ON country\.Code = countrylanguage\.CountryCode WHERE countrylanguage\.\w+ = '(.*?)' AND countrylanguage\.\w+ = '(.*?)'",
+    "correction": "Replace the WHERE clause with separate subqueries connected by INTERSECT to find countries that appear in both English and French speaking lists.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly combine conditions for different languages using the AND operator, and suggests replacing them with separate subqueries connected by INTERSECT to find countries that are in both lists."
+    }
+}

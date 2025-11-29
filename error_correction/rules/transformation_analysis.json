@@ -1,0 +1,12 @@
+{
+  "total": 591,
+  "successful": 183,
+  "failed": 408,
+  "exact_matches": 7,
+  "high_similarity_count": 65,
+  "medium_similarity_count": 262,
+  "low_similarity_count": 257,
+  "average_similarity": 0.5239037908897609,
+  "max_similarity": 1.0,
+  "min_similarity": 0.09990205680705191
+}

@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT [a-zA-Z0-9\s]+ FROM ([a-zA-Z0-9]+) AS t1 JOIN ([a-zA-Z0-9]+) AS (t[2-9]|t[3-9][0-9]) ON ([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+) = ([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+) GROUP BY t1\.(?![a-zA-Z0-9_]+\s+IN|[a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+) ORDER BY COUNT\(t2\.[a-zA-Z0-9_]+\) DESC LIMIT 1",
+  "correction": "Replace the incorrect table alias usage (t[2-9]|t[3-9][0-9]) with t1 or a new appropriate alias. Also, ensure that the correct column is used for grouping and aggregation.",
+  "metadata": {
+    "error_type": "TABLE_REFERENCE",
+    "confidence": "high",
+    "description": "This rule identifies incorrect table aliases in SQL queries that could lead to errors."
+  }
+}

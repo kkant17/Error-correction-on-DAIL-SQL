@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+TABLE1\.\w+\s+FROM\s+TABLE1\s+AS\s+TABLE2\s+JOIN\s+TABLE3\s+ON\s+TABLE1\.\w+\s+=\s+TABLE3\.\w+",
+    "correction": "Replace the table reference in the SELECT statement with the correct alias and ensure that all table references are consistent throughout the query.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies cases where a table is referenced twice, once in its original name and another time as an alias. This creates ambiguity and is not valid syntax in SQL."
+    }
+}

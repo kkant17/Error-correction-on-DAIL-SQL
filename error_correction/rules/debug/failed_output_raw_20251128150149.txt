@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM countrylanguage WHERE CountryCode = '(.*)' AND IsOfficial = 'T'(?!\sJOIN\scountry\sAS\sT1\sON\sT1\.Name\s=\s.*')",
+    "correction": "Join the country table and filter on the correct country name, sort by Percentage in descending order and limit the result set to one row.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly filter data from the countrylanguage table without joining it with the country table and corrects this error by suggesting to join the tables and filter on the correct country name."
+    }
+}

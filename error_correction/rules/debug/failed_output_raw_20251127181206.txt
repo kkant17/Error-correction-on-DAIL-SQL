@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM country WHERE SurfaceArea > \\(SELECT max\_surface\_area FROM ([a-zA-Z0-9]+)\\)",
+    "correction": "Replace the subquery with a subquery that finds the minimum surface area of countries in Europe and use it as a filter condition",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where a maximum value is incorrectly used in a subquery, and the subquery is not properly filtered to match the main query's conditions"
+    }
+}

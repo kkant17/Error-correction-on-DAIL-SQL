@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(DISTINCT ([a-zA-Z0-9]+)\\) FROM .+ LEFT JOIN .+ ON .+\\.ID = .+(\\.Museum_ID|.\\w+)\\_.* WHERE (\\.(Open_Year IS NULL)|m\\.Open_Year > '2010') AND (.*IS NULL|v\\_museum\\.Museum_ID IS NULL)$",
+    "correction": "Replace the query with a new one that uses NOT IN operator to find visitors who have not visited any museum opened after 2010.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is incorrectly used to identify visitors who did not visit any museum opened after 2010."
+    }
+}

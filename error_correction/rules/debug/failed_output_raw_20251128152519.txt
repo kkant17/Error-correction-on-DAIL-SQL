@@ -1,0 +1,19 @@
+{
+    "pattern": r"JOIN\sAS\sT[0-9]\sON\sT[\w]+\.\w+\s=\sT[1-9]\.\w+",
+    "correction": "Ensure that the foreign key in the ON clause matches between tables when joining.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the foreign key used to join two tables does not match."
+    }
+}
+
+{
+    "pattern": r"\bSUM\(\w+\.\w+\)\s+DESC",
+    "correction": "Replace SUM() with the correct column name and ensure that the aggregated column matches between the SELECT and ON clauses.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the incorrect column is being aggregated."
+    }
+}

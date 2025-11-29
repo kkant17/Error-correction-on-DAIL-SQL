@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+.*\\s+AS\\s+.*\\s+FROM\\s+[a-zA-Z0-9_\\s]+\\s+JOIN\\s+[a-zA-Z0-9_\\s]+\\s+ON\\s+.*\\s+JOIN\\s+[a-zA-Z0-9_\\s]+\\s+ON\\s+.*",
+    "correction": "The query should only join the necessary tables and exclude any unnecessary joins. In this case, the correction is to remove the unnecessary joins with the 'countries' and 'continents' tables.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include unnecessary joins, which can lead to incorrect results."
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "pattern": "JOIN_ERROR: Documents JOIN (?P<wrong_table>[A-Z_]+) ON Documents\.(?P<correct_column>[A-Z_]+) = (?P<wrong_column>[A-Z_]+)\.(\w+)",
+    "correction": "Replace the incorrect join with a correct one, ensuring to reference the 'Paragraphs' table for counting the number of paragraphs.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects errors where the Documents table is incorrectly joined with a different table."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: COUNT\(Paragraphs.Paragraph_ID\) as Number_of_Paragraphs",
+    "correction": "Replace the aggregation function and column reference to correctly count the number of paragraphs for each document.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects errors where the incorrect aggregation function or column is used."
+    }
+}
+
+{
+    "pattern": "GROUP BY Documents.Document_ID, Documents.Document_Name",
+    "correction": "Group by only the document ID to correctly count the number of paragraphs for each document.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects errors where unnecessary columns are included in the GROUP BY clause."
+    }
+}

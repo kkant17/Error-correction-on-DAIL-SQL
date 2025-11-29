@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT .+\bFROM\s+orchestra\b\s+WHERE\s+Year\_of\_Founded\s+<[0-9]+\bAND\s+Year\_of\_Founded\s+>\[0-9+\]",
+    "correction": "Replace the query with SELECT Record_Company FROM orchestra WHERE Year_of_Founded < 2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded > 2003",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the conditions for two different years are combined with an AND operator, resulting in an incorrect result. The correction uses the INTERSECT operator to find common Record Companies from both time periods."
+    }
+}

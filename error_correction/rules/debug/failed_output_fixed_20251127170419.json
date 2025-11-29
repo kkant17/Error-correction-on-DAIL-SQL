@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s+Pets\\s+WHERE\\s+PetType\\s+=\\s+'Dog'\\s+AND\\s+pet\\_age\\s+=\\s+(?!\\(MIN\\(\\)).+\bFROM\\s+Pets",
+    "correction": "SELECT weight FROM pets ORDER BY pet_age LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use subqueries for aggregation functions. It suggests replacing the subquery with a direct use of the MIN() function."
+    }
+}

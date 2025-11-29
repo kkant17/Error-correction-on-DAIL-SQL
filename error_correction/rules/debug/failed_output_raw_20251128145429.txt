@@ -1,0 +1,19 @@
+{
+    "pattern": r"SELECT\s+the\s+[a-zA-Z0-9\s]+\s+FROM",
+    "correction": "Replace 'SELECT the' with 'SELECT'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the error of misspelling the SQL keyword 'SELECT' as 'the'"
+    }
+}
+
+{
+    "pattern": r"FROM\s+TV\_series\s+WHERE\s+\[a-zA-Z0-9'\]\s*=\s*'[a-zA-Z\s]*'",
+    "correction": "Ensure single quotes are used around the episode title and replace spaces with underscores if necessary",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the error of missing or improperly using single quotes around the episode title"
+    }
+}

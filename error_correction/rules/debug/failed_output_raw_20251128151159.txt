@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+SUM\(T[1-9]+\.\w+\),(?:(?:\s+AVG|avg)\(T[1-9]+\.\w+\))?\s+FROM\s+country\s+AS\s+T[1-9]\s+WHERE\s+T[1-9].Continent\s+=\s+'North America'\s+AND\s+T[1-9].SurfaceArea\s+>\s+3000",
+    "correction": "Replace 'North America' with 'north america' and ensure consistent casing for the column names in the FROM clause.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects incorrect casing of continent name in SQL queries."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT Template_ID FROM Templates WHERE Template_ID NOT IN \\(\\s*( SELECT Document_ID FROM Documents )\\)",
+    "correction": "Replace with: SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a subquery error where the NOT IN operator is incorrectly used to find templates not associated with any documents. Instead, it should use EXCEPT or LEFT JOIN to find templates that are present in the Templates table but not in the Documents table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\\s+(\\w+)\\s+WHERE\\s+Airline\\s*=\\s*(.*?)$",
+    "correction": "JOIN the required table and include COUNT(*) to aggregate rows",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that lack proper aggregation for counting rows, and suggests adding a JOIN operation with the missing table."
+    }
+}

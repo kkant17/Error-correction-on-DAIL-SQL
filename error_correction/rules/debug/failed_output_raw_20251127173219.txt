@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+ON\\s+Ref\_Template\_Types\\.(\\w+)\\s*=\\s*(Templates|Documents)\\.(\\w+)",
+    "correction": "Remove the unnecessary join with Ref_Template_Types table",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies an error where the Ref_Template_Types table is unnecessarily joined in a SQL query."
+    }
+}
+
+{
+    "pattern": "ORDER BY\\s+COUNT\\(\*\)",
+    "correction": "Replace with 'order by count(*)'",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies an error where the ORDER BY clause uses incorrect syntax for counting rows."
+    }
+}

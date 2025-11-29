@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-z]+) JOIN [a-z]+ ON ([a-z]+).+ = ([a-z0-9]+) WHERE SUM\(.\+\) > 10 GROUP BY ([a-z]+).+, ([a-z]+)",
+    "correction": "SELECT T1.id , T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle JOIN death AS T3 ON T2.id = T3.caused_by_ship_id GROUP BY T1.id HAVING sum(T3.killed) > 10",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects incorrect table joins and references, ensuring they are properly aliased and joined on the correct columns."
+    }
+}

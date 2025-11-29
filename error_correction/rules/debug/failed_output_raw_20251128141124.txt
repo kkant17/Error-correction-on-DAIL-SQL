@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+(?P<table1>\w+)\s+JOIN\s+(?P<subquery>\(.*\))\s+AS\s+(?P<alias>\w+)\s+ON\s+(?P<condition>[^\s]+)\s+WHERE\s+(?P<count_clause>\w+\(\w+\))\s+>\d+",
+    "correction": "Replace the subquery with a proper JOIN and GROUP BY clause, and use HAVING to filter out the required records.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries instead of proper JOIN and GROUP BY clauses."
+    }
+}

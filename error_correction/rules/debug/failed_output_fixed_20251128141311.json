@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\w+ FROM \\w+\\s+GROUP BY \\w+\\s+HAVING COUNT\\(*\\)>[0-9]+$",
+    "correction": "Replace the query with a join operation between two tables, where the first table contains countries and the second table contains car manufacturers. Group by the country id from the countries table and filter out those with a count greater than 2.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that attempt to use subqueries inappropriately, instead suggesting the use of join operations."
+    }
+}

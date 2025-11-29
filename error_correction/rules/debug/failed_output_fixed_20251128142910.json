@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+Ref_[A-Z_]+(?:\\s+LEFT\\s+JOIN\\s+[A-Z_]+(?:\\s+ON)?)*(?:WHERE\\s+Documents\\.Document\\_ID\\s+IS\\s+NULL)?$",
+    "correction": "Replace the join structure with two separate SELECT statements joined by EXCEPT operator, and remove the WHERE clause filtering for NULL document ID.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join multiple tables using LEFT JOIN and a WHERE clause filtering for NULL values in one of the joined tables. The correction is to replace the join structure with two separate SELECT statements joined by EXCEPT operator, and remove the WHERE clause filtering for NULL document ID."
+    }
+}

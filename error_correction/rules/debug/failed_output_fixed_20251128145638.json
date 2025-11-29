@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+.+\bFROM\\s+(TV_[A-Z]+)\\s+AS\\s+T1\\s+JOIN\\s+\\(.*\\)\\s+AS\\s+T2\\s+ON\\s+T1\\.\\w+\\s*=\\s+T2\\.\\w+\\s*(WHERE|HAVING)\\s*(\\w+\\s*>\\s*2)",
+    "correction": "Replace the query with a new one that groups by the relevant column (in this case, country) and filters based on the required condition (count > 2).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that join multiple tables without considering the question's requirements, leading to incorrect results."
+    }
+}

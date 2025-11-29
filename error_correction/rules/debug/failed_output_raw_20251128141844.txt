@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9]+,\s*COUNT\(*\s+as\s+total_[A-Za-z0-9]+\s+FROM\s+[A-Za-z0-9]+\s+JOIN\s+[A-Za-z0-9]+\s+ON\s+[A-Za-z0-9]+\.[\w]+=\s*[A-Za-z0-9]+\.\w+\s+GROUP\s+BY\s+[A-Za-z0-9]\s+ORDER\s+BY\s+total_[A-Za-z0-9]\s+DESC\s+LIMIT\s+1",
+    "correction": "Replace the query with: SELECT T1.[Airline] FROM [AIRLINES] AS T1 JOIN [FLIGHTS] AS T2 ON T1.[uid] = T2.[Airline] GROUP BY T1.[Airline] ORDER BY count(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies a common error in SQL queries where the total number of rows is calculated for each group instead of finding the group with the maximum count."
+    }
+}

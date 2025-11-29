@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM concert JOIN .* ON concert\\.concert\\_ID = .*\\.concert\\_ID WHERE YEAR\\(concert\\.Year\\) = \\d{4}\\)",
+    "correction": "Directly select the names of all stadiums that did not host any concert in the year 2014 by using EXCEPT operator to compare the stadium names that did host concerts in 2014 with those that did not.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects Stadium_IDs of concerts held in a specific year and then tries to exclude stadiums with those IDs from the stadium table using NOT IN operator. The corrected query directly compares the stadium names that did host concerts in the specified year with those that did not."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT SUM\\(.*Area\\) FROM country WHERE Continent = '(.*?)' OR Continent = '(.*?)'(?!\\s+AS)",
+    "correction": "Replace the column name with the correct capitalization: SurfaceArea",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column names in SQL queries related to surface area."
+    }
+}

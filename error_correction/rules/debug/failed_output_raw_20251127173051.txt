@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z0-9]+)\.([A-Za-z0-9]+) \w+\sFROM\s(?!\1)\sINNER\sJOIN\sRef_Template_Types\sON\s\1\.\w+\s= Ref_Template_Types\.\w+",
+    "correction": "The query should only select columns from the specified table and not perform a join with any other table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly reference non-existent columns in a table or perform unnecessary joins."
+    }
+}

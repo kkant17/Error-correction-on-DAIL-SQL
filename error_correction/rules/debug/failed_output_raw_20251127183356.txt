@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Professionals AS T[0-9]+ JOIN Treatments AS T[0-9]+ ON T1\.professional\_id = T2\.professional\_id",
+    "correction": "Add a join with the required table and the appropriate condition to connect it to the existing subquery.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the SQL query is missing a join with a necessary table."
+    }
+}

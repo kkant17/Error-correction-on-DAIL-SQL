@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+\\.[A-Za-z]+\\.ID as CountOf[A-Za-z]+\(.*\) FROM ([A-Za-z]+)\\s+LEFT JOIN ([A-Za-z]+) ON ([A-Za-z]+)\.ID = ([A-Za-z]+)\.ID GROUP BY ([A-Za-z]+)\.ID",
+    "correction": "SELECT T2.[column_name] , count(*) FROM [Friend] AS T1 JOIN [Highschooler] AS T2 ON T1.[student_id] = T2.[id] GROUP BY T1.[student_id]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where the join condition between tables is incorrect or missing."
+    }
+}

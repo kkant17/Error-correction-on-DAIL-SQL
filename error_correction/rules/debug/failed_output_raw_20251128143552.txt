@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT avg\(\w+\) FROM \w+ AS [a-zA-Z]+ JOIN \w+ AS [a-zA-Z]+ ON \w+.\w+= \w+_\w+ WHERE \w+\.\w+ <= \d+",
+    "correction": "SELECT avg(\\w+) FROM \\w+ WHERE \\w+ <= \\d+",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join tables when calculating an average value, as the given example demonstrates."
+    }
+}

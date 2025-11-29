@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT AVG\\(.*\\) FROM .*",
+    "correction": "Replace with: SELECT * FROM shop WHERE number_products > (SELECT avg(number_products) FROM shop)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that attempts to select the average of a column but does not return the specific rows meeting the condition."
+    }
+}

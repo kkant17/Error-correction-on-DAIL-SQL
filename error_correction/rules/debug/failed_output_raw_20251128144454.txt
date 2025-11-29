@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9\s]+)(\\))$",
+    "correction": "The query should join the 'ship' and 'battle' tables on an appropriate condition, select the required columns from the 'battle' table, and filter results based on location. The corrected query would look like: SELECT name , RESULT , bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.location = 'English Channel'.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not properly join tables, and suggests a correction by joining the necessary tables with an appropriate condition."
+    }
+}

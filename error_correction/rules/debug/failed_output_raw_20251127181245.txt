@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT (?P<table1>[a-zA-Z0-9]+) FROM (?P<table2>[a-zA-Z0-9]+) (?P<operator>EXCEPT|INTERSECT|JOIN|UNION) (?P<subquery>SELECT .* FROM (?P<subtable>[a-zA-Z0-9]+)) WHERE (?P<condition>.*)",
+    "correction": "In cases where a SQL query compares a table with a subquery that selects from an unrelated table, the correction is to ensure that both the main query and the subquery operate on the same table. In this case, the subquery should be adjusted to match the table referenced in the main query.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when a SQL query compares a table with a subquery that selects from an unrelated table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ GROUP BY .+ ORDER BY .+ DESC LIMIT 1 \\) AS .+ ON .+\.ID = .+",
+    "correction": "Select the required columns directly from the specified table and order by an aggregated column in descending order, then limit the result set to 1 record.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that count something from a different table than the one they are supposed to select columns from, and suggests correcting it by selecting the required columns directly from the specified table."
+    }
+}

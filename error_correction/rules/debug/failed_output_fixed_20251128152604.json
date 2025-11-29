@@ -1,0 +1,9 @@
+{
+    "pattern": "^(?=SELECT\\s+.*FROM\\s+\\(\\s*(SELECT\\s+breed\\_code\\s*,\\s+COUNT\\(*\\)\\s+AS\\s+count\\s+FROM\\s+Dogs\\s+GROUP BY\\s+breed\\_code\\s+ORDER BY\\s+count\\s+ASC\\s+LIMIT\\s+1\\s+\\)\\s+AS\\s+rarest\\_breed\\s+JOIN\\s+Breeds\\s+AS\\s+b\\s+ON\\s+rarest\\_breed.breed\\_code\\s+=\\s+b.breed\\_code\\s+JOIN\\s+Dogs\\s+AS\\s+d\\s+ON\\s+b.breed\\_code\\s+=\\s+d.breed\\_code\\s+JOIN\\s+Treatments\\s+AS\\s+t\\s+ON\\s+d.dog\\_id\\s+=\\s+t.dog\\_id\\s+ORDER BY\\s+t.date\\_of\\_treatment\\s+\\))",
+    "correction": "SELECT T1.name , T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The subquery used to find the most common breed should only be used in a WHERE clause, not as part of a join condition."
+    }
+}

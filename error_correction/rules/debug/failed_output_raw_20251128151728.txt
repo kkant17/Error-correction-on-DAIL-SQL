@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)\.(.*), COUNT\(([A-Za-z]+)\.id\) as NumberOf(.*), FROM Highschooler LEFT JOIN Friend ON Highschooler\.(ID|id) = Friend\.student_id GROUP BY Highschooler\.(ID|id), Highschooler\\.(.*)$",
+    "correction": "SELECT T2.name, count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that group by a column other than the one used in an aggregation function, and suggests correcting it by using the correct grouping column."
+    }
+}

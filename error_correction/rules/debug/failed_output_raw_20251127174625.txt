@@ -1,0 +1,9 @@
+{
+    "pattern": "(\\w+\\s+count\\(\\s*DISTINCT\\s+\w+\\)\\s+FROM\\s+\w+\\s+WHERE\\s+tournament_name\\s*=\\s*'WTA Championships'\\s+AND\\s+winner_hand\\s*=\\s*'Left'",
+    "correction": "Replace 'winner_id' with 'winner_name', replace 'Left' with 'L'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the issue of using incorrect column names and abbreviations in a SQL query"
+    }
+}

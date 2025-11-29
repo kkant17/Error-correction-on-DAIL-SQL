@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+) FROM .* GROUP BY ([A-Za-z]+) HAVING COUNT(\*) = 1 \\) SELECT COUNT(\*) FROM unique_.*",
+    "correction": "Replace with: SELECT count(DISTINCT [A-Za-z]+) FROM .*",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly count distinct columns using a subquery instead of the COUNT(DISTINCT) function."
+    }
+}

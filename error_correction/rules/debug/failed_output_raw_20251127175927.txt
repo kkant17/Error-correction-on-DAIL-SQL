@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9]+)\.([A-Za-z]+) FROM ([A-Za-z0-9]+) AS T1 JOIN ([A-Za-z0-9]+) AS T2 ON T1\.(Channel|id) = T2\.([A-Za-z]+)$",
+    "correction": "Replace the order of table aliases for the 'country' and 'written_by' columns, ensure that the correct foreign key (id) is used in the JOIN condition, and reference the correct column name in the referenced table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors where the wrong foreign key is used in the JOIN condition or the wrong column is referenced."
+    }
+}

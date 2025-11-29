@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+city\.\w+\s+FROM\s+city\s+JOIN\s+country\s+ON\s+city\.\w+\s+=\s+country\.\w+\s+LEFT\s+JOIN\s+countrylanguage\s+(?!\s+ON\s+country\.\w+\s+=\s+countrylanguage\.\w+\s+AND\s+countrylanguage\.\w+\s+=\s+'English')",
+    "correction": "Exclude unnecessary LEFT JOIN with the `countrylanguage` table and use a subquery to filter out countries with an official English language.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include an unnecessary LEFT JOIN with the `countrylanguage` table and suggests to use a subquery to filter out countries with an official English language."
+    }
+}

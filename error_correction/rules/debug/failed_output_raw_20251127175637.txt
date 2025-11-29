@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Sections AS S JOIN Courses AS C ON S\.course\_id = C\.course\_id WHERE S\.section\_id = [0-9]+",
+    "correction": "SELECT section\_description FROM Sections WHERE section\_name = 'h'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join tables and select unnecessary columns, focusing on column selection errors."
+    }
+}

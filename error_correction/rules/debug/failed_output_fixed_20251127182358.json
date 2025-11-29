@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9\\s]+\\.\\w+\\s+FROM\\s+\\w+\\s+JOIN\\s+\\w+\\s+ON\\s+\\w+\\s*=\\s*\\w+\\s*(?=(\\s+AS\\s+\\w+|\\s+JOIN|WHERE))",
+    "correction": "Avoid combining multiple JOIN operations with a GROUP BY and HAVING clause. Instead, use appropriate subqueries or restructure the query to avoid unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly combine multiple JOIN operations with a GROUP BY and HAVING clause, which can lead to unexpected results."
+    }
+}

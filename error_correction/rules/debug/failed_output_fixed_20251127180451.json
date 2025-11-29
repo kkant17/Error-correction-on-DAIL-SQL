@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT DISTINCT .+ FROM .+ WHERE area\\_code IN \\(\\s*(?R)\\) AND area\\_code IN \\(\\s*(?R)\\)",
+  "correction": "Join the necessary tables together and filter by contestant names instead of using a self-join on the AREA\\_CODE\\_STATE table.",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies SQL queries that use a self-join on the area code state table to find common area codes between contestants, instead of joining the necessary tables together."
+  }
+}

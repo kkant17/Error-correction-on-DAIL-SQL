@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+_Text FROM Paragraphs WHERE Document\_Name = '(.*)' AND no JOIN with Documents table",
+    "correction": "Join the 'Documents' table to retrieve the corresponding document_id for the specified document name, and use the document_id to filter the 'Paragraphs' table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that do not join the necessary tables, leading to incorrect results."
+    }
+}

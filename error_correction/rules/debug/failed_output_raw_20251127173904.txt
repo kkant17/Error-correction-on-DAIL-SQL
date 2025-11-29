@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS T1\s+(?!\bT2\b)(\s+AS\s+T2|\bFROM).+",
+    "correction": "Ensure that both tables are consistently aliased. If the first table is aliased as 'T1', the second table should be aliased as 'T2'.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies inconsistencies in table aliasing, which can lead to errors in the final result set."
+    }
+}

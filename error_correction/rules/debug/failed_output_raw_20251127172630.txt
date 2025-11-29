@@ -1,0 +1,29 @@
+{
+    "pattern": "SELECT .* FROM (table1 JOIN table2 ON table1\.ID = table2\.ID) JOIN table3 ON table1\.ID = table3\.ID",
+    "correction": "Remove unnecessary join to table3 if it is not required for the specific question or query",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that include an extra join which may not be necessary, potentially complicating the query and introducing unnecessary calculations."
+    }
+}
+
+{
+    "pattern": "ORDER BY SUM(\\w+)",
+    "correction": "Order by the specific column directly instead of calculating sums",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that order results based on calculated aggregations, which may not be meaningful or intended."
+    }
+}
+
+{
+    "pattern": "WHERE (SELECT \\w+ FROM \\w+) = ...",
+    "correction": "Rewrite the query to avoid using subqueries in the WHERE clause if possible",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "medium",
+        "description": "This rule identifies queries that use subqueries in the WHERE clause, which can sometimes lead to performance issues and complicate the query."
+    }
+}

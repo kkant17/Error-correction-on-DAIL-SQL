@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT MIN\(.*\) FROM (.*?) WHERE (.*?) NOT IN \(\s*( SELECT .*\bFROM\s*.* UNION ALL SELECT .*\bFROM\s*.*)",
+    "correction": "Join the tables correctly and filter out students who have any friends by using a subquery that selects only distinct student_ids from the Friend table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with incorrect subqueries in the NOT IN clause, and suggests a correction by joining the tables correctly and filtering out students who have any friends."
+    }
+}

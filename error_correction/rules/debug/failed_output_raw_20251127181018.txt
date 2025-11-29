@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM ([A-Za-z0-9\s]+) AS T1 JOIN \(\n SELECT CountryCode, GROUP\_CONCAT\(Language\) as Languages FROM countrylanguage WHERE GovernmentForm = 'Republic'\n GROUP BY CountryCode \)\n AS T2 ON T1.CountryCode = T2.CountryCode AND LENGTH\(T2.Languages\) > 1 AND FIND\_IN\_SET\(T1.Language, T2.Languages\) = 0",
+    "correction": "Directly join the 'country' and 'countrylanguage' tables without using subqueries or complex functions.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries, which can be replaced by direct joins."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) [A-Za-z0-9]+ JOIN ([A-Za-z0-9]+) ON \\w+\\.\\w+ = \\w+\\.\\w+ GROUP BY \\w+ HAVING COUNT(\\w+)\\.+",
+    "correction": "SELECT [column] FROM [table] GROUP BY [column] HAVING count(*) >= [number]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join multiple tables, and suggests a more straightforward query with only the required table."
+    }
+}

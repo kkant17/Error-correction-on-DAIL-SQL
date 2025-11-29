@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\(DISTINCT ([a-zA-Z0-9]+)\) FROM ([a-zA-Z0-9]+)$",
+    "correction": "Leave the query as it is, no correction needed.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies correctly formatted SQL queries using COUNT(DISTINCT) function and suggests no correction."
+    }
+}

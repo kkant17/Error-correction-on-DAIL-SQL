@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bCOUNT\\(\\*\\)\\s+AS\\s+total_.+\bFROM\\s+.*GROUP BY .+",
+    "correction": "Replace COUNT(*) with SUM() and specify the column to be summed",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that count all rows instead of summing a specific column"
+    }
+}

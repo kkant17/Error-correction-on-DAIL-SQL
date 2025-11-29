@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT min\\(\\(.*\\)\\) FROM (.*) WHERE (.*) NOT IN \\(( SELECT student\\_id|friend\\_id FROM Friend UNION ALL SELECT student\\_id|friend\\_id FROM Friend )\\)$",
+    "correction": "Join the Friend and Highschooler tables correctly to exclude students who have friends.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of the NOT IN operator with a UNION ALL in the WHERE clause, which leads to improper filtering of students."
+    }
+}

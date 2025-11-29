@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\b(?: || ' ')\b.*\s+AS\s+full_name\s+FROM\s+[a-zA-Z0-9_\-\.]+_1\s+WHERE\s+hand\s*=\s*(?:'Left'|'left')\s+ORDER\s+BY\s+birth_date\s+ASC",
+    "correction": "Use correct database-specific string concatenation operator or remove AS keyword for simple SELECT statements. Correct the misspelled column name 'hand'.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies concatenation errors with incorrect string operators and misspelled column names."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\.Name FROM .+ AS .+ JOIN .+ ON .+ = .+ JOIN .+ ON .+ = .+ WHERE YEAR\\(.+\) = \\d{4}",
+    "correction": "Replace the use of YEAR() function with a direct comparison of the 'concert_year' column with an integer year",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the usage of the YEAR() function when filtering by a year column that is already an integer."
+    }
+}

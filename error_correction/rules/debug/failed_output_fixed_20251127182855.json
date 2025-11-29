@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[A-ZA-Z_]+) JOIN \\(\\s*(?P<subquery>SELECT MIN\\(SUM\\(.*\\)\\) AS min\\_total, .*)\\s*FROM (?P<table2>[A-ZA-Z_]+)\\s*\\) AS least\\_expensive ON (?P<common_column>.+).treatment\\_type\\_code = least\\_expensive.treatment\\_type\\_code",
+    "correction": "Replace the subquery with a join between the two tables, group by the common column, sum the cost\\_of\\_treatment, order by the total cost in ascending order, and limit to the first result.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to find the least expensive treatment type, but do not include the cost_of_treatment column from the Treatments table."
+    }
+}

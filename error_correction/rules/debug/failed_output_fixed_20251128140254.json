@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?<!\\()Student\\sAS\\sS\\sLEFT\\sJOIN\\sHas\\_Pet\\sHP\\sON\\sS\\.StuID\\s= HP\\.StuID\\sLEFT\\sJOIN\\sPets\\sP\\sON\\sHP\\.PetID\\s= P\\.PetID\\sWHERE\\sP\\.PetType\\!\\='cat'\\sAND\\sS\\.StuID\\sIS\\sNOT\\sNULL\\sGROUP\\sBY\\sS\\.Major,\\sS\\.Age\\sHAVING\\sCOUNT\\(P\\.PetID\\)\\s= \\d+)",
+    "correction": "Replace the query with a JOIN instead of LEFT JOIN, remove the filter for pet type and only exclude students who have cats as pets in a subquery, and remove unnecessary grouping and having clauses.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that use LEFT JOIN instead of regular JOIN, which could lead to incorrect results."
+    }
+}

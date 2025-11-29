@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+(?:\\s+FROM\\s+)?flights\\s+(?:GROUP BY|HAVING)\\s+COUNT\\(*)$",
+    "correction": "Join the AIRLINES and FLIGHTS tables using their common column 'uid'. Alias the Airline column from the flights table as T2.Airline, and use T1.Airline for reference. Group by T1.Airline and replace COUNT(*) with count(*) > 10.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that do not join the AIRLINES table with the FLIGHTS table, causing incorrect filtering of data based on airline occurrence in multiple flights."
+    }
+}

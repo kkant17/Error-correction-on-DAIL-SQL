@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+, count\(*\) FROM employee GROUP BY [A-Z]+",
+    "correction": "Replace 'County' with 'City' and swap the order of selected columns",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects a column selection error where County is used instead of City in the SQL query"
+    }
+}

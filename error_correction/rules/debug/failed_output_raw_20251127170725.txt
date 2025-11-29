@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[A-Za-z0-9]+\s+FROM\s+Pets\s+JOIN\s+[A-Za-z0-9]+\s+ON\s+Pets\.\w+\s+=\s+[A-Za-z0-9]+\.[\w]+(?:\s+WHERE\s+)?(\w+\s+>\d+)\s+AND\s+Pets\.\w+\s+>\d",
+    "correction": "The query should only access the Pets table directly without any unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join additional tables to the Pets table, which may lead to incorrect results."
+    }
+}

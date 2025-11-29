@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z0-9\s]+\sAS\s+[a-zA-Z0-9]+\sFROM\s+ship\sJOIN\s+death\sON\s+ship\.id\s=?\sdeath\.[a-zA-Z0-9_]+\sWHERE\s+ship\.tonnage\s= '\'t\'$",
+    "correction": "Correct the table join condition to match the causation relationship between death and ship tables: T1.caused_by_ship_id = T2.id, select required columns from the death table, and remove unnecessary columns from the ship table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table join conditions in SQL queries related to a specific causation relationship."
+    }
+}

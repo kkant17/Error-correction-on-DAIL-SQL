@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN.*FROM Courses AS C JOIN (?!Courses) .+ ON C\\.course\\_id = .+\\.course\\_id",
+    "correction": "Remove unnecessary joins and filter directly from the Courses table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join tables other than the Courses table when filtering by course name."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-z]+) JOIN ([a-z]+) ON ([a-z]+\.[a-z]+) = ([a-z]+\.[a-z]+) GROUP BY (\w+)\.id ORDER BY SUM\((\w+)\.\w+\) DESC LIMIT 1",
+    "correction": "Replace the ORDER BY clause with ORDER BY count(*), and change the grouping to use the joined table alias instead of ship.id.",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that order by the sum of a column rather than the count of rows, which can lead to incorrect results."
+    }
+}

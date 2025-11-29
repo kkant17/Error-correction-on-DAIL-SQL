@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT MAX\(SurfaceArea\) FROM country WHERE Continent = 'Asia' AND Continent = 'Asia'",
+    "correction": "Replace with: SELECT Name , Population , LifeExpectancy FROM country WHERE Continent = \"Asia\" ORDER BY SurfaceArea DESC LIMIT 1",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects only the maximum surface area of Asian countries, without retrieving the required data (Name, Population, LifeExpectancy)."
+    }
+}

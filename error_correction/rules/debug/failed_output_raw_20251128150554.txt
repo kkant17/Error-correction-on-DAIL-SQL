@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+(?![a-zA-Z]+)\w+\s+FROM\s+country\s+WHERE\s+Continent\s*=\s*'\w+'(\s+GROUP\s+BY\s+Language|ORDER\s+BY\s+SUM\(Percentage\)|LIMIT\s+1)",
+    "correction": "The query should join the country and countrylanguage tables, select Language as the desired output, group by Language, order by count (*), and limit 1.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that lack a join with the countrylanguage table, which is necessary to get the language data for each country."
+    }
+}

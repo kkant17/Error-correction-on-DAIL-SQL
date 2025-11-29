@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM ([A-Za-z]+\s+JOIN\s+)[A-Za-z]+\s+ON\s+(\w+\.\w+)\s*=\s*(\w+\.\w+)\s*(WHERE\s+cost_[A-Za-z]+_[A-Za-z]*\s+[><]=)?\d+",
+    "correction": "SELECT [A-Za-z]+ from [table_name] where [table_name]._id not in ( select [table_name]._id from [table_name] group by [table_name]._id having sum([cost_column]) > [number] )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly checks for treatments with a cost less than a certain amount, by looking for dogs that have spent more than the specified amount on treatments."
+    }
+}

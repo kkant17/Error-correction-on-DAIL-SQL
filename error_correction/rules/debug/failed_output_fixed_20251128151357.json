@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)_Name, COUNT\\((\\w+)\\) as (\\w+)Worked FROM (\\w+) GROUP BY ([A-Za-z]+)_Name ORDER BY (\\w+)Worked DESC",
+    "correction": "SELECT Name FROM <table_name> ORDER BY Year_of_Work DESC",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that count the number of occurrences of a column instead of ordering by the actual values in the column."
+    }
+}

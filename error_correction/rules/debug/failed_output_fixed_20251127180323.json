@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+(.+)\\)$",
+    "correction": "SELECT <column> FROM people WHERE People_ID NOT IN (SELECT People_ID FROM $1)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that select data from a subtable without filtering out non-matching records."
+    }
+}

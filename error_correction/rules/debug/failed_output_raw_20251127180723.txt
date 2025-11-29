@@ -1,0 +1,9 @@
+{
+    "pattern": "^(SELECT .* FROM .* GROUP BY .* HAVING COUNT\(*\) = \d ) SELECT COUNT\(*\) FROM .*$",
+    "correction": "Combine the operations into one query and use COUNT(DISTINCT <column>) instead of grouping by each column and filtering for a count of 1.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where multiple aggregation operations are performed in separate queries or redundant subqueries."
+    }
+}

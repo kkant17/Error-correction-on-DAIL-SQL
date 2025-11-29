@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \\w+ FROM \\w+ WHERE (\\w+\\s*=\\s*(SELECT\\s+MAX\\(\\w+\\)\\s+FROM\\s+\\w+))",
+    "correction": "Replace with: SELECT COUNT(*) FROM <table_name> WHERE <column_name> > ( SELECT <column_name> FROM <table_name> ORDER BY <sorting_column> DESC LIMIT 1 )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery in the WHERE clause to find the maximum value of a column, which results in multiple rows being returned instead of a single value as required by the COUNT(*) function."
+    }
+}

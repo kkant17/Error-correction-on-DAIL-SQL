@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM matches m1 WHERE year = [0-9]{4} AND m1\.winner\_id IN \(\ SELECT winner\_id FROM matches m2 WHERE year = [0-9]{4} \)",
+    "correction": "Use the INTERSECT operator to find common winners between the two specified years.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to compare data from different years, and suggests using the INTERSECT operator instead."
+    }
+}

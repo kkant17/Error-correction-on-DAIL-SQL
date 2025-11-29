@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s[A-Za-z]+From\s+countries\s+WHERE\s+Continent\s*=\s*\(SELECT\s+Continent\s+FROM\s+continents\s+\)",
+    "correction": "Replace the query with a join operation between CAR_MAKERS and MODEL_LIST tables, filtering by the FullName column for 'American Motor Company'.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses SQL queries that incorrectly use subqueries to retrieve data from unrelated tables."
+    }
+}

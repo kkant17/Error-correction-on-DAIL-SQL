@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+DISTINCT\s+T1\.\w+\s+FROM\s+Courses\s+AS\s+T1\s+JOIN\s+Student_Course_Enrolment\s+AS\s+T2\s+ON\s+T1\.course_id\s+=\s+T2\.course_id\s+GROUP BY\s+T1\.(\w+)\s+HAVING\s+COUNT\(*\)\s+>\s+0",
+    "correction": "Remove the GROUP BY and HAVING COUNT(*) > 0 clauses, and replace Student_Course_Enrolment with Student_Enrolment_Courses in the JOIN statement.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that include unnecessary GROUP BY and HAVING COUNT(*) > 0 clauses when only selecting distinct values from a table."
+    }
+}

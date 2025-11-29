@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\\(*\\) as [a-zA-Z]+_\\d+\\sFROM\\s[a-zA-Z]+\\w+\\sWHERE\\sIsOfficial = 'T'\\sGROUP BY\\s.+\\sORDER BY\\scountry_count DESC LIMIT 1",
+    "correction": "SELECT T2.[Language_Column] FROM country AS T1 JOIN countrylanguage AS T2 ON T1.[CountryCode_Column] = T2.[CountryCode_Column] WHERE T1.[Continent_Column] = 'Asia' GROUP BY T2.[Language_Column] ORDER BY COUNT(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly count the number of official languages for each country, instead of counting all languages spoken in a specific continent."
+    }
+}

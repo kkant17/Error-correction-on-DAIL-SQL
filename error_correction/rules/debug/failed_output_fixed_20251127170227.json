@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9\\s]+) WHERE Age < [0-9]+)",
+    "correction": "Use INTERSECT operator to perform intersection between two separate sets of countries - one for singers older than 40 and another for singers younger than 30.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is used incorrectly to filter records based on age, when an intersection operation should be performed directly on both queries."
+    }
+}

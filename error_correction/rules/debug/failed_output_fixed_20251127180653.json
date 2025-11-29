@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT SUM\\(.*\\) FROM (.*) JOIN (.*) ON (.*)\\.\\w+ = (.*)\\.\\w+\\.ID WHERE (.*)\\.(.*) = '(.*)'",
+    "correction": "SELECT sum(.*?) FROM (.) WHERE (.).(.) = '(.)'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join tables, which can lead to incorrect results when only data from a specific table is required."
+    }
+}

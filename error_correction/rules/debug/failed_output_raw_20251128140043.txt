@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT(\*) as [a-zA-Z0-9]+ FROM concert JOIN stadium ON concert\.Stadium\_ID = stadium\.Stadium\_ID WHERE stadium\.Capacity = \(SELECT MAX(Capacity) FROM stadium\)",
+    "correction": "Replace the query with: SELECT count(\*) from concert where stadium\_id = (select stadium\_id from stadium order by capacity desc limit 1)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery in the WHERE clause, causing an unnecessary join. The corrected query directly selects the stadium with the maximum capacity using a subquery and counts the number of concerts for that specific stadium."
+    }
+}

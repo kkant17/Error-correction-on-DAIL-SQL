@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (.*?) JOIN (.*?) ON (.*?) \( SELECT MIN\(.*\) FROM (.*?) JOIN (.*?) ON (.*?)\)",
+    "correction": "Join tables first and then order by the specified column for minimum value",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a subquery is used inappropriately during the join process. The correct approach is to join tables first and then apply any necessary aggregation or filtering."
+    }
+}

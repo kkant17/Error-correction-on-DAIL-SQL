@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+continents\\.\\w+\\s+AS\\s+(\\w+)_of_car_makers\\s+FROM\\s+countries\\s+JOIN\\s+car_makers\\s+ON\\s+countries\\.CountryId\\s+=\\s+car_makers\\.Country\\s+GROUP BY\\s+continents\\.\\w+\\,\\s+countries\\.CountryName",
+    "correction": "Join the tables with the correct foreign key and table names, ensure case sensitivity is correct.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries related to joining tables."
+    }
+}

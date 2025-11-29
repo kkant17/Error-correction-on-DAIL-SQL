@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s.*\bORDER\\sBY\\s(charge_amount)\\sDESC\\sLIMIT\\s1",
+    "correction": "Replace the query with SELECT max(charge_amount) FROM Charges",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly order and limit the result set, making it impossible to get the maximum value of a column."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+.*FROM\\s*\\( SELECT\\s*.+\\sAS\\s+subquery\\s+.*GROUP BY\\s+.*\\) AS subquery",
+    "correction": "Remove the subquery and group by directly in the main query",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries as they can slow down the execution time"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+course|teacher|grade\\s+FROM\\s+.*JOIN\\s+\\(.*\\)\\s+AS\\s+[a-zA-Z0-9_]+\\s*ON\\s*.*\\s*AND\\s*(course_arrange|max_grades).*\\s*=",
+    "correction": "Replace the query with a new one that selects teacher's name ordered by age: SELECT Name FROM teacher ORDER BY Age ASC",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that are focused on finding the maximum grade for each course, while the gold SQL query is asking for the names of teachers and their sorting is based on their ages."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) WHERE .+ LIKE '(%%)[A-Za-z]+\(%'",
+    "correction": "Replace the table alias in the SELECT clause and ensure that the column name matches the actual table schema.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries, where a column is selected from a table without providing a valid alias."
+    }
+}

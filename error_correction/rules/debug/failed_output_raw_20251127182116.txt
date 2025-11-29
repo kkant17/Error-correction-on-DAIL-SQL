@@ -1,0 +1,9 @@
+{
+    "pattern": "Highschooler\.ID = Friend\.student_id AND GROUP BY Highschooler\.ID",
+    "correction": "Join on the correct column ('student_id') and group by the joined column (T1.student_id)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the SQL query incorrectly joins tables on a wrong column or groups by an incorrect column."
+    }
+}

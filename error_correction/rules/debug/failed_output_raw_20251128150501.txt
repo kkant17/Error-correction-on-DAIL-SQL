@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT DISTINCT ([A-Za-z0-9]+)\.([A-Za-z]+) FROM .+ AS T1 JOIN .+ AS T2 ON T1.\.(Code|CountryCode) = T2.\.(CountryCode|Code) WHERE T2.\.(Language|IsOfficial) = '(T|t)' AND (COUNT|DISTINCT) COUNT",
+    "correction": "Remove the unnecessary condition and change the aggregation function to count the number of unique values instead of selecting distinct values.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use COUNT(DISTINCT) to count the number of unique values, when it should be used with COUNT instead."
+    }
+}

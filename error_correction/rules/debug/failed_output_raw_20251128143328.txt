@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM ([A-Za-z]+) AS [A-Za-z]+\s+JOIN\s+([A-Za-z]+) AS [A-Za-z]+\s+ON\s+(\w+)\.(\w+)\s*=\s*(\w+)\.(\w+)\s*(WHERE|HAVING)\s*(NOT)?\s*(\w+)\s*(\(!=\)|<>\|<>)\s*\"[^\"]+\"",
+    "correction": "SELECT [column] from [table] where [condition]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, and suggests to directly access the required table instead."
+    }
+}

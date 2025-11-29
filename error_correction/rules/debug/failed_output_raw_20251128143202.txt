@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(*\) FROM ([A-Za-z0-9]+)\s+WHERE\s+([A-Za-z0-9]+)\.([A-Za-z0-9]+)_ID\s+=\s+(\w+\.)?([A-Za-z0-9]+)\._ID\s*)$",
+    "correction": "Replace with: SELECT [table_alias]\_.*\nJOIN (SELECT [table_alias] FROM [table_name])\nWHERE [table_alias].Document\_ID = [joined_table_alias].Document\_ID\nGROUP BY [table_alias]\_.* ORDER BY COUNT(\*) ASC LIMIT 1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of not joining tables correctly when counting rows in a SQL query."
+    }
+}

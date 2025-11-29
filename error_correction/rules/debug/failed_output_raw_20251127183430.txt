@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM \w+ WHERE Birth\_Year = ([0-9]{4}) OR Birth\_Year = ([0-9]{4})$",
+    "correction": "Ensure that all singers have a birth year recorded in the database. If there are any missing values for the `Birth_Year`, consider using NULL handling techniques to handle these cases.",
+    "metadata": {
+        "error_type": "NULL_HANDLING",
+        "confidence": "low",
+        "description": "This rule addresses the potential issue of missing birth years in the singer table."
+    }
+}

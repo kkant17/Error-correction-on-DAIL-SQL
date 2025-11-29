@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(*\) FROM ([A-Za-z0-9]+) WHERE Template_Type_Code = 'PPT'",
+    "correction": "Replace with: SELECT count(*) FROM ([A-Za-z0-9]+) AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Template_Type_Code = 'PPT'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that count documents without joining them with the Templates table, which is necessary to filter documents based on their associated template type."
+    }
+}

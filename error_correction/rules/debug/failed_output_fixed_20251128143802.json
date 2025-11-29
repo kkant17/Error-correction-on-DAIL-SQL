@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\\_id, MIN\\(.*\\) as .+\bFROM matches JOIN players ON loser\\_id = player\\_id GROUP BY loser\\_id",
+    "correction": "Find the minimum of a column other than loser rank and join on winner_id if the intention is to find the best rank for each loser. Instead, correct query should be SELECT min(loser\\_rank) FROM matches.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use MIN() function to find the minimum loser rank, and suggests correcting it by finding the minimum of the correct column."
+    }
+}

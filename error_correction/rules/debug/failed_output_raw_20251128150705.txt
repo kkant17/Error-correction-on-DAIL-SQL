@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+AVG\(\w+\.\w+\)\s+FROM\s+country\s+JOIN\s+countrylanguage\s+ON\s+c\.\w+\s+WHERE\s+cl\.\w+\s+!= '\w+' AND cl\.IsOfficial\s+<> '\w+'",
+    "correction": "Replace the inequality operator (<>) with equality for the IsOfficial field, and use NOT IN instead of checking for English language not being present.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of inequality operators with 'IsOfficial' column and suggests using equality or NOT IN instead."
+    }
+}

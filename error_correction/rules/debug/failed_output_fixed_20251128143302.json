@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ JOIN ( SELECT .+ FROM .+ GROUP BY .+ HAVING COUNT(*) > .+ ) AS subquery ON .+\\.+\\_ID = subquery\\.+\\_ID",
+    "correction": "The query should be corrected to match the given question. Instead of joining a table with a subquery that filters rows based on an aggregate function, the query should select columns from the `teacher` table and order them by age.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries to filter rows based on an aggregate function, instead of selecting columns from the intended table."
+    }
+}

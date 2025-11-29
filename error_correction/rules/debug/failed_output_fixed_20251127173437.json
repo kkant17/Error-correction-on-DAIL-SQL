@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+Document\\_ID,\\s+COUNT\\(\\(Paragraph\\_ID\\)\\)\\s+AS\\s+NumberOfParagraphs\\s+FROM\\s+Documents\\s+d\\s+JOIN\\s+Paragraphs\\s+p\\s+ON\\s+d\\.Document\\_ID\\s+=\\s+p\\.Document\\_ID\\s+GROUP BY\\s+Document\\_ID\\s+ORDER BY\\s+Document\\_ID",
+    "correction": "Directly select and count records from the 'Paragraphs' table, grouping them by 'document_id', without any unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables and introduces unnecessary columns, which can be avoided by directly selecting and counting records from the relevant table."
+    }
+}

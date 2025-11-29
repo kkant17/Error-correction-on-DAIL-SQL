@@ -1,0 +1,9 @@
+{
+    "pattern": "LEFT JOIN .+ ON (visitor\\.ID = .+?\\.visitor\\_ID | .+\\.Museum\\_ID = visitor\\.ID) AND (m\\.Open\\_Year IS NULL | m\\.Open\\_Year > '2010')",
+    "correction": "Join the tables correctly by matching visitor_id from visit table with id from visitor table and filter out visitors who have visited museums opened after 2010 in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect join conditions that lead to counting visitors who have visited museums opened before 2010 or have no open_year specified."
+    }
+}

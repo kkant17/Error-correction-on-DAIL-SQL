@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+(?<=\bFROM\\s+)\\w+\\s*ON\\s*(?!\bWHERE\\s*).+",
+    "correction": "Remove unnecessary joins that are not required to answer the question.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects and corrects SQL queries with excessive or unnecessary JOIN statements."
+    }
+}

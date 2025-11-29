@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z]+(?:\\s+\\*)?\\s+FROM\\s+(car_makers|CAR_MAKERS)$",
+    "correction": "The country data is not present in the car_makers table. Instead, select the CountryName from the countries table and join it with CAR_MAKERS on their matching countryId.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where a user tries to select data from an inappropriate table."
+    }
+}

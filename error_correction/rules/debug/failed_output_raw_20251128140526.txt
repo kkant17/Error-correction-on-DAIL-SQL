@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM \\(.*\\)$",
+    "correction": "The main operation (averaging, summing, counting etc.) should be specified before the FROM clause and the subquery should be used within the NOT IN or LEFT JOIN clause as needed.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly format or use subqueries."
+    }
+}

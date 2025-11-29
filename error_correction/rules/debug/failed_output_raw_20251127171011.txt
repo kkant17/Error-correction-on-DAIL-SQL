@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9]+)_names JOIN ([a-zA-Z0-9]+)_data ON ([a-zA-Z0-9]+)\.MakeId = ([a-zA-Z0-9]+)\.Id .+ LIMIT 1$",
+    "correction": "The correct join should be between the tables in the opposite order of the given query, and the condition for selecting the minimum year from the required table should be included.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries where the join is incorrectly performed between tables with names ending in '_names' and '_data', and corrects it by reversing the table order."
+    }
+}

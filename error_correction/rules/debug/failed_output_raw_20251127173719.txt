@@ -1,0 +1,9 @@
+{
+    "pattern": r'WHERE Age = \'(.*?)\'',
+    "correction": "Replace single quotes around numeric values with no quotes",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where numeric values are enclosed in single quotes, causing a mismatch with the Age column data type. It suggests replacing the single quotes to fix the error."
+    }
+}

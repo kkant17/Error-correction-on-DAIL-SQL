@@ -1,0 +1,9 @@
+{
+  "total_queries": 591,
+  "transformation_attempted": 183,
+  "transformation_successful": 183,
+  "transformation_failed": 408,
+  "success_rate": 100.0,
+  "execution_validated": 0,
+  "execution_failed": 0
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "m!SELECT count\(DISTINCT ([A-Z]+Type)\) FROM ([A-Z]+)s!",
+    "correction": "Replace the table name with its lowercase version",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where the table name is misspelled or not in lowercase."
+    }
+}

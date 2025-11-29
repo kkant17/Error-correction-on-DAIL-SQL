@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (table1) JOIN table2 ON table1\.(id|name) = table2\.(joining\_key)",
+    "correction": "Replace the direct reference to the table with the alias and update the joining key accordingly",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where the user directly references a table instead of using an assigned alias, leading to ambiguity and potential incorrect joins."
+    }
+}

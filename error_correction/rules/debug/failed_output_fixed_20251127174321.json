@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM .+ AS T[0-9]+ ON (?!\\w+\\.\\w+).*",
+    "correction": "Join the tables correctly by specifying the correct column names from both tables in the ON clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table joins where the ON clause does not reference columns from both tables."
+    }
+}

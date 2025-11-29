@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[A-Za-z0-9]+\s+FROM\s+Pets\s+JOIN\s+Has\_Pet\s+ON\s+Pets\.\w+\s+=\s+Has\_Pet\.\w+\s+JOIN\s+Student\s+ON\s+Has\_Pet\.StuID\s+=\s+Student\.StuID\s+WHERE\s+(?!\s+Pets\.\w+\s+>\s+1)",
+    "correction": "The query should only join the 'Pets' table and filter the results based on 'pet_age'. Unnecessary joins with 'Has_Pet' and 'Student' tables should be removed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join multiple tables, making the query more complex and less efficient than needed."
+    }
+}

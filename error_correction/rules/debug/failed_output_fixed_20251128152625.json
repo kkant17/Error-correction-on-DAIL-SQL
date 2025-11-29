@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (Table1) JOIN (Table2) ON (Table1.\\*?) = (Table2.\\*?) ORDER BY (Table2.\\*).* LIMIT 1",
+    "correction": "SELECT T1.\\* FROM Table1 AS T1 JOIN Table2 AS T2 ON T1.\\*? = T2.\\*? WHERE (SELECT max(\\*(Table2.\\*?)) FROM Table2) = (SELECT \\* FROM Table2 as Temp ORDER BY \\*(Table2.\\*) DESC LIMIT 1).\\*",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery in the ORDER BY clause and instead suggests finding the maximum value of the specified column before ordering and limiting the results."
+    }
+}

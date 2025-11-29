@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT (.*) FROM \\(\\( SELECT model, COUNT\\(DISTINCT make\\) as num\\_makes FROM car\\_names GROUP BY model \\) AS model\\_count ORDER BY num\\_makes DESC LIMIT 1",
+    "correction": "SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly aggregate by a column other than the one intended, in this case, aggregating by 'make' instead of 'model'."
+    }
+}

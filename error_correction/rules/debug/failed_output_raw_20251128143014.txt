@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9\s]+\.\w+\s*,\s*[A-Za-z0-9\s]+\.\w+\s*,\s*(.*?)\s+FROM\s+.*?JOIN\s+.*?ON\s*.*\nWHERE\s+(.*?)\s+LIKE\s+'%(.*?)%'\n",
+    "correction": "SELECT $1 FROM $2 WHERE $3 LIKE '$4'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that include unnecessary columns and incorrectly formatted WHERE clause conditions."
+    }
+}

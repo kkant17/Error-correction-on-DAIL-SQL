@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+continents\\.(.*?)\\s+AS\\s+number_of_car_makers\\s+FROM\\s+countries\\s+JOIN\\s+car_makers\\s+ON\\s+countries\\.\\w+\\s*=\\s+car_makers\\.\\w+\\s*(GROUP\\s+BY\\s+continents\\.ContId,\\s+countries\\.CountryName)$",
+    "correction": "Ensure case sensitivity is correct for table names and group by the appropriate column from the first join table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references due to case sensitivity issues."
+    }
+}

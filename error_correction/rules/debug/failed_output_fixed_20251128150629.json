@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+(?P<table1>\\w+)\\s+AS\\s+(?P<alias1>\\w+)\\s+JOIN\\s+(?P<subquery>(\\(SELECT\\s.*\bFROM\\s+(?P<table2>\\w+)\\s+\\W+WHERE\\s.+\bGROUP BY\\s.+\bHAVING\\sCOUNT\\(*\\)=\\s1\\s*\\)))\\s+ON\\s+(?P<condition>.*)\\s+WHERE\\s+(?P<filter1>.*\bISOfficial=\\s'T'\\sAND\\sNOT EXISTS\\s(?P<subquery2>\\(\\sSELECT\\s.+\bFROM\\s+(?P<table3>\\w+)\\s+\\W+WHERE\\s.+\b\\)))\\s*$",
+    "correction": "Join the two tables first, filter out single-country republics, and then group by language to find those with only one occurrence.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join tables in a way that may result in missing data. The correction is to join the tables first, filter out single-country republics, and then group by language to find those with only one occurrence."
+    }
+}

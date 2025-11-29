@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .* FROM (?P<table>\w+) WHERE contestant\_name != 'Jessie Alloway'",
+    "correction": "Replace the table name with the correct one",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule catches errors where the incorrect table is referenced in a SQL query"
+    }
+}

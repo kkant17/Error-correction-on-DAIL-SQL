@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* AS [A-Za-z_]+_[A-Za-z_]+,.* FROM shop WHERE Shop_ID = \\( SELECT Shop_ID FROM shop ORDER BY ([A-Za-z_]+)_products DESC LIMIT 1 \\)",
+    "correction": "SELECT [column_name] , district FROM shop ORDER BY number_products DESC LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use a subquery to find the maximum value of a column, when it can be achieved by directly ordering and limiting the result set."
+    }
+}

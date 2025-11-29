@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+).([A-Za-z0-9]+)_id = ([A-Za-z0-9]+).address_id WHERE ([A-Za-z0-9]+).state_province_county = '(.*)' AND ([A-Za-z0-9]+).student_id NOT IN \\(\\s*SELECT\\s+student_id\\s+FROM\\s+Student_Enrolment\\s*\\)",
+    "correction": "Replace the subquery with a separate join to identify enrolled students, and use EXCEPT or MINUS operator to exclude them.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The query uses an incorrect method for excluding enrolled students. It should perform a separate join with the Student_Enrolment table instead."
+    }
+}

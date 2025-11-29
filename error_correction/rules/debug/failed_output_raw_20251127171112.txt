@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+ FROM\s+[A-Za-z0-9_\s]+\s+WHERE\s+(?<=Make)\s*=\s*(?<subquery>\(SELECT\s+[A-Za-z0-9_\s]+ FROM\s+[A-Za-z0-9_\s]\s+WHERE\s+Model\s*=\s*'[^']+' AND Make\s+LIKE\s*'%[^)]+'.*\))",
+    "correction": "Join the two tables on their respective IDs instead of using a subquery within the WHERE clause.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that misuse subqueries in the WHERE clause, as demonstrated by the provided incorrect query."
+    }
+}

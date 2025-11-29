@@ -29,7 +29,9 @@ if __name__ == '__main__':
                                                       LLM.GPT_35_TURBO_0613,
                                                       LLM.GPT_4,
                                                       LLM.OLLAMA_CODELLAMA_7B,
-                                                      LLM.OLLAMA_DEEPSEEK_CODER_6_7B],
+                                                      LLM.OLLAMA_DEEPSEEK_CODER_6_7B,
+                                                      LLM.PHI3,
+                                                      LLM.MISTRAL_7B],
                         default=LLM.GPT_35_TURBO)
     parser.add_argument("--start_index", type=int, default=0)
     parser.add_argument("--end_index", type=int, default=1000000)
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     correct_predictions = 0
 
     token_cnt = 0
-    with open(out_file, mode) as f, open(eval_out_file, mode) as eval_f:
+    with open(out_file, mode, encoding='utf-8') as f, open(eval_out_file, mode, encoding='utf-8') as eval_f:
         # MODIFICATION: Enumerate provides an index starting from 0
         for i, batch_data in enumerate(tqdm(question_loader)):
             
@@ -204,7 +206,7 @@ if __name__ == '__main__':
     print(header)
     print("="*20)
 
-    with open(eval_out_file, "a") as eval_f:
+    with open(eval_out_file, "a", encoding='utf-8') as eval_f:
         eval_f.write(separator + "\n")
         eval_f.write(header + "\n")
         eval_f.write("="*20 + "\n")

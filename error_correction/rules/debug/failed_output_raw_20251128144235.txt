@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(DISTINCT ([a-z]+)_id\) FROM matches WHERE tournament_name = '(.*?)' AND winner_hand = '\'(.*?)\'",
+    "correction": "Replace 'count(DISTINCT [column])' with 'count(DISTINCT [table].[column])'. Replace '[column]' with the correct column name.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies instances where the count of distinct column IDs is being calculated instead of the correct column name."
+    }
+}

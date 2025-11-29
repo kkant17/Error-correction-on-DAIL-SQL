@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (.*) WHERE shop_id NOT IN \(\w+\)",
+    "correction": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects Shop_ID and uses an incorrect column name in the subquery, as well as selecting names instead of IDs in the final SELECT statement."
+    }
+}

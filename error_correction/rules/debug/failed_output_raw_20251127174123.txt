@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+avg\\(CASE\\s+WHEN\\s+player\_id\\s+=(?:winner|loser)\\_id\\s+THEN\\s+birth\_date\\s+ELSE\\s+NULL|(?:NULL|*)\\s+END\\s+AS\\s+(?:average|avg)\\_(\\w+)(\\w+)?\_age\\s*,\\s*avg\\(CASE\\s+WHEN\\s+player\_id\\s+=(?:winner|loser)\\_id\\s+THEN\\s+birth\_date\\s+ELSE\\s+NULL|(?:NULL|*)\\s+END\\s+FILTER\\s+\(WHERE\\s+loser\_id\\s+IS\\s+NOT\\s+NULL\\)\\s+AS\\s+(?:average|avg)\\_(\\w+)(\\w+)?\_age\\sFROM\\s*players\\s+LEFT\\s+JOIN\\s+matches\\sON\\s*players\\.player\_id\\s+=(?:winners|losers)\\.(\\w+)\\_id",
+    "correction": "Join the matches table and calculate the average age for winners and losers separately.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that attempt to join the players table with the matches table incorrectly, and suggests a correction by joining the matches table and calculating the average age for winners and losers separately."
+    }
+}

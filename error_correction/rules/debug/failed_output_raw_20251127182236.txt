@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [a-z]+ FROM Highschooler WHERE name = '[^']+'\\) (?= SELECT count\(*\) FROM Friend)",
+    "correction": "JOIN Friend AS T1 ON T1.student_id = Highschooler.id WHERE Highschooler.name = 'Kyle' AND count(*)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only select data from the Highschooler table without joining it with the Friend table to count friend relationships."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT (?<aggregate>AVG|SUM|MIN|MAX|COUNT)(\\(?<column>[a-zA-Z]+)) as (?<alias>.+?) FROM (?<table>[a-zA-Z]+)",
+    "correction": "SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use aggregate functions to calculate values other than the specified column's average, sum, minimum, maximum, or count. Instead, it returns song names for singers whose age exceeds the average age."
+    }
+}

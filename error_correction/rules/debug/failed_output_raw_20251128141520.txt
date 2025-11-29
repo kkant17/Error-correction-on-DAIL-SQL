@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[a-zA-Z0-9]+\s+FROM\s+[a-zA-Z0-9]+\s+WHERE\s+Airline\s+=\s+'[^']+'",
+    "correction": "Replace single quotes with double quotes and ensure the correct column name is used.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of single quotes for string literals in SQL queries and suggests replacing them with double quotes."
+    }
+}

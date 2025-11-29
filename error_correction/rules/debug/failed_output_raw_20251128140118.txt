@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT count\(Pets\.PetID\) FROM Student AS T1 JOIN Has\_Pet AS T2 ON T1\.StuID = T2\.StuID JOIN Pets AS T3 ON T2\.PetID = T3\.PetID WHERE T1\.Sex = 'F' AND T3\.PetType = 'Dog'",
+    "correction": "Replace 'Pets.PetID' with '*', replace 'T3.PetType' with 'dog', and replace 'Pets' with 'T3' in the SELECT clause.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect column is selected for counting."
+    }
+}

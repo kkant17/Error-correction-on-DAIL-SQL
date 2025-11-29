@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE Language = '(.*)' ) AND GovernmentForm != 'Republic'",
+    "correction": "SELECT Code FROM country EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = \"\$1\"",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly combines two separate queries with an AND operator instead of using the EXCEPT (or MINUS) operator to exclude results from one query that are also present in another. It also corrects the column name and table reference."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\* FROM ([A-Za-z]+) WHERE Airline = '(.*?)'(\\s)+FROM\\s+([A-Za-z]+)$",
+    "correction": "JOIN the two tables on the 'Airline' column and count all rows where the Airline matches the provided string",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that only select data from one table based on an airline name, but do not join this information with the flights table to count the number of flights for that airline."
+    }
+}

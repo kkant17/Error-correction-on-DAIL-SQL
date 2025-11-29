@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(\*\) FROM flights WHERE DestAirport = '(.*?)' AND DestAirport is referenced instead of SourceAirport",
+    "correction": "Replace the reference to DestAirport with SourceAirport and join the flights table with the airports table on AirportCode to correctly identify the origin airport.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly reference DestAirport instead of SourceAirport when counting flights."
+    }
+}

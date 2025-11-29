@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN.*FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode .*GROUP BY country\\.Name",
+    "correction": "Replace the GROUP BY clause with CountryCode",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that join tables correctly but group by an incorrect column"
+    }
+}

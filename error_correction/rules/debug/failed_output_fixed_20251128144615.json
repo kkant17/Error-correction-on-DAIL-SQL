@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Sections JOIN .+ ON Sections\\..* = .+\\..*",
+    "correction": "Retrieve only columns relevant to the question and remove unnecessary join condition",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include an incorrect or unnecessary join, potentially causing errors in the results."
+    }
+}

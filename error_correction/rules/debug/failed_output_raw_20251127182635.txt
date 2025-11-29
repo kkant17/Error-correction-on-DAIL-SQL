@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT [A-Za-z]+\\.([A-Za-z]+) FROM (JOIN|LEFT JOIN|RIGHT JOIN|FULL OUTER JOIN)\\s+[A-Za-z]+\s+ON\s+[A-Za-z]\\.[A-Za-z]+ = [A-Za-z]\\.[A-Za-z]+",
+    "correction": "Use INTERSECT or UNION instead of JOIN to find common values between two tables without combining entire rows.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies cases where a join is used unnecessarily, and suggests using INTERSECT or UNION instead."
+    }
+}

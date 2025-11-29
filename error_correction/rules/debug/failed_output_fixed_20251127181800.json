@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ ORDER BY .+\\s+(ASC|DESC)\\s+LIMIT 1",
+    "correction": "SELECT only necessary columns, then ORDER BY and LIMIT",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that include unnecessary columns in the SELECT statement, which can lead to confusion or incorrect results. The correction is to only select the necessary columns before ordering and limiting the result set."
+    }
+}

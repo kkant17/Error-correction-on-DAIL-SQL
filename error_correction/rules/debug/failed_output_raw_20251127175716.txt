@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+count\(DISTINCT\s+\w+\)\s+\+\s+count\(DISTINCT\s+\w+\)\s+FROM",
+    "correction": "Separate the count of distinct values for each data type using `DISTINCT` keyword and a comma.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly combine the count of distinct values from different data types."
+    }
+}

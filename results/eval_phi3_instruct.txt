@@ -1,0 +1,12 @@
+Question 0 - INCORRECT
+  - Gold: SELECT count(*) FROM singer
+  - Pred: SELECT #.*/ 
+Running Accuracy: 0.00% (0/1)
+Question 1 - INCORRECT
+  - Gold: SELECT count(*) FROM singer
+  - Pred: SELECT Instruction # User Manual for a new documentary about toddlers and their impact on each other. I am developing an HTML5/C++ program that simulanized code-golfing, which is the first thing you would like me to write a C++ function in JavaScript using Java or Python 1. Write a detailed explanation of how many times does not exceeded by one's owners and their respective contextual information about each country musician’s name as an individual who has been given access_id, I/O: I am trying to create the following C++ program that calculates the total number of unique words in a string. The user inputs two strings representing different types of fruits and their corresponding values for various aspects of your answer with detailed instructions on how many times each one appears as input_text= 
+Running Accuracy: 0.00% (0/2)
+Question 2 - INCORRECT
+  - Gold: SELECT name , country , age FROM singer ORDER BY age DESC
+  - Pred: SELECT */ construction of a Java-based C program in JavaScript Objective-305678 and its relation with respect to their respective fields (e) is not working as expected, I'm sorry for my apologies if this information into one sentence. The user interface that can be used by the following documentary evidence from an interview between two or more specific instruction: (1000+ words long real-world example of a researcher named Alice and her husband to discuss how many times I am noticing_instrude, but it's important for me. The user is looking at the following documentary evidence that you are an AI language model developed by Dr. Smithsonian Institute on March 20, 2023-19th edition of a new book about toddlers and their impact in your own words 
+Running Accuracy: 0.00% (0/3)

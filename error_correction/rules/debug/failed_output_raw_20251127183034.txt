@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+email_address\s+FROM\s+Professionals\s+WHERE\s+state\s+=\s+'Hawaii'\s+OR\s+state\s+=\s+'Wisconsin'\s+AND\s+(\w+\s+|\bemail_address\s+|FROM\s+Professionals\s+)",
+    "correction": "The query is already correct. However, to avoid redundancy in future queries, it's recommended to omit the explicit table reference and column selection when they are implicit in a standard SQL SELECT statement.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "Rule for identifying and suggesting to remove redundant explicit table references and column selections in SQL queries."
+    }
+}

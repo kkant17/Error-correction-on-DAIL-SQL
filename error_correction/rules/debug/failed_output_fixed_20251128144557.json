@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\\(.*\\) as total\\_[A-Za-z]+\\sFROM\\s[A-Za-z]+\\_Programs JOIN Departments ON [A-Za-z]+\\_Programs\\.\\w+ = Departments\\.\\w+ WHERE Departments\\.department\\_name = 'Engineering' GROUP BY department\\_name",
+    "correction": "Count the total number of departments instead of degree programs by using COUNT(*) and removing the grouping.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that count the wrong entity (degree program) and corrects it by counting the total number of departments instead."
+    }
+}

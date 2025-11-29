@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\|||\' \+ .+ AS .+ FROM .+ WHERE hand = '[A-Z]' ORDER BY birth_date",
+    "correction": "Replace '||' with appropriate string concatenation function for the target database system (e.g., CONCAT() in MySQL, || in PostgreSQL for column aliasing). Also, use consistent case ('L' instead of 'Left') for hand attribute.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the usage of Oracle-specific string concatenation operator and inconsistent case in hand attribute."
+    }
+}

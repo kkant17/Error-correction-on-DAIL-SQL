@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9]+) FROM ([A-Za-z0-9]+) GROUP BY ([A-Za-z0-9]+) HAVING COUNT\\((\\w+)\\) > 1$",
+    "correction": "SELECT [column] FROM [table_name] AS T1 JOIN [joining_table] AS T2 ON T1.[foreign_key] = T2.[primary_key] GROUP BY T2.[group_by_column] HAVING COUNT(*) > 1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly counts rows instead of joining tables properly."
+    }
+}

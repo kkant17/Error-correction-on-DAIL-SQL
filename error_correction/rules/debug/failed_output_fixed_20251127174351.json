@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ AS total_[A-Za-z0-9]+ FROM matches JOIN players ON T1\\.winner\\_id = T2\\.player\\_id (?:JOIN rankings AS T3 ON T2\\.player\\_id = T3\\.player\\_id)? GROUP BY T1\\.winner\\_name ORDER BY SUM\\(T2\\.ranking\\_points\\) DESC LIMIT 1",
+    "correction": "Replace the aggregation function with COUNT, and ensure that the JOIN conditions filter data specifically related to the matches won by each player.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects queries that incorrectly aggregate ranking points instead of counting the number of matches won."
+    }
+}

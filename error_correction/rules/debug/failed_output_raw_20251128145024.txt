@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS (first|middle|last)_name FROM Students WHERE student_id IN \(\s*(SELECT student_id FROM Student_Enrolment JOIN Transcripts ON Student_Enrolment\.student_enrolment_id = Transcripts\.transcript_id ORDER BY transcript_date ASC LIMIT 1)\)",
+    "correction": "SELECT first_name , middle_name , last_name FROM Students ORDER BY date_left ASC LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use a subquery to find the student who left first, instead of directly ordering by the departure date."
+    }
+}

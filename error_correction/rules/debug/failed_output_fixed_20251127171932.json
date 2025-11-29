@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(*\\) FROM ([a-zA-Z0-9]+) WHERE DestAirport = 'ATO'\\s*$",
+    "correction": "Join the flights table with the airports table using the DestAirport column to match the airport codes.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that count the number of rows without joining the necessary tables, specifically focusing on queries related to destination airports."
+    }
+}

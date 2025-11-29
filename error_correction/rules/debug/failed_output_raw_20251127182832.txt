@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: SELECT .* FROM (?<table1>[A-Z]+) AS T1 JOIN (?<table2>[A-Z]+) AS T2 ON T1\.(?<common_column>[A-Z]+)_id = T2\.(?<common_column>[A-Z]+)",
+    "correction": "Replace the incorrect table reference for the required data with the correct one in both JOIN and ON clauses.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the wrong table is joined for a specific column."
+    }
+}

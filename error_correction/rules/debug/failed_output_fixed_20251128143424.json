@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bCOUNT\\(.*\\) AS count FROM .+ JOIN .+ ON .+\\.\\w+ = .+\\.\\w+ GROUP BY \\w+ ORDER BY count DESC LIMIT 10",
+    "correction": "SELECT \\w+ FROM <table> GROUP BY \\w+ ORDER BY COUNT(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join other tables, causing inefficiency. It suggests to only select the required column from a single table and group by it."
+    }
+}

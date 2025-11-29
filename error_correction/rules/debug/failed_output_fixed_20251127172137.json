@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+[a-zA-Z0-9_]+(?:\\s+JOIN|LEFT JOIN|RIGHT JOIN|FULL OUTER JOIN)\\s+[a-zA-Z0-9_]+\\s*(?:ON|WHERE)\\s*(\\w+)\b(?:GROUP BY|HAVING|\bORDER BY)?$",
+    "correction": "The query should join with all relevant tables using both the source and destination airport codes.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that only reference one table, which may lead to incomplete data."
+    }
+}

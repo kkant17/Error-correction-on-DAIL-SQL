@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+(?:\s+AS\s+[A-Za-z0-9_\s]+)?\s+FROM\s+flights\s+GROUP BY\s+[A-Za-z0-9_\s]+\s+ORDER BY\s+COUNT\(\*\)\s+DESC\s+LIMIT\s+1",
+    "correction": "Join the AIRPORTS table and consider both SourceAirport and DestAirport columns in the FLIGHTS table, group by AirportCode, order by count(*) DESC, and limit 1",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that only consider the DestAirport column from the FLIGHTS table while ignoring SourceAirport, potentially missing some airports with high flight counts."
+    }
+}

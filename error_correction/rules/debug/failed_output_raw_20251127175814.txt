@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+ON\\s+TV\_series\\.Channel\\s+ Cartoon\\.Channel\\s+WHERE\\s+Title",
+    "correction": "Avoid unnecessary joins and filter data directly from the relevant table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables when filtering data, which can be corrected by filtering data directly from the relevant table."
+    }
+}

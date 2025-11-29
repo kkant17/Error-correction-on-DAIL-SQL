@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([a-z]+).([a-z]+) FROM ([a-z]+) JOIN ([a-z]+)([a-z]+) ON ([a-z]+).([a-z]+) = ([a-z]+)\\.(CountryCode|Language) WHERE ([a-z]+)\\.(Language|CountryCode) = '(.*)' OR ([a-z]+)\\.(Language|CountryCode) = '(.*)'",
+    "correction": "Use aliases for both tables, select the correct column from the country table, and include conditions for all specified languages in the join condition.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the join condition does not include a condition for all specified languages, and selects an incorrect column from the country table."
+    }
+}

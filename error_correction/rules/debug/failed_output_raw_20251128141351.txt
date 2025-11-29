@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s.*WHERE\s`[A-Za-z ]+`\\s*= .*\b)",
+    "correction": "The query should join multiple tables and include appropriate conditions in the WHERE clause. It should look something like this: SELECT T1.column FROM TABLE1 AS T1 JOIN TABLE2 AS T2 ON T1.id = T2.id WHERE condition.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data from a single table without proper joins."
+    }
+}

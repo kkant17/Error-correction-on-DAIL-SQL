@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM .* ORDER BY .* ASC LIMIT 1$",
+    "correction": "Modify the query to include all required columns: SELECT transcript\\_date, other\\_details FROM Transcripts ORDER BY transcript\\_date ASC LIMIT 1",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "Rule for correcting queries that only select a subset of columns, potentially omitting necessary details."
+    }
+}

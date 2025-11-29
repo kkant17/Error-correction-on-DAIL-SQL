@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9]+)\\s*(?!\\.)",
+    "correction": "It's recommended to specify the database name for clarity and best practices. For example: `SELECT Age, Hometown FROM course_teach.teacher`.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "Rule for suggesting to include the database name when querying tables from a multi-database schema."
+    }
+}

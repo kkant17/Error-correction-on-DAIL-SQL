@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+(?:\\s+FROM\\s+)?flights\\s*(?:GROUP BY|HAVING)\\s*$",
+    "correction": "Join the 'AIRLINES' and 'FLIGHTS' tables using the 'uid' field as a common key, apply filter condition on the 'Airline' column, and use an alias for the 'AIRLINES' table to ensure that only unique airline records are considered in the result set.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that reference only the 'flights' table, while correct SQL queries should join relevant tables using appropriate keys."
+    }
+}

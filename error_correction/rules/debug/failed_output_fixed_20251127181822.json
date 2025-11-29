@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+) FROM ([A-Za-z]+) JOIN ([A-Za-z]+) ON ([A-Za-z]+\\.[A-Za-z]+) = ([A-Za-z]+\\.[A-Za-z]+) GROUP BY ([A-Za-z]+) ORDER BY COUNT\\((\\w+\\.\\w+\\)) DESC LIMIT 1",
+    "correction": "Replace 'GROUP BY' with 'GROUP BY T2.\\<table_alias>\\_ID, where T2 is the table alias of the joined table in the JOIN condition. Also, replace 'COUNT(\\w+\\.\\w+)' with 'COUNT(*)'.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect column is grouped or counted in an SQL query."
+    }
+}

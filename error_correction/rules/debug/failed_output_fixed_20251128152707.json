@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(DISTINCT (TABLE1).(COLUMN)\\) FROM TABLE1 WHERE (TABLE1).(COLUMN)_id IN \\((SELECT (COLUMN)_id FROM TABLE2)\\)",
+    "correction": "SELECT count(DISTINCT (COLUMN)) FROM TABLE2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly counts distinct values from one table based on the IDs in another table, potentially leading to an undercount or overcount. It suggests counting the distinct values directly from the second table."
+    }
+}

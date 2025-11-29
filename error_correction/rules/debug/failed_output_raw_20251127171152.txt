@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(DISTINCT (?P<table>[a-zA-Z0-9]+)\) FROM (?P<incorrect_table>[a-zA-Z0-9]+)_names JOIN (?P<correct_table>[a-zA-Z0-9]+) ON (?P<incorrect_join>.+) WHERE continents\.Continent = '(?P<continent>[a-zA-Z ]+)' AND (?P<correct_table>\w+)\.(?P<column>[a-zA-Z0-9]+) = '(?P<value>.+)'",
+    "correction": "Replace the incorrect table reference with the correct one, adjust the join condition to match the actual relationships between tables, and filter countries by their ID or name within the COUNTRIES table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects errors where a query references an incorrect table in the FROM clause."
+    }
+}

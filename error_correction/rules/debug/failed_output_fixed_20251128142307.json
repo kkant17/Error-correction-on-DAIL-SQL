@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (employee|hiring|evaluation) JOIN (employee|hiring|evaluation) ON \\w+\\.\\w+ = \\w+\\.\\w+ WHERE evaluation\\.Year_awarded = \\( SELECT MAX(Year_awarded) FROM evaluation \\) GROUP BY employee\\.Name ORDER BY SUM\\(evaluation\\.Bonus\\) DESC LIMIT 1",
+    "correction": "Remove unnecessary joins and avoid aggregating columns, order by the desired column directly, and remove grouping if not necessary.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join multiple tables and suggests removing them to simplify the query."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+airlines\s+WHERE\s+Airline\s*=\s*(.*?)\s+AND\s+DestAirport\s*=\s*(.+)$",
+    "correction": "JOIN the FLIGHTS table with AIRLINES using the airline id (uid) and use COUNT(*) to count the number of flights for the specified airline and destination airport.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the FLIGHTS table with AIRLINES, which is necessary to access flight data for a specific airline and destination airport."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z_\(\)]+ FROM [A-Za-z]+ WHERE [A-Za-z_\(\)]+ = \( SELECT [A-Za-z_\(\)]+ FROM [A-Za-z]+ ( ORDER BY [A-Za-z] DESC| ASC ) LIMIT 1 \)",
+    "correction": "Replace the subquery within the WHERE clause with a JOIN operation and move the ordering by clause to the end of the query",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a subquery is used within the WHERE clause, which can be inefficient and should instead be replaced with a JOIN operation."
+    }
+}

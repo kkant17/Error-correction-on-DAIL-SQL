@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+? FROM players GROUP BY Country\_name",
+    "correction": "Replace 'Country\_name' with 'country\_code' in the GROUP BY clause",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the error where a different column is used for grouping than intended"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "LIKE '\\\\%Bachelors\\\\%'",
+    "correction": "Replace LIKE '%Bachelors%' with an exact match like WHERE T3.degree_summary_name = 'Bachelor'",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies imprecise use of the LIKE operator with a pattern '%Bachelors%', and suggests replacing it with an exact match."
+    }
+}

@@ -84,9 +84,11 @@ class ErrorCorrectionPipeline:
         """
         logger.info("Initializing Error Correction Pipeline")
 
-        # Initialize LLM
-        if openai_api_key:
-            init_chatgpt(openai_api_key, "", model, openai_api_base)
+        # Initialize LLM: set api_base even when no API key is provided
+        # (openai.api_base defaults to the official OpenAI URL; if the user
+        # provided an alternative base (e.g. local Ollama), ensure we set it)
+        if openai_api_key or openai_api_base:
+            init_chatgpt(openai_api_key or "", "", model, openai_api_base or "")
 
         # Initialize components
         self.embedder = SQLEmbedder()
@@ -162,25 +164,22 @@ class ErrorCorrectionPipeline:
         while i < len(lines):
             line = lines[i].strip()
 
-            if line.startswith("Question") and "CORRECT" in line:
-                # Extract question index
-                parts = line.split()
+            # Only process lines that start a question block
+            if not line.startswith("Question"):
+                i += 1
+                continue
+
+            # Extract question index safely
+            parts = line.split()
+            try:
                 idx = int(parts[1])
+            except Exception:
+                i += 1
+                continue
 
-                if idx < len(predictions) and idx < len(questions):
-                    correct_queries.append({
-                        'index': idx,
-                        'predicted_sql': predictions[idx],
-                        'gold_sql': "SELECT " + questions[idx]['response'],
-                        'db_id': questions[idx]['db_id'],
-                        'question': questions[idx].get('question', '')
-                    })
-
-            elif line.startswith("Question") and "INCORRECT" in line:
-                # Extract question index
-                parts = line.split()
-                idx = int(parts[1])
-
+            # Check for explicit markers to avoid substring collisions
+            # ("INCORRECT" contains "CORRECT", so check INCORRECT first)
+            if "- INCORRECT" in line or "INCORRECT" in line.split():
                 # Next lines should have gold and predicted
                 gold_sql = ""
                 pred_sql = ""
@@ -199,7 +198,19 @@ class ErrorCorrectionPipeline:
                         'question': questions[idx].get('question', '')
                     })
 
-                i += 2  # Skip the gold and pred lines
+                # Skip the gold/pred lines we consumed
+                i += 3
+                continue
+
+            if "- CORRECT" in line or "CORRECT" in line.split():
+                if idx < len(predictions) and idx < len(questions):
+                    correct_queries.append({
+                        'index': idx,
+                        'predicted_sql': predictions[idx],
+                        'gold_sql': "SELECT " + questions[idx]['response'],
+                        'db_id': questions[idx]['db_id'],
+                        'question': questions[idx].get('question', '')
+                    })
 
             i += 1
 
@@ -241,6 +252,59 @@ class ErrorCorrectionPipeline:
             ]
             self.incorrect_db.add_batch(incorrect_sqls, incorrect_embeddings, incorrect_metadatas)
             logger.info(f"Stored {len(incorrect_queries)} incorrect queries")
+
+    def _load_triplets_from_file(self) -> List[RuleTriplet]:
+        """
+        Load pre-generated triplets from triplets.json file.
+
+        Returns:
+            List of RuleTriplets or empty list if file not found/invalid
+        """
+        triplets_file = os.path.join(RULE_STORAGE_PATH, "triplets.json")
+        
+        if not os.path.exists(triplets_file):
+            logger.warning(f"Triplets file not found: {triplets_file}")
+            return []
+        
+        try:
+            with open(triplets_file, 'r') as f:
+                triplets_data = json.load(f)
+            
+            triplets = []
+            for triplet_dict in triplets_data:
+                try:
+                    # Reconstruct Rule objects from dict
+                    rules = []
+                    for rule_dict in triplet_dict.get('rules', []):
+                        rule = Rule(
+                            pattern=rule_dict.get('pattern', ''),
+                            correction=rule_dict.get('correction', ''),
+                            error_type=rule_dict.get('error_type', 'OTHER'),
+                            rule_id=rule_dict.get('rule_id', '')
+                        )
+                        rules.append(rule)
+                    
+                    # Create RuleTriplet
+                    triplet = RuleTriplet(
+                        incorrect_query=triplet_dict.get('incorrect_query', ''),
+                        correct_query=triplet_dict.get('correct_query', ''),
+                        explanation=triplet_dict.get('explanation', ''),
+                        rules=rules,
+                        db_id=triplet_dict.get('db_id', ''),
+                        question=triplet_dict.get('question', '')
+                    )
+                    triplets.append(triplet)
+                except Exception as e:
+                    logger.warning(f"Failed to reconstruct triplet: {e}")
+                    continue
+            
+            logger.info(f"Successfully loaded {len(triplets)} triplets from {triplets_file}")
+            self.triplets = triplets
+            return triplets
+            
+        except Exception as e:
+            logger.error(f"Error loading triplets from {triplets_file}: {e}")
+            return []
 
     def generate_triplets(
         self,
@@ -350,7 +414,8 @@ class ErrorCorrectionPipeline:
     def apply_transformations(
         self,
         incorrect_queries: List[Dict],
-        clusters: List
+        clusters: List,
+        triplets: List[RuleTriplet] = None
     ) -> Dict[str, str]:
         """
         Apply transformations to incorrect queries using validated rules.
@@ -358,6 +423,7 @@ class ErrorCorrectionPipeline:
         Args:
             incorrect_queries: List of incorrect query dicts
             clusters: List of validated RuleClusters
+            triplets: Optional list of triplets (used when clusters are empty but triplets are loaded)
 
         Returns:
             Dictionary mapping original query → transformed query
@@ -371,10 +437,27 @@ class ErrorCorrectionPipeline:
         transformations = {}
         self.metrics['total_queries'] = len(incorrect_queries)
 
-        # Build a rule lookup from clusters
+        # Build a rule lookup from clusters or triplets
         all_rules = []
-        for cluster in clusters:
-            all_rules.extend(cluster.rules)
+        
+        if clusters:
+            for cluster in clusters:
+                all_rules.extend(cluster.rules)
+        elif triplets:
+            # When clusters are empty but triplets are loaded, extract rules from triplets
+            logger.info("Extracting rules from triplets (clusters are empty)")
+            seen_rules = set()  # Avoid duplicates
+            for triplet in triplets:
+                for rule in triplet.rules:
+                    rule_key = (rule.pattern, rule.correction, rule.error_type)
+                    if rule_key not in seen_rules:
+                        all_rules.append(rule)
+                        seen_rules.add(rule_key)
+            logger.info(f"Extracted {len(all_rules)} unique rules from {len(triplets)} triplets")
+        
+        if not all_rules:
+            logger.warning("No rules available for transformation")
+            return transformations
 
         for i, query_data in enumerate(incorrect_queries):
             incorrect_query = query_data['predicted_sql']
@@ -407,8 +490,13 @@ class ErrorCorrectionPipeline:
                 rule = matching_rules[0]
                 self.metrics['transformation_attempted'] += 1
 
-                # Apply transformation
-                transformed_query = self.rule_applicator.apply_rule(incorrect_query, rule)
+                # Apply transformation with LLM fallback for complex transformations
+                transformed_query = self.rule_applicator.apply_rule(
+                    incorrect_query, 
+                    rule, 
+                    use_llm=True,
+                    llm_model=self.rule_generator.model
+                )
 
                 # Check if transformation actually changed the query
                 if transformed_query != incorrect_query:
@@ -632,7 +720,9 @@ class ErrorCorrectionPipeline:
         eval_file: str,
         predictions_file: str,
         questions_file: str,
-        max_triplets: int = None
+        max_triplets: int = None,
+        skip_vector_store: bool = False,
+        load_triplets: bool = False
     ):
         """
         Run the complete error correction pipeline.
@@ -642,21 +732,36 @@ class ErrorCorrectionPipeline:
             predictions_file: Path to predictions
             questions_file: Path to questions JSON
             max_triplets: Maximum triplets to process (None for all)
+            skip_vector_store: Skip vector database creation (reuse existing)
+            load_triplets: Load pre-generated triplets from triplets.json instead of regenerating
         """
         logger.info("="*50)
         logger.info("Starting Error Correction Pipeline")
         logger.info("="*50)
 
-        # Step 1-2: Parse and store queries
+        # Step 1-2: Parse and store queries (always needed for correct_queries for testing)
         logger.info("\n[Step 1-2] Parsing evaluation results and storing queries")
         correct_queries, incorrect_queries = self.parse_evaluation_results(
             eval_file, predictions_file, questions_file
         )
-        self.store_queries_in_vector_db(correct_queries, incorrect_queries)
+        if skip_vector_store:
+            logger.info("Skipping vector database creation; reusing existing databases")
+        else:
+            self.store_queries_in_vector_db(correct_queries, incorrect_queries)
 
-        # Step 3-5: Generate triplets
-        logger.info("\n[Step 3-5] Generating explanations and rules")
-        triplets = self.generate_triplets(incorrect_queries, max_triplets)
+        # Step 3-5: Generate or load triplets
+        if load_triplets:
+            logger.info("\n[Step 3-5] Loading pre-generated triplets from file")
+            triplets = self._load_triplets_from_file()
+            if triplets:
+                logger.info(f"Loaded {len(triplets)} triplets from {RULE_STORAGE_PATH}/triplets.json")
+            else:
+                logger.warning("Failed to load triplets, falling back to generation")
+                logger.info("\n[Step 3-5] Generating explanations and rules")
+                triplets = self.generate_triplets(incorrect_queries, max_triplets)
+        else:
+            logger.info("\n[Step 3-5] Generating explanations and rules")
+            triplets = self.generate_triplets(incorrect_queries, max_triplets)
 
         if len(triplets) < MIN_TRIPLETS_FOR_CLUSTERING:
             logger.warning(
@@ -689,7 +794,7 @@ class ErrorCorrectionPipeline:
         transformations = {}
         if self.enable_transformation:
             logger.info("\n[Step 6.5] Applying transformations to incorrect queries")
-            transformations = self.apply_transformations(incorrect_queries, clusters)
+            transformations = self.apply_transformations(incorrect_queries, clusters, triplets=triplets)
 
             # Validate transformations (if enabled)
             if self.enable_execution_validation:
@@ -735,11 +840,11 @@ def main():
     parser.add_argument("--questions_file", type=str, required=True,
                         help="Path to questions JSON file")
     parser.add_argument("--model", type=str, default="gpt-4",
-                        help="LLM model to use")
-    parser.add_argument("--openai_api_key", type=str, required=True,
-                        help="OpenAI API key")
-    parser.add_argument("--openai_api_base", type=str, default="",
-                        help="OpenAI API base URL")
+                        help="LLM model to use (e.g., gpt-4, mistral:7b, phi3:instruct)")
+    parser.add_argument("--openai_api_key", type=str, default="",
+                        help="OpenAI API key (required for OpenAI models, optional for Ollama)")
+    parser.add_argument("--openai_api_base", type=str, default="http://localhost:11434",
+                        help="OpenAI API base URL (default: http://localhost:11434 for Ollama)")
     parser.add_argument("--temperature", type=float, default=0.3,
                         help="Temperature for LLM generation")
     parser.add_argument("--max_triplets", type=int, default=None,
@@ -751,6 +856,10 @@ def main():
     parser.add_argument("--transformation_confidence_threshold", type=float,
                         default=TRANSFORMATION_CONFIDENCE_THRESHOLD,
                         help="Minimum confidence threshold for applying transformations")
+    parser.add_argument("--skip_vector_store", action="store_true",
+                        help="Skip vector database creation (reuse existing databases if present)")
+    parser.add_argument("--load_triplets", action="store_true",
+                        help="Load pre-generated triplets from triplets.json instead of regenerating")
 
     args = parser.parse_args()
 
@@ -769,7 +878,9 @@ def main():
         eval_file=args.eval_results,
         predictions_file=args.predictions_file,
         questions_file=args.questions_file,
-        max_triplets=args.max_triplets
+        max_triplets=args.max_triplets,
+        skip_vector_store=args.skip_vector_store,
+        load_triplets=args.load_triplets
     )
 
 

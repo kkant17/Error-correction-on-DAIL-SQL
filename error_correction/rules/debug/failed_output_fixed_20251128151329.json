@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z]+\\.[a-zA-Z]+(?:\\s+FROM\\s+countrylanguage\\s+WHERE\\s+)[a-zA-Z]+\\.[a-zA-Z]+\\s*=\\s*country_code\\s*(?:AND\\s.*?)*$",
+    "correction": "Ensure to join the `country` table with `countrylanguage` using an appropriate JOIN operator and provide an alias for the `country` table. Also, modify the query to select relevant columns and apply necessary aggregation functions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly attempt to join the `country` table with `countrylanguage` without specifying a JOIN operator or providing an alias for the `country` table."
+    }
+}

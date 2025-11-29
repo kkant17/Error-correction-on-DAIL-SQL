@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT count\\(\\*\\) FROM ([a-zA-Z0-9]+) WHERE DestAirport = '(ATO|[A-Z]{3})'",
+  "correction": "Join the table with the airports table using DestAirport column",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies SQL queries that count the number of rows without joining the flights table with the airports table, potentially leading to incorrect results."
+  }
+}

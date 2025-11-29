@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+Treatments\b",
+    "correction": "Replace the query with 'SELECT count(*) FROM Dogs WHERE dog_id NOT IN ( SELECT dog_id FROM Treatments )'",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects data from the Treatments table instead of checking for dog_ids not in the Treatments table."
+    }
+}

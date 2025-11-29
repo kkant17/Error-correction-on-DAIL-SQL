@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(DISTINCT ([a-z]+)\\) FROM [a-z]+",
+    "correction": "Replace '(lowercase column name)' with '(capitalized column name)' in the query",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies cases where the column name in a SQL query is misspelled and suggests correcting it to match the actual table schema."
+    }
+}

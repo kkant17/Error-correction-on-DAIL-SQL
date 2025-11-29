@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+shop\b\\s+WHERE\\s+Number\\_products\\s+[><]\\d{4}\\s+AS\\s+t[0-9]+\\s+JOIN\\s+(?:store\\_district|district)\\s+ON\\s+t[0-9]+\\.District\\_id\\s+=\\s+(\\w+)_\\.district\\_id",
+    "correction": "Replace the subqueries with INTERSECT operator to find districts that have both Number_products less than 3000 and greater than 10000.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries with aliases to filter the shop table for Number_products, but then join them with other tables without using the INTERSECT operator. This results in a different query logic that does not produce the same result as intended."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z]+) JOIN ([A-Za-z]+) ON ([A-Za-z]+)\\.ID = ([A-Za-z]+)\\.student_id GROUP BY ([A-Za-z]+) ORDER BY COUNT\\(\\(([A-Za-z]+)\\.student_id\\) DESC LIMIT 1",
+    "correction": "SELECT T2.[column_to_select] FROM [Friend] AS T1 JOIN [Highschooler] AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "The COUNT() function should be used with the correct column to count unique rows, not a specific ID column."
+    }
+}

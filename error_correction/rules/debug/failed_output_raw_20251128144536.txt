@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ \.\w+ FROM ([A-Za-z]+\s+AS\s+)?([A-Za-z]+\s+JOIN\s+)[A-Za-z]+\s+ON\s+(\w+\.)\w+\s*=\s*(\w+\.\w+)\s*(WHERE\s+(\w+\.\w+)\s*=)",
+    "correction": "Remove the unnecessarily joined table and filter the records based on the specified city name in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join an unnecessary table, slowing down query execution and complicating the query unnecessarily."
+    }
+}

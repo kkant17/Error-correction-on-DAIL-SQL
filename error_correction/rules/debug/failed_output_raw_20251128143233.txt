@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+ON\\s+D\\.Document\_ID\\s+=\s+P\\.Document\_ID\\s+WHERE\\s+P\\.Paragraph\_Text\\s+IN\\s+\(\'[A-Za-z]+\'\)",
+    "correction": "Replace with INTERSECT SELECT from separate queries for each condition",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessary joins that may return rows where the document has paragraphs not specifically about the given conditions."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* , COUNT(*) as Occurrences FROM Documents GROUP BY .* HAVING COUNT(\\*) > 1",
+    "correction": "Remove the HAVING clause if you only want to count all occurrences of Template_ID, not filtering out templates with less than two documents.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that include a HAVING clause to filter out templates used only once, but the user might want to see all occurrences."
+    }
+}

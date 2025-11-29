@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT SUM\(.*\) FROM ([a-zA-Z0-9]+) JOIN ([a-zA-Z0-9]+) ON ([a-zA-Z0-9]+)\.ID = ([a-zA-Z0-9]+)\.CityID WHERE ([a-zA-Z0-9]+)\.(.*?) = '(.*?)'",
+    "correction": "SELECT sum(*) FROM ([a-zA-Z0-9]+) WHERE ([a-zA-Z0-9]+).(*.?) = '*(*)'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where an unnecessary join is used, potentially leading to unexpected results. The corrected query only accesses the required table and filters by the specified column directly."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \* FROM (?P<table1>[A-Za-z0-9]+) WHERE name = '(.*?)'(\s+FROM\s+(?P<table2>[A-Za-z0-9]+))?$",
+    "correction": "Replace with: SELECT count(*) FROM (?P<table1>[A-Za-z0-9]+) AS T1 JOIN (?P<table2>[A-Za-z0-9]+) AS T2 ON T1.student_id = T2.id WHERE T2.name = '\\1'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly select or filter data without joining the required tables."
+    }
+}

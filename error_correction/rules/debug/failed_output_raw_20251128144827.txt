@@ -1,0 +1,9 @@
+{
+    "pattern": "COUNT\\((\\w+)\\) AS .+",
+    "correction": "REPLACE WITH: COUNT(\*)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the SQL query when it counts a specific column instead of all records."
+    }
+}

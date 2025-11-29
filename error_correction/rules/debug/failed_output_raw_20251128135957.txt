@@ -1,0 +1,9 @@
+{
+    "pattern": "YEAR\(\w+\.\W+concert\.\W+Year\)",
+    "correction": "Replace the use of YEAR() function with a direct reference to the 'year' column in the 'concert' table",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies the usage of the YEAR() function on a non-existent column in the 'concert' table"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .*, COUNT\\(*\\) FROM ([a-zA-Z0-9]+) GROUP BY .*",
+    "correction": "Replace the extra comma after the selected column before COUNT(*)",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects an issue where a comma appears after the last selected column before COUNT(*)"
+    }
+}

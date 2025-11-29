@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT\s+T[0-9]+\.[\w\.]+\s+FROM\s+Addresses\s+AS\s+T[0-9]+\s+JOIN\s+Cities\s+AS\s+T[0-9]+\s+ON\s+T[0-9]+\.city\s+=\s+T[0-9]+\.city_name\s+WHERE\s+T[0-9]+\.city_name\s+=\s+'([^']*)'",
+    "correction": "SELECT [column] FROM Addresses WHERE city = '[city]'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessary joins when the desired column and filter condition are present in the same table."
+    }
+}

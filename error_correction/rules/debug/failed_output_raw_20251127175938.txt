@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \d+ FROM Cartoon WHERE Channel = TV\_Channel\.(?P<column>[a-zA-Z]+) AND Written\_by = 'Todd Casey'\)",
+    "correction": "Replace the incorrect column reference in TV_Channel with a valid one, such as id or name. Also, join the Cartoon and TV_Channel tables correctly to filter cartoons written by 'Todd Casey'.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column references in the TV_Channel table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT .+ FROM orchestra WHERE Year\\_of\\_Founded < 2003 AND Year\\_of\\_Founded > 2003",
+    "correction": "Replace with: SELECT Record\\_Company FROM orchestra WHERE Year\\_of\\_Founded < 2003 INTERSECT SELECT Record\\_Company FROM orchestra WHERE Year\\_of\\_Founded > 2003",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of AND instead of INTERSECT when trying to find common Record Companies founded both before and after 2003."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r'SELECT "(.*?)" FROM (.*?) ORDER BY "(.*?)" DESC',
+    "correction": 'Replace quotes around column names and remove them from the ORDER BY clause.',
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that enclose column names within quotes, which is generally unnecessary in standard usage."
+    }
+}

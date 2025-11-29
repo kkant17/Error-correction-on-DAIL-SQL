@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \\* FROM ( SELECT .+ AS subquery1 ) ON .+ JOIN ( SELECT .+ AS subquery2 ) ON .+ WHERE ( SELECT MAX(.+) FROM ( SELECT .+ AS subquery3) AS MaxSubquery )",
+    "correction": "Directly join the main tables, group by the relevant column, count the number of records, sort in descending order, and limit the result set to the top 1 record.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily use multiple subqueries when a direct join between the main tables would suffice."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM \w+(\s*\(.*\))?$",
+    "correction": "The query should include the main operation (averaging, summing, counting etc.) and filter out the records based on a condition. In this case, it should be 'SELECT avg(age) from student where stuid not in (select stuid from has_pet)'",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data without specifying the main operation and filtering condition, which can be a common error in SQL."
+    }
+}

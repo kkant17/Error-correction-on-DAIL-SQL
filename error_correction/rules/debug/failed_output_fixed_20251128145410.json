@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) INNER JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+)\\.([A-Za-z0-9]+) = ([A-Za-z0-9]+)\\.id ORDER BY .+",
+    "correction": "Select only the necessary columns and remove unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, potentially leading to incorrect results."
+    }
+}

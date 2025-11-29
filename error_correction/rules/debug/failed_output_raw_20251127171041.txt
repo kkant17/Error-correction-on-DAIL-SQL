@@ -1,0 +1,19 @@
+{
+    "pattern": "r'(?<=SELECT DISTINCT ).+(?= FROM )(?<!AS)\b(?=car_names)',
+    "correction": "Replace the incorrect table name with the correct one (in this case, replace 'car_names' with 'MODEL_LIST')",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries and suggests the correct table name."
+    }
+}
+
+{
+    "pattern": "r'(?<=WHERE YEAR\(\).+)',
+    "correction": "Compare the year column directly with a constant value instead of using the YEAR() function",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies the use of the YEAR() function in filtering conditions and suggests comparing the year column directly with a constant value."
+    }
+}

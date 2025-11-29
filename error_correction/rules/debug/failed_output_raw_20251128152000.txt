@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (Highschooler|Friend|Likes) JOIN (Highschooler|Friend|Likes) ON \w+\.\w+ = \w+\.\w+ GROUP BY \w+ HAVING COUNT\(*\) > 1",
+    "correction": "Use INTERSECT operator to find common rows between two queries, without using GROUP BY and HAVING clauses.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where multiple tables are joined with the same table, leading to an incorrect schema."
+    }
+}

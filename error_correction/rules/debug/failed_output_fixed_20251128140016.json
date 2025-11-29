@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (.*) GROUP BY .* HAVING YEAR\\(.*\\) = ([0-9]{4}) AND YEAR\\(.*\\) = ([0-9]{4})",
+    "correction": "Use separate WHERE clauses for each year and use INTERSECT to find common results between the two queries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where a subquery is used incorrectly for filtering by specific years, instead of using separate WHERE clauses and INTERSECT."
+    }
+}

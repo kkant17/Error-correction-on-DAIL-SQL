@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z0-9\\s]+\\.[\\w]+ FROM\\s+Semesters\\s+JOIN\\s+(?P<subquery>SELECT\\s+[A-Za-z0-9\\s]+\\.[\\w]+\\s*AS\\s+[A-Za-z0-9_]+\\s*(?P<aggregation>\\w+)\\((?P<group_by>[A-Za-z0-9\\s]+\\.[\\w]+)\\)\\s+GROUP\\s+BY\\s+[A-Za-z0-9\\s]+\\.[\\w]+)",
+    "correction": "Join the Semesters table directly with the Student_Enrolment table, group by the semester ID and order by the count of student enrollments.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join Semesters with a subquery instead of directly joining with Student_Enrolment."
+    }
+}

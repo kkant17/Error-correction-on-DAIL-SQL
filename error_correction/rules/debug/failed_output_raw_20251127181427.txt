@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9,\s]+FROM\s+country\s+ORDER BY\s+SurfaceArea\s+DESC\s+LIMIT\s+1\s+AS\s+[A-Za-z0-9,_]\s+ON\s+Country\.Code\s+=\s+[A-Za-z0-9,_]+\.Code",
+    "correction": "Select the necessary columns (Name, population, HeadOfState) directly from the country table and order by SurfaceArea DESC LIMIT 1",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies a query that selects an incorrect set of columns and creates a derived table unnecessarily."
+    }
+}

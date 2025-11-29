@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT \w+.\w+\.\w+ FROM (\w+\s+\w+)\s+ON\s+(\w+\s+\w+)\s+ON\s+(\w+\.\w+)\s+=\s+(\w+\.\w+)\s+WHERE\s+(\w+\.\w+)\s+=\s+'[^']*'",
+    "correction": "Replace `SELECT \w+.\w+\.\w+` with `SELECT \w+.\w+` and replace `(\w+\.\w+)` with `\1` in the SELECT clause. Also, replace `Document_Details` with the correct column name from the Documents table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column selection when joining tables and selecting columns from an unintended table."
+    }
+}

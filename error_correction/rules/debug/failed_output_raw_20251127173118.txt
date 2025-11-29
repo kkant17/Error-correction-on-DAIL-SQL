@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[a-zA-Z0-9\s]+\s+FROM\s+Templates\s+WHERE\s+Template_Type_Code\s+IN\s+\(\'(PP|PPT)\'\)",
+    "correction": "Replace 'IN (' and ')' with 'OR' between conditions",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of IN operator for multiple conditions when OR should be used instead"
+    }
+}

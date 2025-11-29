@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[A-Z_]+) WHERE (?P<condition>.*) NOT IN \\(\\s*(?P<subquery>SELECT .+\bFROM\\s+)[A-Z_]+\b\\)",
+    "correction": "Replace with: SELECT T1.stuid FROM <table1> AS T1 LEFT JOIN <subquery_table> ON T1.<join_column> WHERE <join_column> IS NULL",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where a subquery is incorrectly used in the NOT IN operator, by joining the main table with the subquery and filtering out rows with NULL values on the join column."
+    }
+}

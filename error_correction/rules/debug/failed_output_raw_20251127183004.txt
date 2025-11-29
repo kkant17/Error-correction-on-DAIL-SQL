@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS Departure_Date, IFNULL\(.*\), FROM .+ LEFT JOIN .+ ON .+\.treatment_id IS NOT NULL",
+    "correction": "Select DISTINCT T1.\<arrival\_date\_column\> , T1.\<departure\_date\_column\> FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog\_id = T2.dog\_id",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly select columns and use the wrong join condition"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM (.*?) WHERE Id IN \\((.*?)\\) AND \\(.*COUNT\\(DISTINCT Id\\).*\\) > (.*)$",
+    "correction": "Separate conditions into two separate subqueries, each with its own join to the `model_list` and `car_names` tables.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use a single subquery for multiple conditions, which can lead to inefficiency and less flexibility."
+    }
+}

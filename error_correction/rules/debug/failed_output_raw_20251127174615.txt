@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS min_[A-Za-z]+, RANK().+ FROM .+\sGROUP BY .+\sON\s.*WHERE\s(?<!\()min_[A-Za-z]+\s=\s(?<!FROM)\s(?<=SELECT).*",
+    "correction": "Select distinct column_name from table_name order by column_name limit number",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily calculate minimum values and ranks, instead of directly selecting distinct winners and their ranks ordered by age."
+    }
+}

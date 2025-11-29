@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+(.*?)\s+FROM\s+(hiring|anyothertable)\s+GROUP\s+BY\s+(Shop_ID|anyothercolumn)\s+ORDER\s+BY\s+COUNT\((\w+)_ID\)\s+DESC\s+LIMIT\s+1",
+    "correction": "Join the missing table, count the correct column and use an appropriate aggregate function for grouping.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly count a specific column ID instead of using the correct aggregate function."
+    }
+}

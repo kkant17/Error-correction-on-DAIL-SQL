@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+(?P<column>\w+)\s+FROM\s+(?P<table1>\w+\s+\w+)\s+JOIN\s+(?P<join_table>\w+\s+\w+)\s+ON\s+(?P<condition>[^WHERE]+)(\s+WHERE\s+(?P<filter>(?:(?:(?!AND|OR).)+)|))",
+    "correction": "The correction involves ensuring that the filter conditions are applied before any JOIN operations. The WHERE clause should be placed after all JOIN conditions and before the final SELECT statement.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies a SQL query where filter conditions are applied after join operations, which can potentially lead to incorrect results."
+    }
+}

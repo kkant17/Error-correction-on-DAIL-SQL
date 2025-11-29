@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(*\) FROM ([A-Za-z0-9]+) WHERE ([A-Za-z0-9]+)\.(?P<table>\w+)_ID = ([A-Za-z0-9]+\.)(?P<table2>\w+)_ID)",
+    "correction": "SELECT (?P<table>[A-Za-z0-9]+)_id FROM (?P<table>\w+) GROUP BY (?P<table>\w+)_id ORDER BY count(*) ASC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where COUNT(\*) is incorrectly applied across multiple tables, and instead groups the count by a specific table."
+    }
+}

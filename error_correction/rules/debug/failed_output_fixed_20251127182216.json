@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s[A-Za-z0-9_\\s]+\bWHERE\\s(?=\\()SELECT\\sID\bFROM",
+    "correction": "Join the 'Friend' and 'Highschooler' tables directly, linking the student_id in Friend with id in Highschooler to retrieve Kyle's friends' names.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries instead of joining tables directly."
+    }
+}

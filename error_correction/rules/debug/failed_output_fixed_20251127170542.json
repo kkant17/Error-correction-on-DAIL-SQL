@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s+Student\\s+WHERE\\s+StuID\\s+IN\\s+\\( SELECT\\s+StuID\\s+FROM\\s+Has_Pet\\s+WHERE\\s+PetID\\s+IN\\s+\\( SELECT\\s+PetID\\s+FROM\\s+Pets\\s+WHERE\\s+PetType\\s+=\\s+'[A-Za-z]+'\\)\\s+AND\\s+PetID\\s+IN\\s+\\( SELECT\\s+PetID\\s+FROM\\s+Pets\\s+WHERE\\s+PetType\\s+=\\s+'[A-Za-z]+' \\)",
+    "correction": "Replace the query with a corrected version that uses INTERSECT operator instead of AND to find students who own either a cat or a dog but not both.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use AND operator in subqueries to find students who own multiple pet types, and suggests using the INTERSECT operator instead."
+    }
+}

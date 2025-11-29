@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+, AVG\\(.*\\) FROM ([a-zA-Z]+)\\.+(.*?) ON ([a-zA-Z]+)\\.+(.*?) GROUP BY ([a-zA-Z]+)\\.(.*?)",
+    "correction": "SELECT avg(\\1) , T1.\2 FROM \\3 AS T1 JOIN \\4 AS T2 ON T1.\\5 = T2.\\6 GROUP BY T1.\\7",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the aggregation function is applied to a column other than the one being grouped by."
+    }
+}

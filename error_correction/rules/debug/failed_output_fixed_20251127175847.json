@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON \\w+ = \\w+.*$",
+    "correction": "Use the correct table name and avoid unnecessary joins if the required data is already present in the initial table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, potentially causing errors."
+    }
+}

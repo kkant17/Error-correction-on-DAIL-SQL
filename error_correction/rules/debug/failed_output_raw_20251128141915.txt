@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Airline,\s+MIN\(\w+\)\s+as\s+min_\w+\s+FROM\s+flights\s+GROUP\s+BY\s+Airline\s+)(.*?)\s+on\s+airlines\.uid\s+=\s+least_flights\.Airline\s+where\s+FlightNo\s+=\s+least_flights\.min_flights",
+    "correction": "Join the AIRLINES and FLIGHTS tables correctly, calculate the count of flights for each airline, order by the count, limit to one result, and select the airline's country.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of subqueries in SQL queries."
+    }
+}

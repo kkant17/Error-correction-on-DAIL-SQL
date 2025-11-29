@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\\(DISTINCT (?P<table>[a-zA-Z0-9]+)\\.(?P<column>[a-zA-Z0-9]+)\\)? FROM (?P<first_table>[a-zA-Z0-9]+)_names|MODEL_LIST\\s+JOIN\\s+(?P<second_table>[a-zA-Z0-9]+)\\s+ON\\s+(?P<join_condition>\\w+\\.\\w+= \\w+\\.\\w+)?\\s*(WHERE\\s+(?P<filter>(co|c).Continent = (SELECT ContId FROM continents WHERE Continent = 'North America'))|(WHERE\\s+(T3|co|c).CountryName = 'usa'))$",
+    "correction": "Replace the table and column names with their correct counterparts, join tables using primary keys, filter by exact country name, and ensure that all necessary joins are made.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with incorrect table references, specifically those using non-primary key columns for joining tables and assuming North America is represented as 'North America' in the countries table."
+    }
+}

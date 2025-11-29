@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z0-9\s]+\.id,\s+[a-zA-Z0-9\s]+\.name\s+FROM\s+[a-zA-Z0-9]+\s+JOIN\s+ship\s+ON\s+([a-zA-Z0-9\s]+)\.id\s+=\s+lost\_in\_battle\s+WHERE\s+ship\_type\s+=[a-zA-Z0-9]+\s+GROUP BY\s+[a-zA-Z0-9\s]+\.id,\s+[a-zA-Z0-9\s]+\.name\s+HAVING\s+COUNT\(ship\_id\)\s+>\s+0",
+    "correction": "Replace the query with SELECT DISTINCT T1.id , T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.ship_type = 'Brig'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries with incorrect table references and column selections in the JOIN clause, and provides a correction to fix the error."
+    }
+}

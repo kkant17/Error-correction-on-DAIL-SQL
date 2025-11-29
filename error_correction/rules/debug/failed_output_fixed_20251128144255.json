@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS player_id, MAX\\(.*\\) as max_.+\bGROUP BY\\splayer_id\\s.*JOIN\\s.*ON\\splayers\\.player_id=\\s.*\bWHERE\\smatches\\.winner_id IS NOT NULL AND rankings\\.player_id = .+AND rankings\\.ranking_points = max_.+\bLIMIT 1",
+    "correction": "Join the 'players' and 'matches' tables directly on a common column (e.g., winner_id) and order by ranking points to find the player with the highest points in a match.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use subqueries to find top-ranked players, instead of directly joining the 'players' and 'matches' tables."
+    }
+}

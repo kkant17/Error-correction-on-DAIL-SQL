@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+FROM\\s+(?<table1>\\w+\\s+)\\s+ON\\s+d\\.\\w+\\s+=\\s+(?<table2>\\w+\\s+)\\.(\\w+)\\s+GROUP\\s+BY\\s+(?<common_column>\\w+)",
+    "correction": "Replace the FROM clause with the corrected table (Paragraphs) and remove the join, as the aggregation can be done directly on that table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where a JOIN is used unnecessarily in a SQL query, resulting in extra columns or incorrect aggregations."
+    }
+}

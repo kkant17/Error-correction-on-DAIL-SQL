@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+T[1-9]\\.\\w+\\s*,\\s*T2\\.\\w+\\s*,\\s+MAX\\(\\w+\\)\\sas\\s+Max_\\w+\\s+FROM\\s+country\\sAS\\s+T1\\sJOIN\\s+countrylanguage\\sAS\\s+T2\\sON\\s+T1\\.Code\\s= T2\\.CountryCode\\sGROUP BY\\s+T1\\.\\w+\\sORDER BY\\s+Max_\\w+\\sDESC",
+    "correction": "The query should only have one table (countrylanguage) and group by CountryCode to get the desired results. To fix the error, remove the unnecessary subquery (T1 and T2), include only the required columns in the SELECT statement, and change the GROUP BY clause accordingly.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that introduce unnecessary subqueries and improper column selections."
+    }
+}

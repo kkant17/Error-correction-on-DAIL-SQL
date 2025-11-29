@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .*\sWHERE .* NOT IN\(\(SELECT .*\ FROM .*\)",
+    "correction": "The given SQL query is correct and does not contain any errors.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies a correct SQL query that does not have any errors."
+    }
+}

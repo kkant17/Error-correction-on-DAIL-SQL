@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9\\s]+) AS [A-Za-z0-9]+\\sJOIN\\s([A-Za-z0-9\\s]+) AS [A-Za-z0-9]+\\sON\\s(.*?)\\sWHERE\\s(?!T3.pettype = 'dog').+T1.StuID",
+    "correction": "Correct the WHERE clause to filter for students who have a dog but do not have a cat as a pet by using NOT IN with a subquery that selects student IDs where the pet type is 'cat'. Also, ensure the main purpose of finding the first name and age of students who have a dog but do not have a cat as a pet is met.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that miss the main purpose of finding the first name and age of students who have a dog but do not have a cat as a pet, by providing a clear transformation needed."
+    }
+}

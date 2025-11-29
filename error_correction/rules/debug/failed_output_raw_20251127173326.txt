@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Z_]+\\.\w+\s+FROM\s+(\w+\s+JOIN\s+)?(\w+\s+ON\s+)?([^W]|W+)\s*=\\s*(?!\w+\s+AS)\w+",
+    "correction": "Replace the unaliased table reference with an alias and ensure column names are consistent.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a table is referenced without an alias, causing confusion during the join operation."
+    }
+}

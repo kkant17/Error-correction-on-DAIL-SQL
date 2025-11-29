@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-z]+) AS t1 JOIN ([a-z]+) AS t2 ON t1\\.(.*?) = t2\\.(.*?)( GROUP BY t1\\.(?!.*t2\\..*))( ORDER BY COUNT\\(t2\\.(?!.*t1\\..*)\\))?$",
+    "correction": "Replace the GROUP BY clause with a grouping column that matches the aggregation function, and ensure all columns in the SELECT statement are related to either the JOIN or the aggregation.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries where the grouping and aggregation columns do not match, leading to incorrect results."
+    }
+}

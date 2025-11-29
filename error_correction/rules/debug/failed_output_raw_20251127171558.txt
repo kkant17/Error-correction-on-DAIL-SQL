@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+AS\\s+TABLE1\\s+ON\\s+TABLE1\\.Id\\s+=[a-zA-Z0-9_]+\\s+FROM\\s+TABLE2",
+    "correction": "Remove unnecessary JOIN statements linking tables that are not directly relevant to the query.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies excessive and redundant JOIN statements in a SQL query."
+    }
+}
+
+{
+    "pattern": "WHERE\\s+TABLE1\\.Maker\\s+=[a-zA-Z]+\\s+AND\\s+TABLE2\\.Model\\s+LIKE\\s+'%[a-zA-Z]+'%'",
+    "correction": "Filter on the correct columns in the relevant table.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies filtering on irrelevant or redundant columns in a SQL query."
+    }
+}

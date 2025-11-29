@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s.*?\(SELECT\s.*?FROM\s.*?\)",
+    "correction": "Replace with: SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a subquery error where the subquery is incorrectly used to select data from an unintended table."
+    }
+}

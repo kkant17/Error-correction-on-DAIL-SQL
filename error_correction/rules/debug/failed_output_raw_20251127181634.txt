@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bAS\w+\b FROM .+ ON \w+\.\w+ JOIN \w+\.\w+ AND (\w+\.\w+|\bmax_\w+\b)\.(\w+) = ([^)]+)",
+    "correction": "Calculate the MAX aggregate function directly within the GROUP BY clause of the main query, without creating any subqueries or unnecessary joins.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that create an unnecessary subquery and suggests to calculate the MAX aggregate function directly within the GROUP BY clause."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM [table] INNER JOIN [another_table] ON [join_condition] .*\*(?! [table])",
+    "correction": "Replace '*.*' with specific column names from the table to avoid selecting unnecessary data.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies a SQL query where the wildcard (*) is used in the SELECT clause after joining another table, which may result in selecting unnecessary data."
+    }
+}

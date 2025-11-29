@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+(?:\s+FROM)?\s*Paragraphs\s+WHERE\s+Document\_Name\s*=\s*'Customer\s+reviews'\s*$",
+    "correction": "Join the 'Documents' table to retrieve the corresponding document_id for the document named \"Customer reviews\" and use it to filter the paragraphs in the 'Paragraphs' table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that only filter the 'Paragraphs' table based on document name, without joining the 'Documents' table to get the correct document_id."
+    }
+}

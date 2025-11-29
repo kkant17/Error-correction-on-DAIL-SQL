@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN(?:\\s+ON\\s+(car_names|model_list|car_makers|countries|continents)\\s*=\\s*.*){2,}WHERE",
+    "correction": "Join only the necessary tables directly related to the original query in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessarily joining multiple tables that are not directly related to the original query."
+    }
+}
+
+{
+    "pattern": "SELECT\\s*(.*?)FROM\\s*cars_data\\s+AS\\s+cars_data2\\s+WHERE\\s*cars_data2.Model\\s*=\\s*'volvo'",
+    "correction": "Replace the subquery with a single query that orders by accelerate and selects the first row.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries when a simple ORDER BY can be used instead."
+    }
+}

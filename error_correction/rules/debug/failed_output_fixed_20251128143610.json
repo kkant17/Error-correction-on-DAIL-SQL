@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT MIN\\(.*\\) FROM museum WHERE Open\\_Year > '2010'\\)",
+    "correction": "SELECT name FROM museum WHERE num\\_of\\_staff > (SELECT min(num\\_of\\_staff) FROM museum WHERE open\\_year > 2010)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that calculates the minimum value of a column instead of comparing it with the values in the main query."
+    }
+}

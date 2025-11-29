@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+DISTINCT\s+c\.\w+\s+AS\s+\w+\s+FROM\s+car_makers\s+JOIN\s+\( SELECT\s+MakeId,\s+COUNT\(*\)\s+as\s+ModelCount\s+FROM\s+car_names\s+GROUP BY\s+MakeId\s+HAVING\s+COUNT\(*\)>1\s+\)",
+    "correction": "Join with the MODEL_LIST table, group by the maker itself (T1.Id), and correct the count condition to match the gold SQL query.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The subquery is incorrectly structured, missing a join with MODEL_LIST table and grouping by the wrong column."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (death|table1) JOIN ship ON (.*).caused\\_by\\_ship\\_id = ship\\.(.*?) GROUP BY (.*?)\\.id ORDER BY SUM\\(death\\.injured\\) DESC LIMIT 1",
+    "correction": "SELECT T2\\.id , T2\\.name FROM death AS T1 JOIN ship AS t2 ON T1\\.caused\\_by\\_ship\\_id = T2\\.id GROUP BY T2\\.id ORDER BY count(\\*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that sort the results by the sum of injured individuals instead of the count of deaths caused by each ship."
+    }
+}

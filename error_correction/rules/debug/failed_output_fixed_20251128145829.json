@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z]+(?:\\s+\\*\\*)?\\s+FROM\\s+[A-Za-z]+\\s+WHERE\\s+[A-Za-z]+\\s+IS\\s+NOT\\s+NULL\\s+.*ORDER\\s+BY\\s+[A-Za-z]+(?:\\s+ASC)?$",
+    "correction": "Join the tables using an ON clause based on a common column, and order by the specified column from the joined table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not correctly join tables, which can lead to incorrect results."
+    }
+}

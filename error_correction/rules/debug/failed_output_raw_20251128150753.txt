@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \w+ FROM \w+ WHERE \w+ < [0-9]{4})",
+    "correction": "Join with another table and use an aggregation function (e.g., COUNT(DISTINCT)) to group the data, filter for specific conditions, and include all necessary columns.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select a single column without joining other tables or using aggregation functions."
+    }
+}

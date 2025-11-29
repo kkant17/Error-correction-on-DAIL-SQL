@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z0-9]+) FROM ([A-Za-z0-9]+) WHERE ([A-Za-z0-9]+) NOT IN \(\s*SELECT\s+([A-Za-z0-9]+)\s+FROM\s+Documents\)",
+    "correction": "Replace with: SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of selecting a column from one table where it does not exist in another table, and instead suggests using EXCEPT to find templates that are not associated with any document."
+    }
+}

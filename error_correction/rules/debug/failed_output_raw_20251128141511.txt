@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM .+ where Airline = 'Jetblue Airways'",
+    "correction": "Replace single quotes around the airline name with double quotes",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use incorrect quote types for string literals, specifically when using single quotes instead of double quotes."
+    }
+}

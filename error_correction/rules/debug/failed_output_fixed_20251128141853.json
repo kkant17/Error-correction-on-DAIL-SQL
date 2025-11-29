@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9\\s]+) GROUP BY .+ ORDER BY .+ LIMIT 1$",
+    "correction": "The query should join the relevant tables before grouping and ordering. Also, only the necessary columns should be selected in the SELECT clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join tables correctly, potentially leading to incorrect results."
+    }
+}

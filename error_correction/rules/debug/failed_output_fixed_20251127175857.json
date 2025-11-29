@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT\\s+[a-zA-Z0-9_\\s]+(?:\\.\\s+[a-zA-Z0-9_\\s]+)*(?:\\s+AS\\s+[a-zA-Z0-9_\\s]*)?\\s+FROM\\s+Cartoon\\s+(?:WHERE|ORDER BY|\\s+LIMIT)\\s*$",
+  "correction": "Replace 'Cartoon' with the correct table name, and adjust column names accordingly.",
+  "metadata": {
+    "error_type": "TABLE_REFERENCE",
+    "confidence": "high",
+    "description": "This rule identifies incorrect table references in SQL queries."
+  }
+}

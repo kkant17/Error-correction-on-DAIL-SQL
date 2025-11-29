@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+AS\\s+M[1-3]\\s+ON\\s+(T1\\.player\_id=M[1-3]\.winner\_id)\\s*AND\\s*(M[1-3]\.tourney\_name=[^\\)]*)",
+    "correction": "The query should only join the 'players' and 'matches' tables twice, once for each tournament, instead of joining multiple times with unnecessary conditions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join the same table multiple times and adds conditions that are not required for finding common rows between two or more tables."
+    }
+}

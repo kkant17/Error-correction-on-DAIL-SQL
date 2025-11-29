@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (Highschooler AS H[^\\w]+) WHERE EXISTS \(\s*(SELECT|JOIN)\s*FROM\s+[a-zA-Z0-9\s]+\s+AS\s+[a-zA-Z0-9]\s+WHERE\s+H[^\\w]+.ID\s*=[a-zA-Z0-9]+\.student_id|friend_id\s*\) AND EXISTS \(\s*(SELECT|JOIN)\s*FROM\s+[a-zA-Z0-9\s]+\s+AS\s+[a-zA-Z0-9]\s+WHERE\s+H[^\\w]+.ID\s*\!\= [a-zA-Z0-9]+\.student_id\)",
+    "correction": "Replace the query with SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly performs a join operation on the Highschooler table with both Friend and Likes tables, introducing unnecessary conditions and using an inequality condition instead of an equality condition for the Likes table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .+ FROM country JOIN countrylanguage ON country\.\w+ = countrylanguage\.\w+ WHERE countrylanguage\.Language = '(.*?)' OR countrylanguage\.Language = '(.*?)'",
+    "correction": "Replace the SELECT statement with SELECT DISTINCT T1.<desired_column> and ensure that the JOIN condition is correct, filtering on the Language field.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column selection in SQL queries involving a join with countrylanguage table."
+    }
+}

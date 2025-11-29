@@ -1,18 +1,21 @@
 @echo off
 REM Complete pipeline: Base Model + Error Correction
-REM For deepseek-coder:6.7b on Ollama with Intel Arc GPU
+REM For phi3:instruct on Ollama
 
 echo =====================================================
 echo Complete Pipeline: DAIL-SQL + Error Correction
-echo Model: deepseek-coder:6.7b (Ollama)
+echo Model: %MODEL% (Ollama)
 echo =====================================================
 
 REM ============================================================
 REM CONFIGURATION - Edit these for your setup
 REM ============================================================
 
-set "MODEL=deepseek-coder:6.7b"
-set "OLLAMA_BASE_URL=http://localhost:11434/v1"
+REM Allow overriding MODEL via environment variable before running the script.
+if not defined MODEL (
+    set "MODEL=phi3:instruct"
+)
+set "OLLAMA_BASE_URL=http://localhost:11434"
 set "OLLAMA_API_KEY=ollama"
 
 REM Create safe filename version (replace : with _)
@@ -67,12 +70,12 @@ echo ✓ Ollama is running
 REM Check if model is available
 echo.
 echo Checking if model is available...
-ollama list | findstr /C:"deepseek-coder" >nul 2>&1
+ollama list | findstr /C:"phi3:instruct" >nul 2>&1
 if errorlevel 1 (
     echo.
-    echo Model not found. Pulling deepseek-coder:6.7b...
-    echo This may take a while (4-6 GB download)...
-    ollama pull deepseek-coder:6.7b
+    echo Model not found. Pulling phi3:instruct...
+    echo This may take a while depending on your configuration...
+    ollama pull phi3:instruct
     if errorlevel 1 (
         echo.
         echo ERROR: Failed to pull model
@@ -83,15 +86,7 @@ if errorlevel 1 (
     echo ✓ Model available
 )
 
-REM Check if Intel Arc test passed (optional)
-echo.
-set /p RUN_ARC_TEST="Run Intel Arc compatibility test? (y/n): "
-if /i "%RUN_ARC_TEST%"=="y" (
-    python error_correction\test_intel_arc.py
-    echo.
-    echo Press any key to continue with the pipeline...
-    pause >nul
-)
+REM Intel Arc compatibility test removed for this pipeline run
 
 REM ============================================================
 REM STEP 1: Data Preprocessing (if not already done)

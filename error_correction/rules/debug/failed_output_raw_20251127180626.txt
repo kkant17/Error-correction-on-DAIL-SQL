@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT avg\(\w+\) FROM \w+ WHERE Continent = '[A-Za-z]+' AND GovernmentForm LIKE '%[Rr]epublic%'",
+    "correction": "Replace the LIKE operator and wildcards with an exact match for the 'GovernmentForm' column",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use the LIKE operator with wildcards to search for 'Republic' in the GovernmentForm column, and suggests replacing it with an exact match."
+    }
+}

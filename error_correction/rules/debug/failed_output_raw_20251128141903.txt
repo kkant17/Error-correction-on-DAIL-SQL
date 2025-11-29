@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Airline,\s+Country\s+FROM\s+airlines\s+JOIN\s+\(.*\)\s+AS\s+least_flights\s+ON\s+airlines\.(uid|Airline)\s+=\s+least_flights\.Airline\s*(?!\s+GROUP\s+BY\s+T1\.(Abbreviation|Airline))",
+    "correction": "Join the 'airlines' and 'flights' tables correctly on the 'Airline' column, group by the correct column (T1.Abbreviation or Airline), order by count(*) and use LIMIT 1 to select only the airline with the most flights.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between tables that result in errors related to counting flights for each airline separately."
+    }
+}

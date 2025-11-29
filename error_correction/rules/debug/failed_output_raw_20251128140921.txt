@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?<table1>[A-Z_]+) GROUP BY .+(?<groupBy>[A-Z_]+) HAVING COUNT\(*\) >= .+ ON .+ WHERE .+Continent = 'Europe'$,",
+    "correction": "Join the necessary tables (COUNTRIES, CONTINENTS, and CAR_MAKERS) correctly. Group by the correct column name (CountryName). Filter countries based on their continent being Europe.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables and groups by an incorrect column, leading to potential errors in the results."
+    }
+}

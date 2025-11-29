@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ JOIN .+ ON .+\\.Code = .+\\.CountryCode WHERE language IN '(.*)' GROUP BY Region HAVING COUNT\\(DISTINCT language\\) >= 1",
+    "correction": "SELECT DISTINCT T1.Region FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'English' OR T2.Language = 'Dutch'",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that group by a column and apply a HAVING clause with a count of distinct columns, which is not necessary for finding countries that have specific languages."
+    }
+}

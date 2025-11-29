@@ -1,0 +1,9 @@
+{
+    "pattern": "COUNT\(SE\.[a-zA-Z0-9]+\)",
+    "correction": "Replace COUNT(SE.\* ) to count the total number of enrollments for each student",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the COUNT function is used with a specific column instead of COUNT(*)"
+    }
+}

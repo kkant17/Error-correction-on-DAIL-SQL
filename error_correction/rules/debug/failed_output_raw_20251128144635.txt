@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM Courses AS C[A-Z]+ ON C.[A-Z]+.\*.course\_id LEFT JOIN ( SELECT course\_id, COUNT(\*) as section\_count FROM Sections GROUP BY course\_id ) AS [A-Z]+ ON C.[A-Z]+.course\_id WHERE [A-Z]+\.section\_count <= [0-9]+",
+    "correction": "Replace the subquery with a HAVING clause in the GROUP BY statement to count the number of sections for each course",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a subquery to count the number of sections for each course, and suggests replacing it with a more efficient HAVING clause."
+    }
+}

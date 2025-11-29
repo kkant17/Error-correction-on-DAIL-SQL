@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT ([a-zA-Z0-9]+) FROM Students ORDER BY ([a-zA-Z0-9]+) DESC",
+    "correction": "Ensure that column names are enclosed in double quotes, e.g., SELECT \"other_student_details\" FROM Students ORDER BY \"other_student_details\" DESC",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the issue of not enclosing column names in double quotes"
+    }
+}

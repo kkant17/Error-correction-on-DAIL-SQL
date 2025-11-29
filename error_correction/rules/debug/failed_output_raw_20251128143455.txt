@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM).*JOIN\s+(?:teacher|course)\s+ON\s+(?:teacher\.\w+\s*=\s*course\.\w+|\w+\s*=\s*\w+)",
+    "correction": "The join condition should be corrected to match the relationship between 'course_arrange', 'teacher' and 'course'. The correct format is: JOIN <table> AS <alias> ON <table>.<column> = <alias>.<column>",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect join conditions that do not account for the relationship between 'course_arrange', 'teacher' and 'course'"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\sAS\s.*FROM\s.*ORDER BY\s.*LIMIT 1$",
+    "correction": "Avoid using calculated fields for ordering and limiting. Instead, use aggregate functions to find the maximum value directly.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that calculate a field for sorting or limiting purposes and suggests using aggregate functions instead."
+    }
+}

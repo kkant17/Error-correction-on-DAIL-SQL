@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z0-9]+, AVG\\(weight\\) AS AverageWeight FROM Pets JOIN Has\\_Pet ON Pets\\.PetID = Has\\_Pet\\.PetID .* -- If you want to filter by a specific student or city, add the condition below -- WHERE Student\\.StuID = \\[specific\\_student\\_id\\] OR Student\\.city\\_code = '\\[specific\\_city\\_code\\]' GROUP BY PetType",
+    "correction": "Remove unnecessary JOIN operation and group by the specified column directly.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly join tables when aggregation is required."
+    }
+}

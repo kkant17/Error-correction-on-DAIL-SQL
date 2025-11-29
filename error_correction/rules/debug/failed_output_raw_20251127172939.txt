@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \d+ FROM (?P<table1>\w+) JOIN (?P<table2>\w+) ON (?P<join_condition>\w+\.\w+) = (?P<filter_condition>[a-zA-Z0-9]+) WHERE (?P<where_clause>.*) AND (?P<template_type_filter>Ref_\w+_.*\.Template_Type_Code = 'PPT')$",
+    "correction": "SELECT count(*) FROM $table1 AS T1 JOIN $table2 AS T2 ON T1.$join_condition WHERE T2.$template_type_filter",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the join condition is incorrectly placed within the WHERE clause, and instead suggests moving it to the JOIN condition."
+    }
+}

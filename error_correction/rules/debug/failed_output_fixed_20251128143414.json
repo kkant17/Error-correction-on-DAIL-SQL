@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* GROUP BY .* ORDER BY COUNT\\(.*\\) DESC LIMIT 1",
+    "correction": "Replace COUNT(\\*) with just COUNT in the ORDER BY clause",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries where the COUNT function is used unnecessarily with an argument in the ORDER BY clause"
+    }
+}

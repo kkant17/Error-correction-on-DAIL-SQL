@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Template\_ID\s+FROM\s+Templates\s+WHERE\s+Template\_Type\_Code\s+is\s+either\s+'PP'\s+or\s+'PPT'",
+    "correction": "Replace the WHERE clause with 'WHERE template_type_code = "PP" OR template_type_code = "PPT"'",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the SQL query where the user uses an incorrect syntax for specifying multiple values in the WHERE clause condition."
+    }
+}

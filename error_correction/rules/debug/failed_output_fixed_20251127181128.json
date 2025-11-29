@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(DISTINCT (.*?)\\) FROM ([a-z]+) JOIN country ON ([a-z]+).CountryCode = co.Code (LEFT|RIGHT) JOIN countrylanguage ON co.Code = cl.CountryCode AND cl.Language = '(.*?)' WHERE cl.Language IS NULL",
+    "correction": "Replace the COUNT and DISTINCT with an appropriate aggregate function that matches the desired operation, ensure the query is focused on the correct table (in this case, country), and join the countrylanguage table correctly to filter out the required conditions.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use COUNT and DISTINCT with a join, focusing on the wrong table or filtering conditions."
+    }
+}

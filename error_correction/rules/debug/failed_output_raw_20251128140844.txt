@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM ).+?(?= WHERE) \\w+ \\w* (?!= car\_names) \\b",
+    "correction": "Replace the incorrectly joined table with the intended table name.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the FROM clause joins a table other than the intended one."
+    }
+}
+
+{
+    "pattern": "FILTER_ERROR: (?<=WHERE ).+?(?= WHERE co)",
+    "correction": "Replace the incorrect filtering condition with the correct country name.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the WHERE clause filters based on an incorrect column or value."
+    }
+}

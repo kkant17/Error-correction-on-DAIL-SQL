@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[a-zA-Z]+) WHERE (?P<id_column>[a-zA-Z_]+)_ID NOT IN \(\s*(SELECT\s+(?P<join_column>[a-zA-Z_]+)_ID FROM\s+[a-zA-Z]+\s*)",
+    "correction": "Ensure that the provided tables are properly linked by a common column and there are no null or duplicate values in either table for this column.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that select data from tables without ensuring a proper link between them."
+    }
+}

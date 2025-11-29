@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM ([a-zA-Z0-9_\\s]*) ORDER BY COUNT\\(*\\) ASC$",
+    "correction": "GROUP BY <column_name> before ORDER BY clause to group results by the specified column",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not group by a specific column and apply an aggregate function (COUNT) to the entire table. It suggests adding GROUP BY clause before ORDER BY."
+    }
+}

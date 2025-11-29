@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+, COUNT\(*\) as .+\bFROM\s+(teacher|course\_arrange)\b(?:\s+JOIN\s+.*?)?\bGROUP BY\s+.*",
+    "correction": "SELECT <column> , COUNT(*) FROM <table> GROUP BY <column>",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins and aggregations in a SQL query that are not relevant for the specified column grouping."
+    }
+}

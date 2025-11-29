@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(English|French)' AND countrylanguage\\.(Language|IsOfficial) = '(English|French)'",
+    "correction": "Separate the conditions for English and French languages into separate WHERE clauses or use OR operator instead of AND, and ensure that each condition only checks for one language.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with an inconsistency in the filtering conditions for the language column, where both English and French languages are being checked simultaneously."
+    }
+}

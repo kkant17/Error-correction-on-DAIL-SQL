@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN(?:\s+AS\s+[A-Z0-9]+)?\s+ON\s+(CARS_DATA|car_names|model_list|car_makers|continents|countries)\s*=\s*(CARS_DATA|car_names|model_list|car_makers|continents|countries)",
+    "correction": "Avoid unnecessary joins. Only join directly to the required tables (in this case, CARS_DATA and CAR_NAMES).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins that are not directly related to the required output."
+    }
+}
+
+{
+    "pattern": "(?<=WHERE\s+)\w+\s*=\s*'\w*\w*Volvo\w*'(\s+(AND|OR)\s+MODELS\.Model\s+LIKE\s+'%Volvo%')?",
+    "correction": "Filter by the specific model ('volvo') instead of using a LIKE operator with '%Volvo%'.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies filtering by 'Volvo' multiple times in the WHERE clause."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+airlines\s+WHERE\s+Airline\s*=\s*'(.*)'\s*(?!\s+JOIN\s+.*?\son)\s*(AND|,\s*)(.*)",
+    "correction": "Join the FLIGHTS table with AIRLINES using 'Airline' (uid) and use COUNT(*) to count the number of flights for the specific airline.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly select data from the AIRLINES table without joining it with the FLIGHTS table and using COUNT(*) to count flights."
+    }
+}

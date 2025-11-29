@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM country WHERE Continent = '(.*)'\\) GROUP BY (.*?) ORDER BY SUM\(Percentage\) DESC LIMIT 1",
+    "correction": "Replace the SELECT clause with SELECT T2.Language, replace the FROM clause with FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode, remove the GROUP BY clause if no aggregation is needed, replace ORDER BY SUM(Percentage) DESC with ORDER BY COUNT(*), and change the LIMIT 1 to match the desired number of results.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that use incorrect aggregate functions or group by columns without aggregation."
+    }
+}

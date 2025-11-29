@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [a-z]+\\.[a-z]+\\.(?!(section_[a-z]+|course_[a-z]+))[a-z]+,.* FROM Sections JOIN Courses ON Sections\.course\_id = Courses\.course\_id",
+    "correction": "SELECT section_[a-z]+,.* FROM Sections",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries that include columns from tables other than Sections or Courses in a question asking for section details."
+    }
+}

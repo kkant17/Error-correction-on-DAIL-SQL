@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM \([\w\s]+)(?!\sFROM\s[\w\s]+\sWHERE\sNOT\sIN\s.*)$",
+    "correction": "Add a join with the correct table and apply NOT IN operator to filter out teachers not present in the subquery",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that miss a join or incorrectly use a subquery, leading to errors in filtering data."
+    }
+}

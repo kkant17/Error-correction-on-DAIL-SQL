@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM CONTESTANTS AS C LEFT JOIN VOTES AS V ON C\\.contestant\\_number = V\\.contestant\\_number GROUP BY C\\.contestant\\_number ORDER BY COUNT\\(V\\.vote\\_id\\) ASC LIMIT 1",
+    "correction": "Replace the aggregation function with count(*), and ensure it counts unique contestants instead of vote_ids.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly count vote_ids rather than the actual votes for each contestant."
+    }
+}

@@ -223,14 +223,7 @@ class HierarchicalRuleClusterer:
             f"(threshold: {self.combine_threshold:.2%})"
         )
 
-        if combine_rate < self.combine_threshold:
-            logger.warning(
-                f"Combine rate {combine_rate:.2%} below threshold "
-                f"{self.combine_threshold:.2%}, discarding clusters"
-            )
-            return []
-
-        # Validate each cluster
+        # Validate each cluster regardless of combine rate
         valid_clusters = []
         for cluster in clusters:
             if self.validate_cluster(cluster):
@@ -239,6 +232,26 @@ class HierarchicalRuleClusterer:
                 logger.info(f"Discarding invalid cluster {cluster.cluster_id}")
 
         logger.info(f"Kept {len(valid_clusters)}/{len(clusters)} clusters after validation")
+
+        if combine_rate < self.combine_threshold:
+            # Fallback behavior: if the combine rate is below threshold but
+            # we still have validated clusters, keep them instead of discarding
+            # everything. This is important for smaller or noisy datasets where
+            # strict combine thresholds may be too aggressive.
+            if valid_clusters:
+                logger.warning(
+                    f"Combine rate {combine_rate:.2%} below threshold "
+                    f"{self.combine_threshold:.2%}, but {len(valid_clusters)} validated "
+                    f"cluster(s) found — keeping them as a fallback"
+                )
+                return valid_clusters
+            else:
+                logger.warning(
+                    f"Combine rate {combine_rate:.2%} below threshold "
+                    f"{self.combine_threshold:.2%}, discarding clusters"
+                )
+                return []
+
         return valid_clusters
 
     def combine_rules_in_cluster(

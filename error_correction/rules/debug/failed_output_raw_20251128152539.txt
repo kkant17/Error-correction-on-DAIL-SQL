@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT AVG\(.*\) FROM (.*?) WHERE .*\< ( SELECT avg\(.*\) .*)$",
+    "correction": "SELECT DISTINCT T1.\<column_name_1\> , T1.\<column_name_2\> FROM \<table_name_1\> AS T1 JOIN \<table_name_2\> AS T2 WHERE cost\_of\_treatment < ( SELECT avg(cost\_of\_treatment) FROM \<table_name_2\> )",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of not correctly applying the aggregate function (AVG) and the filter condition within the context of a JOIN operation."
+    }
+}

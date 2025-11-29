@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN(?:\s+FROM\s+)?visitor\s+JOIN\s+(?!museum)\w+\s+ON\s+visitor\.\w+\s+=\s+(\w+\.\w+)",
+    "correction": "Join only relevant tables and ensure correct column references",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects unnecessary joins with the 'museum' table."
+    }
+}
+
+{
+    "pattern": "SUM\(\w+\.\w+\)\s+WITHIN\s+GROUP\(.*\)",
+    "correction": "Apply aggregate function directly on the column within the group by clause",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects incorrect usage of SUM() within GROUP BY."
+    }
+}

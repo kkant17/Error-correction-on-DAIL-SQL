@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM ([a-z]+) AS [A-Z]+\\s+JOIN\\s+(.*?)\\s+ON\\s+([A-Z]+).(.*?) = ([A-Z]+).(.*?)\\s+WHERE\\s+YEAR\\(\\[(.*?)\\]\\)",
+    "correction": "Replace the usage of YEAR() function with a direct comparison using '='. Also, ensure that table aliases are consistent throughout the query.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of the YEAR() function in WHERE clause and inconsistent table aliases."
+    }
+}

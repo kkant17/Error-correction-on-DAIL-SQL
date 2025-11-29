@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN.*COUNT\\(.*ID\\).*FROM Documents JOIN Paragraphs ON Documents\\.Document\\_ID = Paragraphs\\.Document\\_ID",
+    "correction": "Replace the query with a direct count on the Paragraphs table, without any join.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that unnecessarily join tables and introduce errors in aggregation functions."
+    }
+}

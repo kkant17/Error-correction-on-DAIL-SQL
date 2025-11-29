@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM ([A-Za-z]+) JOIN ([A-Za-z]+) ON ([A-Za-z]+)\.([A-Za-z]+)_ID = ([A-Za-z]+)\.([A-Za-z]+)_ID",
+    "correction": "Use table aliases for clarity when dealing with multiple tables in a single query. Replace the table names without aliases with aliased versions.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule enforces the use of table aliases for better readability and maintainability in SQL queries."
+    }
+}

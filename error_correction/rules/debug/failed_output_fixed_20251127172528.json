@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+count\\(\\*\\) as [a-z]+_employees FROM employee GROUP BY [a-z]+",
+    "correction": "Replace 'count(*) as [column_name]_employees' with 'count([column_name])' and ensure the group by clause matches the column used for counting.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the count(*) function is incorrectly associated with a column name and the group by clause does not match."
+    }
+}

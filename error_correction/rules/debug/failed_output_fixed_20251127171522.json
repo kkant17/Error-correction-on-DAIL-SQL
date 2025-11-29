@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT MAX\\(\\w+\\)\\sFROM\\s.*$",
+    "correction": "Replace with: SELECT T1.\\<column_name\\> FROM CARS\\_DATA AS T1 ORDER BY T1.\\<sorting_column\\> DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of using MAX aggregate function to find the maximum value of a column, instead of selecting a specific column and sorting it in descending order to find the topmost row"
+    }
+}

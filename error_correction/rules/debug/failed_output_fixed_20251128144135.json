@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)_date, COUNT\\(*\\) as total_\\w+ FROM ([A-Za-z]+)s GROUP BY ([A-Za-z]+)_date",
+    "correction": "Replace the COUNT(\\*) with SUM() and change the column selection to sum the intended column instead of counting the records.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule detects when the SQL query counts the number of records instead of performing a sum operation, as intended."
+    }
+}

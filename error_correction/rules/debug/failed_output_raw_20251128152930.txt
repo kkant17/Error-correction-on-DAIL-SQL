@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT [^,]*, [^,]* FROM",
+    "correction": "Add a comma after the last column before the table name",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that are missing a comma in the SELECT statement when listing columns."
+    }
+}

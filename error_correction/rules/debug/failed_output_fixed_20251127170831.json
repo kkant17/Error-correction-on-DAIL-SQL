@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z]+,\\s+[A-Za-z]+\\s+FROM\\s+Student\\s+WHERE\\s+StuID\\s+IN\\s+\\(.*\\s+GROUP BY\\s+StuID\\s+HAVING\\s+COUNT\\(*\\)\\s+$",
+    "correction": "Join the 'Student' and 'Has_Pet' tables on the 'stuid' column, perform the aggregation (GROUP BY and COUNT(*)) directly on the joined table, and select the required columns from the joined table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join tables, specifically in cases where the 'Student' and 'Has_Pet' tables are not joined correctly."
+    }
+}

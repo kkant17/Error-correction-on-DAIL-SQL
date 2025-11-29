@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\\sFROM\\s(?:\\(SELECT\\s.*?\\sFROM\\sconcert\\sJOIN\\s.*?\\son\\s.*?\\sGROUP\\sBY\\s.*?\\))\\sAS\\stemp\\sORDER\\sBY\\s.+\\sDESC\\sLIMIT\\s1$",
+    "correction": "The query should directly select the required columns from the intended table, order and limit the results without using a subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries to calculate aggregates or join tables, and suggests transforming the query to directly select columns from the intended table."
+    }
+}

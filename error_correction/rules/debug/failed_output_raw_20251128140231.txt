@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z]+) FROM .+ WHERE PetID IN \((SELECT PetID FROM Pets WHERE PetType = 'cat'\)|(SELECT PetID FROM Pets WHERE PetType = 'dog')\) INTERSECT SELECT StuID FROM Has_Pet",
+    "correction": "Join the tables `student`, `has_pet`, and `pets` together based on the common `stuid` and `petid`. Use the INTERSECT operator after joining the three tables to find common records between students with cats and dogs as pets.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use subqueries in the WHERE clause instead of joining tables properly."
+    }
+}

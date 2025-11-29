@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT COUNT\(*\) FROM .+ WHERE .+\.(CountryId|Country) = .+\.(CountryId|Country)\s*$",
+    "correction": "Replace with: SELECT T1.countryId , T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country GROUP BY T1.countryId HAVING count(*) > 3",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the usage of COUNT() without a GROUP BY clause and provides an example of how to properly use it."
+    }
+}

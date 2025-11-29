@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[a-zA-Z0-9]+\.\w+\s+FROM\s+[a-zA-Z0-9]+\s+JOIN\s+[a-zA-Z0-9]+\s+ON\s+[a-zA-Z0-9]+\.[\w]+=\s+[a-zA-Z0-9]+\.\w+\s+WHERE",
+    "correction": "Remove the JOIN and WHERE clauses, as they are not necessary for the given question.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables."
+    }
+}

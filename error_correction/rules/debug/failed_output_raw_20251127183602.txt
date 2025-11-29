@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Z_]+\\.\w+\s+FROM\s+[A-Z_]+\s+JOIN\s+[A-Z_]+\s+ON\s+([A-Z_]+)\\.[\w]+=\s+[A-Z_]+\.[\w]+",
+    "correction": "Add an alias for the joined table in the FROM clause and use it in the SELECT statement.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join tables without providing aliases, causing incorrect referencing of columns."
+    }
+}

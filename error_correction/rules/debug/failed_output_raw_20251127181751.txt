@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+,\s+COUNT\(\([A-Za-z]+\)\)\s+AS\s+[A-Za-z]+\s+FROM\s+[A-Za-z]+\s+GROUP BY\s+[A-Za-z]+\s+ORDER BY\s+[A-Za-z]+\s+DESC",
+    "correction": "The query should be modified to directly select the required column and order by the count of a specific column in descending order. Also, ensure that the 'FROM' clause is included.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that count columns instead of ordering by them as required."
+    }
+}

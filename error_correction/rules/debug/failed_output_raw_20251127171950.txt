@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9]+(?:\s+FROM)?\s*AIRPORTS\s+WHERE\s+City\s*=\s*'\w+'",
+    "correction": "Join the FLIGHTS and AIRPORTS tables on the condition that the destination airport of a flight matches the airport code of an airport, and use COUNT(*) to count the number of flights going to the specified city.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select columns from a single table, without joining other tables as intended."
+    }
+}

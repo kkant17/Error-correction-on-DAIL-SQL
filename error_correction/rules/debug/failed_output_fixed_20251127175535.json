@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bMIN\\(COUNT\\(\\*\\)\\).+FROM .+\bgroup\\ by\\ transcript\\_id\b ORDER BY .+\bmin\\_count\b ASC LIMIT 1",
+    "correction": "Join the Transcripts table, group by both tables' transcript_id, order by count(*) and limit the result to the top 1 record with the highest count.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use MIN(COUNT(*)) instead of counting occurrences, and suggests a correction to fix the error."
+    }
+}

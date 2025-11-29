@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-z]+)\(.*\), ([a-z]+)\(.*\) FROM .+",
+    "correction": "Replace with SELECT MAX(\\1), AVG(\\1) FROM \\2",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of using multiple aggregate functions on the same column in a single SQL query."
+    }
+}

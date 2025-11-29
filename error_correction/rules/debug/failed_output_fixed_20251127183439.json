@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE Birth\\_Year = [0-9]{4} AND Birth\\_Year = [0-9]{4}",
+    "correction": "Replace 'AND' with 'OR' in the WHERE clause",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a situation where the SQL query incorrectly uses 'AND' instead of 'OR' when multiple conditions for the same column are specified in the WHERE clause."
+    }
+}

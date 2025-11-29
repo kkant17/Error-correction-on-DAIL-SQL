@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+([A-Za-z]+)\\s+WHERE\\s+Airline\\s*=\\s*'United\\sAirlines'\\s*(AND|,\\s*)(?!\\s+JOIN\\s+)[A-Za-z]+\\s*=\\s*(SELECT|[A-Za-z]+Code)\\s*FROM\\s+airports\\s*WHERE",
+    "correction": "Join the tables correctly and use a subquery for filtering city. Use COUNT(*) to get the count of flights.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect SQL queries that separate join conditions into subqueries, resulting in an incorrect structure."
+    }
+}

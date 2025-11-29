@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: SELECT .* FROM ([a-z]+) JOIN ([a-z]+) ON ([a-z]+).([a-z]+) = ([a-z]+)\.(CountryCode|Language) WHERE ([a-z]+)\.([a-z]+) = '(.*?)' OR ([a-z]+)\.([a-z]+) = '(.*?)'",
+    "correction": "SELECT t1.name from [country] as t1 join [countrylanguage] as t2 on t1.[Code] = t2.CountryCode WHERE t2.[Language] = \"(.*?)\" and isofficial = \"t\" union select t1.name from [country] as t1 join [countrylanguage] as t2 on t1.[Code] = t2.CountryCode WHERE t2.[Language] = \"(.*?)\" and isofficial = \"t\"",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that use OR instead of UNION when combining results from multiple SELECT statements, and also ensures the 'isofficial = \"t\"' condition is included for both English and Dutch speaking countries."
+    }
+}

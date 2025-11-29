@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[A-Za-z]+(?:\\s+\\*|\\s+[A-Za-z]+)+(?:\\s+FROM\\s+poker\\_player\\s+ORDER\\s+BY\\s+Final\\_Table\\_Made)?$",
+    "correction": "The query should join the 'people' table with the 'poker_player' table on 'People_ID'. Also, the ordering should be done on the joined result set.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that do not join the necessary tables for column selection."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bYear\b.*FROM\s+matches\s+GROUP BY\s+Year",
+    "correction": "Replace 'Year' with an alias for the YEAR() function in the SELECT clause and GROUP BY statement.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use 'Year' as a column name instead of an alias for the YEAR() function."
+    }
+}

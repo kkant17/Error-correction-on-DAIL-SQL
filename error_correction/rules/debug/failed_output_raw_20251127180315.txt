@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9]+(?:\s+FROM\s+(?:poker_player|[A-Za-z0-9]+\s+)?)*$",
+    "correction": "SELECT Name FROM people WHERE People_ID NOT IN (SELECT People_ID FROM poker_player)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly select data from the poker_player table, instead of using a subquery to exclude people with poker player records."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-zA-Z]+)\\(.*\\), ([a-zA-Z]+) FROM .* WHERE Cylinders = [0-9] GROUP BY ([a-zA-Z]+)$",
+    "correction": "Join the required tables and select columns from both, ensure to use correct column names from both tables. Also, remove the aggregate function and group by clause as it is not needed for this query.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies a common error where the SQL query does not join required tables, which leads to missing data."
+    }
+}

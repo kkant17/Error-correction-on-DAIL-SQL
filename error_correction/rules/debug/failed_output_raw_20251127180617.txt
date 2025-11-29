@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\s+.[^FROM]+FROM\s+[a-zA-Z]+\s+JOIN\s+[a-zA-Z]+\s+(?:ON\s+[^\s]+)?(?:WHERE\s+Continent\s*=\s*['\"]Asia['\"])?(?:GROUP\s+BY\s+.+)?(?:ORDER\s+BY\s+.+)?(?:LIMIT\s+1)?$",
+    "correction": "Replace the query with a new one that calculates the sum of Population and the maximum GNP for countries within Asia.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not correctly calculate the sum of Population or find the maximum GNP for a specific continent."
+    }
+}

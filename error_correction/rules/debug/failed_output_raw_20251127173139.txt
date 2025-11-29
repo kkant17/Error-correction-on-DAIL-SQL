@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Ref_Template_Types JOIN \(\s*SELECT Template_Type_Code, COUNT\(*\) as total FROM Templates GROUP BY Template_Type_Code\) AS temp_count ON Ref_Template_Types.Template_Type_Code = temp_count.Template_Type_Code WHERE temp_count.total < \d+",
+    "correction": "Use the HAVING clause to filter grouped results instead of joining with a subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join with a subquery, when the same result can be achieved using the GROUP BY and HAVING clauses."
+    }
+}

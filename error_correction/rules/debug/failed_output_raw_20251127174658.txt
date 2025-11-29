@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\s.*FROM\smatches\s.*GROUP\sBY\s.*ON\s.*\bID=\smatch\_points\.\bID",
+    "correction": "Join the players and matches tables on player_id, select the required columns from players, and order by winner rank points in descending order.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects queries that incorrectly join tables with mismatched column names or missing join conditions."
+    }
+}

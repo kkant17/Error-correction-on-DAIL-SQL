@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .* FROM .* WHERE Continent = '[A-Za-z]+' AND Population = \d+",
+    "correction": "Replace the single quotes around the continent name and population value with double quotes, ensuring that they are treated as strings.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the continent name or population value is enclosed in single quotes instead of double quotes."
+    }
+}

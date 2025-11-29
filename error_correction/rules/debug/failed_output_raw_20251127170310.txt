@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+ FROM ([a-z]+) JOIN ([a-z]+) ON ([a-z]+).([A-Z]+) = ([a-z]+).([A-Z]+) WHERE YEAR\(([a-z]+)\.\w+\) = [0-9]+",
+    "correction": "SELECT T2.[column_to_select] FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id = T2.singer_id JOIN concert AS T3 ON T1.concert_id = T3.concert_id WHERE T3.[table_alias].year = [year]",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the year is referenced directly from the concert table instead of using the alias created during the join."
+    }
+}

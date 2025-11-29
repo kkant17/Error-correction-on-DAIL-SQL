@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+AS\\s+t1\\s+ON\\s+\w+\\.ID\\s+=\\s+t1\\.visitor_ID\\s+AND\\s+(\\w+\\.)?Museum_ID\\s+IN\\s+(SELECT\\s+Museum_ID\\s+FROM\\s+museum\\s+WHERE\\s+Open_Year\\s+[><]=\\d{4})\\s+JOIN\\s+visit\\s+AS\\s+t2\\s+ON\\s+\w+\\.ID\\s+=\\s+t2\\.visitor_ID\\s+AND\\s+(\\w+\\.)?Museum_ID\\s+NOT\\s+IN\\s+(SELECT\\s+Museum_ID\\s+FROM\\s+museum\\s+WHERE\\s+Open_Year\\s+[><]=\\d{4})",
+    "correction": "Use the INTERSECT operator to find visitors who have visited museums opened before 2009 or after 2011 by separating the conditions into two separate queries and intersecting the results.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly combine subqueries to find visitors who have visited museums opened in mutually exclusive years, and suggests using the INTERSECT operator instead."
+    }
+}

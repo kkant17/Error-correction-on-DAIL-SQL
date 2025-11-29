@@ -1,0 +1,9 @@
+{
+    "pattern": "MIN\\(.*FROM museum WHERE Open\\_Year > '2010'\\)",
+    "correction": "SELECT name FROM museum WHERE num_of_staff > (SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the subquery calculates a constant value instead of performing a comparison directly between the number of staff and the minimum number of staff from eligible museums."
+    }
+}

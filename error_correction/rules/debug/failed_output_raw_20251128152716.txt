@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT(\*) FROM ([A-Za-z]+) WHERE (\w+)_id IN \(SELECT (\w+)_id FROM\s*(.*?)\)",
+    "correction": "Replace with: SELECT count(DISTINCT \2) FROM \3",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that counts the total number of rows from a table, while it should count distinct IDs from a subquery."
+    }
+}

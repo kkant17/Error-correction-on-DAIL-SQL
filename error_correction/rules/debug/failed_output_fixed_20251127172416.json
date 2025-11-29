@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\\s+airlines\\s+WHERE\\s+Airline\\s*=\\s*(.*)$",
+    "correction": "Join the FLIGHTS and AIRLINES tables on the uid column and filter the results based on the airline name to retrieve the flight numbers for all flights operated by the specified airline.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to find the unique ID of an airline and then filter the flights table, instead of joining the two tables directly."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "GROUP BY\s+[a-zA-Z_]+(\s+AS)?\s+[a-zA-Z_]+\s+HAVING\s+count\(.*\)",
+    "correction": "Replace 'count(*)' with 'COUNT(*)' in the HAVING clause",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a common mistake where the SQL aggregate function is misspelled or incorrectly capitalized."
+    }
+}

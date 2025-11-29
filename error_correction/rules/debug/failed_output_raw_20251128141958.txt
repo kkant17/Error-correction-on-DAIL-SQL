@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [0-9]+ FROM ([A-Za-z0-9\s]+\.)?([A-Za-z0-9\s]+)\s+WHERE\s+DestinationAirport\s*=\s*'[A-Za-z3]*' AND Airline\s*=\s*(flights|[A-Za-z0-9\s]+\.Airline)$",
+    "correction": "Join the AIRLINES table and use SourceAirport instead of DestAirport, also select Airline column instead of 1.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly omit the AIRLINES table join and use DestAirport instead of SourceAirport."
+    }
+}

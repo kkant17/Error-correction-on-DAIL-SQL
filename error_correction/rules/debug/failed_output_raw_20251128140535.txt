@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+Has\_Pet\b$",
+    "correction": "Join the tables and use an aggregate function like AVG on the age column in the student table, while excluding students with a matching stuid in the has_pet table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use subqueries without performing necessary operations like joining tables, calculating averages, and filtering data."
+    }
+}

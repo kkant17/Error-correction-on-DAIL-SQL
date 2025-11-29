@@ -1,0 +1,29 @@
+{
+    "pattern": "^(SELECT .+ FROM teacher AS T[0-9]+ JOIN course\_arrange AS [A-Z]+ ON T[0-9]+\.Teacher\_ID = [A-Z]+\.Teacher\_ID GROUP BY T[0-9]+\.Teacher\_ID)",
+    "correction": "Replace the table alias for teacher from T[0-9]+ to T2 and update the join condition to use T2.Teacher_ID instead of T[0-9]+\.Teacher_ID",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "Ensures correct table alias usage for the teacher table"
+    }
+}
+
+{
+    "pattern": "^(SELECT .+ FROM course\_arrange AS T[0-9]+ JOIN teacher AS [A-Z]+ ON T[0-9]+\.Teacher\_ID = CA\.Teacher\_ID)",
+    "correction": "Replace the table alias for course_arrange from T[0-9]+ to T1 and update the join condition to use T1.Teacher_ID instead of T[0-9]+\.Teacher_ID",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "Ensures correct table alias usage for the course_arrange table"
+    }
+}
+
+{
+    "pattern": "^(SELECT .+ GROUP BY T[0-9]+\.Teacher\_ID)",
+    "correction": "Replace the group by clause with GROUP BY T2.Name",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "Corrects the group by clause to count courses per teacher"
+    }
+}

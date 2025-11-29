@@ -1,0 +1,9 @@
+{
+    "pattern": "Money\s+Rank",
+    "correction": "Replace with 'Money_Rank' and remove any spaces",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects typos in column names"
+    }
+}

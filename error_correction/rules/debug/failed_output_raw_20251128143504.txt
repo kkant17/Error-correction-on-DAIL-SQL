@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (.*?) AS Teacher_Name, (.*?) FROM (teacher|course) AS T[0-9]+ JOIN (.*?)(?! AS).+ ON (.*?)\.(.*?) = (.*?)\.(.*?)$",
+    "correction": "SELECT (.*?), (.*?) FROM (.*?) AS T1 JOIN (.*?) AS T2 ON T1.(.*?) = T2.(*) JOIN teacher AS T3",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Ensures that the 'teacher' table is always joined and that both teacher names and course names are selected"
+    }
+}

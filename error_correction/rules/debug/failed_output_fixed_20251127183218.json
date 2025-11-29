@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z0-9_]+(?:\\s+FROM\\s+\\()?Treatments)",
+    "correction": "Replace with: SELECT count(*) FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly selects data from the Treatments table, instead of counting professionals who have not provided any treatment."
+    }
+}

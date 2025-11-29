@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(DISTINCT ([a-z]+)\.\w+\) AS \w+ FROM .+ JOIN .+ ON \.\w+\.(\w+) = .+\.\w+\.(\w+) GROUP BY \.\w+\.(\w+), \.\w+ HAVING COUNT\(DISTINCT ([a-z]+)\.\w+\.\w+\) > 0",
+    "correction": "SELECT count\(DISTINCT \1\) FROM \\2",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily include column names in the COUNT DISTINCT function and groups by unnecessary columns. It suggests correcting the query to count only the distinct values from the desired table."
+    }
+}

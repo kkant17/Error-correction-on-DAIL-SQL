@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM ([a-zA-Z0-9]+) WHERE ([a-zA-Z0-9]+)_ID NOT IN \((SELECT [a-zA-Z0-9]+_ID FROM performance)\)$",
+    "correction": "The provided SQL query is correct and does not contain any errors.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies the SQL query that correctly selects the names of orchestras without performances associated with them in the performance table."
+    }
+}

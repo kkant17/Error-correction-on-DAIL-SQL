@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT (.*) FROM teacher WHERE Teacher_ID IN \(\s*(SELECT Teacher_ID FROM course\_arrange GROUP BY Teacher\_ID HAVING COUNT\(Teacher\_ID\)\s+.*\)",
+    "correction": "Replace with: SELECT (*) FROM teacher GROUP BY Hometown HAVING COUNT(*) >= 2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use subqueries to find the number of distinct hometowns with at least two teachers. Instead, it suggests using a direct group by and having clause."
+    }
+}

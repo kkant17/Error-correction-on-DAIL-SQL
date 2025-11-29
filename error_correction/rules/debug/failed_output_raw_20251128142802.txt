@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ LEFT JOIN .+ ON .+\.+\.=.\+\.+\.(.+) GROUP BY .+",
+    "correction": "Remove the join operation and only select from the main table, grouping by the specified column.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include a LEFT JOIN but the corresponding gold query does not. The correction is to remove the join operation."
+    }
+}

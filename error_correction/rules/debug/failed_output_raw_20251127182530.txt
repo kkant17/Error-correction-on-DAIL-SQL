@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM (\w+\s+\w+)? WHERE \w+ = '(\w+)'",
+    "correction": "Replace with: SELECT count(*) FROM <table> AS T1 JOIN <join_table> AS T2 ON T1.\<primary_key> = T2.id WHERE T1.\<column_name> = '<student_name>'",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery to find the ID of a student and then counts likes, by instead joining the tables on student_id and counting all rows where the name is the specified student name."
+    }
+}

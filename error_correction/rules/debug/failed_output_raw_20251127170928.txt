@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM .+ JOIN .+ ON .+\.Id = .+(\\s+WHERE\\s+Horsepower=\\( SELECT MIN\\(Horsepower\\) FROM .+)\\)",
+    "correction": "Replace the WHERE clause with ORDER BY and LIMIT, as shown in the corrected query.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery within the WHERE clause to filter records based on an aggregated value. Instead, it should be replaced with an ORDER BY and LIMIT clause."
+    }
+}

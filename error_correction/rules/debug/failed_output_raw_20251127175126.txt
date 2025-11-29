@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\sFROM\sStudent_Enrolment\sAS\sS1\sJOIN\s(?:(?<!\()SELECT\s).+\sGROUP\sBY\sstudent_enrolment_id\sHAVING\scount\(\*\)\s>=\d+",
+    "correction": "Count the number of enrollments per student instead of counting the number of rows for each `student_enrolment_id`. Group by `student_id` and filter for exactly 2 enrollments.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly count the number of rows for each student_enrolment_id instead of counting the number of enrollments per student."
+    }
+}

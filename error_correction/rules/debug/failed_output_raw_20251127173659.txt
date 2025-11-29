@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Name\s+FROM\s+teacher\s+WHERE\s+Hometown\s+\!\= '\w*\s*Little\s*Lever\s*Urban\s*District'\s+",
+    "correction": "Replace the uppercase 'N' in the column name 'hometown' with a lowercase 'n'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors related to incorrect case sensitivity in column names."
+    }
+}

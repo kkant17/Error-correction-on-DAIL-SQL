@@ -1,0 +1,9 @@
+{
+    "pattern": "WHERE [A-Z]+\\(.*\\) < [0-9]+",
+    "correction": "Apply HAVING clause after GROUP BY operation and move the filter condition to the HAVING clause.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where a WHERE clause filters on an aggregate function result before the GROUP BY operation."
+    }
+}

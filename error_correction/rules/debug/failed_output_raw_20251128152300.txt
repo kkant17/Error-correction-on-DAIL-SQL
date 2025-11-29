@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Professionals AS p JOIN \( SELECT professional\_id FROM Treatments GROUP BY professional\_id HAVING COUNT\(*\) > \d+ ) AS t ON p.professional\_id = t.professional\_id WHERE p.state = 'Indiana'",
+    "correction": "SELECT professional_id , last_name , cell_number FROM Professionals WHERE state = 'Indiana' UNION SELECT T1.professional_id , T1.last_name , T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional\_id HAVING count\(*\) > 2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where a subquery is used incorrectly in the JOIN clause, instead of joining tables directly."
+    }
+}

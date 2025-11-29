@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Properties WHERE property_type_code IN '(House|Apartment)' AND room_count > 1 AND property_id IN \(\(SELECT property_id FROM Other_Property_Features WHERE feature_id IN \(SELECT feature_id FROM Other_Available_Features WHERE feature_type_name IN ('Apt Feature 1', 'Apt Feature 2', 'Apt Feature 3', 'Hse Feature 1', 'Hse Feature 2', 'Hse Feature 3')\)\)",
+    "correction": "SELECT property_name FROM Properties WHERE property_type_code = 'House' UNION SELECT property_name FROM Properties WHERE property_type_code = 'Apartment' AND room_count > 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use subqueries to find features of properties when the same information can be obtained by using UNION instead."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^(SELECT .+ FROM Has_Pet JOIN Pets ON Has_Pet\.PetID = Pets\.PetID WHERE PetType = 'dog' AND PetID = \\( SELECT PetID FROM Has_Pet JOIN Pets ON Has_Pet\.PetID = Pets\.PetID WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1 \\) -- Once you have the StuID, find the weight of the pet SELECT weight FROM Pets WHERE PetID = \\( SELECT StuID FROM ( -- Find the StuID of the student who owns the youngest dog SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet\.PetID = Pets\.PetID WHERE PetType = 'dog' AND PetID = \\( SELECT PetID FROM Has_Pet JOIN Pets ON Has_Pet\.PetID = Pets\.PetID WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1 \\) ) as temp )$",
+    "correction": "Simplify the query by directly selecting the weight of the youngest dog from the pets table sorted by pet_age and limited to one record.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily use multiple subqueries and joins, and suggests simplifying the query by directly accessing the required data."
+    }
+}

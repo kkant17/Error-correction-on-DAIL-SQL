@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM players AS T[0-9]+ JOIN matches AS M[0-9]+ ON .*\nWHERE M[0-9]+\.tourney\_name = '([A-Za-z ]+)' INTERSECT SELECT .* FROM players AS T[0-9]+ JOIN matches AS M[0-9]+ ON .*\nWHERE M[0-9]+\.tourney\_name = '([A-z ]+)'",
+    "correction": "SELECT T1.\* , T1.first_name , T1.country_code FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'WTA Championships' INTERSECT SELECT T1.\* , T1.first_name , T1.country_code FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.tourney_name = 'Australian Open'",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that find players who won each tournament separately, leading to an inaccurate result. It ensures that the same player appears in both results of the INTERSECT operation."
+    }
+}

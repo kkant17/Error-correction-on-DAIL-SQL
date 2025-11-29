@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+).([A-Za-z0-9]+) = ([A-Za-z0-9]+).([A-Za-z0-9]+) GROUP BY ([A-Za-z0-9]+).([A-Za-z0-9]+) HAVING COUNT\\(([A-Za-z0-9]+)\\.([A-Za-z0-9]+)\\) BETWEEN 1 AND [0-9]",
+    "correction": "SELECT [column] FROM ([table_name]) GROUP BY [column] HAVING count(*) BETWEEN 1 AND [number]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join tables and apply conditions on the joined table in the HAVING clause. It suggests a correction by grouping by the desired column and counting all records without any specific condition on the joined table."
+    }
+}

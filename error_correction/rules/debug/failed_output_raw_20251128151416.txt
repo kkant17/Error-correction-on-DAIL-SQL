@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \w+ FROM conductor JOIN \\( SELECT Conductor\_ID, MIN\\(\\w+\\) as First\_Year\_Of\_Work, COUNT\\(*\\) as Years\_Worked FROM orchestra GROUP BY Conductor\_ID \\) AS years\_worked ON conductor.Conductor\_ID = years\_worked.Conductor\_ID ORDER BY years\_worked.Years\_Worked DESC LIMIT 1",
+    "correction": "SELECT Name FROM conductor ORDER BY Year\_of\_Work DESC LIMIT 1",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "The query orders by the number of years worked instead of the year of work, which is not relevant to the question."
+    }
+}

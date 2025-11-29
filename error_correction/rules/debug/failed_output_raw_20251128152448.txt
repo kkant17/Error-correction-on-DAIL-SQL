@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T1\.\w+\s+FROM\s+Owners\s+AS\s+T1\s+JOIN\s+(?<!\()\s*(?:(?!\s+AS\s+).)*\s+AS\s+T2\s+ON\s+T1\.\w+\s+=\s+T2\.\w+\s+JOIN\s+(\w+\s+AS)?\s*(\(|\()(?:(?!Treatments|Dogs).)*\s+AS\s+T[34]\s+ON\s+T[23]\.\w+\s+=\s+T[45]\.\w+(?:\s+AND)?\s*(\w+\s+AS)?\s*(\(|\()(?:(?!Charges).)*\s+AS\s+T6\s+ON\s+T[23]\.\w+\s+=\s+T6\.\w+(?:\s+AND)?\s*(\w+\s+AS)?\s*(\)|\))(?:\s+GROUP\s+BY\s+T2\.owner\_id)?)",
+    "correction": "Join the Dogs table directly with Owners, and join Treatments using dog_id as the common column. Group by owner_id for accurate results.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that miss the direct join with the Dogs table, which is essential for matching owners with their dogs."
+    }
+}

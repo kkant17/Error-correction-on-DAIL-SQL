@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT\s+DISTINCT\s+Country\s+FROM\s+(?<!\()\s*(SELECT\s+DISTINCT\s+Country\s+FROM\s*).+\s*LEFT\s+JOIN\s+singer\s+ON\s+(\w+\.\s*)?(Country)\s*GROUP\s+BY\s+(\w+\.\s*)?Country",
+    "correction": "SELECT country, count(*) FROM singer GROUP BY country",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid unnecessary subqueries and joins when grouping by a column directly available in the main table."
+    }
+}

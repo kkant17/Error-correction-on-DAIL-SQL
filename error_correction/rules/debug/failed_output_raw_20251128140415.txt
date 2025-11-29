@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+PetType,\s+AVG\(\w+\)\s+as\s+avg_\w+,\s+MAX\(\w+\)\s+as\s+max_\w+ FROM\s+Student\s+JOIN\s+Has_Pet\s+ON\s+Student\.\w+\s+=\s+Has_Pet\.\w+\s+JOIN\s+Pets\s+ON\s+Has_Pet\.\w+\s+=\s+Pets\.\w+ GROUP BY\s+PetType",
+    "correction": "SELECT avg(\\w+) , max(\\w+) , \\w+ FROM pets GROUP BY \\w+",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly reference tables, using the wrong table names or inconsistent naming conventions."
+    }
+}

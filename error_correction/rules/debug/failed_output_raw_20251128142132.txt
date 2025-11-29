@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(*\) FROM .+ WHERE DestAirport IN .+\b",
+    "correction": "Join with the Airports table and filter based on city name from that table as well.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that only check a specific column without considering associated data in other tables."
+    }
+}

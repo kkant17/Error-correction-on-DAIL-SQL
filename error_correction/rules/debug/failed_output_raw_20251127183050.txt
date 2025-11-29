@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[^,]+,\s*[^,]+,\s*[^,]+\s*FROM\s+Dogs",
+    "correction": "Remove the unnecessary column(s) and only select the required columns from the Dogs table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that include extra, unnecessary columns in the SELECT statement."
+    }
+}

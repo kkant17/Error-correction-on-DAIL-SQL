@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s+`[a-zA-Z0-9_]+`\\s+JOIN\\s+`[a-zA-Z0-9_]+`\\s+ON\\s+`[a-zA-Z0-9_]+`.`[a-zA-Z0-9_]+`\\s+=\\s+`[a-zA-Z0-9_]+`.`[a-zA-Z0-9_]+`\\s+JOIN\\s+`[a-zA-Z0-9_]+`\\s+ON\\s+`[a-zA-Z0-9_]+`.`[a-zA-Z0-9_]+`\\s+=\\s+`[a-zA-Z0-9_]+`.`[a-zA-Z0-9_]+`",
+    "correction": "The query should only join the required table(s) and avoid unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses joining multiple tables unnecessarily."
+    }
+}

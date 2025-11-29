@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ COUNT\\(*\\) FROM .+ GROUP BY .+",
+    "correction": "Replace 'COUNT(*)' with 'count(*)'",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the syntax error in using COUNT(*) instead of count(*)"
+    }
+}

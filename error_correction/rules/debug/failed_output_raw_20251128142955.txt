@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9]+)\\.([A-Za-z0-9]+) FROM.*JOIN ([A-Za-z0-9]+) ON\\s*(\\w+)\\.(\\w+)=([A-Za-z0-9]+)\\.\1 WHERE.*",
+    "correction": "Replace the first occurrence of the joined table name in the SELECT statement with the correct alias used in the JOIN clause.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies cases where a table is incorrectly referenced in the SELECT statement after a join, and provides guidance on how to correct it."
+    }
+}

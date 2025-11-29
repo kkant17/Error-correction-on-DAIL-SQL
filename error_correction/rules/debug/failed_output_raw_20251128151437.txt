@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \d+ FROM ([a-zA-Z0-9]+) WHERE \w+\.\w+ = ([a-zA-Z0-9]+)\.\w+ AND \w+\.\w+ > \d+)",
+    "correction": "Correct the join syntax by using a JOIN statement and select data from the desired table. Also, ensure to filter for the correct condition.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect join syntax where a table is referenced directly within another table's FROM clause."
+    }
+}

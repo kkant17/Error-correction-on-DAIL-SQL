@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\\s+.*\bFROM\\s+Templates\\s+GROUP BY\\s+Template_Type_Code",
+    "correction": "Remove GROUP BY clause and select only the minimum Version_Number and Template_Type_Code",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that group results by Template_Type_Code and return the minimum Version_Number for each group, but the user intended to get the overall minimum Version_Number without grouping."
+    }
+}

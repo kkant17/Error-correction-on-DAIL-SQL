@@ -55,6 +55,8 @@ class LLM:
     # Ollama local models
     OLLAMA_CODELLAMA_7B = "codellama:7b"
     OLLAMA_DEEPSEEK_CODER_6_7B = "deepseek-coder:6.7b"
+    PHI3 = "phi3:instruct"
+    MISTRAL_7B = "mistral:7b"
 
     # LLMs that use openai completion api
     TASK_COMPLETIONS = [
@@ -74,7 +76,9 @@ class LLM:
     # LLMs served by Ollama (local HTTP)
     TASK_OLLAMA = [
         OLLAMA_CODELLAMA_7B,
-        OLLAMA_DEEPSEEK_CODER_6_7B
+        OLLAMA_DEEPSEEK_CODER_6_7B,
+        PHI3,
+        MISTRAL_7B
     ]
 
     # LLMs that can run in batch
@@ -91,6 +95,9 @@ class LLM:
         GPT_35_TURBO_16K: 0.003,
         GPT_35_TURBO_0301: 0.0020,
         GPT_4: 0.03
+        ,
+        PHI3: 0.0,
+        MISTRAL_7B: 0.0
     }
 
     # local LLMs

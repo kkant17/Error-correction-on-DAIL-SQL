@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (.*?) JOIN (.*) ON (.*?).ID = (.*)\\.(.*?)",
+    "correction": "SELECT T2.\\1 , count(*) FROM \\4 AS T1 JOIN \\3 AS T2 ON T1.\\5 = T2.\\6 GROUP BY T1.\\5",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the join is performed on the wrong column ID. It assumes that the correct table to join with is known as Highschooler, and the correct column to join on in the Likes table is student_id."
+    }
+}

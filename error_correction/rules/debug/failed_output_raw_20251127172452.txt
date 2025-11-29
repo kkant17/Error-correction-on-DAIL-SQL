@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\(*\) FROM ([a-zA-Z0-9]+) WHERE ([a-zA-Z ]+) IN \('([a-zA-Z]+)', '([a-zA-Z]+)'\)$",
+    "correction": "Join the table containing city information and filter flights based on the joined cities.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that count the number of rows in a table without joining the necessary table to access city information."
+    }
+}

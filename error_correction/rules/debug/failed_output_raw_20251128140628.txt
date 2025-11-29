@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+ON\\s+(?<!countries|continents)\\b[a-zA-Z0-9]+\\s+ON\\s+(\\w+)\\.\\w+\\s*=\\s*(countries|continents)\\.\\w+",
+    "correction": "Exclude unnecessary joins to tables not directly related to the query context.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries that join unrelated tables, such as countries or continents."
+    }
+}
+
+{
+    "pattern": "c\\b[a-zA-Z0-9]+",
+    "correction": "Replace table alias 'c' with a more descriptive name like 'T1'.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use ambiguous or misleading table aliases."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS .+ FROM Students WHERE student_id IN \\(\\s*(SELECT student_id FROM .+\bJOIN\\s.* ORDER BY .+\bLIMIT 1)\\)",
+    "correction": "Select names directly from Students table ordered by date_left and limit to the first record",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use a subquery to find student names, instead of directly selecting from the Students table."
+    }
+}

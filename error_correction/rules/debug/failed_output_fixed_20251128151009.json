@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT MIN\\(.*\\) FROM .*$",
+    "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only return an aggregate function without providing other necessary details about the selected records."
+    }
+}

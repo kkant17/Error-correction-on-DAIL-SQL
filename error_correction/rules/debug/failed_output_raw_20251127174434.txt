@@ -1,0 +1,9 @@
+{
+    "pattern": "^(SELECT .*\bAS\s*.*FROM\s*(.*?)\s*WHERE\s*(.*?)\s*ORDER\sBY\s*minutes\sASC\sLIMIT\s1\s).*?(longest_match_details|shortest_duration)",
+    "correction": "Select winner_name and loser_name directly from the matches table, sort by minutes in descending order and limit to the first record",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily use subqueries and incorrectly focus on finding the shortest match instead of the longest one."
+    }
+}

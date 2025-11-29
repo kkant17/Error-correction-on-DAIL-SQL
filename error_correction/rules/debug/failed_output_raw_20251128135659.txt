@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ AS [A-Za-z]+ FROM [A-Za-z]+ AS [A-Za-z]+\s+JOIN\s+\( SELECT MIN\([A-Za-z]+\) AS [A-Za-z]+\ FROM [A-Za-z]+\)",
+    "correction": "Directly select the required columns from the table and order by the specified column for filtering",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries when joining tables"
+    }
+}

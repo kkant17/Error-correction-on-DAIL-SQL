@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+\s+FROM\s+ship\s+WHERE\s+name\s+=['\"][A-Za-z0-9' ]*['\"]\s+UNION\s+SELECT\s+[A-Za-z0-9_\s]+\s+FROM\s+ship\s+WHERE\s+name\s+=['\"][A-Za-z0-9' ]*['\"]",
+    "correction": "Join both the battle and ship tables on the lost_in_battle foreign key, select the name and date fields from the battle table for ships named 'Lettice' and 'HMS Atalanta', and use INTERSECT instead of UNION.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use UNION to find battles involving multiple ships without properly joining the battle and ship tables."
+    }
+}

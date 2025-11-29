@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT avg\\(\\w+\\.\w+\) FROM \w+ JOIN Friend ON \w+.\w+= f.student\_id GROUP BY \w+.\w+ HAVING COUNT\\(f.student\_id\\) > 0",
+    "correction": "SELECT avg(\\w+) FROM Highschooler WHERE id IN (SELECT T1.student\_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student\_id = T2.id)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the average function is incorrectly applied to a joined table, and instead suggests using a subquery to filter out students with friends before calculating the average."
+    }
+}

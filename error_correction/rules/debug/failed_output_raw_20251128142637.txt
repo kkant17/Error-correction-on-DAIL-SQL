@@ -1,0 +1,29 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM )(Templates .* Documents)(?= ON)",
+    "correction": "Replace with 'Documents AS T1 JOIN Templates AS T2' and ensure the join condition is correct",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between Templates and Documents tables."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: (?<=GROUP BY ).*(Templates.Template_Type_Code)(?= ORDER)",
+    "correction": "Replace with 'GROUP BY T1.template_id' where T1 is the alias for the Documents table",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect grouping columns in the query."
+    }
+}
+
+{
+    "pattern": "ORDERING_ERROR: (?<=ORDER BY COUNT\(Documents.Document_ID\))",
+    "correction": "Replace with 'ORDER BY count(*)' to sort by the correct count of all records for each group",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect ordering in the query."
+    }
+}

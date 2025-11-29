@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s+(?P<table1>\w+)\s+JOIN\s+(?P<subquery>\(.*\))\s+AS\s+(?P<alias>\w+)\s+ON\s+(\w+)\.(\w+)\s*=\s*(?P<subquery_column>\w+)\.(?P<subquery_column>\w+)\s*GROUP BY\s+(?P<group_by>\w+)\s+HAVING\s+COUNT\(DISTINCT\s*(?P<count_distinct>\w+)\)",
+    "correction": "SELECT (?P<table1>\\w+) GROUP BY (?P<group_by>\\w+) HAVING COUNT(\*) >= 2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use an unnecessary subquery and joins, and suggests a more efficient query without the subquery."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s+[A-Za-z0-9_\\s]+\b\\s+AS\\s+[A-Za-z0-9_\\s]+\b\\s+WHERE\\s+NOT\\s+EXISTS\\s+\\( SELECT\\s.*FROM\\s+[A-Za-z0-9_\\s]+\b\\s+AS\\s+[A-Za-z0-9_\\s]+\b\\s+\\)",
+    "correction": "Replace the self-join with a LEFT JOIN and compare with the correct table (Highschooler in this case).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary self-joins instead of proper JOINs with the correct table."
+    }
+}

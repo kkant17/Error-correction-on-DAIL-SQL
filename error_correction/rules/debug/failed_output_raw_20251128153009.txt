@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z0-9]+)\\.([A-Za-z]+) FROM Professionals AS T1 JOIN Treatments AS T2 ON T1\.professional_id = T2\.professional_id",
+    "correction": "Add a join with the required table and associate it using the appropriate column",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies when the SQL query is missing a necessary join to retrieve all required data"
+    }
+}

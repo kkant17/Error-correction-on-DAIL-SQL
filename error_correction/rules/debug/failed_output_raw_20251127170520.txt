@@ -1,0 +1,9 @@
+{
+    "pattern": "Student\\s+FROM\\s+.*JOIN\\s+Has_Pet\\s+ON\\s+Student\\.StuID\\s*=\\s+Has_Pet\\.StuID\\s+JOIN\\s+Pets\\s+ON\\s+Has_Pet\\.PetID\\s*=\\s+Pets\\.PetID\\s+WHERE\\s+PetType\\s+IN\\s+\(('Cat', 'Dog')\)",
+    "correction": "Use the correct table name for Student (pets_1.student), include an alias T3 for the pets table, and use OR to check for both conditions within the same comparison.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries."
+    }
+}

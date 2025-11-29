@@ -1,0 +1,9 @@
+{
+    "pattern": "selects\s+COUNT\\(\*\)",
+    "correction": "replace 'selects' with 'SELECT'",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule corrects a typographical error in the SQL query where 'selects' is replaced with 'SELECT' to correctly execute the COUNT(*) function."
+    }
+}

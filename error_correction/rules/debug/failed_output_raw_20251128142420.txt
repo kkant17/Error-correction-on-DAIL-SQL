@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+shop\.\w+\s*,\s+COUNT\(hiring\.Employee\_ID\)\s+as\s+Number\_of\_Employees\s+FROM\s+shop\s+LEFT\s+JOIN\s+hiring\s+ON\s+shop\.Shop\_ID\s+=\s+hiring\.Shop\_ID\s+GROUP\s+BY\s+shop\.Name",
+    "correction": "SELECT count(*) , t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id = t2.shop_id GROUP BY t2.name",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that miss the aggregation function COUNT(*) for total count of records."
+    }
+}

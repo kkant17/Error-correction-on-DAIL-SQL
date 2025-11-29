@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+ON\\s+(car\_makers\\.Country|car\_names)\\s*=\\s*(countries?|ModelId)",
+    "correction": "Replace unnecessary joins and incorrect join conditions with appropriate ones between car_makers and model_list on Id",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when the SQL query includes unnecessary joins or incorrect join conditions that lead to errors"
+    }
+}

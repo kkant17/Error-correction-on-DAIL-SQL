@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+[^,]+,\s*[^,]+,\s*[^,]+",
+    "correction": "Only select columns relevant to the question",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that include extra, unnecessary columns."
+    }
+}

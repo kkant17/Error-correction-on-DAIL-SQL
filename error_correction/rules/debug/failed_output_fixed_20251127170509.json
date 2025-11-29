@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(DISTINCT ([A-Z]+)\\) FROM ([A-Z]+)$",
+    "correction": "Replace the uppercase table name with the correct lowercase table name.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use an incorrect case for table names, causing them to fail."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\sDISTINCT\\s[a-zA-Z]+(?:\\sFROM\\s)?(?:JOIN\\s(?!cars_data)\\w+\\sON\\s.*?)?(?:WHERE\\s(\\(car_makers\\.Maker|cars_data\\.Weight\\)|\\w+)\\s.*?)$",
+    "correction": "Join only the necessary tables (CAR_NAMES, MODEL_LIST, CAR_MAKERS, CARS_DATA). Use correct table and column references for joining and filtering. Replace 'car_makers.Maker' with 'T3.Id' and use T1.MakeId to match with cars_data.Id.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that join unnecessary tables and incorrectly reference columns, causing errors."
+    }
+}

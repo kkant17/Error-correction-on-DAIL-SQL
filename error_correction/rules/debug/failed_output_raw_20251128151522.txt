@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT\s+.*\s+FROM\s+\(.*\)\s+AS\s+subquery",
+    "correction": "Directly group by the required column and count the number of rows without using a subquery",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily use subqueries, which can often be replaced with simpler, more efficient queries."
+    }
+}

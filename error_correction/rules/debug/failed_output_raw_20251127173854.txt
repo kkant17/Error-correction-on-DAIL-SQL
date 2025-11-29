@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM \w+ WHERE \w+ = '(.*?)'(\\s+JOIN\\s+)?",
+    "correction": "Join the necessary tables and include the WHERE clause condition for the specific course in the final SELECT statement.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select a column from one table without joining necessary tables."
+    }
+}

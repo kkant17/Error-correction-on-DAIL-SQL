@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\w+ FROM \\w+ GROUP BY \\w+ HAVING COUNT\\(*\\) > \\d+$",
+    "correction": "Join with the required table and group by the primary key of that table before filtering out countries with more than 2 entries.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly group and count unique values instead of aggregating the required data."
+    }
+}

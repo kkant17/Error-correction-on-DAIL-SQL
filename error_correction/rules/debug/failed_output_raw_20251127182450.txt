@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM Highschooler AS h JOIN Likes AS [a-z]+ ON h\.ID = [a-z]+\.[a-z]+ JOIN Likes AS [a-z]+ ON h\.ID = [a-z]+\.[a-z]+ GROUP BY h\.ID HAVING COUNT\(DISTINCT ([a-z]+\.[a-z]+)\) >= 2",
+    "correction": "SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id GROUP BY T1.student_id HAVING count(*) >= 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join the same table multiple times with different aliases and counts distinct values from those tables separately, leading to potential duplicates. The correction is to count the total number of likes for each student."
+    }
+}

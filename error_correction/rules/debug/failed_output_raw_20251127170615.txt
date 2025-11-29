@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ AS S LEFT JOIN .+ ON S\.StuID = .+\.StuID (?=WHERE .+ != 'cat') GROUP BY .+ HAVING COUNT(.+) = 0",
+    "correction": "Replace the join type with 'JOIN', move the filtering condition to the WHERE clause, remove group by and having clauses, and remove unnecessary aggregation functions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use LEFT JOIN inappropriately and suggests correcting them by using a regular join, moving filtering conditions to the WHERE clause, and removing unnecessary aggregation functions."
+    }
+}

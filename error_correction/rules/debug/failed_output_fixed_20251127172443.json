@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bfrom\\s+[a-zA-Z_]+ \\w+\\s*WHERE\\s+SourceAirport=\\s*'[a-zA-Z ]+'",
+    "correction": "The query should include a JOIN clause between the 'FLIGHTS' and 'AIRPORTS' tables, with the appropriate column references and conditions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are missing a JOIN clause when referencing data from another table."
+    }
+}

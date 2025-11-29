@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+DISTINCT\\s+(battle\\.\\w+\\s+|battle\\.\\w+,\\s+battle\\.\\w+)\\s+FROM\\s+battle\\s+JOIN\\s+ship\\s+ON\\s+battle\\.id\\s+=\\s+lost\\_in\\_battle\\s+WHERE\\s+ship\\_type\\s+=\\s+'Brig'\\s+GROUP BY\\s+(battle\\.\\w+\\s+|battle\\.\\w+,\\s+battle\\.\\w+)\\s+HAVING\\s+COUNT\\(ship\\_id\\)\\s+>\\s+0",
+    "correction": "Replace the SELECT clause with SELECT DISTINCT T1.id , T1.name, remove GROUP BY clause, and replace the FROM clause with FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the issue of incorrect column selection in the SELECT clause and FROM clause."
+    }
+}

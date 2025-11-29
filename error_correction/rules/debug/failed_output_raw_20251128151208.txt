@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Z]+)\((\w+\.\w+)\) as (\w+)[,\s]*AVG\(([A-Z]+)\)([^\s]*)",
+    "correction": "Replace with: SELECT sum(\\3) , avg(\\4) from \\2 where \\5",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of using an alias for calculating average in a SQL query, instead of using the column name directly."
+    }
+}

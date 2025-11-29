@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (.+) JOIN (.+) ON (.+)\\.ID = (.+)\\.ID",
+    "correction": "It's recommended to use table aliases for clarity when referring to tables within the query. The corrected SQL query should look like: SELECT T1.Name FROM (table1_alias) AS T1 JOIN (table2_alias) AS T2 ON T1.ID = T2.ID",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule suggests the use of table aliases for readability and to avoid potential confusion or errors in complex SQL queries"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \* FROM (Table1 JOIN Table2 ON Table1.\* = Table2.\*).+ GROUP BY Table1.\*.+ HAVING COUNT(\*).+",
+    "correction": "Use INTERSECT or EXCEPT instead of JOIN and avoid using GROUP BY and COUNT(*) for finding common values between two tables.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use JOIN, GROUP BY, and COUNT(*) to find common values between two tables. The correction is to replace the JOIN with INTERSECT or EXCEPT."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[1-9]\.\w+\s*,\s+T2\.\w+\s*,\s+MAX\(\w+\)\s+AS\s+Max_[A-Z_]+(?:\s+FROM\s+country\s+AS\s+T1\s+JOIN\s+countrylanguage\s+AS\s+T2\s+ON\s+T1\.\w+\s+=\s+T2\.\w+\s+GROUP\s+BY\s+T1\.\w+\s+ORDER\s+BY\s+Max_[A-Z_]+(?:\s+DESC)?)$",
+    "correction": "Remove the subquery (T1 and T2) and include only the necessary columns in the SELECT clause.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that introduce unnecessary subqueries, which can lead to incorrect results or slower performance."
+    }
+}

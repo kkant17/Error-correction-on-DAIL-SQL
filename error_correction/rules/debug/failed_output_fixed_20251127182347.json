@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+(?=\\s+FROM\\s+.*\\s+GROUP\\s+BY\\s+.*\\s+HAVING\\s+COUNT\\(*\\)\\s+>",
+    "correction": "Replace the JOIN, GROUP BY, and HAVING statements with INTERSECT keyword",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use JOIN, GROUP BY, and HAVING to find common values between two tables when the INTERSECT operator should be used instead."
+    }
+}

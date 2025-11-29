@@ -1,0 +1,9 @@
+{
+    "pattern": "DOCUMENTS AS D JOIN Templates AS T ON D\.Template\_ID = T\.Template\_ID WHERE D\.Document\_Name",
+    "correction": "Ensure that the 'document_name' column exists in the 'Documents' table or use the correct column name if it differs from the predicted query.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies errors where the specified column in the WHERE clause does not exist in the referenced table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\\s+t[1-9]+\\s+(?!\\w+\\s*=\\s*(SELECT|MIN|MAX)).+\bGROUP\\s+BY\\s+.*\bJOIN\\s+.*\bWHERE\\s+t[1-9]+\\.\\w+\\s*=\\s*(SELECT|MIN|MAX)\\s+FROM\\s+players\\s+WHERE\\s+.*\bAND\\s+t[2-9]+\\.\\w+\\s*=\\s*t[1-9]+\\.\\w+$",
+    "correction": "The query should directly select the required columns from the specified table (in this case, matches) and order by the desired column (winner_age). It should not involve unnecessary joins or subqueries for finding minimum values.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use subqueries to find minimum values, which can be replaced by using aggregate functions directly."
+    }
+}

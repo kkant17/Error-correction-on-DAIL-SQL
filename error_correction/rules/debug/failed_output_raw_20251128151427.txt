@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+) FROM ([\w\s]+\s+JOIN\s+[\w\s]+\s+ON\s+([\w\s]+)\.(\w+)_ID\s+=\s+([\w\s]+)\.(\w+)_ID)\s+GROUP BY (\w+)",
+    "correction": "Replace 'GROUP BY' with 'GROUP BY [JOINed table alias].[grouping column]', and ensure the aggregation function counts all records instead of specific columns",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the grouping is done on incorrect column(s) and the aggregation function counts specific columns instead of all records"
+    }
+}

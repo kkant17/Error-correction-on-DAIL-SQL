@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+T[1-9]\.\w+\s+FROM\s+TV\_Channel\s+AS\s+T[1-9]\s+JOIN\s+TV\_series\s+AS\s+T[2-9]\s+ON\s+T[1-9]\.\w+\s+=\s+T[2-9]\.\w+\s+WHERE\s+T[1-9]\.\w+\s+=\s+'Sky Radio'\b",
+    "correction": "The query should only select data from the TV_Channel table where the series_name matches 'Sky Radio'. Remove the join and the filtering condition.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins that are not relevant to the question and may lead to incorrect results."
+    }
+}

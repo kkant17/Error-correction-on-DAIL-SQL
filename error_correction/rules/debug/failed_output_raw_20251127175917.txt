@@ -1,0 +1,9 @@
+{
+    "pattern": r"(?=SELECT\s+TABLE\.\s+COLUMN)(?=\s+WHERE\s+TABLE\s+=\s+'Yes')(?!FROM\s+TABLE)",
+    "correction": "Replace multiple table references with a single one and correct the column name spelling.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that have incorrect table referencing and misspelled column names."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM (JOIN|LEFT JOIN) .* AS .* ON .*\\.ID = .* JOIN .* AS .* ON .*\\.ID = .* WHERE .* = 'Cat' AND (.*|JOIN).*\\.ID = T1\\.ID",
+    "correction": "SELECT T1.fname , T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join tables in an attempt to find students who have a dog but do not have a cat as a pet. The correction is to properly join the Student, Has_Pet, and Pets tables and use NOT IN subquery to filter out students with cats."
+    }
+}

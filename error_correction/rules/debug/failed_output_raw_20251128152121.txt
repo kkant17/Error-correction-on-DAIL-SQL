@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\*\) FROM Likes WHERE student\_id = '([A-Za-z]+)'",
+    "correction": "Replace the query with SELECT count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id WHERE T2.name = '\\1'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the student\_id column is compared with a string instead of joining with the Highschooler table."
+    }
+}

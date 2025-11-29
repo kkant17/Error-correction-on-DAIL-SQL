@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM \w+)(\s*$)",
+    "correction": "Replace with: SELECT COUNT(*) FROM <table> WHERE <table>\_id NOT IN ( SELECT <table>\_id FROM Treatments )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that is missing the COUNT(*) function and the condition to exclude professionals who are not associated with any treatment."
+    }
+}

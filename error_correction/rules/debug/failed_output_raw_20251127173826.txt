@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT ([A-Za-z]+) FROM teacher WHERE Teacher_ID IN \(\s*(SELECT Teacher_ID FROM course\_arrange GROUP BY Teacher\_ID HAVING COUNT\(Teacher\_ID\)\s+)\)",
+    "correction": "SELECT ([A-Za-z]+) FROM teacher GROUP BY ([A-Za-z]+) HAVING COUNT(\*) >= 2",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the SQL query that incorrectly filters teachers by course count instead of filtering hometowns with at least two teachers."
+    }
+}

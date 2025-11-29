@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM Professionals AS p JOIN \(\s*SELECT professional\_id\s*\w+\s*\*\s*FROM Treatments GROUP BY professional\_id HAVING COUNT\(*\)\s*AS t ON p\.professional\_id = t\.professional\_id WHERE .+",
+    "correction": "First filter by state for professionals and then join the professionals with their respective treatments, grouping them to select only those professionals who have performed more than 2 treatments.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins between Professionals and Treatments tables, where the join condition is not properly defined or filtered."
+    }
+}

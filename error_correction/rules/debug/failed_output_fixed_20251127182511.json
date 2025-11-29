@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(*\\) FROM ([A-Za-z0-9]+) WHERE [A-Za-z0-9]+.\\_[A-Za-z0-9]+\\.id = ([A-Za-z0-9]+)\\.ID)",
+    "correction": "Join the tables correctly using an alias and specify the matching column, avoid using subqueries with incorrect syntax.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use incorrect subquery syntax for joining tables."
+    }
+}

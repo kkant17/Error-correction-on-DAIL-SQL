@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT SUM\\(Population\\) FROM [a-zA-Z0-9]+ c JOIN countryLanguage cl ON c\\.[A-Za-z0-9]+\\_CountryCode = cl\\.[A-Za-z0-9]+\\_CountryCode WHERE cl\\.Language != 'English' AND cl\\.IsOfficial = 'T'",
+    "correction": "SELECT sum(Population) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\")",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly joins cities with country languages and focuses on countries instead."
+    }
+}

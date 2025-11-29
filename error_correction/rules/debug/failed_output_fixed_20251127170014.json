@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+\\s+JOIN\\s.+\\sON\\s.+\\.\\w+\\s=\\s.+\\.\\w+",
+    "correction": "Remove unnecessary join and select only required columns from the specified table",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, which can lead to incorrect results. It suggests removing the unnecessary join and selecting only the required columns from the specified table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(\\*\\) FROM ([a-zA-Z0-9]+) WHERE Population > \\(SELECT AVG\\(Population\\) FROM [a-zA-Z0-9]+\\) GROUP BY District HAVING NumberOfCities > 0 AND CitiesAboveAverage > 0",
+    "correction": "Replace the query with SELECT count(\\*) , District FROM city WHERE Population > (SELECT avg(Population) FROM city) GROUP BY District",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the subquery is incorrectly applied within the WHERE clause, and should be used to calculate the average population."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z0-9]+(?:\\s+FROM)?\\s+airlines\\s+WHERE\\s+Airline\\s*=\\s*['']JetBlue Airways['']\\s*(?!\\s+JOIN\\s+FLIGHTS)",
+    "correction": "Join the 'FLIGHTS' table with 'AIRLINES' on appropriate column, use COUNT(*) to count the number of rows and correct WHERE clause",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are missing a join operation between 'FLIGHTS' and 'AIRLINES' tables when comparing flight data with specific airline."
+    }
+}

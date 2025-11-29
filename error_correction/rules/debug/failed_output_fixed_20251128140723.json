@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT DISTINCT ([a-zA-Z]+) FROM ([a-zA-Z]+)_names JOIN cars_data ON ([a-zA-Z]+)\\._Id = cars_data\\.Id WHERE YEAR\\(cars_data\\.Year\\) > 1980",
+    "correction": "Join the necessary table before referencing the model column and compare Year with a constant value instead of using the YEAR() function.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Ensures that all necessary tables are joined before referencing columns."
+    }
+}

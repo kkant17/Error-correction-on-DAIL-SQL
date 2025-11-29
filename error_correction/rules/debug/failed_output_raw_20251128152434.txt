@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[0-9]+\.\w+\s+FROM\s+Treatments\s+AS\s+T[0-9]+\s+JOIN\s+Owners\s+AS\s+T[0-9]+\s+ON\s+T[0-9]+\.owner\_id\s+=\s+T[0-9]+\.owner\_id\s+GROUP BY\s+T[0-9]+\.owner\_id\s+ORDER BY\s+COUNT\(\s+T[0-9]+\.treatment\_id\)\s+DESC\s+LIMIT\s+1",
+    "correction": "The query should join with the Dogs table (as T2) instead of Treatments, and count dog_id instead of treatment_id.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that join with the wrong table for establishing relationships between tables."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS City, COUNT\\(*\\) as .+ FROM .+ GROUP BY .+ ORDER BY .+ LIMIT 1$",
+    "correction": "Join the 'AIRPORTS' table with the 'FLIGHTS' table on AirportCode = DestAirport, group by City, order the results by the count of flights for each city in descending order, then limit the result set to the top 1.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that does not join the necessary table for providing City names."
+    }
+}

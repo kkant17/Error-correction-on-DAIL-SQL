@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON ([A-Za-z0-9]+)\.([A-Za-z0-9]+) = ([A-Za-z0-9]+)\.(.+) WHERE .+ > .+ AND .+ > 0 ) AS .+ ON ([A-Za-z0-9]+)\.Code = (.+\.CountryCode)",
+    "correction": "Remove the unnecessary join and rewrite the query to group by the desired columns, apply aggregate functions, and filter groups based on conditions.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Avoid joining multiple tables unnecessarily as it complicates the query and may lead to incorrect results."
+    }
+}

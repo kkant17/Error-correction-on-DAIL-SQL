@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT District, AVG\\(Population\\) as avg_[a-z]+ FROM city GROUP BY District .* WHERE city\\.Population > district\\_avg\\.avg_[a-z]+ GROUP BY District$",
+    "correction": "Calculate the average population of all cities first, then count the number of cities in each district that have a population greater than the average.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly calculate an average for each district and then filter cities based on this calculated average."
+    }
+}

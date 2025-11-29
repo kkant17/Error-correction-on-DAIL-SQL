@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(*\\) FROM ([a-zA-Z0-9]+)AS [a-zA-Z0-9]+ WHERE CountryCode = '([a-zA-Z]{3})' AND IsOfficial = 'T'",
+    "correction": "Join the country table with the countrylanguage table on the common field CountryCode and filter by country name instead of CountryCode.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that attempt to count official languages for a specific country without joining the country table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (\\w+ \\w+) AS T[0-9]+ JOIN .+ ON .+\.(\\w+) = T[0-9]+\\.(\\w+) (WHERE|ORDER BY)\\s*(SELECT MAX\\(.*\\))",
+    "correction": "Replace the subquery with a direct filter, sort and limit operation on the main table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use subqueries to find maximum values, which can lead to performance issues. It suggests replacing the subquery with a direct filter, sort and limit operation on the main table."
+    }
+}

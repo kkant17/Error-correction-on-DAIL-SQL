@@ -1,0 +1,9 @@
+{
+    "pattern": "\\bStudents\\W+ON\\s+\\w+\.\w+\\s*=\\s+\\w+\.\w+\\b\\W*(OR\\s+\\w+\.\w+\\s*=\\s+'09700166582')",
+    "correction": "Replace 'Students' with 't1' for the first condition in the WHERE clause, and replace 'Addresses' with 't2' for the second condition.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references after a join operation."
+    }
+}

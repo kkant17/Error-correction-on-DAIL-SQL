@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ JOIN .+ ON .+\\.ID = .+JOIN .+ ON .+.\\.ID = .+ WHERE .+ = 'Cat' AND pet\\_age = [0-9]+",
+    "correction": "Replace the column names with lowercase and consistent naming conventions, ensure that the condition for the pet's age is included in the WHERE clause.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect column names and missing conditions in SQL queries."
+    }
+}

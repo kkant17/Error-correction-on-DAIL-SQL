@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [a-z]+ FROM (?P<main_table>[a-z]+) AS [a-z]+ LEFT JOIN (?P<other_table>[a-z]+) ON (?P<common_column>[a-z]+).(?P<common_id>\\d+) = (?P<other_table>.*)\\.(?P<other_id>\\d+) WHERE (?P<filter_condition>\\w+\\.\\(?P<subquery>[a-z]+\\)\\) IS NULL",
+    "correction": "REWRITE the query as a subquery, selecting from the main table and filtering out employees with non-null values in the subquery.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use LEFT JOIN to combine two tables, then filter out rows with null values from the joined table in the WHERE clause. This can lead to unnecessary data being returned."
+    }
+}

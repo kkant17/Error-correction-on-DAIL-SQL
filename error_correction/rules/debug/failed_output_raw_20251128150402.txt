@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Continent,\s+COUNT\(DISTINCT\s+Language\)\s+as\s+NumberOfLanguages\s+FROM\s+[a-zA-Z0-9_\s]+\s+GROUP\s+BY\s+Continent\s+ORDER\s+BY\s+NumberOfLanguages\s+DESC\s+LIMIT\s+1",
+    "correction": "Join the country table to get the corresponding continents for each language, and count the number of unique languages per continent.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly aggregate data without considering the association between tables."
+    }
+}

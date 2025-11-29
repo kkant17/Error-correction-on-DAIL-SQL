@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+AREA\_CODE\_STATE\\s+ON\\s+VOTES\\.\w+\\s*=\\s+AREA\_CODE\_STATE\\.\w+",
+    "correction": "The query should not include a join with the AREA_CODE_STATE table unless it is necessary for the specific query requirements.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins with the AREA_CODE_STATE table."
+    }
+}

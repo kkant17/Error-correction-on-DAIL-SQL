@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT DISTINCT [A-Za-z\\s]+ FROM [A-Za-z\\s]+ AS [A-Za-z] JOIN [A-Za-z\\s]+ AS [A-Za-z]_ID ON ([A-Za-z])[\\.][A-Za-z]+ = [A-Za-z_ID]\\.id WHERE ([A-Za-z]+)[\\.][A-Za-z]+ = '.*' AND !(\\(SELECT DISTINCT [A-Za-z\\s]+ FROM [A-Za-z\\s]+ AS [A-Za-z] JOIN [A-Za-z\\s]+ AS [A-Za-z]_ID ON ([A-Za-z])[\\.][A-Za-z]+ = [A-Za-z_ID]\\.id\\) EXCEPT SELECT [A-Za-z\\s]+ FROM [A-Za-z\\s]+ AS [A-Za-z]))",
+    "correction": "The query should include the EXCEPT operator to exclude rows that match between the two tables, as shown in the gold SQL query.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries where the EXCEPT operator is missing when comparing two tables."
+    }
+}

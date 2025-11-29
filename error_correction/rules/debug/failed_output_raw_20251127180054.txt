@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+`[A-Z_]+`.`[A-Z_]+`\s+FROM\s+`[A-Z_]+`\s+LEFT\s+JOIN\s+`[A-Z_]+`\s+ON\s+\`[A-Z_]+\`.`[A-Z_]+`\s+=\s+\`[A-Z_]+`.`[A-Z_]+`\s+WHERE\s+NOT\s+LIKE\s+'%Ben\sJones%'\s+AND\s+\`[A-Z_]+`.`id`\s+IS\s+NULL",
+    "correction": "Replace the query with a SET DIFFERENCE operation using EXCEPT or MINUS, and avoid using JOIN when a straightforward set difference is intended.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that perform an incorrect inner join instead of a straightforward set difference operation."
+    }
+}

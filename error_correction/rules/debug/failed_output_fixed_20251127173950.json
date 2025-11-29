@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+(?<!\\w)ON\\s+[a-zA-Z0-9]+\\s+JOIN\\s+.*",
+    "correction": "The query should not join any other tables if the data required is only from the 'visitor' table.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins that can lead to errors or inefficiencies."
+    }
+}

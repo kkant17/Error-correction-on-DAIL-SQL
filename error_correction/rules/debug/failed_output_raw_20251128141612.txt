@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(*\) FROM ([a-zA-Z0-9]+) WHERE DestAirport = 'APG'",
+    "correction": "Change the column name from DestAirport to SourceAirport",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect airport column (DestAirport) is used in a count query"
+    }
+}

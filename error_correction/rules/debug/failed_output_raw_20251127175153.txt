@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Degree_[A-Z]+ AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.[^a-z]+\.+ ORDER BY student_count DESC LIMIT 1",
+    "correction": "Replace the grouping column with a valid department/degree name column and adjust the aggregation function to count the number of degree summaries instead of students.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrect grouping columns in queries related to department and student data."
+    }
+}

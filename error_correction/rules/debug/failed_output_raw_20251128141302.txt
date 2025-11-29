@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+.[^\s]+(?:\bGROUP\b\s+BY\s+[^\s]+)?(?:\bHAVING\b\s+COUNT\(*))?$",
+    "correction": "Join the required table, group by the appropriate column(s) in both tables, and use COUNT(\*) in the HAVING clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that are missing a join with another table, which is necessary to perform certain operations like counting rows in the joined result set."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM\\s+)\\w+\\s+(?!\\()",
+    "correction": "The missing table should be joined using ON clause after the incorrectly joined table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a table is not correctly joined with the other tables in the query."
+    }
+}

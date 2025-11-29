@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \\d+ FROM ([a-zA-Z]+)\\s+WHERE\\s+(.*)",
+    "correction": "Use a JOIN operation to combine rows from different tables based on their shared column, and filter the results as needed.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors where a table is directly referenced within another table's FROM clause."
+    }
+}

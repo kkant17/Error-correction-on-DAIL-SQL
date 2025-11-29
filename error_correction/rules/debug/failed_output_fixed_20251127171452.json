@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT Distinct .* FROM .*\\sJOIN\\s.*ON\\s.*= .*\\.\\*.* WHERE .*\bWeight\b.*",
+    "correction": "First join the table with the appropriate linking table to get the model names and their associated maker IDs, then join that result with the required table to get the car data.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect direct joins between tables and suggests joining through an appropriate linking table."
+    }
+}

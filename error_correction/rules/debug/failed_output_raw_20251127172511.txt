@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE .+ NOT IN \(\s*( SELECT .+\bFROM\s+flights\s*UNION ALL\s*SELECT .+\bFROM\s+flights\s*)",
+    "correction": "Replace the selected column in the Airports table with the correct column name (AirportName), and use NOT IN instead of UNION ALL to exclude airports that appear in either set.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries where the selected column from the Airports table does not match the desired output, and corrects it by using the appropriate column name."
+    }
+}

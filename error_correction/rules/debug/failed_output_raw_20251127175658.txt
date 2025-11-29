@@ -1,0 +1,9 @@
+{
+  "pattern": "^SELECT\s+Students\.\w+\s+FROM\s+Students\s+JOIN\s+Addresses\s+ON\s+Students\.\w+\s+=\s+Addresses\.\w+\s+LEFT\s+JOIN\s+Transactions\s+ON\s+Addresses\.\w+\s+=\s+Transactions\.\w+\s+WHERE\s+\(Addresses\.\w+\s+=\s+'Haiti'\s+OR\s+Transactions\.\w+\s+=\s+'09700166582'\)\s+$",
+  "correction": "Replace the unnecessary LEFT JOIN with Transactions, and correct the condition on Addresses.country field as per the requirements.",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies SQL queries that include an unnecessary LEFT JOIN and incorrect conditions in the WHERE clause."
+  }
+}

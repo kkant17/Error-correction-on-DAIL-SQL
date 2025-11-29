@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM Professionals WHERE professional_id NOT IN \(\s*(SELECT professional_id FROM Treatments)\)",
+    "correction": "Replace with: SELECT professional_id , role_code , email_address FROM Professionals EXCEPT SELECT T1.professional_id , T1.role_code , T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is used incorrectly to find professionals without treatments, by using EXCEPT and JOIN instead."
+    }
+}

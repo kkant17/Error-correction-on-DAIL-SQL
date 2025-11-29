@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: JOIN (.*) ON \w+.\w+= (.*) JOIN (.*?) ON (\w+\.\w+) = (.*?)( JOIN .* )+",
+    "correction": "Replace the repeated join with a single join and apply the conditions appropriately in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join tables multiple times, which can lead to redundant conditions and complications."
+    }
+}

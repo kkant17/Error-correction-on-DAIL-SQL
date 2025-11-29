@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \s+ T[0-9]+\.[\w\.]+\s+ FROM \s+ Professionals AS T1 JOIN Treatments AS T2 ON T1\.professional_id = T2\.professional_id",
+    "correction": "Join the missing table and specify the necessary conditions for the join",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that are missing a required join, specifically in cases where data from another table is needed but not properly linked."
+    }
+}

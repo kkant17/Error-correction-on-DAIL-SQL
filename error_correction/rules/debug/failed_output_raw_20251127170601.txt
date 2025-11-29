@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bfrom\s+Has_Pet\s+WHERE\s+PetType\s*=\s*\'Cat'\)$",
+    "correction": "The query should join multiple tables (student, has_pet, pets) and include the required columns (major and age) for the student. It should also filter out students who do not have a cat pet by using NOT IN operator.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data from Has_Pet table without joining other necessary tables and filtering out students who do not have a cat pet."
+    }
+}

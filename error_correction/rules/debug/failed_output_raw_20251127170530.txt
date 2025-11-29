@@ -1,0 +1,9 @@
+{
+    "pattern": "R\\bStudent\\b(?:\\s+JOIN\\s+Has\_Pet\\s+ON\\s*Student\\.StuID\\s*=\\s+Has\_Pet\\.StuID\\s*(?:(?:\\s+JOIN\\s+Pets\\s+ON\\s*Has\_Pet\\.PetID\\s*=\\s+Pets\\.PetID)\\s+WHERE\\s+PetType\\s+IN\\s*\\(\'Cat\',\\s*\'Dog\\'\))?",
+    "correction": "Replace 'Student' with the correct table name and include the JOIN condition for the 'pets' table using the 'petid' field.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries."
+    }
+}

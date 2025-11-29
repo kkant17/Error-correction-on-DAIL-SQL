@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM (.*?) JOIN \\((.*?)\\) ON (.*?) JOIN .*(GROUP BY|HAVING).*$",
+    "correction": "Replace the subquery derived from a table with a join to another table, and use appropriate grouping and filtering clauses.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses errors where a subquery is used instead of a direct join to another table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT T1\.owner\_id, T1\.last\_name FROM Owners AS T1 JOIN \(\s*SELECT T2\.owner\_id, SUM\(T3\.cost\_of\_treatment\) as total\_spent\s*\) AS T2 ON T1\.owner\_id = T2\.owner\_id ORDER BY total\_spent DESC LIMIT 1",
+    "correction": "Join the required tables directly, group by owner_id, and order by count(*) instead of total_spent.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a subquery to calculate an aggregate value, but do not join the resulting data with the main table, and instead order by the calculated value. The correction is to directly join the required tables and group by the relevant column."
+    }
+}

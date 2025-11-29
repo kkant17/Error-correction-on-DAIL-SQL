@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-zA-Z0-9]+) FROM (Highschooler|Friend) WHERE Highschooler\\.ID = ([a-zA-Z0-9]+)(?!\\sIN\\s)",
+    "correction": "Join the Friend and Highschooler tables on the student_id field instead of self-joining the Highschooler table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly join or reference tables, in this case by self-joining the Highschooler table instead of joining it with Friend."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM ).+(?= ON )(?!countrylanguage)",
+    "correction": "Replace the table name with 'countrylanguage' in the FROM clause",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the wrong table is joined with the FROM clause"
+    }
+}
+
+{
+    "pattern": "COLUMN_SELECTION: (?<=SELECT ).+(?= FROM )(?!Language)",
+    "correction": "Replace the column name with 'Language' in the SELECT clause",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects errors where the wrong column is selected"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z]+(?:\s+FROM)?\s+country\s+ORDER BY\s+SurfaceArea\s+DESC\s+LIMIT\s+1\s+AS\s+[a-zA-Z0-9_]+(?:\s+ON\s+Country\.Code\s+=\s+[a-zA-Z0-9_]+)?$",
+    "correction": "The query should select the required columns and avoid creating derived tables. A correct query would include an appropriate JOIN to ensure that the selected columns are from the Country table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select the Code column and do not include an appropriate JOIN, which can lead to incorrect results."
+    }
+}

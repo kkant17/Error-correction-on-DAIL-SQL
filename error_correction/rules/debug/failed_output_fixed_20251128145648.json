@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE id NOT IN \\(\\s*(SELECT.*\\) AND \\s*FROM\\s*.*\\)",
+    "correction": "Replace 'NOT IN' with 'EXCEPT' to find TV channels that have no cartoons directed by Ben Jones on them at all.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of 'NOT IN' in subqueries, which can lead to incorrect results. Instead, it suggests using 'EXCEPT' for this specific scenario."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[a-zA-Z]+) AS (?P<alias1>[a-zA-Z]+) LEFT JOIN (?P<table2>[a-zA-Z]+) AS (?P<alias2>[a-zA-Z]+) ON (?P<condition>.+?) WHERE (?P<filter>.+?) AND ev\.Employee_ID IS NULL",
+    "correction": "SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use a LEFT JOIN and then filter out the rows with null values from the right table, which is not the intended behavior. Instead, it suggests using NOT IN to exclude employees who have been evaluated."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT MAX\\(.*\\) FROM .*",
+    "correction": "Replace with: SELECT count(*) from <table> where <column> = (select <column> from <table> order by <column> desc limit 1)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that incorrectly uses MAX function to find the maximum capacity, instead of using a subquery to find the stadium ID with the highest capacity."
+    }
+}

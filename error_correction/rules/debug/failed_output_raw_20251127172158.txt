@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .*, COUNT\(*\) as [a-zA-Z0-9]+ FROM .+ JOIN .+ ON .+\.[\w]+ = .+\.[a-zA-Z0-9]+ GROUP BY [\w]+ ORDER BY total_flights DESC LIMIT 1",
+    "correction": "SELECT T1.[Airline] FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the incorrectly named aggregation function is used, and suggests a correction for proper usage."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "airlines\\.Country = airports\\.CountryAbbrev(?: WHERE airports\\.Country = 'USA')",
+    "correction": "Remove the join and filter conditions related to airports table as they are not necessary for the given question.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily join tables, which can lead to incorrect results."
+    }
+}

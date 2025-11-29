@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(DISTINCT ([A-Za-z]+)\) FROM ([A-Za-z0-9]+) WHERE ([A-Za-z]+) = '([^']*)'",
+    "correction": "Join the required table using appropriate field and correct column reference",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies cases where a COUNT(DISTINCT) query is incorrectly referencing only one table, without performing an appropriate join with the required table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9]+) WHERE .+ AND .+ FROM ([a-zA-Z0-9]+) (\(|\s)*count\(*\))",
+    "correction": "The query should include a join operation between the two tables and apply the count(*) function after the join.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that miss the join operation between multiple tables, and suggests to include a join statement."
+    }
+}

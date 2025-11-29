@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9\\(\\)]+)(\\s+AS\\s+)[A-Za-z0-9]+\\s+FROM\\s+Dogs\\s+ORDER BY\\s+AGE\\(CURDATE\\(\\),\\s*date\\_of\\_birth\\)\\s+DESC\\s+LIMIT\\s+1",
+    "correction": "Replace the SELECT statement with SELECT max(age) FROM Dogs, where age is calculated as (CURDATE() - date_of_birth)/365.25 to get the dog's age in years.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that calculate ages using a function within the SELECT statement and corrects them by suggesting to select the maximum age directly from the 'Dogs' table."
+    }
+}

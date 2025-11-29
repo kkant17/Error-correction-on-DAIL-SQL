@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+Ref_[A-Z_]+(?:\\s+LEFT\\s+JOIN\\s+[A-Z_]+\\s+ON\\s+)?(?:(?!\bTemplates\b).)*WHERE\\s+(Templates\\.Template_ID|Documents\\.Document_ID)\\s+IS\\s+NULL",
+    "correction": "Replace the LEFT JOIN with an EXCEPT clause and adjust the WHERE clause to filter out template type codes associated with the T1 templates but not with any other documents.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a LEFT JOIN to find template type codes not associated with any document, when the actual requirement is to exclude those template type codes associated with the T1 templates and not with any other documents."
+    }
+}

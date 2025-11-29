@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [a-zA-Z]+\_name FROM matches m[0-9]+ WHERE year = [0-9]{4} AND m[0-9]+\.winner\_id IN \( SELECT winner\_id FROM matches m[0-9]+\ WHERE year = [0-9]{4} \)$",
+    "correction": "SELECT winner_name FROM matches WHERE YEAR = <year1> INTERSECT SELECT winner_name FROM matches WHERE YEAR = <year2>",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses subqueries to find common rows between two years, by replacing it with the INTERSECT operator."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT AVG\(\w+\.\w+\).*FROM country c JOIN countrylanguage cl ON c\.Code = cl\.CountryCode WHERE cl\.Language != 'English' AND cl\.IsOfficial <> 'T'",
+    "correction": "Replace the condition with `WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\" AND T2.IsOfficial = \"T\")`",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a filter error where English-speaking countries are incorrectly filtered out in the SQL query."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\\(*\\) FROM [a-zA-Z0-9]+ WHERE Language = '[a-zA-Z]+' AND IsOfficial = '[Tt]' AND CountryCode IN \\(( SELECT CountryCode FROM countrylanguage WHERE Language = '[a-zA-Z]+' AND IsOfficial = '[Tt]' )\\)",
+    "correction": "Replace the subquery with an INTERSECT operation to find common names of countries where either English or Dutch is an official language.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery to find common names of countries where either English or Dutch is an official language, instead of using the INTERSECT operator."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9]+(?:\s+FROM)?\s*FROM\s+airports\s+WHERE\s+City\s*=.*$",
+    "correction": "Join the FLIGHTS and AIRPORTS tables on the condition that the destination airport code matches the airport code in the AIRPORTS table, count the number of flights using COUNT(*), and select the AirportCode.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only select data from the AIRPORTS table without joining it with other relevant tables."
+    }
+}

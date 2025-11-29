@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+T[1-9]+\\.[\\w\\.]+\\s+FROM\\s+matches\\s+AS\\s+T[1-2]\\s+JOIN\\s+players\\s+AS\\s+T[3-9]\\s+ON\\s+T[1-2]\\.\\w+\\s+=\\s+T[3-9]\\.\\w+\\s+WHERE\\s+YEAR\\(\\w+\\.\\w+\\)\\s+IN\\s+\\(\\d{4},\\s*\\d{4}\\)\\s+GROUP\\s+BY\\s+T[1-2]\\.\\w+",
+    "correction": "Remove the unnecessary join with the players table and use the INTERSECT operator to find common values between two separate queries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join tables, potentially leading to incorrect results. It suggests removing the unnecessary join and using the INTERSECT operator instead."
+    }
+}

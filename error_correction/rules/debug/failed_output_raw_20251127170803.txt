@@ -1,0 +1,9 @@
+{
+    "pattern": "Students\s+inner\s+join\s+Has_[A-Za-z0-9]+\s+(on\s+Students\.\w+\s+=\s+Has_[A-Za-z0-9]\.\w+)\s*(where\s+Students\.\w+\s+=\s+'Smith')",
+    "correction": "Replace 'Students' with the correct table name and ensure proper alias usage for both tables, also use the correct column name in the WHERE clause.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references in SQL queries."
+    }
+}

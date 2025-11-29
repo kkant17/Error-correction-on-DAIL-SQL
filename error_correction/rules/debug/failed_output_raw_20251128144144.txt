@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(*\) as [a-zA-Z0-9]+ FROM [a-zA-Z0-9]+ GROUP BY [a-zA-Z0-9]+",
+    "correction": "Replace 'COUNT(\*)' with 'SUM([column_name])', where [column_name] is the column you are summing.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that count all records instead of summing up a specific column."
+    }
+}

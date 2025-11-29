@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\.Code = countrylanguage\.CountryCode GROUP BY country\.Name ORDER BY COUNT(DISTINCT countrylanguage\.Language) DESC LIMIT 1",
+    "correction": "Select the actual language column instead of country name, and use COUNT(\*) to count total occurrences of each language across all countries.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that select incorrect columns, causing the results to be misleading."
+    }
+}

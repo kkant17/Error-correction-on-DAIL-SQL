@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([A-Za-z0-9]+), MIN\\((\\w+)\\) as (\\w+)_flights FROM (?!FLIGHTS)[A-Za-z0-9]+\\s+GROUP BY \\1\\s*$",
+    "correction": "Join the tables correctly, group by the correct column, and count the total number of rows instead of finding the minimum flight number. Use ORDER BY and LIMIT to get the top result.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use MIN() with GROUP BY, instead of counting total rows or using appropriate aggregation functions."
+    }
+}

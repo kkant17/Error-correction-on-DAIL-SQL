@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Z]+, count\(*\) FROM employee GROUP BY [A-Z]+",
+    "correction": "Replace 'County' with 'city' in the SELECT statement and group by 'city' instead of 'City'",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that use incorrect column names for aggregation or grouping"
+    }
+}

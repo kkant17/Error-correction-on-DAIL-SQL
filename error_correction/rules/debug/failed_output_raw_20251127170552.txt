@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM [A-Za-z]+ WHERE IN \((SELECT [A-Za-z]+ FROM Pets WHERE PetType = 'cat'\)",
+    "correction": "Join the necessary tables and use subqueries for filtering pets by type, then intersect the results.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries to filter pet types and suggests a correction by joining the necessary tables and using subqueries for filtering pets."
+    }
+}

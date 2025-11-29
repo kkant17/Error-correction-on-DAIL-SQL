@@ -1,0 +1,9 @@
+{
+    "pattern": "HAVING COUNT\(*\) > [0-9]+",
+    "correction": "Replace '>' with '>=', to include groups with exactly the specified number of records.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that use '>' instead of '>=', resulting in a different outcome when filtering records."
+    }
+}

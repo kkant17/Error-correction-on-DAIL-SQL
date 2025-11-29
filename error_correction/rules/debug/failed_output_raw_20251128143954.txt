@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bAS\s+T[1-9]\.\w+,\s+SUM\(\w+\.\w+\)\s+as\s+total_.+\bFROM\s+matches\s+JOIN\s+players\s+ON\s+T[1-9]\.\w+=\\w+\.\w+\s+JOIN\s+rankings\s+AS\s+T10\s+.*GROUP\s+BY\s+T[1-9]\.\w+",
+    "correction": "The query should only join the 'matches' table and group by winner_name to count the number of matches won by each player. Avoid joining unnecessary tables and calculating aggregate functions that are not required.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily calculate aggregate functions, such as SUM, and suggests to only group by the necessary columns."
+    }
+}

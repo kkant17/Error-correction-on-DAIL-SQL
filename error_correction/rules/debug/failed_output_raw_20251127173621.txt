@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR\\s+LIKE\\s+\%\\w*\\\%\\s+AND\\s+LIKE\\s+\%\\w*\\\%",
+    "correction": "Replace multiple LIKE statements with wildcards and use INTERSECT operator to find documents containing both terms in separate paragraphs.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use the LIKE operator with wildcards to search for multiple terms within a single join, and suggests using the INTERSECT operator instead."
+    }
+}

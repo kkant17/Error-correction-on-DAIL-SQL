@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR|(?<=FROM \w+\s+JOIN\s+)\w+(?=\s+ON)",
+    "correction": "Remove unnecessary join by ensuring it is related to the question asked",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries with an extra or unnecessary join."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR|(?<=GROUP BY\s+)\w+(?=\s+ORDER BY)",
+    "correction": "Apply the aggregate function on the relevant table column instead of the grouped columns",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries where an aggregate function is applied to non-relevant table columns."
+    }
+}

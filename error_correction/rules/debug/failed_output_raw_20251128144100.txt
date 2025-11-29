@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (?P<table1>[a-zA-Z]+) JOIN (?P<table2>[a-zA-Z]+) ON (?P<common_column>.+).(?P<common_column_type>\w+) = (?P<other_common_column>.+).(?P<other_common_column_type>\w+) GROUP BY (?P<grouping_column>[a-zA-Z]+)\.(\w+)",
+    "correction": "SELECT (?P<aggregation_function>SUM|AVG|COUNT|MIN|MAX)(\\( ?P<column>.+\))?, T1.(?P<grouping_column>[a-zA-Z]+) FROM (?P<table1>[a-zA-Z]+) AS T1 JOIN (?P<table2>[a-zA-Z]+) AS T2 ON T1.(?P<common_column>.+) = T2.(?P<other_common_column>.+) GROUP BY T1.(?P<grouping_column>[a-zA-Z]+)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the group by clause is incorrectly specified, and the query does not aggregate the data properly."
+    }
+}

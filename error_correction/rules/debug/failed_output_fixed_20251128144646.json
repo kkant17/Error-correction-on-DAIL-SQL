@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Courses AS C JOIN Sections AS S ON C\\.course\\_id = S\\.course\\_id WHERE (S\\.section\\_id IS NULL|COUNT\\(S\\.section\\_id\\) < 2)",
+    "correction": "Replace the LEFT JOIN with a regular JOIN, remove the conditions checking for null section_ids or the count of section_ids being less than 2, and instead use a HAVING clause to limit the result to have no more than 2 sections per course.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use LEFT JOIN and check for null section_ids or the count of section_ids being less than 2, when they should only check for the count of sections (implicitly assuming non-null section_ids) and limit the result to have no more than 2 sections per course."
+    }
+}

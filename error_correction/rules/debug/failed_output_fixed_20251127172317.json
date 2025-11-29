@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [0-9]+ FROM ([a-zA-Z0-9\\s]+\\.)+FLIGHTS WHERE DestAirport = '([a-zA-Z]+)' AND Airline = ([a-zA-Z0-9_]+)\\.Airline)",
+    "correction": "Join the AIRLINES table with the FLIGHTS table using appropriate aliases and select the Airline column instead of 1. Use SourceAirport instead of DestAirport, and correct the airline reference. Use EXCEPT only for identical SELECT statements.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly select data from the FLIGHTS table without joining it with the AIRLINES table, and suggests a correction for proper query construction."
+    }
+}

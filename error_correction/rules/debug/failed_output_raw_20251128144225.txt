@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+\s+GROUP BY .+\s+AS\s+t1\s+ON\s+t1\.player\_id\s+=\s+t2\.\w+\s+WHERE\s+t2\.(\w+\s+|\w+\s+AS)\s*(SELECT\s+MIN\(.*\)\s+FROM\s*\((?!\s+DISTINCT\s+).*\))\s+AS\s*t3\s+WHERE\s+t3\.count\s+<=.*$",
+    "correction": "Select distinct winner_name and winner_rank from matches, order by winner_age limit 3",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The query uses unnecessary subqueries to find the minimum age and count of distinct winners. Instead, it should directly select distinct winner_name and winner_rank from matches, ordered by winner_age and limited to the top 3 results."
+    }
+}

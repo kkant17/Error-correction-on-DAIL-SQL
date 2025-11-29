@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ COUNT\(DISTINCT .+\) as .+\bFROM\s.*JOIN\s.*ON\s.*=.*\sLEFT JOIN\s.*ON\s.*ID=\*.*\bGROUP BY\s.*ORDER BY\s.+\bLIMIT\s1",
+    "correction": "Remove unnecessary joins and aggregation, only select the required column and group by it.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that count distinct values unnecessarily and suggests to remove the aggregation and only select the required column for grouping."
+    }
+}

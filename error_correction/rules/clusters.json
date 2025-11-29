@@ -1,0 +1,209 @@
+[
+  {
+    "cluster_id": "cluster_20251129152428_8",
+    "rules": [
+      {
+        "rule_id": "rule_12540a8a_20251128193016",
+        "pattern": "SELECT .* FROM (.*) GROUP BY .* HAVING YEAR\\(.*\\) = ([0-9]{4}) AND YEAR\\(.*\\) = ([0-9]{4})",
+        "correction": "Use separate WHERE clauses for each year and use INTERSECT to find common results between the two queries.",
+        "error_type": "SUBQUERY_ERROR"
+      },
+      {
+        "rule_id": "rule_e9f322dd_20251128193033",
+        "pattern": "SELECT MAX\\(.*\\) FROM .*",
+        "correction": "Replace with: SELECT count(*) from <table> where <column> = (select <column> from <table> order by <column> desc limit 1)",
+        "error_type": "SUBQUERY_ERROR"
+      },
+      {
+        "rule_id": "rule_a288acbb_20251128194640",
+        "pattern": "^SELECT\\s+[A-Za-z0-9]+(?:\\s+FROM)?\\s*FROM\\s+airports\\s+WHERE\\s+City\\s*=.*$",
+        "correction": "Join the FLIGHTS and AIRPORTS tables on the condition that the destination airport code matches the airport code in the AIRPORTS table, count the number of flights using COUNT(*), and select the AirportCode.",
+        "error_type": "JOIN_ERROR"
+      },
+      {
+        "rule_id": "rule_cf91ce4a_20251128195337",
+        "pattern": "^SELECT\\s+(.*?)\\s+FROM\\s+(hiring|anyothertable)\\s+GROUP\\s+BY\\s+(Shop_ID|anyothercolumn)\\s+ORDER\\s+BY\\s+COUNT\\((\\w+)_ID\\)\\s+DESC\\s+LIMIT\\s+1",
+        "correction": "Join the missing table, count the correct column and use an appropriate aggregate function for grouping.",
+        "error_type": "AGGREGATION_ERROR"
+      },
+      {
+        "rule_id": "rule_9b65de1d_20251128201444",
+        "pattern": "^SELECT .+ FROM (ship|battle) WHERE .+ UNION SELECT .+ FROM (ship|battle) WHERE .+$",
+        "correction": "Replace with: SELECT T1.name , T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE condition",
+        "error_type": "SUBQUERY_ERROR"
+      },
+      {
+        "rule_id": "rule_2679a9d4_20251128203647",
+        "pattern": "SELECT MAX\\(.*\\) FROM .* WHERE Continent = '.*'",
+        "correction": "SELECT Name , Population , LifeExpectancy FROM country WHERE Continent = 'Asia' ORDER BY SurfaceArea DESC LIMIT 1",
+        "error_type": "AGGREGATION_ERROR"
+      },
+      {
+        "rule_id": "rule_4dec930b_20251128204009",
+        "pattern": "^SELECT MIN\\(.*\\) FROM .*$",
+        "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+        "error_type": "AGGREGATION_ERROR"
+      },
+      {
+        "rule_id": "rule_4dec930b_20251128204017",
+        "pattern": "^SELECT MIN\\(.*\\) FROM .*$",
+        "correction": "Replace with: SELECT Name , SurfaceArea , IndepYear FROM country ORDER BY Population LIMIT 1",
+        "error_type": "COLUMN_SELECTION"
+      }
+    ],
+    "representative_triplet": {
+      "triplet_id": "triplet_50d69869_20251129152222",
+      "incorrect_query": "SELECT Stadium_ID FROM concert GROUP BY Stadium_ID HAVING YEAR(Year) = 2014 AND YEAR(Year) = 2015)",
+      "correct_query": "SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2014 INTERSECT SELECT T2.name , T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.Year = 2015",
+      "explanation": "The predicted SQL query is incorrect because it does not return the names and locations of stadiums for specific years (2014 and 2015) as required by the question. Instead, it groups all concert records by Stadium_ID and checks if any of them fall within the specified years, which does not provide the desired output format or filtering by year. The gold SQL query correctly joins the concert and stadium tables, filters by specific years using a WHERE clause, and uses INTERSECT to find common results between the two queries for both years.",
+      "rules": [
+        {
+          "rule_id": "rule_12540a8a_20251128193016",
+          "pattern": "SELECT .* FROM (.*) GROUP BY .* HAVING YEAR\\(.*\\) = ([0-9]{4}) AND YEAR\\(.*\\) = ([0-9]{4})",
+          "correction": "Use separate WHERE clauses for each year and use INTERSECT to find common results between the two queries.",
+          "error_type": "SUBQUERY_ERROR"
+        }
+      ],
+      "db_id": "concert_singer",
+      "question": ""
+    },
+    "combined_rule": null,
+    "size": 8
+  },
+  {
+    "cluster_id": "cluster_20251129152428_5",
+    "rules": [
+      {
+        "rule_id": "rule_85d7bcbd_20251128193441",
+        "pattern": "Students|Pets",
+        "correction": "Ensure that table names are consistent and use correct aliases in JOIN statements.",
+        "error_type": "TABLE_REFERENCE"
+      },
+      {
+        "rule_id": "rule_409a0b57_20251128203442",
+        "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(French|English)' AND",
+        "correction": "Use INTERSECT operator to find common names of countries that are both English-speaking and French-speaking.",
+        "error_type": "JOIN_ERROR"
+      },
+      {
+        "rule_id": "rule_e642135c_20251128203452",
+        "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(English|French)' AND countrylanguage\\.(Language|IsOfficial) = '(English|French)'",
+        "correction": "Separate the conditions for English and French languages into separate WHERE clauses or use OR operator instead of AND, and ensure that each condition only checks for one language.",
+        "error_type": "FILTER_ERROR"
+      },
+      {
+        "rule_id": "rule_c944f8c3_20251128203512",
+        "pattern": "SELECT ([a-z]+).([a-z]+) FROM ([a-z]+) JOIN ([a-z]+)([a-z]+) ON ([a-z]+).([a-z]+) = ([a-z]+)\\.(CountryCode|Language) WHERE ([a-z]+)\\.(Language|CountryCode) = '(.*)' OR ([a-z]+)\\.(Language|CountryCode) = '(.*)'",
+        "correction": "Use aliases for both tables, select the correct column from the country table, and include conditions for all specified languages in the join condition.",
+        "error_type": "JOIN_ERROR"
+      },
+      {
+        "rule_id": "rule_8dab73c0_20251128205940",
+        "pattern": "SELECT [A-Za-z_]+\\.\\w+, [A-Za-z_]+\\.\\w+ FROM ([A-Za-z_]+) JOIN ([A-Za-z_]+) ON 1=1",
+        "correction": "SELECT DISTINCT [column1] , [column2] FROM [table_name]",
+        "error_type": "JOIN_ERROR"
+      }
+    ],
+    "representative_triplet": {
+      "triplet_id": "triplet_03153d64_20251129152222",
+      "incorrect_query": "SELECT Pets.PetID from Students inner join Has_Pet on Students.StuID = Has_Pet.StuID where Students.LName = 'Smith'",
+      "correct_query": "SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid WHERE T1.Lname = 'Smith'",
+      "explanation": "The predicted SQL query is incorrect because it refers to the table as \"Pets\" instead of \"has_pet\", which is the actual table name in the schema. Additionally, the alias for the student table in the gold SQL query is \"T1\", while in the predicted query it is simply \"Students\". This inconsistency can lead to confusion and errors when joining tables.",
+      "rules": [
+        {
+          "rule_id": "rule_85d7bcbd_20251128193441",
+          "pattern": "Students|Pets",
+          "correction": "Ensure that table names are consistent and use correct aliases in JOIN statements.",
+          "error_type": "TABLE_REFERENCE"
+        }
+      ],
+      "db_id": "pets_1",
+      "question": ""
+    },
+    "combined_rule": null,
+    "size": 5
+  },
+  {
+    "cluster_id": "cluster_20251129152428_10",
+    "rules": [
+      {
+        "rule_id": "rule_9be65a12_20251128193459",
+        "pattern": "SELECT .+ COUNT\\(Has_[A-Za-z]+\\.\\w+\\) FROM .+ JOIN .+ ON .+\\.[\\w]+ = .+\\.\\w+ GROUP BY .+\\.\\w+",
+        "correction": "Replace the COUNT function with count(*), and ensure that the count(*) is included in the SELECT clause.",
+        "error_type": "AGGREGATION_ERROR"
+      },
+      {
+        "rule_id": "rule_58abd1ec_20251128194948",
+        "pattern": "^SELECT\\s+[A-Za-z0-9_\\s]+ FROM\\s+flights\\s+WHERE\\s+FlightNo\\s+IN\\s+\\( SELECT\\s+SourceAirport|DestAirport\\s+AS\\s+Airport[12]\\s+FROM\\s+\\( SELECT\\s+SourceAirport|DestAirport,\\s+COUNT(\\*)\\s+as\\s+flight_count\\s+FROM\\s+flights\\s+GROUP BY\\s+SourceAirport|DestAirport\\s+HAVING\\s+flight_count\\s=1\\)\\s+subquery\\s+WHERE\\s+Airport[12]\\s+=\\s+'[A-Za-z]+'\\s+\\)",
+        "correction": "Join the AIRLINES and FLIGHTS tables using a common field, filter flights by source airport, and use INTERSECT to find common airlines for multiple airports.",
+        "error_type": "JOIN_ERROR"
+      },
+      {
+        "rule_id": "rule_a0bd10f0_20251128195552",
+        "pattern": "DOCUMENTS AS D JOIN Templates AS T ON D\\.Template\\_ID = T\\.Template\\_ID WHERE D\\.Document\\_Name",
+        "correction": "Ensure that the 'document_name' column exists in the 'Documents' table or use the correct column name if it differs from the predicted query.",
+        "error_type": "COLUMN_SELECTION"
+      },
+      {
+        "rule_id": "rule_f0ef95e0_20251128195858",
+        "pattern": "^SELECT\\s+Ref_[A-Z_]+(?:\\s+LEFT\\s+JOIN\\s+[A-Z_]+\\s+ON\\s+)?(?:(?!\bTemplates\b).)*WHERE\\s+(Templates\\.Template_ID|Documents\\.Document_ID)\\s+IS\\s+NULL",
+        "correction": "Replace the LEFT JOIN with an EXCEPT clause and adjust the WHERE clause to filter out template type codes associated with the T1 templates but not with any other documents.",
+        "error_type": "JOIN_ERROR"
+      },
+      {
+        "rule_id": "rule_55a7dce1_20251128195926",
+        "pattern": "SELECT .+ FROM .+ WHERE Template_Type_Description = .+",
+        "correction": "The given query is correct as it is.",
+        "error_type": "OTHER"
+      },
+      {
+        "rule_id": "rule_3537005c_20251128200024",
+        "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) JOIN.* WHERE [A-Za-z0-9]+.([A-Za-z0-9_]+) LIKE '%(.+)%'",
+        "correction": "SELECT <column_name> from <table_name> where <column_name> like '<search_term>'",
+        "error_type": "FILTER_ERROR"
+      },
+      {
+        "rule_id": "rule_0d368b15_20251128201747",
+        "pattern": "LIKE .*'Bachelors'.*",
+        "correction": "Replace LIKE '%Bachelors%' with = 'Bachelor'",
+        "error_type": "OPERATOR_ERROR"
+      },
+      {
+        "rule_id": "rule_fe2ac11c_20251128201920",
+        "pattern": "SELECT .* FROM Students AS S JOIN .* ON S\\.current\\_address\\_id = .*\\.address\\_id WHERE .* = '.*' AND S\\.student\\_id NOT IN \\(\\s*( SELECT DISTINCT student\\_id FROM Student_Enrolment )\\s*\\)",
+        "correction": "Replace the EXCEPT operator with a subquery using the NOT EXISTS clause to find students from North Carolina who have not enrolled, and use NOT IN for those who live outside North Carolina but have enrolled.",
+        "error_type": "SUBQUERY_ERROR"
+      },
+      {
+        "rule_id": "rule_b20745e0_20251128203402",
+        "pattern": "^SELECT\\s+Continent,\\s+COUNT\\(DISTINCT\\s+Language\\)\\s+as\\s+NumberOfLanguages\\s+FROM\\s+[a-zA-Z0-9_\\s]+\\s+GROUP\\s+BY\\s+Continent\\s+ORDER\\s+BY\\s+NumberOfLanguages\\s+DESC\\s+LIMIT\\s+1",
+        "correction": "Join the country table to get the corresponding continents for each language, and count the number of unique languages per continent.",
+        "error_type": "AGGREGATION_ERROR"
+      },
+      {
+        "rule_id": "rule_123a58ac_20251128205343",
+        "pattern": "^(SELECT .* FROM .* LEFT JOIN .* ON .* WHERE .* IS NULL AND .*) UNION SELECT .* FROM .* (?!(SELECT .* FROM .* EXCEPT SELECT .* FROM))",
+        "correction": "Replace the UNION operation with a combination of UNION and EXCEPT operators to correctly combine result sets without performing unnecessary joins.",
+        "error_type": "OPERATOR_ERROR"
+      }
+    ],
+    "representative_triplet": {
+      "triplet_id": "triplet_300b7d82_20251129152222",
+      "incorrect_query": "SELECT Student.StuID, COUNT(Has_Pet.PetID) FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID GROUP BY Student.StuID This SQL query will return the IDs of students who have pets and the number of pets each student has. The query joins the Student table with the Has_Pet table on the common StuID field, groups by the student ID, and counts the number of pet IDs associated with each student ID.",
+      "correct_query": "SELECT count(*) , t1.stuid from student as t1 join has_pet as t2 on t1.stuid = t2.stuid group by t1.stuid",
+      "explanation": "The predicted SQL query is incorrect because it counts the number of PetIDs instead of counting the total number of students (count(*)) for each unique student ID. Additionally, the gold SQL query correctly includes the count(*) of all records in the result set, while the predicted query does not.",
+      "rules": [
+        {
+          "rule_id": "rule_9be65a12_20251128193459",
+          "pattern": "SELECT .+ COUNT\\(Has_[A-Za-z]+\\.\\w+\\) FROM .+ JOIN .+ ON .+\\.[\\w]+ = .+\\.\\w+ GROUP BY .+\\.\\w+",
+          "correction": "Replace the COUNT function with count(*), and ensure that the count(*) is included in the SELECT clause.",
+          "error_type": "AGGREGATION_ERROR"
+        }
+      ],
+      "db_id": "pets_1",
+      "question": ""
+    },
+    "combined_rule": null,
+    "size": 10
+  }
+]

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s.*?WHERE Id = \(\s*(SELECT .+)\s*\)",
+    "correction": "Replace with: SELECT T1.<target_column> FROM <table_name> AS T1 ORDER BY <sorting_column> DESC LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that unnecessarily use subqueries when the required information can be accessed directly from a table."
+    }
+}

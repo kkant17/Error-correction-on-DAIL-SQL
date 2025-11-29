@@ -1,0 +1,2 @@
+{
+    "pattern": "^SELECT\s[A-Za-z]+\.\w+ FROM\s[A-Za-z]+\sWHERE\s[A-z]+\.\w+ = \"[A-Z]\{1,\}\w+\" AND\s[A-z]+\.\w+ = \"[A-Z]\{1,\}[a-z]+\"

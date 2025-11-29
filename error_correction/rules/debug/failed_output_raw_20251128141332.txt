@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .*\s+FROM\s+\( SELECT *, ROW\_NUMBER\(\) OVER\(ORDER BY\s+[A-Za-z0-9]+\s+ASC\) as rn FROM\s+[A-Za-z0-9]+\s+.*\)\s+AS\s+subquery\s+WHERE\s+rn\s*>\\( SELECT COUNT\(DISTINCT\s+[A-Za-z0-9]+\) FROM\s+[A-Za-z0-9]+\s+\)\s+AND\s+.*",
+    "correction": "Replace the subquery with a JOIN and filter cars based on minimum horsepower instead of row number. Also, remove the condition related to the count of distinct horsepowers.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a query that incorrectly uses a subquery with row number and counts distinct values, instead it should use a JOIN to filter cars based on minimum horsepower."
+    }
+}

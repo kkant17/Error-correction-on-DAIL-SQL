@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\(*\) FROM ([a-z]+)\s*$",
+    "correction": "Replace the table name with the correct uppercase version of the table name.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries where the table name is misspelled in lowercase and suggests a correction."
+    }
+}

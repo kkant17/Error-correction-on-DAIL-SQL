@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM TV_[A-Za-z]+ WHERE id NOT IN \(\s*(SELECT channel FROM cartoon WHERE directed\_by = 'Ben Jones')\)",
+    "correction": "Replace 'Channel' with 'package_option' in the SELECT statement",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the incorrect column is selected from a table"
+    }
+}

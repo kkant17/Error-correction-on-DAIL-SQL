@@ -1,0 +1,29 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM ).+ JOIN .+(?= ON).+ (?= GROUP BY)",
+    "correction": "Ensure that the columns being joined are consistent across both tables and match the column names used in the gold SQL query.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies join errors where the incorrect columns are being used for joining tables."
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: (?<=GROUP BY ).+ (?= ORDER BY)",
+    "correction": "Group by the same column(s) as in the gold SQL query and order by the count of documents for each group.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies aggregation errors where incorrect column(s) are being grouped or ordered."
+    }
+}
+
+{
+    "pattern": "COLUMN_SELECTION: (?<=SELECT ).+(?= FROM)",
+    "correction": "Select the same columns as in the gold SQL query.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies column selection errors where incorrect columns are being selected."
+    }
+}

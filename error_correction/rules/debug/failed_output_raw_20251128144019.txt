@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s+players\s+AS\s+T1\s+JOIN\s+matches\s+AS\s+T2\s+ON\s+T1\.player_id\s+=\s+T2\.winner_id\s+JOIN\s+rankings\s+AS\s+T3\s+ON\s+T1\.player_id\s+=\s+T3\.player_id\s+WHERE\s+T2\.tourney_name\s+=\s+'Australian Open'\s+AND\s+(?s)(SELECT\s+MAX\(.*\)\s+FROM\s+players\s+AS\s+T4\s+JOIN\s+matches\s+AS\s+T5\s+ON\s+T4\.player_id\s+=\s+T5\.winner_id\s+JOIN\s+rankings\s+AS\s+T6\s+ON\s+T4\.player_id\s+=\s+T6\.player_id\s+WHERE\s+T5\.tourney_name\s+=\s+'Australian Open'\s+)",
+    "correction": "Replace the subquery with a direct ORDER BY and LIMIT in the main query",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using subqueries for aggregation operations when possible, as they can lead to slower performance. Instead, perform the operation directly in the main query."
+    }
+}

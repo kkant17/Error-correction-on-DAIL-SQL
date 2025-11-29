@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (.+?) AS min\\_count FROM (.+?) GROUP BY (.+?) ORDER BY min\\_count(ASC|DESC) LIMIT 1$",
+    "correction": "Join the necessary table and count the occurrences of transcripts instead of counting rows in each group.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly count rows in a grouped result, instead of counting the occurrences of specific values."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT \\*+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON (\\w+\\.\\w+) = ([A-Za-z0-9]+\\.\\w+) GROUP BY \\w+ HAVING count\\(\\*\\) > [0-9]+",
+    "correction": "Replace the subquery with a JOIN and GROUP BY clause to match the required condition. The original query filters Student_Enrolment records where num_semesters is greater than 1, but it should be equal to 2.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that use a subquery incorrectly and suggests replacing the subquery with a JOIN and GROUP BY clause to fix the error."
+    }
+}

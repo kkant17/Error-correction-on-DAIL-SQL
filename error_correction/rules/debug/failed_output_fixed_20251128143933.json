@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ COUNT\\(.*\\) as .+\\sFROM\\smatches\\sGROUP BY\\s[a-zA-Z_]+_id,\\s[a-zA-Z_]+_id\\sORDER BY\\sCOUNT\\(.*\\)\\sDESC\\sLIMIT\\s1\\s)",
+    "correction": "The query should retrieve player names and rankings instead of counting tourney_ids from matches. Grouping by loser_id and winner_id is not necessary. To fix this, join the players table with the rankings table on player_id, order by tours in descending order, limit to one row, and select the required columns.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that count a column from matches table instead of retrieving player names and rankings."
+    }
+}

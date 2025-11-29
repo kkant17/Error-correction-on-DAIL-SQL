@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)\(.*\) FROM ([A-Za-z]+)_player WHERE Height > [0-9]+",
+    "correction": "SELECT avg(\\1) FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Height > [0-9+]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that do not join the 'people' table with the 'poker_player' table when filtering data based on the 'Height' column from the 'people' table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+(?=\\s+FROM\\s+\\(SELECT\\s+.*\\s+AS\\s*.*\\s+FROM\\s+Treatments\\s+JOIN\\s+.*\\))",
+    "correction": "Remove unnecessary joins and subqueries. Only select data from the Treatments table, sort by date_of_treatment in descending order, and limit the result to the most recent treatment cost.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily complicate the task by joining multiple tables or using subqueries when the original question only requires data from a single table."
+    }
+}

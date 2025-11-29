@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+property\_name,\s*apt\_feature_[0-9]+\s*,\s*apt\_feature_[0-9]+\s*,\s*apt\_feature_[0-9]+\s*,\s*hse\_feature_[0-9]+\s*,\s*hse\_feature_[0-9]+\s*,\s*hse\_feature_[0-9]+\s*FROM\s+Properties\s+WHERE\s+property\_type\_code\s+IN\s*\(\'House\',\s*\'Apartment\'\)\s+AND\s+room\_count\s+>\s+1\s+AND\s+property\_id\s+IN\s*\(SELECT\s+property\_id\s+FROM\s+Other\_Property\_Features\s+WHERE\s+feature\_id\s+IN\s*\(SELECT\s+feature\_id\s+FROM\s+Other\_Available\_Features\s+WHERE\s+feature\_type\_name\s+IN\s*\(\'Apt\s+Feature\s+1\',\s*\'Apt\s+Feature\s+2\',\s*\'Apt\s+Feature\s+3\',\s*\'Hse\s+Feature\s+1\',\s*\'Hse\s+Feature\s+2\',\s*\'Hse\s+Feature\s+3\'\)\s*\)",
+    "correction": "Select only property_name from Properties where property_type_code is either 'House' or 'Apartment'. Use UNION to combine the results.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that unnecessarily use subqueries for simple filtering operations, and suggests using UNION instead."
+    }
+}

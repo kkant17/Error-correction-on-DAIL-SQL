@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+ON\\s+(?<!votes)\\w+\\.\\w+ = \\w+\\.\\w+",
+    "correction": "Remove unnecessary joins that are not referencing 'voter_1' database or the joined table is not used in the gold SQL query",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects unnecessary joins that may lead to errors in the SQL query."
+    }
+}

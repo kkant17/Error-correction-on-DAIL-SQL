@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [A-Z]+_[A-Z]+\\s+,[A-Z]+_[A-Z]+\\s+FROM\\s+Ref_Template_Types$",
+    "correction": "No correction needed as the provided SQL query is correct.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule matches a correctly formatted SQL query selecting columns from the Ref_Template_Types table."
+    }
+}

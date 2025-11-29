@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z]+)_Programs? \*? JOIN? Departments? WHERE Departments\.department_name = 'Engineering'",
+    "correction": "Join the Departments table and Degree_Programs table using department_id, count the number of records, correct the misspelled department name, and use AS for aliasing tables.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that do not join the Degree_Programs table with Departments using department_id and corrects them by adding JOIN, counting records with COUNT(*), and fixing the misspelled department name."
+    }
+}

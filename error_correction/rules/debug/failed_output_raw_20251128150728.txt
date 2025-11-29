@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(DISTINCT ([a-z]+)\) FROM ([a-z]+) (JOIN|LEFT JOIN) ([a-z]+) ON ([a-z]+)=([a-z]+)( LEFT JOIN ([a-z]+language)? (ON|WHERE) ([a-z]+)=([a-z]+) AND ([a-z]+)=\'English\')? WHERE ([a-z]+) IS NULL",
+    "correction": "SELECT sum(([a-z]+)) FROM ([a-z]+) WHERE ([a-z]+) NOT IN (SELECT T1.([a-z]+) FROM ([a-z]+) AS T1 JOIN ([a-z]+language)? AS T2 ON T1.[a-z]+ = T2.[a-z]+ WHERE T2.[a-z]+ = 'English')",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that focuses on cities instead of countries, counts the distinct IDs of cities, and uses an incorrect subquery to filter out English-speaking countries. The corrected query should sum the populations of countries while excluding those where the official language is English."
+    }
+}

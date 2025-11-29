@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT avg\(.*\) FROM Highschooler h JOIN Friend f ON h\.ID = f\.student\_id GROUP BY h\.ID HAVING COUNT\(f\.student\_id\) > 0",
+    "correction": "Replace the query with SELECT avg(grade) FROM Highschooler WHERE id IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student\_id = T2.id)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly groups the results and counts occurrences, resulting in an incorrect average calculation."
+    }
+}

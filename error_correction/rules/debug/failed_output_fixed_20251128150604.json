@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM countrylanguage WHERE CountryCode IN \\(\\s*(SELECT Code FROM country WHERE Continent = 'Asia')\\s* AND IsOfficial = 'T' GROUP BY Language",
+    "correction": "Join the `country` and `countrylanguage` tables correctly, remove the filter for `IsOfficial`, and count distinct languages instead of all rows in `countrylanguage`.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly join the `country` and `countrylanguage` tables."
+    }
+}

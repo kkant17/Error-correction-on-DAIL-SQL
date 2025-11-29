@@ -1,0 +1,29 @@
+{
+    "pattern": "JOIN_ERROR: (?<=\bFROM\s)car\_makers\s+AS\s+c\s+(?=\s+JOIN\s+)",
+    "correction": "Replace with: JOIN CAR_MAKERS AS T1",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "Ensure the correct table reference is used for the car_makers table"
+    }
+}
+
+{
+    "pattern": "JOIN_ERROR: \bON\s+c.CountryId\s+=(?=\d+\s+AND)",
+    "correction": "Replace with: ON T1.Id = T2.Maker",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "Join the car_makers table using the correct columns and rename temporary tables"
+    }
+}
+
+{
+    "pattern": "COLUMN_SELECTION: c.FullName",
+    "correction": "Replace with: T1.Maker",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "Select the appropriate column (Maker) from the CAR_MAKERS table"
+    }
+}

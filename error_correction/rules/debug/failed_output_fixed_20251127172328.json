@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM [A-Za-z]+ JOIN [A-Za-z]+ ON ([A-Za-z]+)\\.([A-Za-z]+) = ([A-Za-z]+)\\.(Airline|uid) GROUP BY ([A-Za-z]+) HAVING COUNT\\((\\w+\\.\\w+)\\) >= 10",
+    "correction": "SELECT T1.[Airline] FROM [AIRLINES] AS T1 JOIN [FLIGHTS] AS T2 ON T1.[uid] = T2.[Airline] GROUP BY T1.[Airline] HAVING count(*) > 10",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly count flights instead of unique airline records."
+    }
+}

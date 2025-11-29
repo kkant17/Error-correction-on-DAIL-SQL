@@ -1,0 +1,9 @@
+{
+    "pattern": "r'(\bTV_Channel\.\w+\s+AS?\s+TV_Channel\b|\bhight_definition_TV\b)',
+    "correction": "'tvshow' as table name and 'high_definition_TV' as column name",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references and column names in the SQL query."
+    }
+}

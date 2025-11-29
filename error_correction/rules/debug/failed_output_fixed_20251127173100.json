@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN\\s+(Ref_Template_Types|Documents)\\s+ON\\s+[a-zA-Z0-9_]+(\\.\\w+){2}\\s*JOIN",
+    "correction": "Remove the unnecessary join to Ref_Template_Types and Documents tables, and select the required column directly from the Templates table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join irrelevant tables."
+    }
+}

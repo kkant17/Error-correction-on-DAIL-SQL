@@ -75,15 +75,18 @@ class RuleApplicator:
         self,
         query: str,
         rule: Rule,
-        use_llm: bool = False
+        use_llm: bool = False,
+        llm_model: str = None
     ) -> str:
         """
         Apply a correction rule to a query using regex-based transformations.
+        Falls back to LLM if regex transformation doesn't work.
 
         Args:
             query: SQL query to correct
             rule: Rule to apply
-            use_llm: Whether to use LLM for transformation (not implemented yet)
+            use_llm: Whether to use LLM for transformation as fallback
+            llm_model: LLM model name to use for fallback transformation
 
         Returns:
             Corrected query if transformation successful, original query otherwise
@@ -103,12 +106,69 @@ class RuleApplicator:
                 logger.info(f"Successfully transformed query using rule {rule.rule_id}")
                 return transformed
             else:
-                logger.warning(f"Rule {rule.rule_id} matched but no transformation applied")
-                return query
+                # If regex transformation didn't work but pattern matched,
+                # try LLM-based transformation as fallback
+                if use_llm and llm_model:
+                    logger.info(f"Regex transformation failed, attempting LLM-based transformation")
+                    return self._transform_with_llm(query, rule, llm_model)
+                else:
+                    logger.warning(f"Rule {rule.rule_id} matched but no transformation applied")
+                    return query
 
         except Exception as e:
             logger.error(f"Error applying rule {rule.rule_id}: {e}")
             return query
+
+    def _transform_with_llm(self, query: str, rule: Rule, model: str) -> str:
+        """
+        Use LLM to transform the query based on rule correction description.
+        
+        Args:
+            query: SQL query to correct
+            rule: Rule with correction description
+            model: LLM model name
+            
+        Returns:
+            Transformed query or original if LLM call fails
+        """
+        try:
+            from llm.chatgpt import ask_llm
+            
+            prompt = f"""You are a SQL expert. Fix the following SQL query based on the error description.
+
+Original (Incorrect) Query:
+{query}
+
+Error Description:
+{rule.correction}
+
+Error Type: {rule.error_type}
+
+Provide ONLY the corrected SQL query, nothing else. No explanation, no markdown formatting."""
+
+            response = ask_llm(
+                model=model,
+                batch=[prompt],
+                temperature=0.2,
+                n=1
+            )
+            
+            if response and isinstance(response, dict):
+                corrected = response.get('response', [query])[0] if isinstance(response.get('response'), list) else response.get('response', query)
+                corrected = corrected.strip()
+                
+                # Validate that we got a reasonable response (not empty, still SQL-like)
+                if corrected and len(corrected) > 5 and 'select' in corrected.lower():
+                    logger.info(f"LLM-based transformation successful")
+                    return corrected
+            
+            logger.warning("LLM-based transformation returned invalid response")
+            return query
+            
+        except Exception as e:
+            logger.error(f"LLM-based transformation failed: {e}")
+            return query
+
 
     def _apply_transformation_by_type(self, query: str, rule: Rule) -> str:
         """

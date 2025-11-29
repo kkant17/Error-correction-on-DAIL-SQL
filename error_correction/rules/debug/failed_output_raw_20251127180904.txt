@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT DISTINCT ([A-Za-z0-9]+)\.([A-Za-z]+) FROM .+ WHERE .+(T2\.IsOfficial = 'T')",
+    "correction": "Remove the condition T2.IsOfficial = 'T' from the WHERE clause",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects SQL queries that include an unnecessary filter based on IsOfficial column."
+    }
+}

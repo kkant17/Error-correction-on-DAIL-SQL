@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\\s+Tables1\\s+JOIN\\s+Tables2\\sON\\s+Tables1\\.\\w+\\s+=\\s+Tables2\\.\\w+\\s+GROUP BY\\s+\\w+\\s+HAVING\\s+COUNT\\(\\w+\\)",
+    "correction": "SELECT \\*_id FROM Tables1 GROUP BY \\*_id HAVING count(*) >= 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that unnecessarily join two tables and use COUNT on a specific column, instead of counting the total number of rows."
+    }
+}

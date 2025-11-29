@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \* FROM (?P<table>[A-Za-z0-9]+) WHERE name = '(.*?)'\\)$",
+    "correction": "JOIN the specified table with the Likes table on an appropriate column and filter by the given name to count the number of likes.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to find an ID and then count rows in another table. It suggests a correction that joins the two tables and filters by name instead."
+    }
+}

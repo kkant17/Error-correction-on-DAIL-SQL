@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT\(*\) FROM ([A-Za-z0-9]+) WHERE ([A-Za-z0-9]+)\.id = ([A-Za-z0-9]+)\.ID)",
+    "correction": "Join the two tables on a common column and apply count(*) within the join condition, then group by the student_id and use HAVING to filter results where the number of friendships for each student is greater than or equal to 2.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that do not join tables on a common column, which results in incorrect data retrieval."
+    }
+}

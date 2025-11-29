@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+Ref_Feature_Types\\.\\w+\\s+FROM\\s+Ref_Feature_Types\\s+WHERE\\s+Ref_Feature_Types\\.\\w+=.*$",
+    "correction": "Join the required table and filter by 'feature_name' instead of directly filtering from Ref_Feature_Types.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join the necessary table, leading to incorrect results."
+    }
+}

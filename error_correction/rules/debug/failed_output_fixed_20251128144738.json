@@ -1,0 +1,9 @@
+{
+    "pattern": "WHERE ([T]+\\.[d+]_.*_id) IN \\(\\s*\\-\\s*replace\\s*the\\s*list\\s*of\\s*[^\\)]+\\s*\\)",
+    "correction": "Replace the IN condition with a direct filter on degree summary name, and use an equal operator instead of LIKE.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that attempt to filter by department ID for specific degree programs, which may not be reliable."
+    }
+}

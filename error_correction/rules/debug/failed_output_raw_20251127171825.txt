@@ -1,0 +1,9 @@
+{
+    "pattern": r'SELECT .+ FROM .+ WHERE Airline = \'.*\s*\'.+',
+    "correction": 'Replace single quotes (\') with double quotes (") around the Airline value and ensure it matches the original input case.',
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects queries where the airline name is enclosed in single quotes instead of double quotes, and the airline name contains spaces."
+    }
+}

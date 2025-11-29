@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT avg\\(.*\\) FROM .* WHERE .*",
+    "correction": "The given query is correct and no correction is needed.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies the case where the SQL query correctly calculates an average value."
+    }
+}

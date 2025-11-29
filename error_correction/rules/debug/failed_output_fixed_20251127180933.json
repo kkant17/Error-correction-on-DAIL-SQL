@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\\.Code = countrylanguage\\.CountryCode WHERE countrylanguage\\.(Language|IsOfficial) = '(English|Dutch)'",
+    "correction": "Separate the conditions for English and Dutch speakers into two separate SELECT statements joined by a UNION, and filter for official languages using 'isofficial = \"t\"'.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "The query combines both conditions in one SELECT statement instead of separating them into two distinct groups."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "pattern": "Student|Pets\s+AS\s+T(\\d)",
+    "correction": "Use correct table name and alias for the 'Pets' table",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "Ensure that the table names in the SQL query are correctly spelled and aliased"
+    }
+}
+
+{
+    "pattern": "\bPetType\s+IN\s+\('Cat', 'Dog'\)\b",
+    "correction": "Replace IN operator with OR to handle either 'cat' or 'dog'",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "Modify the WHERE clause to properly filter for 'cat' or 'dog'"
+    }
+}

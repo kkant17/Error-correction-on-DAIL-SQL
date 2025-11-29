@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM\s+)[a-zA-Z0-9\s]+\s+(?=ON\s+)",
+    "correction": "Ensure that the joined table has a direct relationship with the main table or join on appropriate ID fields.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies unnecessary joins or incorrectly joined tables."
+    }
+}
+
+{
+    "pattern": "COLUMN_SELECTION: (?<=ON\s+)[a-zA-Z0-9\s]+\s+(?!=)",
+    "correction": "Ensure that the columns being joined have matching data types and correspond to the same data in both tables.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies incorrectly joined columns."
+    }
+}

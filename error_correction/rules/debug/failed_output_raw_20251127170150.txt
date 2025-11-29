@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM (.*?) JOIN (.*) ON (.*?) JOIN (.*) ON (.*?) WHERE Year >= '(.*?)' GROUP BY Stadium_Name, Capacity ORDER BY COUNT\(*\) DESC LIMIT 1",
+    "correction": "SELECT T2.\<desired_column\> , T2.\<desired_capacity_column\> FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year >= \<desired_year\> GROUP BY T2.\<desired_stadium_id_column\> ORDER BY count(*) DESC LIMIT 1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that has an unnecessary join to an unrelated table and incorrectly groups by non-aggregated columns."
+    }
+}

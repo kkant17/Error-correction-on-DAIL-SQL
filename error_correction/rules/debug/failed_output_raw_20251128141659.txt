@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \w+ FROM ([A-Za-z]+) WHERE Airline = '(.*?)'",
+    "correction": "JOIN the specified table with the flights table on Airline column and count the total number of rows where the airline is the provided value.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that only select a table but do not join it with the flights table, and provides a correction to fix the error."
+    }
+}

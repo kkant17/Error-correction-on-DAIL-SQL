@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM Semesters AS T1 JOIN \\(\\s*(?P<subquery>SELECT .+\bFROM\\w+\b.*\b)\\s*ON T1\\.semester_id = (?P<student_enrolment_id>\\w+)\\.student_enrolment_id\\s*ORDER BY num_students DESC LIMIT 1",
+    "correction": "Join the Student_Enrolment table directly to Semesters, group by semester_id, order by total student count and limit the result to one.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that join a subquery with Semesters table using student enrollment ID, instead of directly joining the Student_Enrolment table and grouping by semester_id."
+    }
+}

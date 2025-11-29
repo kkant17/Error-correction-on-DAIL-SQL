@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\s+concert\s+GROUP BY\s+Stadium_ID\s+HAVING\s+YEAR\(\).+$",
+    "correction": "Replace the query with a JOIN between concert and stadium tables, filter for specific years using WHERE clause, and use INTERSECT operator to compare results between different years.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly group by a single column without joining the necessary tables, and suggests a correction by using a JOIN operation."
+    }
+}

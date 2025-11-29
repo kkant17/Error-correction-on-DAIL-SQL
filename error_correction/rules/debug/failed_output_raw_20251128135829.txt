@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Z]+) AS T1\.(.*?) FROM stadium AS T1 LEFT JOIN concert AS T2 ON T1\.(.*?) = T2\.(.*?)\sGROUP BY T1\.(.*?)",
+    "correction": "SELECT T2.(\\w+), count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the join operation is reversed and the grouping criteria are incorrect."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "pattern": "COUNT\(T[a-z]+.\w+\)",
+    "correction": "Replace COUNT(\\w+) with count(*)",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of counting a specific column instead of all rows in a group."
+    }
+}
+
+{
+    "pattern": "SELECT \*.* FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id .*",
+    "correction": "Ensure all required columns from the Students table are included in the SELECT statement",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects the error of omitting necessary columns from the SELECT statement."
+    }
+}

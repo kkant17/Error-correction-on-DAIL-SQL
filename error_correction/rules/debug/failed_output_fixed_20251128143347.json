@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM teacher JOIN \\(\\s*(SELECT Teacher\\_ID, MIN\\(Age\\) AS MinAge FROM teacher GROUP BY Teacher\\_ID )\\s*\\) AS YoungestTeacher ON teacher\\.Teacher\\_ID = YoungestTeacher\\.Teacher\\_ID AND teacher\\.Age = YoungestTeacher\\.MinAge",
+    "correction": "Use ORDER BY and LIMIT to find the youngest teacher instead of joining with a subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use a subquery in an incorrect manner, such as trying to find the youngest teacher. Instead, it suggests using ORDER BY and LIMIT to correctly retrieve the desired information."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bCOUNT\\(\\*\\)\\s+AS\\s+total_[a-zA-Z0-9]+\\s+FROM\\s+.+\bGROUP\b\\s+BY\\s+.+",
+    "correction": "Replace COUNT(*) with sum(<column_name>) and remove the AS total_* part",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that count the number of rows instead of summing a specific column."
+    }
+}

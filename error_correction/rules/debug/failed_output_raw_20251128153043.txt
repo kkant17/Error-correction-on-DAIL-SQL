@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT .* FROM .* WHERE Birth\_Year = [0-9]{4} OR Birth\_Year = [0-9]{4}",
+    "correction": "No correction is needed as the query is already correct.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that select names of singers based on their birth year, similar to the provided example."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_\s]+ FROM\s+Paragraphs\s+JOIN\s+Documents\s+ON\s+[A-Za-z0-9_\s]+\.Document_ID\s+=\s+Paragraphs\.Document_ID\s+GROUP BY\s+[A-Za-z0-9_\s]+\.Document_ID\s+HAVING\s+COUNT\(Paragraphs\.Paragraph_ID\)\s+BETWEEN\s+1\s+AND\s+2",
+    "correction": "SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that unnecessarily joins the 'Documents' table with the 'Paragraphs' table, and instead suggests selecting directly from the 'Paragraphs' table."
+    }
+}

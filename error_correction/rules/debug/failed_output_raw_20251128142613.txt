@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[0-9]+(?:\s+FROM\s+Templates\s+JOIN\s+Ref\_Template\_Types\s+ON\s+Templates\.\w+\s*=\s*Ref\_Template\_Types\.\w+\s*)?(?:\s+WHERE\s+Documents\.\w+\s*=\s*Templates\.\w+\s*)(?:\s+AND\s+Ref\_Template\_Types\.\w+\s*=\s*'PPT')?$",
+    "correction": "Replace the JOIN and WHERE conditions with correct placement in the query, and use count(*) to count all rows in the result set. Also, replace a fixed value (1) with the aggregate function.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of JOIN and WHERE clauses in SQL queries, as well as using a fixed value instead of an aggregate function."
+    }
+}

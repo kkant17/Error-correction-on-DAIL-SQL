@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-ZA-Z_]+ FROM ([A-ZA-Z]+) JOIN ([A-ZA-Z]+) AS [A-ZA-Z] + ON ([A-ZA-Z_]+).id = [A-ZA-Z]_.Channel WHERE ([A-ZA-Z_]+).Directed\\_by != 'Ben Jones' GROUP BY [A-ZA-Z_]+ HAVING COUNT\\((\\[A-ZA-Z_]+\\.id\\) = 0)",
+    "correction": "SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones')",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies and corrects queries that unnecessarily join tables, which can lead to incorrect results. It also addresses the issue of filtering out rows based on a column from a joined table instead of directly filtering the main table."
+    }
+}

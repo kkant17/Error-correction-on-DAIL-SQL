@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(*\\) FROM Likes WHERE student\_id = '(.*?)' AND JOIN is missing",
+    "correction": "Replace with: SELECT count\\(*\\) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student\_id = T2.id WHERE T2.name = '\\1'",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the join condition between Likes and Highschooler tables is missing, specifically in cases where a count(*) aggregate function is used."
+    }
+}

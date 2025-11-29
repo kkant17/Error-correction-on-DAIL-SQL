@@ -4,6 +4,7 @@ LLM-based Rule Generator for SQL Error Correction
 import json
 import re
 import logging
+import os
 from typing import Dict, List, Optional
 
 from llm.chatgpt import ask_llm
@@ -64,8 +65,8 @@ class RuleGenerator:
         try:
             # Call LLM
             response = ask_llm(
-                model_name=self.model,
-                prompts=[prompt],
+                model=self.model,
+                batch=[prompt],
                 temperature=self.temperature,
                 n=1
             )
@@ -106,8 +107,8 @@ class RuleGenerator:
         try:
             # Call LLM
             response = ask_llm(
-                model_name=self.model,
-                prompts=[prompt],
+                model=self.model,
+                batch=[prompt],
                 temperature=self.temperature,
                 n=1
             )
@@ -163,7 +164,49 @@ class RuleGenerator:
 
         except json.JSONDecodeError as e:
             logger.error(f"Failed to parse JSON from LLM output: {e}")
-            logger.debug(f"Raw output: {llm_output}")
+            # Dump raw LLM output to debug file for inspection
+            try:
+                import datetime
+                debug_dir = os.path.join(os.path.dirname(__file__), '..', 'rules', 'debug')
+                os.makedirs(debug_dir, exist_ok=True)
+                ts = datetime.datetime.utcnow().strftime('%Y%m%d%H%M%S')
+                raw_path = os.path.join(debug_dir, f'failed_output_raw_{ts}.txt')
+                with open(raw_path, 'w', encoding='utf-8') as df:
+                    df.write(llm_output)
+                logger.info(f"Wrote raw LLM output to {raw_path}")
+            except Exception:
+                logger.exception("Failed to write raw LLM output for debugging")
+
+            # Try a tolerant fix for invalid backslash escapes: escape stray backslashes
+            try:
+                # Double backslashes that are not part of a valid JSON escape
+                fixed = re.sub(r'\\(?!["\\/bfnrtu])', lambda m: '\\\\', json_str)
+                data = json.loads(fixed)
+
+                logger.info("Recovered JSON by escaping stray backslashes in LLM output")
+
+                if isinstance(data, dict):
+                    rule = self._create_rule_from_dict(data)
+                    if rule:
+                        rules.append(rule)
+                elif isinstance(data, list):
+                    for rule_data in data:
+                        rule = self._create_rule_from_dict(rule_data)
+                        if rule:
+                            rules.append(rule)
+
+                # write fixed json for record
+                try:
+                    fixed_path = os.path.join(debug_dir, f'failed_output_fixed_{ts}.json')
+                    with open(fixed_path, 'w', encoding='utf-8') as ff:
+                        ff.write(fixed)
+                    logger.info(f"Wrote fixed JSON attempt to {fixed_path}")
+                except Exception:
+                    logger.exception("Failed to write fixed JSON debug file")
+
+            except Exception as e2:
+                logger.error(f"Tolerant JSON recovery failed: {e2}")
+                logger.debug(f"Raw output: {llm_output}")
         except Exception as e:
             logger.error(f"Error parsing rule output: {e}")
 

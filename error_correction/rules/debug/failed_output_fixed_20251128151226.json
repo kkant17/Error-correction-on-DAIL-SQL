@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+ JOIN .+ ON .+\bGROUP BY\\s+(.+)\b\\s+ORDER BY COUNT\\(DISTINCT (.+)\\)",
+    "correction": "Replace with: SELECT $2 FROM $1 GROUP BY $2 ORDER BY count($2) DESC",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use COUNT(DISTINCT) to find the most common language spoken in countries instead of finding the country with the most unique languages."
+    }
+}

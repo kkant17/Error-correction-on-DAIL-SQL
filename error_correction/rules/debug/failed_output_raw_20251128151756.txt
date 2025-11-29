@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) AS [A-Za-z0-9]+ JOIN ([A-Za-z0-9]+) AS [A-Za-z0-9]+ ON (\w+).ID = ([A-Za-z0-9]+\.student_id|[A-Za-z0-9]+\.friend_id) GROUP BY \w+\\.name HAVING COUNT\(DISTINCT ([A-Za-z0-9]+\.student_id)\)",
+    "correction": "SELECT T2.\w+ FROM ([A-Za-z0-9]+) AS T1 JOIN ([A-Za-z0-9]+) AS T2 ON T1.\w+ = T2.id GROUP BY T1.\w+ HAVING count(\*) >= <number>",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query where the join condition is incorrect and counts friendships twice."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\.Code = countrylanguage\.CountryCode WHERE countrylanguage\.(Language|IsOfficial) = '(French|English)' AND",
+    "correction": "Use INTERSECT operator to find common names of countries that are both English-speaking and French-speaking.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only join the 'country' and 'countrylanguage' tables with incorrect filtering conditions for both English and French languages."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Dogs WHERE dog_id IN \(\s*(SELECT dog_id FROM Treatments(?: JOIN Charges ON Treatments\.cost_of_treatment = Charges\.charge_amount)? GROUP BY dog_id HAVING SUM\(Charges\.charge_amount\)\s*[<=]\s*1000\s*\)",
+    "correction": "Replace the subquery with a query that selects dog_ids that have received treatments costing more than $1000 in total, and use NOT IN instead of IN",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly filters treatments based on their charge amount, potentially excluding dogs that meet the condition of having spent over $1000 on treatments in total."
+    }
+}

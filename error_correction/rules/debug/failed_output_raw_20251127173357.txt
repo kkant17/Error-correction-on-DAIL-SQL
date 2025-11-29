@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?<=\bFROM\s).+\sJOIN\s.*\sON\s(.*?)\sJOIN\s.*\sON\s(.*?)\sJOIN\s.*\sON\s(.*?)\sJOIN\s.*\sWHERE\s(?!Paragraphs\.Paragraph\_Text).+LIKE '.*'",
+    "correction": "Select only the required column and filter the results based on the specific condition.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily select columns from multiple tables and suggests to only select the required column for a more direct and efficient solution."
+    }
+}

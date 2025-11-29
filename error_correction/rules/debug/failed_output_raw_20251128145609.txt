@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) AS T1 JOIN ([A-Za-z0-9]+) AS T2 ON T1\.id = T2\.(Channel|channel) WHERE T2\.(Directed\_by|directed\_by) IN '(.*?)' $",
+    "correction": "Split the query into two separate queries using the INTERSECT keyword to find common results, each with its own WHERE clause.",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the IN operator is used incorrectly in a SQL query involving multiple conditions."
+    }
+}

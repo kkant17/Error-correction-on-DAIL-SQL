@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Owners JOIN Dogs ON Owners\\.owner\\_id = Dogs\\.owner\\_id (?!) T2\\.[\\w\\s]+",
+    "correction": "Use an alias for the Dogs table and reference columns using the alias prefix.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies cases where a column is referenced without using an alias for a joined table."
+    }
+}

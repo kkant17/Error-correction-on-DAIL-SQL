@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: SELECT [A-Z]+\\._ID, COUNT\\(\\([A-Z]+\\)\\) as [A-Za-z0-9]+From (Documents|Paragraphs) JOIN (Documents|Paragraphs) ON [A-Z]+\.\.[A-Z]+\_ID = [A-Z]+\.\.[A-Z]+\_ID GROUP BY [A-Z]+\\._ID ORDER BY [A-Z]+\\._ID",
+    "correction": "Replace the join with a count() function directly on the table (Paragraphs in this case), group by the required column and order by it.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when a join is used unnecessarily, resulting in an incorrect count of rows."
+    }
+}

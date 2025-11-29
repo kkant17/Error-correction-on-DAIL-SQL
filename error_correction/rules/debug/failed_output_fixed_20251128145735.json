@@ -1,0 +1,9 @@
+{
+    "pattern": "r'SELECT ([a-zA-Z0-9]+)\\.\\s*([a-zA-Z0-9]+)\\s*,\\s*([a-zA-Z0-9]+)\\s+FROM\\s*([a-zA-Z0-9]+)',",
+    "correction": "Replace with 'SELECT [column1], [column2] FROM [table_name]'",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects the error of redundant table reference in a SQL query."
+    }
+}

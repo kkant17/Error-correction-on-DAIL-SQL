@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bfrom\\s+countrylanguage\\s+WHERE\\s+Language\\s+='[a-zA-Z]+'\\s+AND\\s+IsOfficial\\s+'[Tt]'(\\s+AND|$)",
+    "correction": "Join with the country table to calculate the average life expectancy and filter out English-speaking countries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to select data from the countrylanguage table without joining it with the country table, which results in an incorrect output."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+.*FROM\s+Student_Enrolment\s+JOIN\s+Degree_Programs\s+ON\s+\w+\.\w+\s*=\s*\w+\.\w+\s*(?!\s+GROUP\s+BY\s+\w+\.\w+)\s*(?!\s+ORDER\s+BY\s+COUNT\(\w+\.\w+\))",
+    "correction": "The query should only join the Student_Enrolment and Degree_Programs tables, and the group by clause should be on the degree_program_id from the Degree_Programs table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join additional tables beyond the required ones, which can lead to unexpected results."
+    }
+}

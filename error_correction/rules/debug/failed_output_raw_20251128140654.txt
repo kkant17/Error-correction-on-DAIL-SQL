@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+,\s+[0-9]+ FROM\s+TABLE1\s+JOIN\s+TABLE2\s+ON\s+TABLE1\.[A-Za-z]+\d=\s+TABLE2.\d+\s+ORDER\sBY\s+[A-Za-z]+\sASC\sLIMIT\s1$",
+    "correction": "Join the tables first, then filter the results based on a subquery that selects the minimum value for the specified column.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that join tables without first filtering the results based on a specific condition."
+    }
+}

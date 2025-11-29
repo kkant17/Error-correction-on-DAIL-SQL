@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+AVG\\(\\w+\\s*[+|-]\\s*\w+\)\\s*(?:/\\s*2)?\\s+as\\s+.*$",
+    "correction": "Replace with a query that calculates the minimum of a specific column (e.g., loser rank) instead of averaging two columns.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that average the sum of two different columns, when the intention is to find the minimum value of a specific column."
+    }
+}

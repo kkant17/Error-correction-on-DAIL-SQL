@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z]+) WHERE Airline = '(.*?)' AND SourceAirport = '(.*?)'(?!\\sJOIN\\s)",
+    "correction": "Add a JOIN clause to connect the AIRLINES and FLIGHTS tables using the common column 'Airline', and use an aggregate function like COUNT(\\*) to count the number of flights",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that do not join tables properly, specifically focusing on cases where the Airline table is not joined with the required FLIGHTS table."
+    }
+}

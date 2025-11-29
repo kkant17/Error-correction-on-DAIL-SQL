@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+\w+\.\w+\s+FROM\s+\w+\s+JOIN\s+\w+\s+ON\s+\w+\.\w+\s+=\s+\w+\.\w+\s+JOIN\s+\w+\s+ON",
+    "correction": "Remove the unnecessary joins and ensure that the table names are correct.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with incorrect or unnecessary JOIN statements."
+    }
+}

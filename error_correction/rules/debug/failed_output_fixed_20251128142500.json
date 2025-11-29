@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE Number_products > (\\d{4,})",
+    "correction": "SELECT district FROM shop WHERE (Number_products < 3000 OR Number_products > 10000) INTERSECT SELECT district FROM shop WHERE Number_products > 10000",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that filter records based on a single condition for large numeric values, while the intended query requires both low and high value conditions."
+    }
+}

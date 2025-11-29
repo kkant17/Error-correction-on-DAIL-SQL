@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+, [A-Za-z]+ FROM Table1 WHERE StuID IN \(\s*(SELECT\s+StuID\s+FROM\s+Table2\s+GROUP BY\s+StuID\s+HAVING\s+COUNT\(*\)\s*> 1\)",
+    "correction": "Join the tables using a proper JOIN statement and perform aggregation within the join",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of subqueries in place of joins, which can lead to improper results."
+    }
+}

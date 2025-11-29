@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT min\\(\\(.*\\)\\) FROM ([A-Za-z0-9]+) AS [A-Za-z0-9]+ WHERE \\[([A-Za-z0-9]+)\\] NOT IN \\(( SELECT student_id|friend_id FROM Friend UNION ALL SELECT student_id|friend_id FROM Friend \\)\\)",
+    "correction": "Join the Friend and Highschooler tables on the id column, and filter out students who are friends with any student in the Highschooler table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where a subquery is incorrectly used to filter out rows from another table, and suggests joining the tables directly instead."
+    }
+}

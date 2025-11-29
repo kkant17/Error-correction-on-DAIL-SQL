@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+AVG\(\w+\)\,\s+SUM\(\w+\)\s+FROM\s+country\s+WHERE\s+Code2\s+=\s+'US'\s+",
+    "correction": "Replace 'Code2' with 'GovernmentForm' and filter the results based on 'GovernmentForm = \"US Territory\"'",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use an incorrect column name for filtering US territories."
+    }
+}

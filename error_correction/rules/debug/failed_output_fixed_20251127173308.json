@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT Distinct .* from (?P<table1>\\w+) join (?P<table2>\\w+) on (?P<table1>\\w+)\\.(?P<column1>\\w+) = (?P<table2>\\w+)\\.(?P<column2>\\w+)(?!\\sJOIN\\s(?P<tabler3>\\w+)\\son\\s(?P<table4>\\w+)\\.on\\s(?P<table3>\\w+)\\.(?P<column3>\\w+) = (?P<table4>\\w+)\\.(?P<column4>\\w+))",
+    "correction": "Include the necessary join with all required tables and specify DISTINCT values correctly.",
+    "metadata": {
+        "error_type": "DISTINCT_ERROR",
+        "confidence": "high",
+        "description": "Rule for identifying missing joins and incorrect DISTINCT syntax in SQL queries."
+    }
+}

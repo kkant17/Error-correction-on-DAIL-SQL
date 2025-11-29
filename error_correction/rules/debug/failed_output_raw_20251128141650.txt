@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z0-9\s]+\s+FROM\s+[a-zA-Z0-9]+\s+WHERE\s+Airline\s*=\s*'[A-Za-z ]*\'.*$",
+    "correction": "JOIN the required tables and use a WHERE clause on the joined result set to filter the flights for the specific airline.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data from one table without joining it with the necessary related table."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ AS TotalCost FROM \w+\s+JOIN\s+\w+\s+ON\s+\w+\.\w+= \w+\.\w+ GROUP BY .+ ORDER BY TotalCost .+ LIMIT 1",
+    "correction": "GROUP BY the grouped column and order by the aggregated column instead of aliasing it as TotalCost",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the SUM or other aggregate function is used to calculate a total, but the query does not group by the corresponding column and instead aliases it as TotalCost."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(\*\) FROM flights WHERE DestAirport = '(.*?)' AND SourceAirport is not mentioned",
+    "correction": "Join the flights and airports tables on the SourceAirport column and check for cities instead of airports.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use DestAirport to find flights departing from a specific city, and suggests joining the tables on SourceAirport instead."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM .+ WHERE .+ NOT IN \\(\\s*( SELECT .+\bFROM\b\\w+\bWHERE\b.+\b)\\)",
+    "correction": "JOIN the necessary tables and filter out the unwanted records using a JOIN instead of a subquery",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use a subquery to filter records, and suggests correcting the error by joining the necessary tables instead."
+    }
+}

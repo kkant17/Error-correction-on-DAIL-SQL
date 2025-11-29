@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bFROM\\s.*JOIN\\s.*ON\\s.*AND\\s.*JOIN\\s.*ON\\s.*AND\\s.*WHERE\\s*\\((.*IS\\sNULL\\sOR\\s.*IS\\sNULL)\\sAND\\s(?!.*HAVING\\s*count\\(\\*\\)).+$",
+    "correction": "Remove unnecessary joins and conditions, group by the required column, and use a HAVING clause with count(*).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that include unnecessary joins and conditions which are not present in the gold SQL query."
+    }
+}

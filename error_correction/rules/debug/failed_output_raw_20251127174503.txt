@@ -1,0 +1,9 @@
+{
+    "pattern": "GROUP BY\s+Country\_name\s+and\s+COUNT\(*\)(\s+FROM\s+players)?",
+    "correction": "Replace 'Country_name' with 'country_code' and group by the corrected column",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that use incorrect columns for grouping in aggregate functions"
+    }
+}

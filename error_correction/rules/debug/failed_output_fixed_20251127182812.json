@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9_\\s]+) JOIN ([A-Za-z0-9_\\s]+) ON ([A-Za-z0-9_\\s]+\\.\\w+) = (\\w+\\.\\w+) GROUP BY ([A-Za-z0-9_\\s, ]+)",
+    "correction": "SELECT T1.column1 , T1.column2 FROM Table1 AS T1 JOIN Table2 AS T2 ON T1.common_column = T2.common_column GROUP BY T1.column1",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries where the grouping columns are not correctly specified for a join operation."
+    }
+}

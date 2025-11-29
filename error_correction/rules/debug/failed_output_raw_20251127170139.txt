@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+T[1]+\.\w+\s+AS\s+concert\_count\s+FROM\s+stadium\s+AS\s+T[1]\s+LEFT\s+JOIN\s+concert\s+AS\s+T[2]\s+ON\s+T[1]\.\w+\s+=\s+T[2]\.\w+\s+GROUP\s+BY\s+T[1]\.\w+$",
+    "correction": "Join the concert table (T1) with the stadium table (T2), and group by the correct column (T1.stadium_id).",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where there is a reversed join operation, as well as incorrect grouping based on the stadium's id instead of stadium_id."
+    }
+}

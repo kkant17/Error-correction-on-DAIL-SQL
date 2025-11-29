@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(*\) , [A-Za-z0-9_]+ FROM [A-Za-z0-9_]+ GROUP BY [A-Za-z0-9_]+ HAVING COUNT\(DISTINCT [A-Za-z0-9_]+\) = 1",
+    "correction": "Remove the unwanted column from SELECT statement and use COUNT(\*) within the GROUP BY clause instead of COUNT(DISTINCT).",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that count distinct values while grouping by another column and corrects them by removing the unwanted column from the SELECT statement and using COUNT(\*) within the GROUP BY clause instead."
+    }
+}

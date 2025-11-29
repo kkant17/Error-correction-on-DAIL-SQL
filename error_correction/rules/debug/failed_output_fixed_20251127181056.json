@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+) FROM ([A-Za-z0-9]+)(\\s+WHERE\\s+Language\\s+=\\s+'([A-Za-z]+)'(\\sAND\\sIsOfficial\\s+=\\s+'T')?)?",
+    "correction": "Join the tables first, filter out English-speaking countries, and then calculate the average of the desired column for the remaining countries.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly select a column without properly filtering out English-speaking countries before calculating the aggregate value."
+    }
+}

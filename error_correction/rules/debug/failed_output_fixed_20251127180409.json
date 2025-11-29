@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM CONTESTANTS AS C LEFT JOIN VOTES AS V ON C\\.contestant\\_number = V\\.\\w+ GROUP BY C\\.contestant\\_number ORDER BY COUNT\\(V\\.\\w+\\) ASC LIMIT 1",
+    "correction": "Replace the join condition to match the column name in both tables and group by all non-aggregated columns mentioned in the SELECT clause, order by count(\\*) instead of a specific column count.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that count a specific column in the join table instead of the actual number of rows, which can lead to incorrect results."
+    }
+}

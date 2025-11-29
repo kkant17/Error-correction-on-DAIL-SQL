@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-z]+)\(.*\) as [A-Z_]+_[A-Z_]+,\s*([a-z]+)\\(\\w+\)\\s+from\s+.*?\s+where\s+GovernmentForm\s+like '%US%'",
+    "correction": "Replace the inconsistent naming convention for aggregated columns and correct the column name in WHERE clause",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with incorrect naming conventions for aggregated columns and mismatch between SELECT and WHERE clauses"
+    }
+}

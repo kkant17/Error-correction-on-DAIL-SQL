@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT MIN\\(.*\\) FROM Highschooler h WHERE h.ID NOT IN \\(\\s*( SELECT student_id|friend_id)\\s*FROM\\s*Friend\\)",
+    "correction": "Replace with: SELECT min(grade) FROM Highschooler WHERE id NOT IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.id)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects incorrect joins between tables in a SQL query."
+    }
+}

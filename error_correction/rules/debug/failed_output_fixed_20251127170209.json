@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM \\w+)(\\s*(WHERE\\s+stadium\\_id\\s+IN\\s+\\(SELECT\\s*.*\\s+FROM\\s+concert\\))",
+    "correction": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error where a subquery is used incorrectly to exclude records, by replacing it with the correct syntax using NOT IN."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bfrom\s+matches\s+WHERE\s+.*= '(.*)' \)\s*(?!\s+GROUP\s+BY|ORDER\s+BY)",
+    "correction": "Replace the query with SELECT count(DISTINCT <column_name>) FROM matches WHERE tourney_name = '<tournament_name>' AND winner_hand = 'L' and add appropriate column name and tournament name",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not correctly calculate the count of distinct winners, as required by the question. It suggests replacing the query with a corrected version that aggregates and filters the results based on tourney_name and winner_hand."
+    }
+}

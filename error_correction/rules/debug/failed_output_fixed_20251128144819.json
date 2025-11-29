@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+.*FROM\\s+(?<table1>\\w+\\s+JOIN\\s+)?(\\w+\\s+ON\\s+\\w+\\.\\w+=)?\\s+(?<table2>\\w+\\s+JOIN\\s+)?(\\w+\\s+ON\\s+\\w+\\.\\w+=)?\\s+.*GROUP BY\\s+(?P<group_by>\\w+)\\s+ORDER BY\\s+COUNT\\((\\w+)\\)\\s+DESC\\s+LIMIT\\s1",
+    "correction": "Replace the GROUP BY clause with T1.degree_program_id or the appropriate table alias, and order by count(*) instead of COUNT(<column>) to avoid issues with duplicate students or enrollments.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that group by an incorrect column and order by the count of a specific column, potentially leading to incorrect results. It suggests replacing the grouping column with the appropriate table alias and ordering by count(*) instead."
+    }
+}

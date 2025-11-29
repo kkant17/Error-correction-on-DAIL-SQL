@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Students AS T[^a]+\bJOIN\\s.*ON T[^a]+.\bJOIN\\s.*ON",
+    "correction": "The query should only join tables with the Students table and not include any other unnecessary joins.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join multiple tables to the Students table."
+    }
+}

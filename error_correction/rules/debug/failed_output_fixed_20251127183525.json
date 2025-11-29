@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE .* NOT IN \\(SELECT .*\\) AND (.* FROM .*)",
+    "correction": "Select names of singers who do not have any songs associated with them in the database by using a subquery to find the IDs of all singers in the song table and then filtering out those singers whose IDs are not found in the singer table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses a subquery to find rows in one table (singer) where the ID is not found in another table (song)."
+    }
+}

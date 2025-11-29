@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT \d+ FROM (?P<join>[A-Z]+) JOIN \\(\\s*(?P<aggregation>AVG|SUM|COUNT|MIN|MAX)\\(.*\\) AS (?P<alias>\w+)\\s*ON \\d+=\\d+ WHERE\\s*(?P<condition>.*)\\s+AND\\s+(?P<unrelated_table>[A-Z]+)\\.\\w+ = .*$",
+    "correction": "Join the Professionals table with the Treatments table using a professional ID, and select distinct names from the joined table while filtering on treatments whose cost is less than the average cost of treatments.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join a table with an aggregate function and includes an unrelated table without a clear join condition."
+    }
+}

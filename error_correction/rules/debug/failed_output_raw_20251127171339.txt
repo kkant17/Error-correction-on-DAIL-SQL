@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-z]+)\(.*\) FROM .* WHERE Make = '.*' AND Model IS NOT NULL$",
+    "correction": "Join with the required table and use Id for join condition instead of Make, also use an alias for the main table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that lack a necessary join operation with the required table and use incorrect column names for the join condition."
+    }
+}

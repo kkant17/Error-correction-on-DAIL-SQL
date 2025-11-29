@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+\s+WHERE\s+(country|CountryCode)\.Code = .+ AND .+ = 'Spanish' AND IsOfficial = 'T'\b",
+    "correction": "Replace the column reference with the correct one (CountryCode instead of country.Code) and add a GROUP BY clause to aggregate data. Also, remove the unnecessary IsOfficial condition.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly reference country.Code instead of CountryCode in the countrylanguage table."
+    }
+}

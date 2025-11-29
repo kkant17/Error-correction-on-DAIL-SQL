@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-zA-Z]+)(\s+as\s+)[a-zA-Z_]+(\s+from\s+)[a-zA-Z_]+(\s+where\s+)([a-zA-Z]+)\s*= (\d+)\s*group\s+by\s+([a-zA-Z]+)\s*order\s+by\s+([a-zA-Z]+)\s*limit\s+1$",
+    "correction": "Join the tables correctly using their respective IDs and select the actual column value for each joined row. Do not group the results.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly join tables by column names instead of IDs and groups the results."
+    }
+}

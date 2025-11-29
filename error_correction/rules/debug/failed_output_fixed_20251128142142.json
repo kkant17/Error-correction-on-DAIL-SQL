@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM .+\\s+WHERE\\s+COUNT\\(\\*\\)\\s+NOT\\s+IN\\s+(?P<subquery>[A-Za-z0-9,\\s]+)\\s+AND\\s+(\\d|0)$",
+    "correction": "Replace the COUNT(*) and AND 0 with NOT IN subquery to find airports without any flights.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use COUNT(*) and assume an airport with zero flights would have a count of zero, instead of finding airports without any flights at all."
+    }
+}

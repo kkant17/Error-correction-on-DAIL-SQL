@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ COUNT\(.*\) AS total\_[A-Za-z]+ FROM .+ JOIN .+ ON .+\.id = .+\.id WHERE .+\.name = 'Engineering' GROUP BY .+$",
+    "correction": "Replace the aggregation function with COUNT(*) and remove the GROUP BY clause.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses situations where the SQL query counts a specific column instead of counting all rows."
+    }
+}

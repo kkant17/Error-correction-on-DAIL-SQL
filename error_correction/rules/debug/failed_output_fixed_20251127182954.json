@@ -1,0 +1,9 @@
+{
+    "pattern": "^(?=SELECT .+\bFROM\\s+.*\bJOIN\\s+.*\bON\\s*.*dog\\_id\\s*=\\s*treatments\\.dog\\_id\\s*).+(?=\bORDER\\s+BY\\s+t\\.date_of_treatment)$",
+    "correction": "Join the Dogs and Treatments tables directly on dog_id field, then filter the results based on the most common breed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join the Dogs and Treatments tables indirectly through subqueries, instead of joining them directly on the dog_id field."
+    }
+}

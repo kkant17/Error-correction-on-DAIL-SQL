@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* JOIN .* ON .*.MakeId = .*.Id WHERE Horsepower = \(SELECT MIN\(Horsepower\) FROM .*\)",
+    "correction": "Replace with: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId = T2.Id ORDER BY T2.horsepower ASC LIMIT 1",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that use a subquery to find the minimum horsepower and then filter results based on it, instead of ordering the results by horsepower."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM Singer WHERE Birth\\_Year (<|>|<=|>=) [0-9]+ UNION ALL SELECT .+ FROM Singer",
+    "correction": "SELECT Citizenship FROM singer WHERE Birth_Year <|> 1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year > 1955",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that select incorrect columns and use UNION ALL instead of INTERSECT to find common rows between subqueries."
+    }
+}

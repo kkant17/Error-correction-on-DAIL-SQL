@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM ([A-Za-z]+\s+AS\s+[A-Za-z]+)+ \s+ON\s+([A-Za-z]+\.[A-Za-z]+)\s+=\s+([A-Za-z]+\.[A-Za-z]+)\s*(WHERE|GROUP BY)\s+(cost_[A-Za-z]+)\s*< \d+",
+    "correction": "SELECT name from [table_name] where [table_name]_id not in ( select [table_name]_id from [subquery_table] group by [table_name]_id having SUM([cost_column]) > [value] )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly uses JOIN statements to combine data from multiple tables and checks for individual costs less than a specific value, when the intended query should use a subquery to find dogs with total treatment costs greater than the specified value."
+    }
+}

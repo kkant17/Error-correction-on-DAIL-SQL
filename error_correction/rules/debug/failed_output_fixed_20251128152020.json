@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS \\w+ FROM (Highschooler|Likes) LEFT JOIN (Highschooler|Likes) ON (\\w+)\\.ID = (\\w+)\\.student_id GROUP BY (\\w+)\\.ID, (\\w+)\\.(?!\\w+)$",
+    "correction": "Replace the count function with count(*) and remove the extra column in the GROUP BY clause.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the count function is incorrectly applied to a foreign key column, and suggests replacing it with count(*) and removing the extra column from the GROUP BY clause."
+    }
+}

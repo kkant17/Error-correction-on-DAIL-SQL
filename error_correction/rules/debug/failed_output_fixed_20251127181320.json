@@ -1,0 +1,9 @@
+{
+    "pattern": "WHERE (?!EXCEPT).*Language \\!='English' AND GovernmentForm != 'Republic'",
+    "correction": "Replace with: SELECT Code FROM country WHERE GovernmentForm != \"Republic\" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = \"English\"",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that incorrectly filters by language in the countries table, instead of using a separate subquery to filter by language."
+    }
+}

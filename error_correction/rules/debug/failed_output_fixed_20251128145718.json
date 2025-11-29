@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-ZA-Z_]+ FROM ([A-ZA-Z]+\\s+JOIN\\s+)[A-ZA-Z]+ AS (\\w+) ON ([A-ZA-Z]+\\.id) = (\\w+)\\.([A-Za-z0-9]+) WHERE ([A-Za-z0-9]+)\\.([A-Za-z0-9]+) != '(.*?)' GROUP BY [A-ZA-Z_]+ HAVING COUNT\\(([A-Za-z0-9]+)\\.id) = 0",
+    "correction": "SELECT id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones')",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects incorrect joins between tables, where the join condition is based on id and there's an unnecessary group by clause."
+    }
+}

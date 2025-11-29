@@ -1,0 +1,9 @@
+{
+    "pattern": "^select\\s+.*\\s+from\\s+.*\\s+GROUP BY\\s+.*\\s+HAVING\\s+COUNT\\(*\\)\\s+> \\d+\\s+without\\s+JOIN\\s+operation\\s+and\\s+COUNT\\(*\\)\\s+within\\s+a\\s+GROUP\\s+BY\\s+clause",
+    "correction": "The query should include a JOIN operation between the necessary tables, and the COUNT(*) function should be placed within a GROUP BY clause with a HAVING condition to filter out results as needed.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that group results without joining the necessary tables and provides a correction for incorporating the required JOIN operation."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "Student\\s+FROM\\s+[A-Z]+\\s+JOIN\\s+Has\_Pet\\s+ON\\s+Student\\.StuID\\s+=\\s+Has\_Pet\\.StuID",
+    "correction": "Replace the table name 'Student' with the correct format for referencing tables in a database, such as 'table_name' or 'schema_name.table_name'. In this case, it should be 'pets_1.student'.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies errors in table references where the table name is incorrectly specified."
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "pattern": r"SELECT DISTINCT model FROM car_names JOIN cars_data ON car_names\.MakeId = cars_data\.Id .*? WHERE Weight < 3500 AND Make NOT IN \(\(SELECT Maker FROM model_list WHERE Maker = \(SELECT Id FROM car_makers WHERE FullName = 'Ford Motor Company'\)\) AND (?!JOIN|FROM )MODEL_LIST",
+  "correction": "Join the `MODEL_LIST` table correctly and include the `CAR_MAKERS` table as well.",
+  "metadata": {
+      "error_type": "TABLE_REFERENCE",
+      "confidence": "high",
+      "description": "This rule identifies incorrect table references in SQL queries, specifically missing joins with required tables."
+  }
+}

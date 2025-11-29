@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ AS .+ FROM singer AS s JOIN \\( SELECT MIN\\(Age\\) AS MinAge FROM singer \\) AS min\\_age ON s.Age = min\\_age.MinAge",
+    "correction": "Select specific song details directly from the singer table, ordered by age and limited to one result.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery to find an aggregate value without selecting specific song details."
+    }
+}

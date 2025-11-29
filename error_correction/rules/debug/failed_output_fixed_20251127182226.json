@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s[a-zA-Z0-9\\s]+FROM\\sFriend\\sWHERE\\sstudent\\_id\\s=\\s\\(SELECT\\sID\\sFROM\\sHighschooler\\sWHERE\\sname\\s=['\"]([A-Za-z]+)['\"]\\)\\s$",
+    "correction": "Join the Friend and Highschooler tables on student_id and friend_id respectively, and filter the results by the name from the Highschooler table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables when trying to find a friend's information."
+    }
+}

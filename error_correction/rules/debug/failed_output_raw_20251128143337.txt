@@ -1,0 +1,9 @@
+{
+    "pattern": r'WHERE Age = \'\d+\''",
+    "correction": "Remove single quotes around numerical values in the WHERE clause",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects errors where the SQL query incorrectly uses single quotes for numerical values in the WHERE clause."
+    }
+}

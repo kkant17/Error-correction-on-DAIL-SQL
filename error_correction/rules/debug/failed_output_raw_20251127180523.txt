@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Continent\s+FROM\s+country\s+WHERE\s+Code\s*=\s'*[A-Za-z]{2}'\'",
+    "correction": "Replace 'Code' with 'Name', and use the country name instead of the country code",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use the country code instead of the country name when querying for specific data like continents."
+    }
+}

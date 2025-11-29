@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM .* WHERE FlightNo IN \\(( SELECT .* FROM .*\\) SUBQUERY WHERE .*\\) AND FlightNo IN \\(( SELECT .* FROM .*\\) SUBQUERY WHERE .*\\)",
+    "correction": "Join the AIRLINES and FLIGHTS tables directly using the 'uid' field, filtering the flights based on the source airport in each subquery.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly join tables using subqueries instead of directly joining them."
+    }
+}

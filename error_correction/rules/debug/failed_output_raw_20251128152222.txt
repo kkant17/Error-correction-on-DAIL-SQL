@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT COUNT(\*) FROM .+ WHERE (\\(SELECT COUNT(\\*) FROM .+\\) > 1)",
+    "correction": "Remove the count operations and use set operators like INTERSECT or UNION instead",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily use subqueries with COUNT functions and suggests replacing them with set operators for better performance."
+    }
+}

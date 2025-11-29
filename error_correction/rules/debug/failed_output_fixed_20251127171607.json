@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT (SELECT MAX\\(.*\\) FROM .*) \\(.*\\) WHERE .* = \\((SELECT MAX\\(.*\\) FROM .*).*\\)",
+    "correction": "Instead of finding the maximum value for one attribute and comparing it to another attribute, find the maximum value for the same attribute and compare it with all other records.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly use subqueries to find the maximum value of one attribute and then compare it to another attribute."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-zA-Z0-9]+) FROM ([a-zA-Z0-9]+) GROUP BY ([a-zA-Z0-9]+) HAVING COUNT\(*\) > 1 \)$",
+    "correction": "Join the required table and group by both the 'Orchestra_ID' from the 'orchestra' table and 'performance' table. Ensure to select columns from the joined tables.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that do not join required tables, leading to missing columns for filtering and aggregation."
+    }
+}

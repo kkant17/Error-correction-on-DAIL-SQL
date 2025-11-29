@@ -1,0 +1,9 @@
+{
+    "pattern": "^(?=SELECT\\s+course_id,\\s+COUNT\\(*\\s+as\\s+max_occurrences\\s+FROM\\s+\\((.*?)\\)\\s+AS\\s+course_occurrences\\s+JOIN\\s+Student_Enrolment_Courses\\s+ON\\s+course_occurrences\\.student_course_id\\s+=\\s+Student_Enrolment_Courses\\.student_course_id\\s+.*?)\\sORDER BY\\s+max_occurrences\\sDESC\\sLIMIT\\s1$",
+    "correction": "Count the occurrences of student_course_id directly from Transcript_Contents table and order by count in descending order, then limit to 1.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries when counting occurrences of a column."
+    }
+}

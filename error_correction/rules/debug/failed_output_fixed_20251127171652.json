@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .* FROM \\(\\s*(SELECT\\s*.*\\s+AS\\s+rn\\s+\\) AS subquery\\s+WHERE\\s+rn\\s+>\\s+(SELECT\\s+COUNT\\(DISTINCT\\s+.*\\)\\s+FROM\\s+.*\\)\\s+AND\\s+.*\n",
+    "correction": "Replace the subquery with a direct SELECT statement to get the minimum horsepower value, and use it in the WHERE clause instead of calculating row numbers.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that incorrectly use subqueries to find a minimum value and then calculate row numbers, instead of directly finding the minimum value."
+    }
+}

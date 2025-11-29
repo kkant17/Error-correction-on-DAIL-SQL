@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z]+_id\s+AS\s+player_id,\s+MAX\(\w+\)\s+as\s+max_\w+\s+FROM\s+[a-zA-Z]+\s+GROUP BY\s+player_id\s+) AS\s+top_[a-zA-Z]\s+ON\s+[a-zA-Z]\.\[a-zA-Z\]_id\s+=\s+top_\[a-zA-Z\]\.player_id\s+JOIN\s+matches\s+ON\s+[a-zA-Z]\.\[a-zA-Z\]_id\s+=\s+matches\.winner_id\s+WHERE\s+matches\.winner_id\s+IS\s+NOT\s+NULL\s+AND\s+[a-zA-Z]\.player_id\s+=\s+top_\[a-zA-Z\]\\.player_id\s+AND\s+[a-zA-Z]\.ranking\_points\s+=\s+max_\w+\s+LIMIT\s+1",
+    "correction": "Join the players table with matches on winner_id and order by winner_rank_points to get the player with the highest ranking points, without using a subquery or checking for redundant conditions in the WHERE clause.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries to calculate maximum values and suggests a more straightforward approach by joining the tables directly."
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM\s).+\bJOIN\s(?:ON\s)?(\bID\s(?:=|<\>|>\=|\<=\)|,\s)?(?:\bID\s(?:=|<\>|>\=|\<=\)|,\s)+",
+    "correction": "Ensure that the join condition only uses one ID column and a single equality operator (e.g., ON h.ID = f.student_id)",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect join conditions that involve multiple ID columns or operators"
+    }
+}
+
+{
+    "pattern": "AGGREGATION_ERROR: (?<=FROM\s).+\bGROUP\sBY\s(?:h.ID|h\.)",
+    "correction": "Remove the GROUP BY clause if it is not necessary for the query's intended purpose",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "medium",
+        "description": "This rule identifies unnecessary group by clauses in SQL queries"
+    }
+}
+
+{
+    "pattern": "FILTER_ERROR: (?<=FROM\s).+\bHAVING\s(?:COUNT\(DISTINCT\s)?\s+f.student_id)",
+    "correction": "Replace the HAVING clause with a WHERE clause and filter based on the required conditions",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect use of HAVING clauses to filter records"
+    }
+}

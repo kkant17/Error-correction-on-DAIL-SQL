@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9\\s]+\\))$",
+    "correction": "The query should be executed on the correct table and it should use a JOIN operation with the required table to filter by the appropriate column.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that select data from an incorrect table."
+    }
+}

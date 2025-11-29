@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-zA-Z]+) JOIN ([a-zA-Z]+) ON (\w+\.\w+) = (\w+\.\w+) GROUP BY \w+\.\w+",
+    "correction": "Replace the GROUP BY clause with a column from the first table and adjust the SELECT clause to sum the required column",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries where the GROUP BY clause is incorrectly grouping by a foreign key instead of a primary or unique column."
+    }
+}

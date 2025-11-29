@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z0-9]+) JOIN (\\w+) ON (\\w+).ID = (\\w+)\\.student_id GROUP BY (\\w+)\\.ID ORDER BY COUNT\\(DISTINCT (\\w+)\\) DESC LIMIT 1",
+    "correction": "Replace the count aggregate function with count(*), and ensure that aliases are provided for all tables in the FROM clause.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule addresses situations where an SQL query incorrectly counts distinct values instead of total occurrences."
+    }
+}

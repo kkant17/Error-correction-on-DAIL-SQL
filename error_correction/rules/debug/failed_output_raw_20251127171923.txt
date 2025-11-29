@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\\(\*\) FROM flights WHERE DestAirport = '(.+)'",
+    "correction": "Replace DestAirport with SourceAirport to filter for source airport instead of destination airport",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies errors related to incorrect column selection in SQL queries"
+    }
+}

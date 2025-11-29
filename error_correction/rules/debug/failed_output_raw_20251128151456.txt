@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\(*\) , [A-Za-z0-9_]+ FROM [A-Za-z0-9_]+ GROUP BY [A-Za-z0-9_]+ HAVING COUNT\(DISTINCT ([A-Za-z0-9_]+)\) = 1",
+    "correction": "SELECT [A-Za-z0-9_]+, COUNT\(*\) FROM [A-Za-z0-9_]+ GROUP BY [A-Za-z0-9_]+",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that count the wrong column and group by an incorrect column, while also filtering out groups with a specific number of distinct values."
+    }
+}

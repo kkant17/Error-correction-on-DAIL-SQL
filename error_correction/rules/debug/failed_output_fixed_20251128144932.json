@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM ([A-Za-z]+) JOIN ([A-Za-z]+) ON (\\w+.\\w+) = (\\w+.\\w+) WHERE ([A-Za-z]+).(.*?) = '(.*)' AND ([A-Za-z]+).student_id NOT IN \\(\\s*SELECT\\s+student_id\\s+FROM\\s+([A-Za-z]+)\\)",
+    "correction": "Use EXCEPT operator to find the difference between two sets: students living in North Carolina from the Students table and students living in North Carolina who are enrolled in a degree program from the Student_Enrolment table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect usage of subqueries for excluding rows based on a condition in the WHERE clause."
+    }
+}

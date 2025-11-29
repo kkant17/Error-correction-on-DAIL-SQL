@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT ([a-zA-Z0-9]+) FROM (?![a-zA-Z0-9 ]+)(\s*GROUP\s*BY\s*)(.*)$",
+    "correction": "The query should join the necessary table containing the required column before grouping and filtering.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not reference the correct table, leading to missing columns."
+    }
+}

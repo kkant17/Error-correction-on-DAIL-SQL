@@ -1,0 +1,9 @@
+{
+    "pattern": "WHERE YEAR\\(\\w+\(\\)\\s+IN\\s+\(.*\\)",
+    "correction": "Replace with: WHERE YEAR = <specific\_year> OR YEAR = <another\_specific\_year>",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of the YEAR() function in a WHERE clause filter, which is incorrect as it requires a date field. Instead, the query should directly compare the YEAR column with specific values."
+    }
+}

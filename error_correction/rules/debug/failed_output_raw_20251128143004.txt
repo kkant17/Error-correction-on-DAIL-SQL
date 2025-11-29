@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT count\(*\) FROM ([A-Za-z0-9]+) WHERE Document\_Name = '(.*?)'",
+    "correction": "Use a join to link the tables correctly and reference the joined table in the WHERE clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies cases where the count function is applied directly to a table without joining it with another table, leading to potential mismatches between the document names in the WHERE clause and the actual documents in the selected table."
+    }
+}

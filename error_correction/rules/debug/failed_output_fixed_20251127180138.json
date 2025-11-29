@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT avg\\(.*\\) FROM .*$",
+    "correction": "No correction needed as the query is correct.",
+    "metadata": {
+        "error_type": "OTHER",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that correctly calculate the average of a column using the avg() function."
+    }
+}

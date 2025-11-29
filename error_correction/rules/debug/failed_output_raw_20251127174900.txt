@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [a-zA-Z]+ [a-zA-Z]+\s+FROM [a-zA-Z\s]+$",
+    "correction": "Ensure that table names are enclosed in either backticks (`) or double quotes (\") if they contain spaces or special characters.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where table names are not properly formatted and suggests a correction."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS .+ FROM .+ JOIN .+ ON .+\bWHERE\s+CO.\w+\s+=\s+'T'\b(?: AND|GROUP BY|HAVING)\s*$",
+    "correction": "Remove the GROUP BY and HAVING clauses, apply DISTINCT to the correct column (City ID), use proper boolean values ('true' or '1') instead of single quotes.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries with unnecessary GROUP BY and HAVING clauses, incorrect use of DISTINCT, and improper boolean values."
+    }
+}

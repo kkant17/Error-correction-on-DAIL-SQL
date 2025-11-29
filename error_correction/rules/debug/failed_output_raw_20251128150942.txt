@@ -1,0 +1,19 @@
+{
+    "pattern": "JOIN\\s+ON\\s+(city\\.CountryCode\\s*=\\s*country\\.Code\\s*(AND|\\s*)(countrylanguage\\.CountryCode\\s*=\\s*countrylanguage\\.Code))",
+    "correction": "Join the countrylanguage table only with the country table, and remove the unnecessary join condition for city.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect joins that involve more than one table in the ON clause."
+    }
+}
+
+{
+    "pattern": "countrylanguage\\.IsOfficial\\s*!=\\s*'T'",
+    "correction": "Filter out English-speaking countries by using `countrylanguage.Language != 'English'` or `countrylanguage.IsOfficial = 'F'`.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies incorrect conditions used for filtering out English-speaking countries."
+    }
+}

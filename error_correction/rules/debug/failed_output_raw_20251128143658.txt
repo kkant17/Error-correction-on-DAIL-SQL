@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT [a-zA-Z]+\\.([a-zA-Z]+)_ID IN \(\\s*( SELECT Museum_ID FROM museum WHERE Open_Year \\< ([0-9]{4}) )\\) JOIN visit AS [a-zA-Z]+ ON [a-zA-Z]+\.ID = [a-zA-Z]_+\\._ID AND [a-zA-Z]_+\\.Museum_ID NOT IN \(\\s*( SELECT Museum_ID FROM museum WHERE Open_Year \\<= ([0-9]{4}) )\\)",
+    "correction": "Replace the query with a corrected version that uses the INTERSECT keyword to find visitors who have visited only museums opened before 2009 or only museums opened after 2011.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly combine subqueries for museums opened before and after specific years, and suggests a correction using the INTERSECT keyword."
+    }
+}

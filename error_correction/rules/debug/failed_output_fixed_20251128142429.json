@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\\*, (?<!aliased)(\\w+\\.)(hiring|employee|shop)\\.* FROM",
+    "correction": "Select only required columns from each table to avoid unnecessary data retrieval.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule suggests selecting only the necessary columns from tables in a SQL query to optimize data retrieval and readability."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+CountryCode,\\s+Language,\\s+MAX\\(Percentage\\)\\s+as\\s+max_percentage\\s+FROM\\s+countrylanguage\\s+GROUP BY\\s+CountryCode\\s+\\())\\s+AS\\s+max_percentages\\s+ON\\s+country\\.Code\\s+=\\s+max_percentages\\.CountryCode\\s+JOIN\\s+countrylanguage\\s+ON\\s+country\\.Code\\s+=\\s+countrylanguage\\.CountryCode\\s+AND\\s+countrylanguage\\.Percentage\\s+=\\s+max_percentages\\.max_percentage\\s+GROUP BY\\s+country\\.Name",
+    "correction": "SELECT LANGUAGE , CountryCode , max(Percentage) FROM countrylanguage GROUP BY CountryCode",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the SQL query by removing an unnecessary subquery and join that filters by max_percentage, which is not defined within the subquery."
+    }
+}

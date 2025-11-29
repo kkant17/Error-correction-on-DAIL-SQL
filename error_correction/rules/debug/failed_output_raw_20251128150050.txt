@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT DISTINCT area\_code FROM AREA\_CODE\_STATE WHERE area\_code IN \(\s*(?P<subquery>SELECT\s+vote\_id\.area\_code\s+FROM\s+VOTES\s+AS\s+vote\_id\s+JOIN\s+CONTESTANTS\s+ON\s+vote\_id\.contestant\_number\s+=\s+CONTESTANTS\.contestant\_number\s+WHERE\s+CONTESTANTS\.contestant\_name\s+=\s+'.*'\s*)\s+AND\s+area\_code\s+IN\s*\(\s*(?P<subquery2>SELECT\s+vote\_id\.area\_code\s+FROM\s+VOTES\s+AS\s+vote\_id\s+JOIN\s+CONTESTANTS\s+ON\s+vote\_id\.contestant\_number\s+=\s+CONTESTANTS\.contestant\_number\s+WHERE\s+CONTESTANTS\.contestant\_name\s+=\s+'.*'\s*)",
+    "correction": "Replace the subqueries with a single join between 'votes' and 'area_code_state' tables, using the 'state' field to connect them. Then, use INTERSECT operator to find common area codes between the two contestants.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that fail to join 'votes' and 'area_code_state' tables correctly, instead using subqueries to find area codes for each contestant."
+    }
+}

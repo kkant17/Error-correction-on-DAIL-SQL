@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* ORDER BY COUNT(\*) ASC",
+    "correction": "GROUP BY <column_name> ORDER BY COUNT(*) ASC",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that order results by the count of all records without grouping, resulting in incorrect counts for each unique value."
+    }
+}

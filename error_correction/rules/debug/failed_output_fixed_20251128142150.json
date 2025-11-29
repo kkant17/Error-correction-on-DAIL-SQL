@@ -1,0 +1,9 @@
+{
+    "pattern": "AirportCode.*FROM airports WHERE AirportCode NOT IN \\(\\s*(SELECT SourceAirport|SELECT DestAirport)\\s*\\)",
+    "correction": "Replace 'AirportCode' with 'AirportName' and ensure that the column name in the subquery matches the actual column name from the Flights table",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies errors where the incorrect column is selected from a table, specifically when selecting AirportCode instead of AirportName."
+    }
+}

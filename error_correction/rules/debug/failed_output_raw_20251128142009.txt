@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+ FROM [A-Za-z]+ JOIN [A-Za-z]+ ON ([A-Za-z]+\.[A-Za-z]+) = ([A-Za-z]+\.[A-Za-z]+) GROUP BY [A-Za-z]+ HAVING COUNT(\\w+) >= [0-9]+",
+    "correction": "SELECT T1.[Airline] FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.[uid] = T2.[Airline] GROUP BY T1.[Airline] HAVING count(*) > [0-9]+",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly count columns other than the grouped column and provides a correction to fix the error."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+Sections\.\w+\s*,\s+Courses\.\w+\s*FROM\s+Sections\s+JOIN\s+Courses\s+ON\s+Sections\.\w+\s*=\s+Courses\.\w+",
+    "correction": "The query should only select columns from the Sections table and exclude any columns from the Courses table.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that include irrelevant columns from other tables in the SELECT statement."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM country JOIN countrylanguage ON country\.Code = countrylanguage\.CountryCode WHERE countrylanguage\.(Language|IsOfficial) = '(English|Dutch)' AND (NOT EXISTS|NOT IN|UNION is missing)",
+    "correction": "Include the missing UNION operation to combine the results of both conditions and add the 'IsOfficial = "T"' condition to filter out countries where English or Dutch is not the official language.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that join two tables correctly but lack the UNION operation to combine the results of both conditions and misses the 'IsOfficial' filter."
+    }
+}

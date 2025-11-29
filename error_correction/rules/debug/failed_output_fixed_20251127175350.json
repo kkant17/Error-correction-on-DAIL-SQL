@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[A-Za-z0-9]+) AS t1 JOIN \\(\\s*SELECT student_course_id, COUNT\\(*\\) as course_count FROM (?P<tablenew>[A-Za-z0-9]+)_Enrolment_Courses GROUP BY student_course_id HAVING COUNT\\(*\\) >= 2\\)\\s+AS t2 ON t1.student_course_id = t2.student_course_id",
+    "correction": "SELECT T2.transcript_date , T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id = T2.transcript_id GROUP BY T1.transcript_id HAVING count(*) >= 2",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that incorrectly use a subquery to count courses instead of transcripts, and do not group by the required columns in the final result set."
+    }
+}

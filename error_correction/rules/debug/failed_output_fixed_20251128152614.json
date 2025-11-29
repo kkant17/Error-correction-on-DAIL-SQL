@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ AS Arrival_Date, IFNULL\\(.*\\, .*\\) AS Departure_Date FROM .+\\sLEFT JOIN .+ ON .+\bWHERE\\sTreatments\\.treatment_id IS NOT NULL",
+    "correction": "Select distinct T1.date\\_arrived , T1.date\\_departed from Dogs AS T1 JOIN Treatments AS T2 on T1.dog\\_id = T2.dog\\_id",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly select columns and apply NULL handling, and suggests a correction by selecting only distinct arrival and departure dates."
+    }
+}

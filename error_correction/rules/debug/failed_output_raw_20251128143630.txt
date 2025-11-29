@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT (.*), COUNT\(*\) as (.*?) FROM (.*?) GROUP BY (.*?) ORDER BY (.*?) DESC LIMIT 1 \) as (.*?) ON (.*)\.(.*?) = (.*?)\.(\*|ID)$",
+    "correction": "Join the tables directly and use aggregate functions within the SELECT statement instead of using a subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use subqueries when joining tables, and suggests to join the tables directly instead."
+    }
+}

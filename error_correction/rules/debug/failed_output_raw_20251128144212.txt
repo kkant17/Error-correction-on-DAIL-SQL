@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\w+\b(?: ON|JOIN)\s+(?:rankings|matches)\s+WHERE\s+t[12]\.birth\_date\s*=\s*(?:SELECT\s+min\(birth\_date\)\s+FROM\s+players\s+WHERE\s+player\_id\s*=\s*t[12]\.player\_id)|t[12]\.min\_birth\_date\s*=\s*t[12]\.birth\_date$",
+    "correction": "Select DISTINCT winner_name, winner_rank from matches ORDER BY winner_age LIMIT 3",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the error of selecting incorrect columns and not ordering by the desired column (winner age)."
+    }
+}

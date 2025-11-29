@@ -1,0 +1,9 @@
+{
+    "pattern": "JOIN_ERROR: (?<=FROM)\\s*(Students\\s+JOIN\\s+Addresses\\s+ON\\s+Students\\.\w+\s*=\\s+Addresses\\.\w+\\s*)(?=(?:\\s+ON\\s+|\\s+GROUP\\s+BY|\\s+ORDER\\s+BY))",
+    "correction": "Join the tables using only one address_id column and remove the unnecessary columns from the GROUP BY clause.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies when multiple address_id columns are used in a join, which can lead to redundant or incorrect data."
+    }
+}

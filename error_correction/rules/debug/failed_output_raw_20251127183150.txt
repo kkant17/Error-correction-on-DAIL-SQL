@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table>[A-Za-z0-9]+)(\s+WHERE\s+)?$",
+    "correction": "Replace with: SELECT count(*) FROM <table> WHERE dog_id NOT IN ( SELECT dog_id FROM Treatments )",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects a SQL query that tries to select data from a subquery instead of counting the number of records where the dog ID is not found in the Treatments table."
+    }
+}

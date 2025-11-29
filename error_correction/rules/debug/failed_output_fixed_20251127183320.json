@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z0-9\\s]+\\s+FROM(?:\\s+|$)",
+    "correction": "Ensure to include the table name after FROM, for example: 'FROM professionals' or 'FROM dog_kennels.Professionals'",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects queries that omit the table name after FROM"
+    }
+}

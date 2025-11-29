@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+(?:\s+\*\*)?\s+FROM\s+(?:poker_player)\s+ORDER\s+BY\s+[A-Za-z]+\s+ASC$",
+    "correction": "Join the 'people' table with the 'poker_player' table on a common column, and order by the joined records' Final_Table_Made.",
+    "metadata": {
+        "error_type": "ORDERING_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that select columns from 'poker_player' without properly joining it with the 'people' table and orders by a column in 'poker_player'. It suggests correcting this error by joining the tables and ordering by the joined records."
+    }
+}

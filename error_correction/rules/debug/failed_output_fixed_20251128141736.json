@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([a-zA-Z0-9]+) WHERE Name = '(.*?)' AND DestAirport = \\(SELECT AirportCode FROM airports WHERE City = '(.*?)'\\)$",
+    "correction": "Join the required tables directly and filter based on the relationship between them.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use separate subqueries for airline and airport instead of joining the appropriate tables directly, leading to an incomplete or incorrect result set."
+    }
+}

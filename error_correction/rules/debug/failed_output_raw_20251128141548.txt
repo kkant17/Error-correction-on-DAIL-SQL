@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\*\) FROM (?i)airlines$",
+    "correction": "Use the correct case for the table name in the SELECT statement.",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule identifies incorrect table references due to case sensitivity."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[a-zA-Z]+(?:\s+FROM)?\s*FROM\s+Highschooler\s+WHERE\s+name\s*=\s*'\w+'(\s+.*?)$",
+    "correction": "Join the Friend and Highschooler tables on student_id/id, then filter by name 'Kyle' and count the number of rows.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that only select data from Highschooler table without joining it with Friend table, which is needed to count the number of friends for a specific student."
+    }
+}

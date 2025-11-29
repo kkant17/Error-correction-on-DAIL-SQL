@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+SUM\(\w+\.\w+\)\s+as\s+TotalPopulation,\s+AVG\(\w+\.\w+\)\s+as\s+AverageSurfaceArea\s+FROM\s+(.+?)\s+WHERE\s+(.+?)\s+AND\s+T1\.\w+\s+>\s+(\d+)",
+    "correction": "Replace the column names used for the SUM and AVG functions with their lowercase counterparts in the database schema, and ensure that the condition uses the same case as the column name.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies cases where the SQL query uses incorrect column names for aggregation functions, which can lead to errors if the database schema is case-sensitive."
+    }
+}

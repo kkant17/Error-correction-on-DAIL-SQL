@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([a-zA-Z0-9\\s]+) JOIN [a-zA-Z0-9] ON (\\w+\\.\\w+) = (\\w+\\.\\w+) WHERE IsOfficial = 'T' AND Percentage > 0 ) AS .+ ON \\w+\\.\\w+ = .+\\.CountryCode WHERE .+ IS NOT NULL AND .+ > 72 GROUP BY .+, ([a-zA-Z0-9\\s]+)\\.GovernmentForm HAVING AVG(\\w+)",
+    "correction": "Join and aggregate data from the correct table, avoid using unnecessary subqueries and ensure aggregate functions are applied to the correct table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule detects incorrect joins that introduce unnecessary data and misalign with the intended SQL query."
+    }
+}

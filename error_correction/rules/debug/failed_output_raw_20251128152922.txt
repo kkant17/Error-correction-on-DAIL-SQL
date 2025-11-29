@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM \w+ ORDER BY .+ LIMIT 1",
+    "correction": "SELECT max(<column_name>) FROM <table_name>",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that select unnecessary columns and order or limit the results, when only finding the maximum value of a specific column is required."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s.*GROUP BY \w+\b ORDER BY COUNT\(\w+\).+LIMIT 1",
+    "correction": "Join with the correct table and select the desired column instead of Group By column, avoid unnecessary subqueries.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that miss joining with a required table and incorrectly group by the wrong column."
+    }
+}

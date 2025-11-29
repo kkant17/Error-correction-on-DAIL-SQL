@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM .* WHERE Birth\_Year > ([0-9]{4})",
+    "correction": "The query should be corrected by adding a second condition for singers born before 1945 and using the INTERSECT operator to find the common citizenship among these two sets.",
+    "metadata": {
+        "error_type": "FILTER_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that fail to consider all necessary conditions for a specific filter."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT\s+country_code\s+FROM\s+countrylanguage\s+WHERE\s+language\s+=\s+'English'\s+AND\s+isofficial\s+=\s?'T'\s+)\s+OR\s+EXISTS\s+\((\s+SELECT\s*\*\s+FROM\s+countrylanguage\s+WHERE\s+country_code\s+=\s+country\.Code\s+AND\s+language\s!=\s+'English'\s+AND\s+isofficial\s+=\s?'T'\s+)\)",
+    "correction": "The query should only select distinct CountryCodes where the language is not English. To fix this error, remove the condition for 'English' language and the subquery.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly include a subquery for English-speaking countries when the original question requires selecting CountryCodes where the language is not English."
+    }
+}

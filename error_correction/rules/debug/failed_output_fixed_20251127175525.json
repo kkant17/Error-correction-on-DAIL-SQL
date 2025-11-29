@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+\bAS\\s+[a-zA-Z0-9_]+\b\\s+FROM\\s+(?<!Transcript_Contents)\\s+.*JOIN\\s+Student_Enrolment_Courses\\s+ON\\s*.*$",
+    "correction": "Remove the unnecessary join with Student_Enrolment_Courses table and only group, count, order, and limit within the Transcript_Contents table.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "Avoid using unnecessary subqueries or joins when counting occurrences of a column in a single table."
+    }
+}

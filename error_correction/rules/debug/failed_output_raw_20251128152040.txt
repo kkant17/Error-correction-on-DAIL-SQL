@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+\bFROM\s+[A-Za-z0-9_\s]+\b JOIN [A-Za-z0-9_\s]+ ON \w+\b=\w+\b GROUP BY \w+\b ORDER BY COUNT\(DISTINCT\s+\w+\b\) DESC LIMIT 1",
+    "correction": "Replace the part 'COUNT(DISTINCT \w+)' with 'count(\*)' and ensure that the count is based on the correct column in the JOIN statement.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the aggregation function counts distinct values of a column instead of the total count. It provides a correction to fix this error."
+    }
+}

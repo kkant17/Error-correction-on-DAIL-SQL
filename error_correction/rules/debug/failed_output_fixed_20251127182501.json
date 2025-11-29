@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM ([A-Za-z\\d]+) AS [A-Za-z\\d]+ JOIN ([A-Za-z\\d]+) AS [A-Za-z\\d]+\\s+ON\\s+([A-Za-z\\d]+)\\.ID = ([A-Za-z\\d]+)\\.liked_id",
+    "correction": "The column that should be joined on is incorrect. The `student_id` from the Likes table should be used to join with the id in the Highschooler table.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies errors where the columns being joined on in a SQL query are incorrect."
+    }
+}

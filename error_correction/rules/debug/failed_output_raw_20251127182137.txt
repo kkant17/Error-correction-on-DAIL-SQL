@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .+ FROM ([A-Za-z0-9]+) JOIN ([A-Za-z0-9]+) ON (\\w+).+ = ([A-Za-z0-9]+\.\w+) GROUP BY .+ ORDER BY COUNT(\\w+) DESC LIMIT 1",
+    "correction": "Replace the grouping column with the joining column used in the ON clause, and count all rows instead of a specific column.",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects SQL queries that group by an incorrect column or count the wrong number of occurrences."
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+[a-zA-Z]+(?:\\s+FROM)?(?:\\s+WHERE\\s+[a-zA-Z]+(?:\\s+IS\\s+NOT)?\\s+NULL)?(?:\\s+ORDER\\s+BY\\s+[a-zA-Z]+)?$",
+    "correction": "Join the tables using a JOIN statement and ensure that the WHERE clause filters out rows where 'Final_Table_Made' is NULL. Also, sort by the 'Final_Table_Made' column using the aliased table name.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not join tables correctly, which can lead to missing columns or incorrect results."
+    }
+}

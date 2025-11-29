@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+Ref_[A-Z_]+(?:\.\w+)+(?:\s+FROM\s+)?Ref_Template_Types\s+LEFT\s+JOIN\s+Templates\s+ON\s+Ref_Template_Types\.\w+\s+=\s+Templates\.\w+\s+LEFT\s+JOIN\s+Documents\s+ON\s+Templates\.\w+\s+=\s+Documents\.Template_ID\s+WHERE\s+(Templates\.Template_ID\s+IS\s+NULL\s+OR\s+Documents\.Document_ID\s+IS\s+NULL)$",
+    "correction": "Replace the join conditions and use EXCEPT operator to find orphaned template types.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that aim to find all template type codes that are not used by any document but use a LEFT JOIN and filter out rows where either the Template_ID or Document_ID is NULL, instead of using a regular join and excluding rows where the template_id exists in both Templates and Documents tables."
+    }
+}

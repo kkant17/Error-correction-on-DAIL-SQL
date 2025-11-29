@@ -1,0 +1,9 @@
+{
+    "pattern": "^select\s+.*from\s+grouped\s+results$",
+    "correction": "The query should include a JOIN operation between the 'singer' and 'song' tables on their common column ('Singer_ID'), the SELECT clause for the specific column ('Name'), the GROUP BY clause to group the results by singer names, and the HAVING clause with COUNT(*) to filter out singers who have sung more than one song.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that lack a JOIN operation between the required tables."
+    }
+}

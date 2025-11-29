@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT count\\(\*\) FROM (?i)airports",
+    "correction": "Replace 'airports' with 'AIRPORTS'",
+    "metadata": {
+        "error_type": "TABLE_REFERENCE",
+        "confidence": "high",
+        "description": "This rule corrects case-sensitive table reference errors in SQL queries where the count function is used."
+    }
+}

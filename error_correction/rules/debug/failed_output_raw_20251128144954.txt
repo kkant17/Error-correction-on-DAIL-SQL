@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<inner_query>SELECT .+\bGROUP BY\b.*\bHAVING COUNT(\*).+) AS t[0-9]+ JOIN Transcripts .*$",
+    "correction": "Join the Transcript_Contents and Transcripts tables directly and count the number of rows in the Transcript_Contents table for each transcript id to meet the requirement of at least 2 entries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that incorrectly use a subquery with an aggregate function and a HAVING clause to filter records, instead of directly counting the number of rows in the main table."
+    }
+}

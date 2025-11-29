@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT [A-Za-z]+\\.([A-Za-z]+) FROM ([A-Za-z]+) AS [A-Za-z]+ JOIN ([A-Za-z]+) AS [A-Za-z]+ ON ([A-Za-z]+)\.([A-Za-z]+) = ([A-Za-z]+)\.([A-Za-z]+) WHERE ([A-Za-z]+)\.([A-Za-z]+) = '.*'",
+    "correction": "SELECT [column1], [column2] FROM [table_name] WHERE [condition]",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that unnecessarily join two tables without a common column for the join operation. It suggests correcting the query by selecting data from a single table and filtering it based on the desired condition."
+    }
+}

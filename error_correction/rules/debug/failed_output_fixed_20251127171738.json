@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT .+ FROM (?P<table1>[a-zA-Z_]+) WHERE Id IN \\(\\s*(?P<subquery1>SELECT .+\bFROM\\s*[a-zA-Z_]+\b)+ \\)\\s*AND\\s*\\((?P<subquery2>SELECT .+\bFROM\\s*[a-zA-Z_]+\b)+\\)",
+    "correction": "Join the tables correctly and apply conditions using HAVING clause",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "The error occurs when the SQL query does not join tables correctly, leading to incorrect results."
+    }
+}

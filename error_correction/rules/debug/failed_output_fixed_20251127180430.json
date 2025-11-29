@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+(.+)\\s+FROM\\s+(.+)\\s+JOIN\\s+\\( SELECT\\s+state,\\s+COUNT\\(\\w+\\)\\s+as\\s+vote\\_count\\s+FROM\\s+(.+)\\s+GROUP BY\\s+state \\)\\s+AS\\s+votes\\_count\\s+ON\\s+(.+)\\.\\s*state\\s*=\\s+votes\\_count\\.\\s*state\\s*GROUP BY\\s+(.+)\\s+ORDER BY\\s+vote\\_count\\s+DESC\\s+LIMIT\\s+1",
+    "correction": "Join the area codes and votes tables directly on their state column, avoid using subqueries.",
+    "metadata": {
+        "error_type": "SUBQUERY_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that use unnecessary subqueries in the JOIN operation."
+    }
+}

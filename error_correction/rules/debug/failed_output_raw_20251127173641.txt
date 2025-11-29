@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z]+(?:\s+\*\*)?\s+FROM\s+course\s+JOIN\s+(?:\(.*?\)\s+AS)?\s+subquery\s+ON\s+course\.Course_ID\s+=\s+subquery\.Course_ID",
+    "correction": "The query should involve the 'teacher' table, retrieve teacher names, and sort them by age in ascending order.",
+    "metadata": {
+        "error_type": "COLUMN_SELECTION",
+        "confidence": "high",
+        "description": "This rule identifies queries that do not match the given question's requirements, such as retrieving incorrect columns or tables."
+    }
+}

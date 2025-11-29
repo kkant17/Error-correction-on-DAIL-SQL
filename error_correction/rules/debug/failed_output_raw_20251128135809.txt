@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT ([A-Za-z]+)(\(.*\)) AS .* FROM .*",
+    "correction": "Replace with: SELECT uppercase(function_name) without parentheses from table",
+    "metadata": {
+        "error_type": "AGGREGATION_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects the use of non-standard function names with parentheses in SQL queries."
+    }
+}

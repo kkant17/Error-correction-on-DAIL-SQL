@@ -1,0 +1,9 @@
+{
+    "pattern": "D\\s+JOIN\\s+P\\s+ON\\s+D\\.Document\_ID\\s+=\\s+P\\.Document\_ID",
+    "correction": "Remove the unnecessary join and only reference the Paragraphs table",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that include an unnecessary join, as in this case where the Documents table is joined with the Paragraphs table unnecessarily."
+    }
+}

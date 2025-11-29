@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\s+[A-Za-z0-9_]+\s+FROM\s+(AIRLINES|FLIGHTS)\s+GROUP BY\s+[A-Za-z0-9_]\s+HAVING\s+count\(\*\)\s+< \d{3,}$",
+    "correction": "Join the AIRLINES and FLIGHTS tables using the 'uid' field as a common key. Group by the Airline from the joined table and apply the filter.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule corrects queries that only reference one table in a group-by, count(*) statement while ignoring the need for a join."
+    }
+}

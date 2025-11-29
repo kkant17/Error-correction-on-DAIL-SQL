@@ -1,0 +1,9 @@
+{
+  "pattern": "JOIN_ERROR|(?<=FROM\s)[A-Za-z0-9]+(?:\sJOIN\s[A-Za-z0-9]+)?\sWHERE\s(\(|\()SELECT\sCOUNT\(*\)\sFROM\s.*",
+  "correction": "Avoid unnecessary joins and count aggregations in subqueries. Instead, group and count the data first before joining with the main table.",
+  "metadata": {
+    "error_type": "JOIN_ERROR",
+    "confidence": "high",
+    "description": "This rule identifies SQL queries that join tables unnecessarily and use subqueries for aggregation, which can be corrected by grouping and counting the data first before joining."
+  }
+}

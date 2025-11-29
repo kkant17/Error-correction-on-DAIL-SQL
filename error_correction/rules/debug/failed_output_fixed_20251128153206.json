@@ -1,0 +1,9 @@
+{
+    "pattern": "^SELECT\\s+Ref_Feature_Types\\.\\w+\\s+FROM\\s+Ref_Feature_Types\\s+WHERE\\s+Ref_Feature_Types\\.\\w+=.*$",
+    "correction": "Join with the required table and filter by the correct column. For example, SELECT T2.feature_type_name FROM Other_Available_Features AS T1 JOIN Ref_Feature_Types AS T2 ON T1.feature_type_code = T2.feature_type_code WHERE T1.feature_name = 'AirCon'.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries that do not join with the necessary table, potentially leading to incomplete result sets."
+    }
+}

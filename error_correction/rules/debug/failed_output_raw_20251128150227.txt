@@ -1,0 +1,9 @@
+{
+    "pattern": r"SELECT avg\(.*\) FROM .* WHERE Continent = 'Africa' AND GovernmentForm LIKE '%Republic%'",
+    "correction": "Replace the LIKE operator with an exact match and remove wildcards",
+    "metadata": {
+        "error_type": "OPERATOR_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies SQL queries where the average function is used with a LIKE operator for matching 'Republic' in the GovernmentForm column. The correction suggests replacing the LIKE operator with an exact match and removing wildcards."
+    }
+}

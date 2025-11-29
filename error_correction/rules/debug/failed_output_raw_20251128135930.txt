@@ -1,0 +1,9 @@
+{
+    "pattern": "SELECT .* FROM concert JOIN .* ON concert\.concert\_ID = .*\.concert\_ID WHERE YEAR\(concert\.Year\) = \d{4}\)",
+    "correction": "Use EXCEPT or MINUS operator to find the difference between the set of all stadium names and the set of stadium names that hosted concerts in the year 2014.",
+    "metadata": {
+        "error_type": "JOIN_ERROR",
+        "confidence": "high",
+        "description": "This rule identifies queries that incorrectly join tables to find stadiums without concerts in a specific year, and suggests using the EXCEPT or MINUS operator to correctly find the difference between all stadium names and the names of those that hosted concerts."
+    }
+}
