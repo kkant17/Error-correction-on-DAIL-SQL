@@ -29,7 +29,11 @@ if __name__ == '__main__':
                                                       LLM.GPT_35_TURBO_0613,
                                                       LLM.GPT_4,
                                                       LLM.OLLAMA_CODELLAMA_7B,
-                                                      LLM.OLLAMA_DEEPSEEK_CODER_6_7B],
+                                                      LLM.OLLAMA_DEEPSEEK_CODER_6_7B,
+                                                      LLM.OLLAMA_MISTRAL_7B,
+                                                      LLM.OLLAMA_PHI3_INSTRUCT,
+                                                      LLM.OLLAMA_QWEN_2_5_CODER_7B,
+                                                      LLM.OLLAMA_DEEPSEEK_V2_LITE],
                         default=LLM.GPT_35_TURBO)
     parser.add_argument("--start_index", type=int, default=0)
     parser.add_argument("--end_index", type=int, default=1000000)
