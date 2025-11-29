@@ -1,10 +1,61 @@
 """
 Data structures for rules and rule triplets
 """
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional
-from datetime import datetime
 import json
+import logging
+import re
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Any, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class ValidationResult:
+    """
+    Stores the outcome of validating a generated transformation.
+    """
+    passed: bool
+    test_query: str
+    expected_output: str
+    actual_output: str
+    error_message: Optional[str] = None
+    execution_time_ms: float = 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "passed": self.passed,
+            "test_query": self.test_query,
+            "expected_output": self.expected_output,
+            "actual_output": self.actual_output,
+            "error_message": self.error_message,
+            "execution_time_ms": self.execution_time_ms
+        }
+
+
+@dataclass
+class RuleSkeleton:
+    """
+    Natural-language representation of a rule prior to code synthesis.
+    """
+    error_category: str
+    match_description: str
+    transformation_instructions: str
+    expected_behavior: str
+    example_transformation: str
+    confidence: float = 0.8
+    suggested_categories: Optional[List[str]] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "error_category": self.error_category,
+            "match_description": self.match_description,
+            "transformation_instructions": self.transformation_instructions,
+            "expected_behavior": self.expected_behavior,
+            "example_transformation": self.example_transformation,
+            "confidence": self.confidence
+        }
 
 
 @dataclass
@@ -63,6 +114,79 @@ class Rule:
 
 
 @dataclass
+class RegexRule(Rule):
+    """
+    Regex-based rule that can optionally store richer metadata.
+    """
+    error_category: str = "OTHER"
+    description: str = ""
+    confidence_score: float = 0.5
+    replacement: str = ""
+    incorrect_example: str = ""
+    correct_example: str = ""
+    created_at: datetime = field(default_factory=datetime.now)
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def apply(self, query: str) -> Optional[str]:
+        """
+        Apply this rule to a query and return the transformed SQL if it changed.
+        """
+        if self.pattern and self.replacement:
+            try:
+                transformed = re.sub(
+                    self.pattern,
+                    self.replacement,
+                    query,
+                    count=1,
+                    flags=re.IGNORECASE | re.MULTILINE
+                )
+                if transformed != query:
+                    return transformed
+            except re.error as exc:
+                logger.debug("RegexRule %s failed to apply: %s", self.rule_id, exc)
+
+        if self.incorrect_example and self.correct_example:
+            if query.strip() == self.incorrect_example.strip():
+                return self.correct_example
+
+        return None
+
+    def to_dict(self) -> Dict[str, Any]:
+        base = super().to_dict()
+        base.update({
+            "error_category": self.error_category,
+            "description": self.description,
+            "confidence_score": self.confidence_score,
+            "replacement": self.replacement,
+            "incorrect_example": self.incorrect_example,
+            "correct_example": self.correct_example,
+            "metadata": self.metadata
+        })
+        return base
+
+
+@dataclass
+class TransformRule(RegexRule):
+    """
+    Rule that also contains generated transformation code and validation info.
+    """
+    skeleton: Optional[RuleSkeleton] = None
+    transform_code: Optional[str] = None
+    validation_result: Optional[ValidationResult] = None
+    generation_method: str = "regex"
+
+    def to_dict(self) -> Dict[str, Any]:
+        base = super().to_dict()
+        base.update({
+            "generation_method": self.generation_method,
+            "skeleton": self.skeleton.to_dict() if self.skeleton else None,
+            "transform_code": self.transform_code,
+            "validation_result": self.validation_result.to_dict() if self.validation_result else None
+        })
+        return base
+
+
+@dataclass
 class RuleTriplet:
     """
     Represents a triplet of <query, explanation, rules>.
@@ -82,6 +206,7 @@ class RuleTriplet:
     rules: List[Rule]
     db_id: str = ""
     question: str = ""
+    solution: str = ""  # LLM-generated solution for Level 3 clustering
     triplet_id: Optional[str] = None
 
     def __post_init__(self):
@@ -140,11 +265,13 @@ class RuleCluster:
 
     Attributes:
         rules: List of rules in the cluster
+        triplets: All triplets in the cluster (for validation)
         representative_triplet: Representative triplet for the cluster
         combined_rule: Combined rule from clustering
         cluster_id: Unique identifier
     """
     rules: List[Rule] = field(default_factory=list)
+    triplets: List['RuleTriplet'] = field(default_factory=list)
     representative_triplet: Optional[RuleTriplet] = None
     combined_rule: Optional[Rule] = None
     cluster_id: Optional[str] = None
@@ -168,6 +295,7 @@ class RuleCluster:
         return {
             'cluster_id': self.cluster_id,
             'rules': [rule.to_dict() for rule in self.rules],
+            'triplets': [t.to_dict() for t in self.triplets],
             'representative_triplet': self.representative_triplet.to_dict() if self.representative_triplet else None,
             'combined_rule': self.combined_rule.to_dict() if self.combined_rule else None,
             'size': self.size()

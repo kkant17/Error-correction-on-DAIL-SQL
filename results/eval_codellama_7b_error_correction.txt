@@ -1,0 +1,214 @@
+medium pred: SELECT s.Name, s.Song_release_year FROM singer AS s JOIN singer_in_concert AS sc ON s.Singer_ID = sc.Singer_ID WHERE s.Age = (SELECT MIN(age) FROM singer) AND c.Year = (SELECT MAX(year) FROM concert)
+medium gold: SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1
+
+medium pred: SELECT s.Name, s.Song_Name, s.Song_release_year FROM singer s WHERE s.Age = (SELECT MIN(Age) FROM singer) ORDER BY s.Song_release_year ASC
+medium gold: SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1
+
+easy pred: SELECT DISTINCT T1.Country FROM singer AS T1 WHERE T1.Age > 20 AND T1.Theme = "Rock"
+easy gold: SELECT DISTINCT country FROM singer WHERE age  >  20
+
+easy pred: SELECT DISTINCT s.Country FROM Singer AS s WHERE s.Age > 20
+easy gold: SELECT DISTINCT country FROM singer WHERE age  >  20
+
+hard pred: SELECT s.Name, s.Age, c.concert_Name, c.Theme, s.Is_male FROM singer AS s JOIN singer_in_concert AS sic ON s.Singer_ID = sic.Singer_ID JOIN concert AS c ON sic.concert_ID = c.concert_ID WHERE c.Stadium_ID IN (SELECT Stadium_ID FROM stadium WHERE Location = 'USA') AND s.Age > AVG(s.Age) ORDER BY s.Name, c.Theme
+hard gold: SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)
+
+hard pred: SELECT s.Name, s.Age, avg(s.Age) AS Average FROM singer s WHERE s.Age > (SELECT AVG(s2.Age) FROM singer s2)
+hard gold: SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)
+
+easy pred: SELECT s.Name, AVG\(c.Attendance\) AS Average_Attendance FROM singer s JOIN concert c ON s.Singer_ID = c.Singer_ID WHERE s.Name LIKE '%' AND c.Year = '2023' GROUP BY s.Name ORDER BY Average_Attendance DESC LIMIT 1
+easy gold: select max(capacity), average from stadium
+
+easy pred: SELECT AVG\(s.Capacity\) FROM stadium s JOIN concert c ON s.Stadium_ID = c.Stadium_ID WHERE c.Year = '2023'
+easy gold: select avg(capacity) ,  max(capacity) from stadium
+
+medium pred: SELECT Stadium.Name, Stadium.Capacity FROM Stadium INNER JOIN ( SELECT Stadium_ID, AVG(Attendance) AS AverageAttendance FROM Event GROUP BY Stadium_ID ) AS T ON Stadium.Stadium_ID = T.Stadium_ID ORDER BY T.AverageAttendance DESC LIMIT 1
+medium gold: SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1
+
+medium pred: SELECT s.Name, s.Capacity FROM stadium s WHERE s.Average = (SELECT MAX(s2.Average) FROM stadium s2) ORDER BY s.Average DESC LIMIT 1
+medium gold: SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1
+
+medium pred: SELECT c.concert_ID, COUNT\(\*\)\ AS num_singers FROM...
+medium gold: SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id
+
+hard pred: SELECT T1.Name AS Stadium, T1.Capacity FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year > 2013 GROUP BY T1.Stadium_ID ORDER BY COUNT(*) DESC LIMIT 1 Explanation: The query uses a subquery to first retrieve the list of stadiums that have had concerts after 2013. The subquery is then used as an inline view, which is joined with the singer_in_concert table to retrieve the information about each stadium's capacity and name. Finally, the query groups the results by stadium name and orders them by capacity descending, so that the stadium with the most concerts after 2013 is listed first.
+hard gold: select t2.name ,  t2.capacity from concert as t1 join stadium as t2 on t1.stadium_id  =  t2.stadium_id where t1.year  >  2013 group by t2.stadium_id order by count(*) desc limit 1
+
+medium pred: SELECT s.Name, COUNT\(\*\) as num_concerts FROM singer s WHERE s.Country = 'USA' JOIN concert c ON c.concert_ID = sic.concert_ID GROUP BY c.Year ORDER BY num_concerts DESC
+medium gold: SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1
+
+hard pred: SELECT 1 FROM concert c JOIN singer_in_concert sic ON c.concert_ID = sic.concert_ID WHERE s.Stadium_ID = c.Stadium_ID )
+hard gold: SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+
+hard pred: SELECT s.Name FROM Stadium s LEFT JOIN Concert c ON s.Stadium_ID = c.Stadium_ID WHERE c.Concert_ID IS NULL
+hard gold: SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+
+extra pred: SELECT DISTINCT Stadium.Name FROM Stadium, Concert WHERE Stadium.Stadium_ID = Concert.Stadium_ID AND Concert.Year <> 2014
+extra gold: SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014
+
+medium pred: SELECT c.Name AS "Concert Name", c.Theme AS "Theme", COUNT(sic.Singer_ID) AS "Number of Singers" FROM Concert c JOIN SingerInConcert sic ON c.concert_ID = sic.concert_ID WHERE s.Country = 'USA' GROUP BY c.Name, c.Theme
+medium gold: SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id
+
+medium pred: SELECT c.Name AS concert_name, c.Theme AS theme, COUNT(si.Singer_ID) AS number_of_singers FROM concert c JOIN singer_in_concert si ON c.concert_ID = si.concert_ID WHERE c.concert_ID = si.concert_ID GROUP BY c.Name, c.Theme
+medium gold: select t2.concert_name ,  t2.theme ,  count(*) from singer_in_concert as t1 join concert as t2 on t1.concert_id  =  t2.concert_id group by t2.concert_id
+
+medium pred: SELECT s.Name, COUNT(sc.concert_ID) AS num_concerts FROM singers s JOIN singers_in_concert sc ON s.Singer_ID = sc.Singer_ID GROUP BY s.Name
+medium gold: SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id
+
+easy pred: SELECT s.Name, s.Country FROM singers AS s JOIN singer_in_concert AS sic ON s.Singer_ID = sic.Singer_ID WHERE s.Song_Name LIKE '%Hey%'
+easy gold: SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'
+
+easy pred: SELECT s.Name, s.Country FROM singers AS s JOIN singer_in_concert AS sp ON s.Singer_ID = sp.Singer_ID AND s.Concert_ID = sp.Concert_ID WHERE sp.Title LIKE '%Hey%'
+easy gold: SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'
+
+extra pred: SELECT Stadium_ID FROM Concert WHERE Year = '2014' OR Year = '2015')
+extra gold: SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015
+
+extra pred: SELECT s.Name AS Singer, c.concert_Name AS Concert FROM singer s JOIN concert c ON s.Singer_ID = c.Singer_ID JOIN stadium st ON c.Stadium_ID = st.Stadium_ID WHERE st.Capacity = (SELECT MAX\(Capacity\) FROM stadium))
+extra gold: select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)
+
+medium pred: SELECT P.weight FROM Pets AS P WHERE P.pet_age = (SELECT...
+medium gold: SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+
+medium pred: SELECT MAX\(weight\) AS max_weight, PetType AS type FROM pets WHERE StuID = <student ID> GROUP BY pet_type ORDER BY max_weight DESC
+medium gold: SELECT max(weight) ,  petType FROM pets GROUP BY petType
+
+medium pred: SELECT selecting all rows from the `Student` table where the `Age` column is greater than 20. SELECT * FROM Student WHERE Age > 20
+medium gold: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20
+
+medium pred: SELECT S1.Fname FROM Student AS S1 JOIN Has_Pet AS H1 ON S1.StuID = H1.StuID JOIN Pets AS P1 ON H1.PetID = P1.PetID WHERE P1.PetType IN ('cat', 'dog') GROUP BY S1.Fname, P1.PetType
+medium gold: SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+
+extra pred: SELECT fname FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat' The second subquery will find all students who have a dog: sql SELECT fname FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'dog' We can then intersect the results of these two subqueries to get the students who have both cats and dogs: sql SELECT fname FROM ( SELECT fname FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat' ) AS cats INNER JOIN ( SELECT fname FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'dog' ) AS dogs ON cats.StuID = dogs.StuID This will give us the first name of all students who have both cats and dogs as their pets.
+extra gold: select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'cat' intersect select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'dog'
+
+extra pred: SELECT FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID WHERE PetType <> 'cat' GROUP BY Major, Age
+extra gold: SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+extra pred: SELECT Major AS 'Major', AVG(Age) AS 'Average Age' FROM Student WHERE StuID NOT IN (SELECT DISTINCT StuID FROM Has_Pet WHERE PetType = 'cat') GROUP BY Major
+extra gold: SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+extra pred: SELECT s.Name FROM Student s INNER JOIN Has_Pet h ON s.StuID = h.StuID INNER JOIN Pets p ON h.PetID = p.PetID WHERE p.PetType = 'cat' AND p.PetID IS NOT NULL
+extra gold: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+
+extra pred: SELECT StuID FROM Has_Pet WHERE PetID NOT IN (SELECT PetID FROM Pets WHERE PetType = 'cat') EXPLANATION: This query uses a subquery to first find all the pet IDs of cats in the database. Then, it selects all the rows from the "Has_Pet" table where the PetID is not in the set of cat pet IDs. The result will be the list of student IDs who do not own cats as pets.
+extra gold: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+
+extra pred: SELECT statement. The subquery will retrieve the StuID of all students who have at least one pet, but only dogs. Then, the outer query will filter out those students who do not have a cat. Here is an example SQL query that answers the question: SELECT Fname FROM Student JOIN Pets ON Student.StuID = Pets.StuID WHERE PetType = 'cat' AND StuID IN \(SELECT DISTINCT StuID FROM Has_Pet WHERE...tType = 'dog')
+extra gold: SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+medium pred: SELECT p.PetType, p.weight FROM Pets p JOIN Has_Pet hp ON p.PetID = hp.PetID JOIN Student s ON hp.StuID = s.StuID WHERE s.Age = (SELECT MIN(s2.Age) FROM Student s2) ORDER BY p.weight ASC, p.PetType ASC LIMIT 1
+medium gold: SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1
+
+easy pred: SELECT s.StuID, p.weight FROM Student s JOIN Has_Pet hp ON s.StuID = hp.StuID JOIN Pets p ON hp.PetID = p.PetID WHERE p.pet_age > 1 AND p.age > 1
+easy gold: SELECT petid ,  weight FROM pets WHERE pet_age  >  1
+
+medium pred: SELECT s.StuID, s.LName, s.Fname, s.Age, s.Sex, s.Major, s.Advisor, s.city_code, p.PetType, AVG(p.weight) AS average_weight FROM Student s JOIN Has_Pet h ON s.StuID = h.StuID JOIN Pets p ON h.PetID = p.PetID GROUP BY s.StuID, s.LName, s.Fname, s.Age, s.Sex, s.Major, s.Advisor, s.city_code, p.PetType
+medium gold: SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype
+
+medium pred: SELECT First Name | Age ---|--- <fill in> | <fill in> Note: The answer will depend on the specific data stored in the database, so you may need to modify the query based on your data.
+medium gold: SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid
+
+medium pred: SELECT Fname, Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID WHERE T2.PetID IS NOT NULL
+medium gold: SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid
+
+medium pred: SELECT PetID FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.LastName = 'Smith' LIMIT 1
+medium gold: SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith'
+
+medium pred: SELECT s.LName, MAX(h.Age) AS MaxAge FROM Student s JOIN Has_Pet h ON s.StuID = h.StuID WHERE PetType = 'cat' AND pet_age = 3 GROUP BY s.LName HAVING MaxAge = 3
+medium gold: SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+
+medium pred: SELECT FROM Has_Pet INNER JOIN Student ON Has_Pet.StuID = Student.StuID INNER JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE Pets.pet_age = 3
+medium gold: SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+
+medium pred: SELECT ContinentID, ContinentName, Count(CountryName) AS CountryCount FROM continents JOIN countries ON continents.ContId = countries.Continent GROUP BY ContinentID
+medium gold: SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+
+medium pred: SELECT country.CountryName, COUNT\(\*\) AS NumberOfCountries FROM countries JOIN car_makers ON countries.continent = continents.ContId WHERE country.CountryName LIKE '%USA%' GROUP BY country.CountryName
+medium gold: SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+
+medium pred: SELECT Maker.FullName AS "Maker Name", COUNT(*) as "Number of Models" FROM car_makers Maker JOIN model_list Model ON Maker.Id = Model.Maker WHERE Country = 'USA' GROUP BY Maker.Id )
+medium gold: SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;
+
+medium pred: SELECT * FROM cars_data WHERE Horsepower = (SELECT MIN(Horsepower) FROM cars_data) ORDER BY Horsepower ASC LIMIT 1)
+medium gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+
+medium pred: SELECT Model FROM cars_data AS cd JOIN model_list AS ml ON cd.Id = ml.ModelId JOIN car_makers AS cm ON ml.Maker = cm.Id WHERE Horsepower = ( SELECT MIN(Horsepower) FROM cars_data )
+medium gold: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+
+extra pred: SELECT AVG\(cars_data.Weight\) AS avg_weight FROM cars_data WHERE cars_data.Weight > avg_weight GROUP BY cars_data.Make ORDER BY avg_weight DESC LIMIT 10
+extra gold: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+
+extra pred: SELECT c.Model FROM car_1 AS c JOIN model_list AS m ON c.Id = m.MakeId WHERE c.Weight < (SELECT AVG(Weight) FROM car_1)
+extra gold: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+
+medium pred: SELECT DISTINCT Maker FROM cars_data WHERE Year = 1970) INNER JOIN (SELECT MakeId, Maker FROM car_names) ON MakeId = Id
+medium gold: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+
+medium pred: SELECT c.Make FROM car_names AS c JOIN model_list AS m ON c.Model = m.Model WHERE c.Year = 1970
+medium gold: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+
+extra pred: SELECT T1.Make AS "Make", T2.Year AS "Production Time" FROM car_names AS T1 JOIN ( SELECT MIN(T2.Year) AS "Earliest Year" FROM cars_data AS T2 GROUP BY T2.Model ) AS T3 ON T1.MakeId = T3.Model JOIN cars_data AS T4 ON T1.MakeId = T4.Id WHERE T4.Year = T3.Earliest Year
+extra gold: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+
+extra pred: SELECT T1.Maker, MIN(T2.Year) as 'Earliest Year' FROM car_names AS T1 WHERE T2.Year = (SELECT MIN(Year) FROM cars_data) GROUP BY T1.Maker
+extra gold: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+
+medium pred: SELECT Model, COUNT(Model) AS NumModels FROM cars_data WHERE Year > 1980 GROUP BY Model
+medium gold: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+
+medium pred: SELECT selecting all the rows from the "car_names" table where the "Year" column is greater than 1980. SELECT Model FROM car_names WHERE Year > 1980
+medium gold: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+
+medium pred: SELECT Continent, COUNT\(\*\) AS num_car_makers FROM continents JOIN car_makers ON continents.contid = car_makers.continent GROUP BY continents.continent
+medium gold: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+
+medium pred: SELECT c.Continent, COUNT(*) AS NumCarMakers FROM car_makers cm WHERE c.Continent IN ('Asia', 'Europe', 'North America', 'South America', 'Africa', 'Australia', 'Antarctica') GROUP BY c.Continent
+medium gold: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+
+hard pred: SELECT CountryName, COUNT\(DISTINCT Maker\) AS num_car_makers FROM car_makers WHERE num_car_makers > 0 GROUP BY CountryName ORDER BY num_car_makers DESC LIMIT 10
+hard gold: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+
+hard pred: SELECT CountryName, COUNT(*) AS num_makers FROM countries JOIN car_makers ON countries.CountryId = car_makers.CountryId WHERE num_makers > 0 GROUP BY CountryName ORDER BY num_makers DESC LIMIT 1
+hard gold: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+
+medium pred: SELECT CarNames.FullName, COUNT\(\*\) AS NumModels FROM CarNames WHERE CarNames.Country = 'USA' GROUP BY CarNames.FullName
+medium gold: select count(*) ,  t2.fullname from model_list as t1 join car_makers as t2 on t1.maker  =  t2.id group by t2.id;
+
+medium pred: SELECT c.Accelerate FROM cars_data AS c JOIN car_names AS n ON c.MakeId = n.MakeId WHERE n.Make = 'amc hornet sportabout' AND n.Year = '1970'
+medium gold: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+
+
+================================================================================
+ERROR CORRECTION PIPELINE RESULTS
+Generated: 2025-11-29T01:31:05.706282
+Source: codellama:7b
+================================================================================
+
+                    easy                medium              hard                extra               all                 
+count               7                   33                  7                   13                  60                  
+
+=====================   EXECUTION ACCURACY     =====================
+execution           0.000               0.000               0.000               0.000               0.000               
+
+====================== EXACT MATCHING ACCURACY =====================
+exact match         0.000               0.000               0.000               0.000               0.000               
+
+---------------------PARTIAL MATCHING F1 (avg)----------------------
+select              0.000               0.000               0.000               0.000               0.000               
+where               0.000               0.000               0.000               0.000               0.000               
+group               0.000               0.000               0.000               0.000               0.000               
+order               0.000               0.000               0.000               0.000               0.000               
+
+================================================================================
+PIPELINE SUMMARY
+================================================================================
+Total queries processed: 60
+Explanations generated: 60
+Solutions generated: 60
+Rules generated: 43
+Rules applied (transformed): 38
+Exact matches: 0
+Execution matches: 0
+Validation passed: 0
+Success rate: 0.00%

@@ -12,158 +12,208 @@ Before you start, make sure you have:
 4. ✅ Ollama installed and running: Download from https://ollama.ai
 5. ✅ Intel Arc GPU with drivers (optional but recommended)
 
-## Two Options Available 🚀
+## Understanding the Pipeline Components
 
-### Option 1: Complete Pipeline (All-in-One)
+### Base DAIL-SQL Model
+The original DAIL-SQL pipeline generates SQL queries:
+- `data_preprocess.py` - Preprocesses Spider dataset
+- `generate_question.py` - Generates questions with few-shot examples
+- `ask_llm.py` - Generates SQL predictions using LLM
+- `eval/evaluation.py` - Evaluates predictions vs gold queries
 
-Runs everything sequentially:
+### Error Correction Extension
+The error correction pipeline analyzes mistakes:
+- `error_correction/pipeline.py` - Analyzes errors, generates rules
+- `run_full_pipeline.py` - Python wrapper to run both pipelines
 
-**Windows:**
-```batch
-run_complete_pipeline.bat
-```
+## Quick Start Options 🚀
 
-**Linux/Mac:**
+### Option 1: Using run_full_pipeline.py (Recommended - Python)
+
+The main Python script that runs both base DAIL-SQL and error correction:
+
+**Basic usage:**
 ```bash
-chmod +x run_complete_pipeline.sh
-./run_complete_pipeline.sh
+# Run with Ollama model (requires Ollama running)
+python run_full_pipeline.py --model codellama:7b --max_queries 60
+
+# Skip base evaluation if you already have correct/incorrect JSON files
+python run_full_pipeline.py --model codellama:7b --skip_base_eval --max_queries 60
+
+# Run complete pipeline including base DAIL-SQL model generation
+python run_full_pipeline.py --model codellama:7b --run_base_model --max_queries 60
 ```
 
-### Option 2: Comparison Pipeline (Recommended for Analysis)
+**What it does:**
+1. **Step 1**: Runs `ask_llm.py` (if --run_base_model) → creates baseline eval text file
+2. **Step 2**: Runs `eval/evaluation.py` (or skips with --skip_base_eval)
+3. **Step 3**: Runs `error_correction/pipeline.py` with the results
+4. **Step 4**: Generates consolidated evaluation report
 
-Runs base model and error correction separately with organized results:
+**Parameters:**
+- `--model`: LLM model name (e.g., `codellama:7b`, `llama3.1:8b`, `deepseek-coder:6.7b`)
+- `--max_queries`: Maximum queries to process (default: all)
+- `--skip_base_eval`: Skip evaluation step (use existing vector DBs)
+- `--run_base_model`: Run base DAIL-SQL model first (ask_llm.py) - creates baseline eval text file
+- `--temperature`: Temperature for LLM (default: 0.0 for base, 0.3 for error correction)
 
-**Windows:**
-```batch
-run_comparison_pipeline.bat
+### Option 2: Manual Step-by-Step (For Advanced Users)
+
+If you prefer full control:
+
+```bash
+# Step 1: Preprocess data (first time only)
+python data_preprocess.py
+
+# Step 2: Generate questions (first time only)
+python generate_question.py --data_type spider --split test --k_shot 3 ...
+
+# Step 3: Run base DAIL-SQL model to generate predictions
+python ask_llm.py --model codellama:7b --question <dataset_dir> ...
+
+# Step 4: Evaluate predictions and save correct/incorrect JSON
+python eval/evaluation.py --gold dataset/spider/dev_gold.sql --pred <predictions_file> \
+    --save_correct results/correct_predictions.json \
+    --save_incorrect results/incorrect_predictions.json
+
+# Step 5: Run error correction pipeline
+python -m error_correction.pipeline \
+    --correct results/correct_predictions.json \
+    --incorrect results/incorrect_predictions.json \
+    --model codellama:7b
 ```
-
-**Benefits:**
-- Results stored separately for easy comparison
-- Run #1: Base model only (no error correction)
-- Run #2: Error correction analysis
-- Automatic comparison report
-
-**After running:**
-```batch
-python compare_results.py
-```
-
-See [COMPARISON_GUIDE.md](COMPARISON_GUIDE.md) for details.
 
 ---
 
-## What the Scripts Do
-
-### Complete Pipeline (run_complete_pipeline.bat)
-
-The all-in-one script will automatically:
-1. ✅ Check if Ollama is running
-2. ✅ Pull deepseek-coder:6.7b if needed
-3. ✅ Preprocess data (if needed)
-4. ✅ Generate questions
-5. ✅ Run base DAIL-SQL model
-6. ✅ Run error correction pipeline
-7. ✅ Display results and statistics
-
-## What the Script Does
+## What the Pipeline Does
 
 ```
 ┌────────────────────────────────────────────┐
-│  Step 0: Prerequisites Check               │
+│  Step 1: Data Evaluation (Optional)        │
 ├────────────────────────────────────────────┤
-│  • Checks if Ollama is running            │
-│  • Pulls deepseek-coder:6.7b if needed    │
-│  • Optional: Tests Intel Arc GPU          │
+│  • Runs eval/evaluation.py                │
+│  • Saves correct_predictions.json         │
+│  • Saves incorrect_predictions.json       │
+│  • Can be skipped with --skip_base_eval   │
 └────────────────────────────────────────────┘
                   ↓
 ┌────────────────────────────────────────────┐
-│  Step 1: Data Preprocessing                │
+│  Step 2: Populate Vector Databases         │
 ├────────────────────────────────────────────┤
-│  • Runs data_preprocess.py                │
-│  • Generates questions with 3-shot        │
-│  • Creates dataset directory              │
+│  • Loads correct queries (CodeBERT)       │
+│  • Loads incorrect queries (CodeBERT)     │
+│  • Stores in FAISS indexes                │
+│  • vector_sql_db/correct/ (213 queries)   │
+│  • vector_sql_db/incorrect/ (557 queries) │
 └────────────────────────────────────────────┘
                   ↓
 ┌────────────────────────────────────────────┐
-│  Step 2: Run Base DAIL-SQL Model           │
+│  Step 3: Error Correction Pipeline         │
 ├────────────────────────────────────────────┤
-│  • Runs ask_llm.py with deepseek-coder    │
-│  • Generates SQL queries                  │
-│  • Evaluates queries in real-time        │
-│  • Saves results and accuracy             │
-└────────────────────────────────────────────┘
-                  ↓
-┌────────────────────────────────────────────┐
-│  Step 3: Run Error Correction Pipeline     │
-├────────────────────────────────────────────┤
-│  • Parses evaluation results              │
-│  • Stores queries in vector database      │
+│  • Retrieves similar incorrect queries    │
 │  • Generates error explanations (LLM)     │
-│  • Creates correction rules (LLM)         │
-│  • Clusters similar rules                 │
-│  • Tests on correct queries               │
-│  • Saves validated rules                  │
+│  • Generates solutions (LLM)              │
+│  • Creates regex correction rules (LLM)   │
+│  • Hierarchical clustering (3 levels)     │
+│  • Validates rules on correct queries     │
+│  • Commits rules passing 95% threshold    │
 └────────────────────────────────────────────┘
                   ↓
 ┌────────────────────────────────────────────┐
-│  Step 4: Display Results                   │
+│  Step 4: Save Results                      │
 ├────────────────────────────────────────────┤
-│  • Shows base model accuracy              │
-│  • Shows error correction statistics      │
-│  • Lists output files                     │
-│  • Provides next steps                    │
+│  • Saves clusters.json                    │
+│  • Saves rules.json                       │
+│  • Saves triplets.json                    │
+│  • Saves metrics.json                     │
+│  • Saves accuracy_stats.json              │
+│  • Saves transformations.json             │
+│  • Generates consolidated eval report     │
 └────────────────────────────────────────────┘
 ```
 
 ## Expected Runtime
 
-With **deepseek-coder:6.7b** on Intel Arc GPU:
+With **7-8B models** on Ollama:
 
-| Step | Time (Spider test ~1000 queries) |
-|------|-----------------------------------|
-| Data preprocessing | ~2-5 minutes (first time only) |
-| Base model (SQL generation) | ~30-60 minutes |
-| Error correction (20 triplets) | ~10-15 minutes |
-| **Total (first run)** | ~45-80 minutes |
+| Step | Time (60 queries) |
+|------|-------------------|
+| Data evaluation | ~2-5 minutes |
+| Vector DB population | ~1-2 minutes |
+| Error correction (explanations + rules) | ~15-30 minutes |
+| Clustering & validation | ~5-10 minutes |
+| **Total** | ~25-50 minutes |
 
-**Note:** Subsequent runs are much faster since data preprocessing is skipped!
+**Notes:**
+- Times vary based on model and hardware
+- Vector DBs are reused across runs (use --skip_base_eval)
+- Ollama may return HTTP 500 errors under load - restart Ollama if this happens
 
 ## Configuration
 
-The script is pre-configured with sensible defaults, but you can edit `run_complete_pipeline.bat` (or `.sh`) to customize:
+### Command-line Parameters
 
-```batch
-REM Edit these at the top of the script:
-set "MODEL=deepseek-coder:6.7b"     # Change model if desired
-set "MAX_TRIPLETS=20"                # Increase for more rules (20 is good for testing)
-set "K_SHOT=3"                       # Number of examples (1, 3, or 5)
-set "TEMPERATURE=0.3"                # LLM temperature for rule generation
+Edit parameters when running `run_full_pipeline.py`:
+
+```bash
+python run_full_pipeline.py \
+  --model codellama:7b \           # Model to use
+  --max_queries 60 \                # Number of queries to process
+  --skip_base_eval \                # Skip evaluation (use existing DBs)
+  --temperature 0.3                 # LLM temperature for rule generation
 ```
+
+### Pipeline Configuration
+
+Edit `error_correction/config.py` for advanced settings:
+
+- `MIN_TRIPLETS_FOR_CLUSTERING = 20` - Minimum triplets before clustering
+- `CLUSTER_COMBINE_THRESHOLD = 0.50` - Similarity threshold for clustering
+- `MIN_PASS_RATE = 0.95` - 95% validation pass rate requirement
+- `ENABLE_TRANSFORMATION = False` - Enable query transformation (experimental)
+- `ENABLE_EXECUTION_VALIDATION = False` - Enable DB execution validation
 
 ## Output Files
 
 After completion, you'll have:
 
+### Evaluation Results
 ```
-dataset/process/SPIDER-TEST.../
-├── questions.json                              # Generated questions
-└── RESULTS_MODEL-deepseek-coder_6.7b.txt      # Predicted queries
-
 results/
-└── eval_deepseek-coder_6.7b.txt               # Evaluation results + accuracy
+├── correct_predictions.json                   # Queries that passed evaluation
+├── incorrect_predictions.json                 # Queries that failed evaluation
+├── eval_{model}.txt                           # Baseline evaluation (if --run_base_model used)
+└── eval_error_correction_{model}.txt          # Consolidated evaluation report
+```
 
-error_correction/rules/
-├── triplets.json                               # <query, explanation, rules>
-├── clusters.json                               # Clustered similar errors
-└── rules.json                                  # Validated correction rules
+### Error Correction Artifacts
+```
+error_correction/results/
+├── triplets.json                               # Error triplets (incorrect, correct, explanation, solution, rules)
+├── clusters.json                               # Hierarchical clusters of similar errors
+├── rules.json                                  # Generated correction rules
+├── metrics.json                                # Pipeline execution metrics
+├── accuracy_stats.json                         # Validation accuracy statistics
+└── transformations.json                        # Query transformations (if enabled)
+```
 
+### Vector Databases
+```
 vector_sql_db/
-├── correct/                                    # FAISS index for correct queries
-└── incorrect/                                  # FAISS index for incorrect queries
+├── correct/
+│   ├── faiss.index                            # FAISS index for correct queries
+│   ├── queries.pkl                            # Query metadata
+│   └── metadata.json                          # Database info (213 queries)
+└── incorrect/
+    ├── faiss.index                            # FAISS index for incorrect queries
+    ├── queries.pkl                            # Query metadata
+    └── metadata.json                          # Database info (557 queries)
+```
 
+### Logs
+```
 error_correction/
-└── pipeline.log                                # Detailed logs
+└── pipeline.log                                # Detailed execution logs
 ```
 
 ## Viewing Results
@@ -258,10 +308,10 @@ set "MAX_TRIPLETS=100"    # or 999999 for all
 
 ### 2. Test Different Models
 
-```batch
-set "MODEL=qwen2.5-coder:7b"
-# or
-set "MODEL=codellama:13b"
+```bash
+python run_full_pipeline.py --model qwen2.5-coder:7b --max_queries 60
+python run_full_pipeline.py --model codellama:13b --max_queries 60
+python run_full_pipeline.py --model llama3.1:8b --max_queries 60
 ```
 
 ### 3. Adjust Few-Shot Examples
@@ -351,11 +401,10 @@ A: Partially. The base model run can't resume, but if it completes, you can re-r
 A: No! The pipeline works great on CPU too. It's just faster with Intel Arc.
 
 **Q: Can I use GPT-4 instead of Ollama?**
-A: Yes! Edit the script:
-```batch
-set "MODEL=gpt-4"
-set "OLLAMA_API_KEY=your_openai_key"
-set "OLLAMA_BASE_URL="
+A: Yes! Set your OpenAI API key and run:
+```bash
+export OPENAI_API_KEY=your_openai_key
+python run_full_pipeline.py --model gpt-4 --max_queries 60
 ```
 
 **Q: Why only 20 triplets by default?**
@@ -373,4 +422,17 @@ A: Check `error_correction/pipeline.log` for details and see the Troubleshooting
 
 ---
 
-**Ready to go?** Just run `run_complete_pipeline.bat` and let it do the work! 🚀
+**Ready to go?**
+
+```bash
+# Full pipeline from scratch
+python run_full_pipeline.py --model codellama:7b --run_base_model --max_queries 60
+
+# Error correction only (predictions already exist)
+python run_full_pipeline.py --model codellama:7b --max_queries 60
+
+# Skip evaluation (use existing vector DBs)
+python run_full_pipeline.py --model codellama:7b --skip_base_eval
+```
+
+Works on Windows, Linux, and Mac! 🚀

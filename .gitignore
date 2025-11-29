@@ -1,6 +1,5 @@
 spider/
-vector_cache/
 third_party/
 .env
 vector_cache/
-
+img/

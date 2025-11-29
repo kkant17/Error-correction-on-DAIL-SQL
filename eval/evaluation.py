@@ -501,8 +501,39 @@ def print_scores(scores, etype, include_turn_acc=True):
             print_formated_s("exact match", exact_scores, '{:<20.3f}')
 
 
-def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, progress_bar_for_each_datapoint):
-
+def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, progress_bar_for_each_datapoint, 
+             save_correct_predictions=None, save_incorrect_predictions=None, spider_dev_file=None):
+    """
+    Evaluate predictions against gold queries.
+    
+    Args:
+        gold: Path to gold queries file
+        predict: Path to predicted queries file
+        db_dir: Directory containing databases
+        etype: Evaluation type ('exec', 'match', 'all')
+        kmaps: Foreign key maps
+        plug_value: Whether to plug gold values
+        keep_distinct: Whether to keep DISTINCT
+        progress_bar_for_each_datapoint: Show progress
+        save_correct_predictions: Optional path to save correct predictions JSON
+        save_incorrect_predictions: Optional path to save incorrect predictions JSON
+        spider_dev_file: Optional path to spider dev.json for question mapping
+    """
+    # Load question mapping if provided
+    question_map = {}
+    if spider_dev_file:
+        try:
+            with open(spider_dev_file) as f:
+                dev_data = json.load(f)
+            for i, item in enumerate(dev_data):
+                question_map[i] = item.get('question', '')
+        except:
+            pass
+    
+    # Track correct and incorrect predictions for saving
+    correct_predictions = []
+    incorrect_predictions = []
+    
     with open(gold) as f:
         glist = []
         gseq_one = []
@@ -613,8 +644,30 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
                     scores[turn_id]['exec'] += 1
                     scores['all']['exec'] += 1
                     turn_scores['exec'].append(1)
+                    
+                    # Track correct prediction for saving
+                    if save_correct_predictions is not None:
+                        correct_predictions.append({
+                            'index': i,
+                            'predicted_sql': p_str,
+                            'gold_sql': g_str,
+                            'db_id': db_name,
+                            'question': question_map.get(i, ''),
+                            'hardness': hardness
+                        })
                 else:
                     turn_scores['exec'].append(0)
+                    
+                    # Track incorrect prediction for saving
+                    if save_incorrect_predictions is not None:
+                        incorrect_predictions.append({
+                            'index': i,
+                            'predicted_sql': p_str,
+                            'gold_sql': g_str,
+                            'db_id': db_name,
+                            'question': question_map.get(i, ''),
+                            'hardness': hardness
+                        })
 
             if etype in ["all", "match"]:
                 # rebuild sql for value evaluation
@@ -703,6 +756,24 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
                         scores[level]['partial'][type_]['rec'] + scores[level]['partial'][type_]['acc'])
 
     print_scores(scores, etype, include_turn_acc=include_turn_acc)
+    
+    # Save correct predictions if path provided
+    if save_correct_predictions and correct_predictions:
+        with open(save_correct_predictions, 'w') as f:
+            json.dump({
+                'count': len(correct_predictions),
+                'predictions': correct_predictions
+            }, f, indent=2)
+        print(f"\nSaved {len(correct_predictions)} correct predictions to {save_correct_predictions}")
+    
+    # Save incorrect predictions if path provided
+    if save_incorrect_predictions and incorrect_predictions:
+        with open(save_incorrect_predictions, 'w') as f:
+            json.dump({
+                'count': len(incorrect_predictions),
+                'predictions': incorrect_predictions
+            }, f, indent=2)
+        print(f"Saved {len(incorrect_predictions)} incorrect predictions to {save_incorrect_predictions}")
 
 
 # Rebuild SQL functions for value evaluation
@@ -927,6 +998,12 @@ if __name__ == "__main__":
                         help='whether to keep distinct keyword during evaluation. default is false.')
     parser.add_argument('--progress_bar_for_each_datapoint', default=False, action='store_true',
                         help='whether to print progress bar of running test inputs for each datapoint')
+    parser.add_argument('--save_correct', dest='save_correct', type=str, default=None,
+                        help='path to save correct predictions JSON (for error correction pipeline)')
+    parser.add_argument('--save_incorrect', dest='save_incorrect', type=str, default=None,
+                        help='path to save incorrect predictions JSON (for error correction pipeline)')
+    parser.add_argument('--spider_dev', dest='spider_dev', type=str, default=None,
+                        help='path to spider dev.json for question mapping')
     args = parser.parse_args()
 
     # only evaluting exact match needs this argument
@@ -935,4 +1012,5 @@ if __name__ == "__main__":
         assert args.table is not None, 'table argument must be non-None if exact set match is evaluated'
         kmaps = build_foreign_key_map_from_json(args.table)
 
-    evaluate(args.gold, args.pred, args.db, args.etype, kmaps, args.plug_value, args.keep_distinct, args.progress_bar_for_each_datapoint)
+    evaluate(args.gold, args.pred, args.db, args.etype, kmaps, args.plug_value, args.keep_distinct, 
+             args.progress_bar_for_each_datapoint, args.save_correct, args.save_incorrect, args.spider_dev)

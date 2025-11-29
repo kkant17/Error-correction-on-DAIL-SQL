@@ -283,11 +283,76 @@ class VectorDatabase:
             return np.array([]).reshape(0, self.embedding_dim)
 
         # Reconstruct vectors from index
-        return faiss.vector_to_array(self.index.reconstruct_n(0, self.size())).reshape(-1, self.embedding_dim)
+        # reconstruct_n returns numpy array directly for most index types
+        try:
+            vectors = self.index.reconstruct_n(0, self.size())
+            if isinstance(vectors, np.ndarray):
+                return vectors.reshape(-1, self.embedding_dim)
+            else:
+                # Fallback for some index types
+                return faiss.vector_to_array(vectors).reshape(-1, self.embedding_dim)
+        except Exception as e:
+            logger.warning(f"Could not reconstruct embeddings: {e}")
+            # Re-embed all queries as fallback
+            embeddings = []
+            for query in self.queries:
+                emb = self.embedder.embed_query(query.get('sql', ''))
+                embeddings.append(self.normalize_vector(emb))
+            return np.array(embeddings).astype('float32')
 
     def size(self) -> int:
         """Get number of queries in database."""
         return self.index.ntotal
+
+    def delete_query(self, sql: str) -> bool:
+        """
+        Delete a query from the database by its SQL string.
+        
+        Note: FAISS doesn't support direct deletion, so we rebuild the index
+        without the deleted query.
+        
+        Args:
+            sql: SQL query string to delete
+            
+        Returns:
+            True if query was found and deleted, False otherwise
+        """
+        # Find the query index
+        query_idx = None
+        for i, query in enumerate(self.queries):
+            if query.get("sql") == sql:
+                query_idx = i
+                break
+        
+        if query_idx is None:
+            logger.debug(f"Query not found for deletion: {sql[:50]}...")
+            return False
+        
+        # If only one query, just clear
+        if len(self.queries) == 1:
+            self.clear()
+            logger.info("Deleted last query, database cleared")
+            return True
+        
+        # Get all embeddings except the one to delete
+        all_embeddings = self.get_all_embeddings()
+        remaining_embeddings = np.delete(all_embeddings, query_idx, axis=0)
+        
+        # Remove from queries list
+        del self.queries[query_idx]
+        
+        # Rebuild FAISS index
+        self.index.reset()
+        if len(remaining_embeddings) > 0:
+            self.index.add(remaining_embeddings.astype('float32'))
+        
+        # Save to disk
+        self._save_index()
+        self._save_queries()
+        self._save_metadata()
+        
+        logger.info(f"Deleted query at index {query_idx}: {sql[:50]}...")
+        return True
 
     def clear(self):
         """Clear all data from the database."""

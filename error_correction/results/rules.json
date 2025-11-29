@@ -1,0 +1,498 @@
+[
+  {
+    "rule_id": "rule_7de06005_20251129163850",
+    "pattern": "SELECT tt\\.treatment_type_description, MIN\\(c\\.charge_amount\\) AS min_cost FROM Treatments t JOIN Charges c ON t\\.treatment_id = c\\.charge_id GROUP BY tt\\.treatment_type_code ORDER BY min_cost ASC",
+    "correction": "Transform the JOIN clause to a WHERE clause and add a GROUP BY clause to group the results by treatment type code. Also, change the column names in the SELECT clause to match the actual column names in the database schema.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "Transform the JOIN clause to a WHERE clause and add a GROUP BY clause to group the results by treatment type code. Also, change the column names in the SELECT clause to match the actual column names in the database schema.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT tt.treatment_type_description, MIN(c.charge_amount) AS min_cost FROM Treatments t WHERE t.treatment_id = c.charge_id GROUP BY tt.treatment_type_code ORDER BY min_cost ASC",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_90942b62_20251129145506",
+    "pattern": "SELECT COUNT\\(\\*\\) FROM countrylanguage cl JOIN country c ON cl\\.CountryCode = c\\.Code WHERE cl\\.IsOfficial = 'T' AND cl\\.Language = 'Spanish'",
+    "correction": "This transformation involves adding a WHERE clause to the query that filters on the Percentage column of the countrylanguage table, which represents the percentage of people who speak Spanish as their first or second language. The corrected query would look like: SELECT COUNT\\(\\*\\) FROM countrylanguage cl JOIN country c ON cl\\.CountryCode = c\\.Code WHERE cl\\.Language = 'Spanish' AND cl\\.Percentage > 0.5",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This transformation involves adding a WHERE clause to the query that filters on the Percentage column of the countrylanguage table, which represents the percentage of people who speak Spanish as their first or second language. The corrected query would look like: SELECT COUNT\\(\\*\\) FROM countrylanguage cl JOIN country c ON cl\\.CountryCode = c\\.Code WHERE cl\\.Language = 'Spanish' AND cl\\.Percentage > 0.5",
+    "confidence_score": 0.9,
+    "replacement": "SELECT COUNT(*) FROM countrylanguage cl JOIN country c ON cl.CountryCode = c.Code WHERE cl.Language = 'Spanish' AND cl.Percentage > 0.5",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_30d84068_20251129143618",
+    "pattern": "SELECT c\\.Name FROM country AS c JOIN city AS ci ON c\\.Code = ci\\.CountryCode WHERE c\\.Continent = 'Europe' AND c\\.Language = 'English'",
+    "correction": "This query is incorrect because it joins the countrylanguage table, which is not needed for this specific query. The new query should filter on the city's language and remove the JOIN operation with the countrylanguage table.",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This query is incorrect because it joins the countrylanguage table, which is not needed for this specific query. The new query should filter on the city's language and remove the JOIN operation with the countrylanguage table.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT c.Name FROM city AS c WHERE c.Language <> 'English' AND c.Continent = 'Europe'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_3f7fe752_20251129143122",
+    "pattern": "SELECT MAX\\(population\\) FROM country WHERE continent = 'Africa'",
+    "correction": "This query is incorrect because it does not filter by continent, join the `country` table with other tables to include conditions for language and region, and change the column names in the SELECT clause to match those in the database schema. The corrected query includes a WHERE clause to filter by continent, joins the `country` table with other tables to include conditions for language and region, and changes the column names in the SELECT clause to match those in the database schema.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "This query is incorrect because it does not filter by continent, join the `country` table with other tables to include conditions for language and region, and change the column names in the SELECT clause to match those in the database schema. The corrected query includes a WHERE clause to filter by continent, joins the `country` table with other tables to include conditions for language and region, and changes the column names in the SELECT clause to match those in the database schema.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT c.Name AS city, c.Population AS population, c.Continent AS continent FROM country c WHERE c.Continent = 'Africa' AND c.Language = 'English' AND c.Region = 'Northern Europe' GROUP BY c.Name ORDER BY c.Population DESC LIMIT 10",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_c89b734f_20251129132854",
+    "pattern": "SELECT Final Table Made, Best Finish FROM Poker_Player JOIN People ON Poker_Player.People_ID = People.People_ID",
+    "correction": "This query is missing a WHERE clause to filter the results by the final table made and best finish for all players, and using an aggregate function such as GROUP BY to group the results by player. This will ensure that only relevant data is returned and that the query produces accurate results.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is missing a WHERE clause to filter the results by the final table made and best finish for all players, and using an aggregate function such as GROUP BY to group the results by player. This will ensure that only relevant data is returned and that the query produces accurate results.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name, MAX(p.BestFinish) AS BestFinish FROM Poker_Player p INNER JOIN People s ON p.People_ID = s.People_ID WHERE p.FinalTableMade = 1 GROUP BY s.Name ORDER BY BestFinish DESC",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_27c8d752_20251129131618",
+    "pattern": "SELECT directed_by, count\\(distinct Cartoon.id\\) AS num_cartoons FROM Cartoon JOIN TV_series ON Cartoon.Channel = TV_series.Channel WHERE directed_by in \\('John Smith', 'Jane Doe'\\).*",
+    "correction": "This query is incorrect because it uses the count\\(distinct Cartoon.id\\) function to get the number of distinct cartoon IDs, but it does not filter the results based on the directed_by column. To fix this error, we need to add a WHERE clause that filters the results based on the directed_by column and then group the results by directed_by to get the count of cartoons for each director.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is incorrect because it uses the count\\(distinct Cartoon.id\\) function to get the number of distinct cartoon IDs, but it does not filter the results based on the directed_by column. To fix this error, we need to add a WHERE clause that filters the results based on the directed_by column and then group the results by directed_by to get the count of cartoons for each director.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT directed_by, COUNT(DISTINCT Cartoon.id) AS num_cartoons FROM Cartoon WHERE directed_by IN ('John Smith', 'Jane Doe') GROUP BY directed_by ORDER BY num_cartoons DESC",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_54e392d2_20251129130954",
+    "pattern": "SELECT DISTINCT T1\\.Package_Option FROM TV_series AS T1 JOIN TV_Channel AS T2 ON T1\\.Channel = T2\\.id WHERE T2\\.Series_name = 'Sky Radio' AND T1\\.Package_Option IS NOT NULL AND T1\\.Package_Option != ''",
+    "correction": "The query has incorrect column names and a redundant JOIN clause. The corrected SQL query should use the correct column names and remove the JOIN keyword.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The query has incorrect column names and a redundant JOIN clause. The corrected SQL query should use the correct column names and remove the JOIN keyword.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT DISTINCT T1.package_option FROM TV_series AS T1 WHERE T1.channel = T2.id AND T2.series_name = 'Sky...'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_96d6a100_20251129130040",
+    "pattern": "SELECT \\* FROM Students ORDER BY last_name DESC",
+    "correction": "This query is missing a WHERE clause to filter the students by their age. Adding this WHERE clause will allow us to provide more detailed information about each student, such as their name and their age.",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This query is missing a WHERE clause to filter the students by their age. Adding this WHERE clause will allow us to provide more detailed information about each student, such as their name and their age.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT * FROM Students WHERE age > 18 ORDER BY last_name DESC",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_3804c93f_20251129124540",
+    "pattern": "SELECT MIN\\(date_left\\) as earliest_graduate FROM Students",
+    "correction": "This query joins the students table with the degree programs table on the student ID column and filters the results by the earliest graduation date for each program. It then groups the results by the degree program ID and orders them by the same ID.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "This query joins the students table with the degree programs table on the student ID column and filters the results by the earliest graduation date for each program. It then groups the results by the degree program ID and orders them by the same ID.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name FROM Students s JOIN DegreePrograms dp ON s.StudentID = dp.StudentID WHERE dp.EarliestGraduationDate = MIN(date_left) GROUP BY dp.DegreeProgramID ORDER BY dp.DegreeProgramID",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_8caa9471_20251129123205",
+    "pattern": "SELECT T1\\.degree_summary_name, COUNT\\(\\*\\) AS num_students FROM Student_Enrolment T1 JOIN Degree_Programs T2 ON T1\\.degree_program_id = T2\\.degree_program_id GROUP BY T1\\.degree_program_id ORDER BY num_students DESC LIMIT 1",
+    "correction": "The query is missing the necessary join conditions with the student enrolment table and an aggregation function to calculate the number of students. We also need to change the column names to match the database schema.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The query is missing the necessary join conditions with the student enrolment table and an aggregation function to calculate the number of students. We also need to change the column names to match the database schema.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT degree_summary_name, COUNT(*) AS num_students FROM Student_Enrolment JOIN Degree_Programs ON degree_program_id = degree_program_id GROUP BY degree_summary_name ORDER BY num_students DESC LIMIT 1",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_2c8099e1_20251129121803",
+    "pattern": "SELECT COUNT\\(DISTINCT d\\.department_name\\) AS num_depts_offering_degree FROM Degree_Programs AS p JOIN Departments AS d ON p\\.department_id = d\\.department_id GROUP BY p\\.degree_program_id",
+    "correction": "The query is incorrect because it uses a non-existent column in the GROUP BY clause. The corrected SQL will group by the correct column and remove the JOIN clause as it is not necessary for this query.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "The query is incorrect because it uses a non-existent column in the GROUP BY clause. The corrected SQL will group by the correct column and remove the JOIN clause as it is not necessary for this query.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT COUNT(DISTINCT d.department_name) AS num_depts_offering_degree FROM Departments AS d GROUP BY d.department_name",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_932f002b_20251129121034",
+    "pattern": "SELECT name FROM battle WHERE bulgarian_commander = 'Kaloyan'",
+    "correction": "This transformation fixes the error by adding a WHERE clause to the query that specifies the commander names and selecting the `name` column from the `battle` table.",
+    "error_type": "COLUMN_SELECTION",
+    "error_category": "COLUMN_SELECTION",
+    "description": "This transformation fixes the error by adding a WHERE clause to the query that specifies the commander names and selecting the `name` column from the `battle` table.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name FROM battle b WHERE b.bulgarian_commander = 'Kaloyan'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "HIGH",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_9bb485d2_20251129115557",
+    "pattern": "SELECT ranking_date, COUNT\\(\\*\\) AS num_tours FROM rankings GROUP BY ranking_date",
+    "correction": "This query is missing the `tours` column in the `SELECT` clause. Adding this column will allow the query to include the number of total tours for each ranking date in the output.",
+    "error_type": "COLUMN_SELECTION",
+    "error_category": "COLUMN_SELECTION",
+    "description": "This query is missing the `tours` column in the `SELECT` clause. Adding this column will allow the query to include the number of total tours for each ranking date in the output.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT ranking_date, COUNT(*) AS num_tours, tours FROM rankings GROUP BY ranking_date",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_bb4b7767_20251129114300",
+    "pattern": "SELECT T1.first_name, T1.last_name FROM players AS T1 JOIN hands AS T2 ON T1.player_id = T2.player_id WHERE T2.hand = 'L' ORDER BY T1.birth_date",
+    "correction": "The query has an unnecessary join with the `hands` table and a missing column in the SELECT clause. We have corrected the query to use only the necessary columns from the `players` table and removed the unnecessary join.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The query has an unnecessary join with the `hands` table and a missing column in the SELECT clause. We have corrected the query to use only the necessary columns from the `players` table and removed the unnecessary join.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT T1.first_name, T1.last_name, T2.ranking_date FROM players AS T1 JOIN rankings AS T2 ON T1.player_id = T2.player_id WHERE T2.hand = 'L' ORDER BY T2.ranking_date",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_1ab3db4b_20251129113111",
+    "pattern": "SELECT count\\(\\*\\) FROM Museum WHERE Open_Year >= '2013' OR Open_Year <= '2008'",
+    "correction": "This query is incorrect because it uses the COUNT(*) function without a GROUP BY clause to group the results by museum ID. This will result in counting all rows in the table, regardless of whether they were opened after 2013 or before 2008. To fix this error, we need to add a GROUP BY clause to group the results by museum ID and then use the COUNT(*) function to count the number of rows in each group. This will ensure that the correct number of museums are counted, regardless of whether they were opened after 2013 or before 2008.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is incorrect because it uses the COUNT(*) function without a GROUP BY clause to group the results by museum ID. This will result in counting all rows in the table, regardless of whether they were opened after 2013 or before 2008. To fix this error, we need to add a GROUP BY clause to group the results by museum ID and then use the COUNT(*) function to count the number of rows in each group. This will ensure that the correct number of museums are counted, regardless of whether they were opened after 2013 or before 2008.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name, COUNT(*)\\ AS cnt FROM Museum GROUP BY s.Name HAVING cnt > 0 ORDER BY cnt DESC LIMIT 5",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_49f244e6_20251129112352",
+    "pattern": "SELECT \\((Name, Level_of_membership)\\) FROM visitor WHERE Level_of_membership > 4 ORDER BY Age DESC",
+    "correction": "This query is missing a WHERE clause to filter the results based on the membership level. The corrected SQL query would be:",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This query is missing a WHERE clause to filter the results based on the membership level. The corrected SQL query would be:",
+    "confidence_score": 0.9,
+    "replacement": "SELECT Name, Level_of_membership FROM visitor WHERE Level_of_membership > 4 ORDER BY Age DESC",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_48cf7185_20251129110025",
+    "pattern": "SELECT D\\.Document_ID, D\\.Document_Name, COUNT\\(P\\.Paragraph_ID\\) AS Num_Paragraphs FROM Documents D LEFT JOIN Paragraphs P ON D\\.Document_ID = P\\.Document_ID GROUP BY D\\.Document_ID, D\\.Document_Name",
+    "correction": "The query is incorrect because it has an unnecessary LEFT JOIN clause and the column names in the SELECT clause do not match the actual table and column names in the database schema. The corrected query removes the unnecessary JOIN clause and changes the column names to match the actual table and column names.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The query is incorrect because it has an unnecessary LEFT JOIN clause and the column names in the SELECT clause do not match the actual table and column names in the database schema. The corrected query removes the unnecessary JOIN clause and changes the column names to match the actual table and column names.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT D.Document_ID, D.Document_Name, COUNT(P.Paragraph_ID) AS Num_Paragraphs FROM Documents D WHERE D.Document_ID = P.Document_ID GROUP BY D.Document_ID, D.Document_Name",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "High",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_579a0a31_20251129105159",
+    "pattern": "SELECT Template_Type_Code FROM Templates GROUP BY Template_Type_Code ORDER BY COUNT\\(\\*\\) DESC LIMIT 1",
+    "correction": "This query is missing a column in the SELECT clause that counts the number of documents for each unique combination of template type code and document ID. By adding this new column, we can ensure that we are counting the number of documents for each unique combination of template type code and document ID.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is missing a column in the SELECT clause that counts the number of documents for each unique combination of template type code and document ID. By adding this new column, we can ensure that we are counting the number of documents for each unique combination of template type code and document ID.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT Template_Type_Code, COUNT(DISTINCT Document_ID) AS Count FROM Templates GROUP BY Template_Type_Code ORDER BY Count DESC LIMIT 1",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_dba6d174_20251129103924",
+    "pattern": "SELECT COUNT\\(\\*\\) FROM Templates",
+    "correction": "This query is incorrect because it does not specify the template type and date range, which are required to count the number of templates based on those conditions. The corrected query uses a WHERE clause to specify these conditions and then uses COUNT\\(\\*\\) to count the number of rows in the Templates table where these conditions are met.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is incorrect because it does not specify the template type and date range, which are required to count the number of templates based on those conditions. The corrected query uses a WHERE clause to specify these conditions and then uses COUNT\\(\\*\\) to count the number of rows in the Templates table where these conditions are met.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT COUNT(*) FROM Templates WHERE TemplateType = 'Document' AND CreatedDate BETWEEN '...'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_19f5a6cf_20251129103026",
+    "pattern": "SELECT district FROM shop WHERE Number_products < 3000",
+    "correction": "This query is missing a condition to filter shops that sell more than 10000 products, which is specified in the question. The JOIN clause is also used to connect the shop table with the district table to specify which district is being referred to in the question.",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This query is missing a condition to filter shops that sell more than 10000 products, which is specified in the question. The JOIN clause is also used to connect the shop table with the district table to specify which district is being referred to in the question.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT district.name FROM shop JOIN district ON shop.district_id = district.id WHERE Number_products < 3000 AND Number_products > 10000",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_419eff4b_20251129101406",
+    "pattern": "SELECT\\s+airline\\s+FROM\\s+flights\\s+f\\s+JOIN\\s+airlines\\s+a\\s+ON\\s+f\\.airline\\s*=\\s*a\\.uid\\s+WHERE\\s+SourceAirport\\s*=\\s*'APG'\\s+AND\\s+DestAirport\\s*=\\s*'CVO'\\s+OR\\s+SourceAirport\\s*=\\s*'CVO'\\s+AND\\s+DestAirport\\s*=\\s*'APG'",
+    "correction": "The query is incorrect because it contains a JOIN clause that is not needed since the information is already available in the flights table. Additionally, the WHERE clause contains column names that do not match the actual column names in the flights table.",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "The query is incorrect because it contains a JOIN clause that is not needed since the information is already available in the flights table. Additionally, the WHERE clause contains column names that do not match the actual column names in the flights table.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT airline FROM flights WHERE SourceAirport = 'APG' AND DestAirport = 'CVO' OR SourceAirport = 'CVO' AND DestAirport = 'APG'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_bcffad08_20251129100513",
+    "pattern": "SELECT AirportName FROM airports WHERE AirportCode = '<1>'",
+    "correction": "The query is missing a WHERE clause to filter the results based on the provided condition.",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "The query is missing a WHERE clause to filter the results based on the provided condition.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT AirportName FROM airports WHERE AirportCode = 'AKO'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_ab6b79c9_20251129100239",
+    "pattern": "SELECT FROM airports WHERE City = 'Anthony'",
+    "correction": "The query is missing the table reference for the flights table. This correction adds the necessary table reference to retrieve the corresponding airport code and name for a city named \"Anthony.\"",
+    "error_type": "TABLE_REFERENCE",
+    "error_category": "TABLE_REFERENCE",
+    "description": "The query is missing the table reference for the flights table. This correction adds the necessary table reference to retrieve the corresponding airport code and name for a city named \"Anthony.\"",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name, s.AirportCode FROM singer s WHERE s.City = 'Anthony'",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_30a64bff_20251129095548",
+    "pattern": "SELECT DISTINCT car_names\\.Make, car_names\\.Model FROM car_names JOIN model_list ON car_names\\.MakeId = model_list\\.Maker JOIN cars_data ON car_names\\.MakeId = cars_data\\.MakeId WHERE cars_data\\.MPG < 3500 AND NOT \\(model_list\\.Maker = 'Ford Motor Company'\\)",
+    "correction": "The original query has a few errors that need to be corrected. Firstly, the JOINs are not using foreign key relationships between tables, which can lead to inefficient performance and incorrect results. Secondly, the WHERE clause is filtering out models built by Ford Motor Company, but the JOINs do not ensure that only relevant data is retrieved. Finally, the query uses DISTINCT to retrieve unique values from multiple tables, but this can also lead to inefficient performance.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The original query has a few errors that need to be corrected. Firstly, the JOINs are not using foreign key relationships between tables, which can lead to inefficient performance and incorrect results. Secondly, the WHERE clause is filtering out models built by Ford Motor Company, but the JOINs do not ensure that only relevant data is retrieved. Finally, the query uses DISTINCT to retrieve unique values from multiple tables, but this can also lead to inefficient performance.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name FROM singer s JOIN model_list ml ON s.MakeId = ml.Maker JOIN cars_data cd ON s.MakeId = cd.MakeId WHERE cd.MPG < 3500 AND NOT (ml.Maker = 'Ford Motor Company')",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_7e06b8da_20251129095105",
+    "pattern": "SELECT COUNT\\(\\*\\) FROM \\( SELECT CountryName, COUNT\\(DISTINCT Maker\\) AS num_car_makers FROM car_makers GROUP BY CountryName HAVING COUNT\\(DISTINCT Maker\\) > 2 \\)",
+    "correction": "This query is incorrect because it includes a subquery in the SELECT clause, which is not allowed. The subquery should be moved to the FROM clause instead. Additionally, the WHERE clause should be added to filter out countries with fewer than 2 car makers.",
+    "error_type": "SUBQUERY_ERROR",
+    "error_category": "SUBQUERY_ERROR",
+    "description": "This query is incorrect because it includes a subquery in the SELECT clause, which is not allowed. The subquery should be moved to the FROM clause instead. Additionally, the WHERE clause should be added to filter out countries with fewer than 2 car makers.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT COUNT(*) FROM car_makers WHERE CountryName IN (SELECT DISTINCT CountryName FROM car_makers GROUP BY CountryName HAVING COUNT(DISTINCT Maker) > 2)",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_5e83764c_20251129094758",
+    "pattern": "SELECT MIN\\(Cylinders\\) FROM cars_data WHERE Model = 'Volvo' AND Accelerate IS NOT NULL",
+    "correction": "The query was incorrect due to the incorrect column name \"Accelerate\" in the WHERE clause. It should be \"Acceleration\".",
+    "error_type": "COLUMN_SELECTION",
+    "error_category": "COLUMN_SELECTION",
+    "description": "The query was incorrect due to the incorrect column name \"Accelerate\" in the WHERE clause. It should be \"Acceleration\".",
+    "confidence_score": 0.9,
+    "replacement": "SELECT MIN(Cylinders) FROM cars_data WHERE Model = 'Volvo' AND Acceleration IS NOT NULL",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_d4f1e0d1_20251129094205",
+    "pattern": "SELECT COUNT\\(\\*\\) FROM model_list WHERE Maker = 'American Motor Company'",
+    "correction": "This query is missing a WHERE clause to filter the results based on the maker column in the model list table. The corrected SQL query would look like this:",
+    "error_type": "FILTER_ERROR",
+    "error_category": "FILTER_ERROR",
+    "description": "This query is missing a WHERE clause to filter the results based on the maker column in the model list table. The corrected SQL query would look like this:",
+    "confidence_score": 0.7,
+    "replacement": "SELECT COUNT(*) FROM model_list WHERE Maker = 'American Motor Company' AND 1=1",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "medium",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_83c5ae4e_20251129092305",
+    "pattern": "SELECT c\\.Continent, COUNT\\(\\*\\) AS NumCarMakers FROM car_makers cm JOIN countries c ON cm\\.Country = c\\.CountryId GROUP BY c\\.Continent",
+    "correction": "This query is incorrect because it is missing a WHERE clause to filter the results by continent, and the JOIN conditions are not using foreign key relationships in the database schema. Additionally, the aggregate function COUNT(*) with a GROUP BY clause is providing an incorrect result set for the given question.",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "This query is incorrect because it is missing a WHERE clause to filter the results by continent, and the JOIN conditions are not using foreign key relationships in the database schema. Additionally, the aggregate function COUNT(*) with a GROUP BY clause is providing an incorrect result set for the given question.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name, COUNT(*) AS NumCarMakers FROM singer s JOIN countries c ON s.Country = c.CountryId WHERE c.Continent = 'Europe' GROUP BY s.Name ORDER BY s.Name ASC LIMIT 10",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_d17e7541_20251129091143",
+    "pattern": "SELECT LName FROM Student s JOIN Has_Pet h ON s.StuID = h.StuID WHERE PetType = 'cat' AND pet_age = 3",
+    "correction": "The query is missing the column name for the student table in the SELECT clause, which should be s.Name. Additionally, the JOIN condition is not using the correct column names for the tables.",
+    "error_type": "COLUMN_SELECTION",
+    "error_category": "COLUMN_SELECTION",
+    "description": "The query is missing the column name for the student table in the SELECT clause, which should be s.Name. Additionally, the JOIN condition is not using the correct column names for the tables.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name, h.PetAge FROM Student s JOIN Has_Pet h ON s.StuID = h.StuID WHERE PetType = 'cat' AND h.PetAge = 3",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_cbe29521_20251129084641",
+    "pattern": "Stadium\\.Name, Stadium\\.Capacity FROM Stadium INNER JOIN \\( SELECT Stadium\\_ID, AVG\\(Attendance\\) AS AverageAttendance FROM Event GROUP BY Stadium\\_ID \\) AS T ON Stadium\\.Stadium\\_ID = T\\.Stadium\\_ID ORDER BY T\\.AverageAttendance DESC LIMIT 1",
+    "correction": "The query has a join condition that uses the wrong foreign key relationship between the \"Stadium\" and \"T\" tables. This can be fixed by adding a WHERE clause to the JOIN condition, such as:",
+    "error_type": "OTHER",
+    "error_category": "OTHER",
+    "description": "The query has a join condition that uses the wrong foreign key relationship between the \"Stadium\" and \"T\" tables. This can be fixed by adding a WHERE clause to the JOIN condition, such as:",
+    "confidence_score": 0.9,
+    "replacement": "SELECT Stadium.Name, Stadium.Capacity FROM Stadium INNER JOIN Event ON Stadium.Stadium_ID = Event.Stadium_ID ORDER BY AverageAttendance DESC LIMIT 1",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "HIGH",
+      "llm_generated": true
+    }
+  },
+  {
+    "rule_id": "rule_926e9626_20251129084449",
+    "pattern": "max\\(Capacity\\)",
+    "correction": "This query is incorrect because it calculates the maximum capacity of a single stadium, but it should calculate the maximum capacity for all stadiums. The WHERE clause should be removed and the GROUP BY clause should be added to group the results by Stadium_ID.",
+    "error_type": "AGGREGATION_ERROR",
+    "error_category": "AGGREGATION_ERROR",
+    "description": "This query is incorrect because it calculates the maximum capacity of a single stadium, but it should calculate the maximum capacity for all stadiums. The WHERE clause should be removed and the GROUP BY clause should be added to group the results by Stadium_ID.",
+    "confidence_score": 0.9,
+    "replacement": "SELECT s.Name FROM singer s GROUP BY Stadium_ID",
+    "incorrect_example": "",
+    "correct_example": "",
+    "metadata": {
+      "confidence": "high",
+      "llm_generated": true
+    }
+  }
+]
