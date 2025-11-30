@@ -12,3 +12,4 @@ sentence_transformers
 attrs
 nltk
 requests
+faiss-cpu

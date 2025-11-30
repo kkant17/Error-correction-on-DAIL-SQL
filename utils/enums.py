@@ -55,6 +55,7 @@ class LLM:
     # Ollama local models
     OLLAMA_CODELLAMA_7B = "codellama:7b"
     OLLAMA_DEEPSEEK_CODER_6_7B = "deepseek-coder:6.7b"
+    OLLAMA_LLAMA3_1_8B = "llama3.1:8b"
     OLLAMA_MISTRAL_7B = "mistral:7b"
     OLLAMA_PHI3_INSTRUCT = "phi3:instruct"
     OLLAMA_QWEN_2_5_CODER_7B = "qwen2.5-coder:7b"
@@ -79,6 +80,7 @@ class LLM:
     TASK_OLLAMA = [
         OLLAMA_CODELLAMA_7B,
         OLLAMA_DEEPSEEK_CODER_6_7B,
+        OLLAMA_LLAMA3_1_8B,
         OLLAMA_MISTRAL_7B,
         OLLAMA_PHI3_INSTRUCT,
         OLLAMA_QWEN_2_5_CODER_7B,

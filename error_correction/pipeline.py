@@ -821,6 +821,90 @@ class ErrorCorrectionPipeline:
         logger.info(f"\n[Cluster Step 2] Testing merged rules on correct queries ({self.correct_db.size()} correct queries)...")
         validated_clusters = self.test_rules_on_correct_queries(clusters)
         
+        # Step 2.5: Apply transformations to queries fixed by newly generated rules and record them
+        if validated_clusters and self.enable_transformation:
+            logger.info(f"\n[Cluster Step 2.5] Recording transformations for queries corrected by LLM-generated rules...")
+            
+            for cluster in validated_clusters:
+                rule = cluster.combined_rule if cluster.combined_rule else (cluster.rules[0] if cluster.rules else None)
+                if not rule:
+                    continue
+                    
+                for triplet in cluster.triplets:
+                    incorrect_query = triplet.incorrect_query
+                    gold_query = triplet.correct_query
+                    db_id = triplet.db_id
+                    
+                    # Apply the rule to transform the query
+                    transformed_query = rule.apply(incorrect_query)
+                    
+                    if transformed_query and transformed_query != incorrect_query:
+                        # Record transformation attempt
+                        self.metrics['transformation_attempted'] += 1
+                        self.metrics['total_queries'] = max(self.metrics.get('total_queries', 0), 
+                                                             len(self.completed_triplets) + len(self.pending_triplets))
+                        
+                        # Validate transformation
+                        validation_result = self.validation_service.validate_transformation(
+                            original_query=incorrect_query,
+                            transformed_query=transformed_query,
+                            expected_query=gold_query,
+                            db_id=db_id
+                        )
+                        
+                        # Track validation result for accuracy stats
+                        if validation_result.passed:
+                            self.metrics['transformation_successful'] += 1
+                            self._track_validation_result(validation_result)
+                            
+                            # Record successful transformation
+                            self.metrics['transformations'].append({
+                                'original_query': incorrect_query,
+                                'transformed_query': transformed_query,
+                                'gold_query': gold_query,
+                                'success': True,
+                                'reason': 'Corrected by LLM-generated rule',
+                                'rule_id': rule.rule_id,
+                                'error_type': rule.error_type,
+                                'pattern': rule.pattern,
+                                'validation_method': validation_result.method,
+                                'db_id': db_id,
+                                'question': triplet.question
+                            })
+                            logger.info(f"  [RECORDED] Query corrected by rule {rule.rule_id} (validation: {validation_result.method})")
+                        else:
+                            self.metrics['transformation_failed'] += 1
+                            self.metrics['transformations'].append({
+                                'original_query': incorrect_query,
+                                'transformed_query': transformed_query,
+                                'gold_query': gold_query,
+                                'success': False,
+                                'reason': f'Transformation failed validation ({validation_result.method})',
+                                'rule_id': rule.rule_id,
+                                'error_type': rule.error_type,
+                                'pattern': rule.pattern,
+                                'db_id': db_id,
+                                'question': triplet.question
+                            })
+                            logger.warning(f"  [FAILED] Transformation did not pass validation ({validation_result.method})")
+                    else:
+                        # Rule didn't transform the query
+                        self.metrics['transformation_attempted'] += 1
+                        self.metrics['transformation_failed'] += 1
+                        self.metrics['transformations'].append({
+                            'original_query': incorrect_query,
+                            'transformed_query': incorrect_query,
+                            'gold_query': gold_query,
+                            'success': False,
+                            'reason': 'Rule did not transform query',
+                            'rule_id': rule.rule_id,
+                            'error_type': rule.error_type,
+                            'pattern': rule.pattern,
+                            'db_id': db_id,
+                            'question': triplet.question
+                        })
+                        logger.warning(f"  [NO TRANSFORM] Rule {rule.rule_id} did not transform query")
+        
         # Track metrics
         self.metrics['clustering_cycles'] = self.clustering_cycles
         self.metrics['triplets_per_cycle'].append(len(self.triplets))
@@ -900,6 +984,91 @@ class ErrorCorrectionPipeline:
                 
                 if clusters:
                     validated_clusters = self.test_rules_on_correct_queries(clusters)
+                    
+                    # Record transformations for queries corrected by newly generated rules
+                    if validated_clusters and self.enable_transformation:
+                        logger.info(f"Recording transformations for final cycle queries corrected by LLM-generated rules...")
+                        
+                        for cluster in validated_clusters:
+                            rule = cluster.combined_rule if cluster.combined_rule else (cluster.rules[0] if cluster.rules else None)
+                            if not rule:
+                                continue
+                                
+                            for triplet in cluster.triplets:
+                                incorrect_query = triplet.incorrect_query
+                                gold_query = triplet.correct_query
+                                db_id = triplet.db_id
+                                
+                                # Apply the rule to transform the query
+                                transformed_query = rule.apply(incorrect_query)
+                                
+                                if transformed_query and transformed_query != incorrect_query:
+                                    # Record transformation attempt
+                                    self.metrics['transformation_attempted'] += 1
+                                    self.metrics['total_queries'] = max(self.metrics.get('total_queries', 0), 
+                                                                         len(self.completed_triplets) + len(self.pending_triplets))
+                                    
+                                    # Validate transformation
+                                    validation_result = self.validation_service.validate_transformation(
+                                        original_query=incorrect_query,
+                                        transformed_query=transformed_query,
+                                        expected_query=gold_query,
+                                        db_id=db_id
+                                    )
+                                    
+                                    # Track validation result for accuracy stats
+                                    if validation_result.passed:
+                                        self.metrics['transformation_successful'] += 1
+                                        self._track_validation_result(validation_result)
+                                        
+                                        # Record successful transformation
+                                        self.metrics['transformations'].append({
+                                            'original_query': incorrect_query,
+                                            'transformed_query': transformed_query,
+                                            'gold_query': gold_query,
+                                            'success': True,
+                                            'reason': 'Corrected by LLM-generated rule',
+                                            'rule_id': rule.rule_id,
+                                            'error_type': rule.error_type,
+                                            'pattern': rule.pattern,
+                                            'validation_method': validation_result.method,
+                                            'db_id': db_id,
+                                            'question': triplet.question
+                                        })
+                                        logger.info(f"  [RECORDED] Query corrected by rule {rule.rule_id} (validation: {validation_result.method})")
+                                    else:
+                                        self.metrics['transformation_failed'] += 1
+                                        self.metrics['transformations'].append({
+                                            'original_query': incorrect_query,
+                                            'transformed_query': transformed_query,
+                                            'gold_query': gold_query,
+                                            'success': False,
+                                            'reason': f'Transformation failed validation ({validation_result.method})',
+                                            'rule_id': rule.rule_id,
+                                            'error_type': rule.error_type,
+                                            'pattern': rule.pattern,
+                                            'db_id': db_id,
+                                            'question': triplet.question
+                                        })
+                                        logger.warning(f"  [FAILED] Transformation did not pass validation ({validation_result.method})")
+                                else:
+                                    # Rule didn't transform the query
+                                    self.metrics['transformation_attempted'] += 1
+                                    self.metrics['transformation_failed'] += 1
+                                    self.metrics['transformations'].append({
+                                        'original_query': incorrect_query,
+                                        'transformed_query': incorrect_query,
+                                        'gold_query': gold_query,
+                                        'success': False,
+                                        'reason': 'Rule did not transform query',
+                                        'rule_id': rule.rule_id,
+                                        'error_type': rule.error_type,
+                                        'pattern': rule.pattern,
+                                        'db_id': db_id,
+                                        'question': triplet.question
+                                    })
+                                    logger.warning(f"  [NO TRANSFORM] Rule {rule.rule_id} did not transform query")
+                    
                     self.all_validated_clusters.extend(validated_clusters)
                     
                     for cluster in validated_clusters:

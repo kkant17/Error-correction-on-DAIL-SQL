@@ -30,6 +30,7 @@ if __name__ == '__main__':
                                                       LLM.GPT_4,
                                                       LLM.OLLAMA_CODELLAMA_7B,
                                                       LLM.OLLAMA_DEEPSEEK_CODER_6_7B,
+                                                      LLM.OLLAMA_LLAMA3_1_8B,
                                                       LLM.OLLAMA_MISTRAL_7B,
                                                       LLM.OLLAMA_PHI3_INSTRUCT,
                                                       LLM.OLLAMA_QWEN_2_5_CODER_7B,
