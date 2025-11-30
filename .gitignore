@@ -9,3 +9,4 @@ error_correction/pipeline.log
 error_correction/__pycache__/
 error_correction/results/
 __pycache__/
+results/
