@@ -12,3 +12,4 @@ vector_sql_db/incorrect/faiss.index
 vector_sql_db/incorrect/metadata.json
 vector_sql_db/incorrect/queries.pkl
 error_correction/results/
+results/
