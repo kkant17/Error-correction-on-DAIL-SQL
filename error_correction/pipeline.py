@@ -1297,8 +1297,8 @@ class ErrorCorrectionPipeline:
         clusters_file = os.path.join(RULE_STORAGE_PATH, "clusters.json")
         clusters_data = [cluster.to_dict() for cluster in clusters]
 
-        with open(clusters_file, 'w') as f:
-            json.dump(clusters_data, f, indent=2)
+        with open(clusters_file, 'w', encoding='utf-8') as f:
+            json.dump(clusters_data, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved {len(clusters)} clusters to {clusters_file}")
 
@@ -1307,8 +1307,8 @@ class ErrorCorrectionPipeline:
         rules_file = os.path.join(RULE_STORAGE_PATH, "rules.json")
         rules_data = [rule.to_dict() for rule in committed_rules]
 
-        with open(rules_file, 'w') as f:
-            json.dump(rules_data, f, indent=2)
+        with open(rules_file, 'w', encoding='utf-8') as f:
+            json.dump(rules_data, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved {len(committed_rules)} committed rules to {rules_file}")
 
@@ -1317,8 +1317,8 @@ class ErrorCorrectionPipeline:
         triplets_file = os.path.join(RULE_STORAGE_PATH, "triplets.json")
         triplets_data = [t.to_dict() for t in triplets_to_save]
 
-        with open(triplets_file, 'w') as f:
-            json.dump(triplets_data, f, indent=2)
+        with open(triplets_file, 'w', encoding='utf-8') as f:
+            json.dump(triplets_data, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved {len(triplets_to_save)} triplets to {triplets_file}")
 
@@ -1326,8 +1326,8 @@ class ErrorCorrectionPipeline:
         if self.enable_transformation and self.metrics['transformations']:
             transformations_file = os.path.join(RULE_STORAGE_PATH, "transformations.json")
 
-            with open(transformations_file, 'w') as f:
-                json.dump(self.metrics['transformations'], f, indent=2)
+            with open(transformations_file, 'w', encoding='utf-8') as f:
+                json.dump(self.metrics['transformations'], f, indent=2, ensure_ascii=False)
 
             logger.info(f"Saved {len(self.metrics['transformations'])} transformations to {transformations_file}")
 
@@ -1354,8 +1354,8 @@ class ErrorCorrectionPipeline:
             'committed_rules': self.committed_rules.size()
         }
 
-        with open(metrics_file, 'w') as f:
-            json.dump(metrics_summary, f, indent=2)
+        with open(metrics_file, 'w', encoding='utf-8') as f:
+            json.dump(metrics_summary, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved metrics to {metrics_file}")
 
@@ -1386,8 +1386,8 @@ class ErrorCorrectionPipeline:
             }
 
         accuracy_file = os.path.join(RULE_STORAGE_PATH, "accuracy_stats.json")
-        with open(accuracy_file, 'w') as f:
-            json.dump(accuracy_stats, f, indent=2)
+        with open(accuracy_file, 'w', encoding='utf-8') as f:
+            json.dump(accuracy_stats, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved accuracy statistics to {accuracy_file}")
 
@@ -1454,31 +1454,32 @@ class ErrorCorrectionPipeline:
         transformations = []
 
         if os.path.exists(clusters_file):
-            with open(clusters_file, 'r') as f:
+            with open(clusters_file, 'r', encoding='utf-8') as f:
                 clusters = json.load(f)
 
         if os.path.exists(rules_file):
-            with open(rules_file, 'r') as f:
+            with open(rules_file, 'r', encoding='utf-8') as f:
                 rules = json.load(f)
 
         if os.path.exists(metrics_file):
-            with open(metrics_file, 'r') as f:
+            with open(metrics_file, 'r', encoding='utf-8') as f:
                 metrics = json.load(f)
 
         if os.path.exists(accuracy_file):
-            with open(accuracy_file, 'r') as f:
+            with open(accuracy_file, 'r', encoding='utf-8') as f:
                 accuracy_stats = json.load(f)
 
         if os.path.exists(triplets_file):
-            with open(triplets_file, 'r') as f:
+            with open(triplets_file, 'r', encoding='utf-8') as f:
                 triplets = json.load(f)
 
         if os.path.exists(transformations_file):
-            with open(transformations_file, 'r') as f:
+            with open(transformations_file, 'r', encoding='utf-8') as f:
                 transformations = json.load(f)
 
         # Generate report
-        with open(output_file, 'w') as f:
+        # Use UTF-8 encoding when writing consolidated report (avoid Windows cp1252 errors)
+        with open(output_file, 'w', encoding='utf-8') as f:
             # Header
             f.write("=" * 80 + "\n")
             f.write("ERROR CORRECTION PIPELINE EVALUATION REPORT\n")
@@ -2025,3 +2026,4 @@ Examples:
 
 if __name__ == "__main__":
     main()
+# run python -c "from error_correction.pipeline import ErrorCorrectionPipeline; p=ErrorCorrectionPipeline.__new__(ErrorCorrectionPipeline); print(p.save_consolidated_eval_report('codellama:7b'))"
