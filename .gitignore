@@ -4,7 +4,8 @@ third_party/
 vector_cache/
 img/
 dataset/process/SPIDER-TEST_SQL_3-SHOT_EUCDISQUESTIONMASK_QA-EXAMPLE_CTX-200_ANS-4096
-vector_db/
+vector_sql_db/
 error_correction/pipeline.log
 error_correction/__pycache__/
+error_correction/results/
 __pycache__/
